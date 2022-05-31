@@ -1,4 +1,4 @@
-package com.amigoscode.awsimageupload;
+package com.codecool.travelhelper;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

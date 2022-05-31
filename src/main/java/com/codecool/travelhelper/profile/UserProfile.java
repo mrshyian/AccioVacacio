@@ -1,4 +1,4 @@
-package com.amigoscode.awsimageupload.profile;
+package com.codecool.travelhelper.profile;
 
 import java.util.Objects;
 import java.util.Optional;

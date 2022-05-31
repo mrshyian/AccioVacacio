@@ -1,7 +1,7 @@
-package com.amigoscode.awsimageupload.profile;
+package com.codecool.travelhelper.profile;
 
-import com.amigoscode.awsimageupload.bucket.BucketName;
-import com.amigoscode.awsimageupload.filestore.FileStore;
+import com.codecool.travelhelper.bucket.BucketName;
+import com.codecool.travelhelper.filestore.FileStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

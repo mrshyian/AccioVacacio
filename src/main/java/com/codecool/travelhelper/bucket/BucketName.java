@@ -1,4 +1,4 @@
-package com.amigoscode.awsimageupload.bucket;
+package com.codecool.travelhelper.bucket;
 
 public enum BucketName {
 

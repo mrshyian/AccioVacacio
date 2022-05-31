@@ -1,6 +1,6 @@
-package com.amigoscode.awsimageupload.profile;
+package com.codecool.travelhelper.profile;
 
-import com.amigoscode.awsimageupload.datastore.FakeUserProfileDataStore;
+import com.codecool.travelhelper.datastore.FakeUserProfileDataStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

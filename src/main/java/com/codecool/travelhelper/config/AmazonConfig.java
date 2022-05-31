@@ -1,4 +1,4 @@
-package com.amigoscode.awsimageupload.config;
+package com.codecool.travelhelper.config;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

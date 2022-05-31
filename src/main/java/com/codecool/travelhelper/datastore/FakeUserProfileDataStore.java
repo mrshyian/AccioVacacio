@@ -1,6 +1,6 @@
-package com.amigoscode.awsimageupload.datastore;
+package com.codecool.travelhelper.datastore;
 
-import com.amigoscode.awsimageupload.profile.UserProfile;
+import com.codecool.travelhelper.profile.UserProfile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

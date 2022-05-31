@@ -1,4 +1,4 @@
-package com.amigoscode.awsimageupload;
+package com.codecool.travelhelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

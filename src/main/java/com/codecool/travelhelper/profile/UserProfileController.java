@@ -1,4 +1,4 @@
-package com.amigoscode.awsimageupload.profile;
+package com.codecool.travelhelper.profile;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
