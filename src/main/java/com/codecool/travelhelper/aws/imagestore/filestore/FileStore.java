@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.filestore;
+package com.codecool.travelhelper.aws.imagestore.filestore;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;

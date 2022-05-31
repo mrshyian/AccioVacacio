@@ -1,7 +1,7 @@
-package com.codecool.travelhelper.profile;
+package com.codecool.travelhelper.aws.imagestore.profile;
 
-import com.codecool.travelhelper.bucket.BucketName;
-import com.codecool.travelhelper.filestore.FileStore;
+import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
+import com.codecool.travelhelper.aws.imagestore.filestore.FileStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

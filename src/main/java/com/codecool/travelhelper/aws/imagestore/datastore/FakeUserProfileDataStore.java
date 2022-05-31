@@ -1,6 +1,6 @@
-package com.codecool.travelhelper.datastore;
+package com.codecool.travelhelper.aws.imagestore.datastore;
 
-import com.codecool.travelhelper.profile.UserProfile;
+import com.codecool.travelhelper.aws.imagestore.profile.UserProfile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

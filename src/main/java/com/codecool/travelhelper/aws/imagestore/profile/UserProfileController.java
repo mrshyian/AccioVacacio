@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.profile;
+package com.codecool.travelhelper.aws.imagestore.profile;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

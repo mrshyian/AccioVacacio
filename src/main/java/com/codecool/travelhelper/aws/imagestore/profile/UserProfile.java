@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.profile;
+package com.codecool.travelhelper.aws.imagestore.profile;
 
 import java.util.Objects;
 import java.util.Optional;

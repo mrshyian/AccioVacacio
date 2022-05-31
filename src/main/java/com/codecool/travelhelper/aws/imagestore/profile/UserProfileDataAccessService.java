@@ -1,6 +1,6 @@
-package com.codecool.travelhelper.profile;
+package com.codecool.travelhelper.aws.imagestore.profile;
 
-import com.codecool.travelhelper.datastore.FakeUserProfileDataStore;
+import com.codecool.travelhelper.aws.imagestore.datastore.FakeUserProfileDataStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

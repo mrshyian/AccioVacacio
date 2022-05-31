@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.config;
+package com.codecool.travelhelper.aws.imagestore.config;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

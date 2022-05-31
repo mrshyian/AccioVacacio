@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.bucket;
+package com.codecool.travelhelper.aws.imagestore.bucket;
 
 public enum BucketName {
 
