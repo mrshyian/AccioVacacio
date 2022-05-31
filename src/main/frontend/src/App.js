@@ -24,7 +24,7 @@ const UserProfiles = () => {
     return (
       <div className='post' key={index}>
         {userProfile.userProfileId ?
-         <img src={`http://localhost:8080/api/v1/user-profile/${userProfile.userProfileId}/image/download`}/> 
+         <img src={`http://localhost:8080/api/v1/user-profile/${userProfile.userProfileId}/image/download`} alt={"example"}/>
         : null}
         <Dropzone {...userProfile}/>
         <h1>{userProfile.username}</h1>
