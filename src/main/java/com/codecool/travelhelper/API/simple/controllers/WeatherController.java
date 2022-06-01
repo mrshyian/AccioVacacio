@@ -4,6 +4,7 @@ package com.codecool.travelhelper.API.simple.controllers;
 import com.codecool.travelhelper.API.simple.model.WeatherDto;
 import com.codecool.travelhelper.API.simple.services.WeatherService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class WeatherController {
+    @Autowired
     private final WeatherService weatherService;
 
     @GetMapping("/weather")
