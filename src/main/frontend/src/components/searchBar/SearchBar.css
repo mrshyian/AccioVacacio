@@ -34,11 +34,16 @@ select::-ms-expand {
     top: 0;
     right: 0;
     padding: 0 1em;
-    background: #92bdbd;
+    background: transparent;
     cursor:pointer;
     pointer-events:none;
     transition:.25s all ease;
+    border: 2px solid #000000;
 }
 .select:hover::after {
     color: #23b499;
+}
+
+.search-box {
+    margin-left: 6%;
 }

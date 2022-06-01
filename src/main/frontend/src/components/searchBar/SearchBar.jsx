@@ -36,31 +36,32 @@ const SearchBar = () => {
         setSelectedCity(e.target.value)
     }
 
+    const loadAllAPIs = () => {
+    //    TODO: load all APIs with selectedCountry and selectedCity
+    }
     console.log(selectedCountry, selectedState, selectedCity)
 
     return (
-        <div>
+        <div className="search-box">
             <div className="select">
-                <label>Country: </label>
                 <select onChange={(e) => handleCountry(e)}>
                     <option value="">Select Country</option>
                     {country.map(items=> <option key={items} value={selectedCountry}>{items}</option> )}
                 </select>
             </div>
             <div className="select">
-                <label>State: </label>
                 <select onChange={(e) => handleState(e)}>
                     <option value="">Select State</option>
                     {getState.map(items=> <option key={items} value={selectedState}>{items}</option> )}
                 </select>
             </div>
             <div className="select">
-                <label>City: </label>
                 <select onChange={(e) => handleCity(e)}>
                     <option value="">Select City</option>
                     {cities.map(items=> <option key={items.name}>{items.name}</option> )}
                 </select>
             </div>
+            <button onClick={loadAllAPIs}>Search</button>
         </div>
     );
 };
