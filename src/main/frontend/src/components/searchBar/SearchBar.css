@@ -6,8 +6,7 @@ select {
     outline:0;
     box-shadow:none;
     border:0!important;
-    background: #5c6664;
-    background-image: none;
+    background: transparent;
     flex: 1;
     padding: 0 .5em;
     color:#fff;
@@ -24,9 +23,10 @@ select::-ms-expand {
     width: 20em;
     height: 3em;
     line-height: 3;
-    background: #5c6664;
+    background: transparent;
     overflow: hidden;
     border-radius: .25em;
+    border: 1px solid #2b2e2e;
 }
 .select::after {
     content: '\25BC';
@@ -34,7 +34,7 @@ select::-ms-expand {
     top: 0;
     right: 0;
     padding: 0 1em;
-    background: #2b2e2e;
+    background: #92bdbd;
     cursor:pointer;
     pointer-events:none;
     transition:.25s all ease;
