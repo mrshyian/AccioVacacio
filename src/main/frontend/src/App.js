@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios';
 import React, {useState, useEffect, useCallback} from 'react';
 import {useDropzone} from 'react-dropzone'
+import Header from "./components/header/Header";
 
 
 
@@ -75,7 +76,8 @@ function Dropzone({userProfileId}) {
 function App() {
   return (
     <div className="App">
-      <UserProfiles/>
+      <Header inSession={false}/>
+      {/*<UserProfiles/>*/}
     </div>
   );
 }
