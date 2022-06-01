@@ -1,11 +1,9 @@
 import './App.css';
 import axios from 'axios';
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDropzone} from 'react-dropzone'
 import Header from "./components/header/Header";
-import LoginModal from "./components/modals/loginModal/LoginModal";
-import SearchBar from "./components/searchBar/SearchBar";
-
+import SearchBox from "./components/searchBox/SearchBox";
 
 
 const UserProfiles = () => {
@@ -80,7 +78,7 @@ function App() {
   return (
     <div className="App">
       <Header inSession={false}/>
-      <SearchBar/>
+      <SearchBox/>
       {/*<UserProfiles/>*/}
     </div>
   );

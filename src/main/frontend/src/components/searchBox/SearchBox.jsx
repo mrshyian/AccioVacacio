@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import "./SearchBar.css"
+import "./SearchBox.css"
 
-const SearchBar = () => {
+const SearchBox = () => {
 
     const [data, setData] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState();
@@ -66,4 +66,4 @@ const SearchBar = () => {
     );
 };
 
-export default SearchBar;
+export default SearchBox;
