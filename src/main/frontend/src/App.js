@@ -4,6 +4,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {useDropzone} from 'react-dropzone'
 import Header from "./components/header/Header";
 import LoginModal from "./components/modals/loginModal/LoginModal";
+import SearchBar from "./components/searchBar/SearchBar";
 
 
 
@@ -79,7 +80,8 @@ function App() {
   return (
     <div className="App">
       <Header inSession={false}/>
-      <UserProfiles/>
+      <SearchBar/>
+      {/*<UserProfiles/>*/}
     </div>
   );
 }

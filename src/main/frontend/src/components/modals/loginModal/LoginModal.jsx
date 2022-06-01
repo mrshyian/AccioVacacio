@@ -16,7 +16,7 @@ const LoginModal = ({ setLoginOpenModal }) => {
                     <h2>Log in</h2>
                 </div>
                 <div className="body">
-                    <input className="myInput" type="email" placeholder="E-mail" value={email} onChange={e=> setEmail(e.target.value)}/>
+                    <input className="myInput" type="country" placeholder="E-mail" value={email} onChange={e=> setEmail(e.target.value)}/>
                     <input className="myInput" type="password" placeholder="Password" value={password} onChange={e=> setPassword(e.target.value)}/>
                 </div>
                 <div className="footer">
