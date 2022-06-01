@@ -79,7 +79,7 @@ function App() {
   return (
     <div className="App">
       <Header inSession={false}/>
-      {/*<UserProfiles/>*/}
+      <UserProfiles/>
     </div>
   );
 }
