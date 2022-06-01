@@ -107,6 +107,28 @@ public abstract class ApiWebClientRapidApi {
         return value.getAsString();
     }
 
+    /**
+     * * Should be used for case "weather":
+     *      *      * response = {"base":"stations",
+     *      *      *              "coord":{"lon":-0.1257,"lat":51.5085},
+     *      *      *              "weather":[
+     *      *      *                          {"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}
+     *      *      *                        ]
+     *      *      *             }
+     *      *      *
+     * @param keyForValue
+     * @param keyForJsonArray
+     * @param jsonObject
+     * @param elementIndex
+     * @return String with value for "weather", where "coord" is element of the third level of nesting - json object inside json array.
+     */
+    public String getValueByKeyFromJsonObjectInsideJsonArray (String keyForValue, String keyForJsonArray, JsonObject jsonObject, int elementIndex){
+        JsonArray jsonArray = jsonObject.getAsJsonArray(keyForJsonArray);
+        JsonObject innerJsonObject = jsonArray.get(elementIndex).getAsJsonObject();
+        JsonElement value = innerJsonObject.get(keyForValue);
+        return value.getAsString();
+    }
+
     public ApiWebClientRapidApi() {}
 
     public ApiWebClientRapidApi(ApiMetaDataRapidApi apiMetaData) {

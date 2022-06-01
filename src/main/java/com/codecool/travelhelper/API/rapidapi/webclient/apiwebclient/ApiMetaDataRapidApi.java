@@ -8,10 +8,11 @@ public enum ApiMetaDataRapidApi {
         put("X-RapidAPI-Host", "community-open-weather-map.p.rapidapi.com");
         put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
     }}),
-    NEXT_API("http://", new HashMap<>(){{
-        put("first-key", "smth");
-        put("second-key", "123");
+    NEWSWORLD("https://newscatcher.p.rapidapi.com/v1/search_free", new HashMap<>(){{
+        put("X-RapidAPI-Host", "newscatcher.p.rapidapi.com");
+        put("X-RapidAPI-Key", "29286b8312msh036071eab35d511p1068e3jsnb3e521501cd7");
     }})
+
 
     ;
 
