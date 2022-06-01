@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios';
 import React, {useState, useEffect, useCallback} from 'react';
 import {useDropzone} from 'react-dropzone'
+import Header from "./components/header/Header";
 
 
 
@@ -24,7 +25,7 @@ const UserProfiles = () => {
     return (
       <div className='post' key={index}>
         {userProfile.userProfileId ?
-         <img src={`http://localhost:8080/api/v1/user-profile/${userProfile.userProfileId}/image/download`}/> 
+         <img src={`http://localhost:8080/api/v1/user-profile/${userProfile.userProfileId}/image/download`} alt={"example"}/>
         : null}
         <Dropzone {...userProfile}/>
         <h1>{userProfile.username}</h1>
@@ -75,7 +76,8 @@ function Dropzone({userProfileId}) {
 function App() {
   return (
     <div className="App">
-      <UserProfiles/>
+      <Header inSession={false}/>
+      {/*<UserProfiles/>*/}
     </div>
   );
 }

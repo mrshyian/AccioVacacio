@@ -1,0 +1,20 @@
+.header-box {
+    position: center;
+    display: flex;
+    /*background: cadetblue;*/
+    height: 130px;
+    justify-content: space-between;
+    /*align-items: center;*/
+    /*border: 3px solid #4d8183;*/
+    /*padding: 10px;*/
+    /*border-radius: 50px 20px;*/
+}
+
+.left-buttons {
+    text-align: left;
+}
+
+.right-buttons {
+    text-align: right;
+}
+
