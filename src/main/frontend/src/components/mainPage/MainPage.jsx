@@ -1,45 +1,26 @@
-import React, {useEffect} from 'react';
-import NewsBox from "./newsBox/NewsBox";
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {useState} from "@types/react";
+import {logDOM} from "@testing-library/react";
 
-const [news, setNews] = useState([]);
 
-// // PRZYKŁAD! ---------------------------------------------------------
-// const news = [
-//     {
-//         "NewsTitle": "Pierwszy tytul",
-//         "NewsText": "Pierwsza wiadomość",
-//         "NewsLink": "https://www.youtube.com/watch?v=3rzgrP7VA_Q"
-//     },
-//     {
-//         "NewsTitle": "Drugi tytul",
-//         "NewsText": "Druga wiadomość",
-//         "NewsLink": "https://www.youtube.com/watch?v=3rzgrP7VA_Q"
-//     },
-//     {
-//         "NewsTitle": "Trzeci tytul",
-//         "NewsText": "Trzecia wiadomość",
-//         "NewsLink": "https://www.youtube.com/watch?v=3rzgrP7VA_Q"
-//     }
-// ]
-// // PRZYKŁAD! ---------------------------------------------------------
+const MainPage = (props) => {
 
-const MainPage = () => {
+    const [news, setNews] = useState([]);
 
-    const fetchNewsWorld = ({cityName}) => {
-        axios.get(`http://localhost:8080/weather/${cityName}`).then(res =>{
-            setNews(res.data);
-        });
+    const fetchNewsWorld = () => {
+        axios.get(`http://localhost:8080/weather/${props.city}`)
+            .then(res =>{setNews(res.data);})
+            .catch(err => {console.log(err)});
+        console.log(news)
     };
 
     useEffect(()=>{
-        fetchNewsWorld("Warsaw")
+        fetchNewsWorld()
     })
 
     return (
         <div>
-            <NewsBox news={news}/>
+            {/*<NewsBox news={news}/>*/}
         </div>
     );
 };
