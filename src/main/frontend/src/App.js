@@ -9,16 +9,24 @@ import Header from "./components/header/Header";
 const UserProfiles = () => {
 
   const [userProfiles, setUserProfile] = useState([]);
+  const [news, setNews] = useState([]);
 
   const fetchUserProfiles = () => {
     axios.get("http://localhost:8080/api/v1/user-profile").then(res =>{
-      console.log(res);
       setUserProfile(res.data);
     });
   };
 
+  const fetchNewsWorld = ({cityName}) => {
+    axios.get(`http://localhost:8080/weather/${cityName}`).then(res =>{
+      setNews(res.data);
+    });
+  };
+
+
   useEffect(() => {
     fetchUserProfiles();
+    fetchNewsWorld("Warsaw")
   }, []);
 
   return userProfiles.map((userProfile, index) => {
