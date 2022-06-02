@@ -34,6 +34,7 @@ public class AirportClientImplRapidApi extends ApiWebClientRapidApi {
     public AirportDtoRapidApi getAirportDto(JsonObject response) {
         String airportName = getValueByKeyFromJsonObjectInsideJsonArray("AirportName", "results", response, 0);
         String airportCode = getValueByKeyFromJsonObjectInsideJsonArray("AirportCode", "results" , response, 0);
+
         System.out.println(airportName);
 
         AirportDtoRapidApi airportDto = AirportDtoRapidApi.builder()
