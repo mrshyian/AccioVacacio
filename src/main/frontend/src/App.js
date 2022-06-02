@@ -11,7 +11,6 @@ import MainPage from "./components/mainPage/MainPage";
 const UserProfiles = () => {
 
   const [userProfiles, setUserProfile] = useState([]);
-  const [news, setNews] = useState([]);
 
   const fetchUserProfiles = () => {
     axios.get("http://localhost:8080/api/v1/user-profile").then(res =>{
@@ -19,16 +18,9 @@ const UserProfiles = () => {
     });
   };
 
-  const fetchNewsWorld = ({cityName}) => {
-    axios.get(`http://localhost:8080/weather/${cityName}`).then(res =>{
-      setNews(res.data);
-    });
-  };
-
 
   useEffect(() => {
     fetchUserProfiles();
-    fetchNewsWorld("Warsaw")
   }, []);
 
     return userProfiles.map((userProfile, index) => {
@@ -90,7 +82,7 @@ function App() {
         <div className="App">
             <Header inSession={false}/>
             {/*<SearchBox/>*/}
-            <MainPage/>
+            <MainPage country="Poland" city="Warsaw"/>
             {/*<UserProfiles/>*/}
         </div>
     );
