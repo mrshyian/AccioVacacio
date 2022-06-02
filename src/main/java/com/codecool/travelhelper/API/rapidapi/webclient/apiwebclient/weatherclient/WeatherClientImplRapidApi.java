@@ -43,7 +43,7 @@ public class WeatherClientImplRapidApi extends ApiWebClientRapidApi implements W
 
         float wingSpeed = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("speed", "wind", response));
 
-        WeatherDtoRapidApi weatherDto = WeatherDtoRapidApi.builder()
+        return WeatherDtoRapidApi.builder()
                 .mainParameter(mainParameter)
                 .description(description)
                 .icon(icon)
@@ -53,7 +53,6 @@ public class WeatherClientImplRapidApi extends ApiWebClientRapidApi implements W
                 .humidity(humidity)
                 .wingSpeed(wingSpeed)
                 .build();
-
-        return weatherDto;
     }
 }
+

@@ -10,18 +10,19 @@ import MainPage from "./components/mainPage/MainPage";
 
 const UserProfiles = () => {
 
-    const [userProfiles, setUserProfile] = useState([]);
+  const [userProfiles, setUserProfile] = useState([]);
 
-    const fetchUserProfiles = () => {
-        axios.get("http://localhost:8080/api/v1/user-profile").then(res => {
-            console.log(res);
-            setUserProfile(res.data);
-        });
-    };
+  const fetchUserProfiles = () => {
+    axios.get("http://localhost:8080/api/v1/user-profile").then(res =>{
+      setUserProfile(res.data);
+    });
+  };
 
-    useEffect(() => {
-        fetchUserProfiles();
-    }, []);
+
+
+  useEffect(() => {
+    fetchUserProfiles();
+  }, []);
 
     return userProfiles.map((userProfile, index) => {
         return (
@@ -76,14 +77,13 @@ function Dropzone({userProfileId}) {
 }
 
 
-
 function App() {
 
     return (
         <div className="App">
             <Header inSession={false}/>
             {/*<SearchBox/>*/}
-            <MainPage/>
+            <MainPage country="Poland" city="Warsaw"/>
             {/*<UserProfiles/>*/}
         </div>
     );

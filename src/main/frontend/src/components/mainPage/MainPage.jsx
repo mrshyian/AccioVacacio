@@ -1,28 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
 import NewsBox from "./newsBox/NewsBox";
 
 
-// PRZYKŁAD! ---------------------------------------------------------
-const news = [
-    {
-        "NewsTitle": "Pierwszy tytul",
-        "NewsText": "Pierwsza wiadomość",
-        "NewsLink": "https://www.youtube.com/watch?v=3rzgrP7VA_Q"
-    },
-    {
-        "NewsTitle": "Drugi tytul",
-        "NewsText": "Druga wiadomość",
-        "NewsLink": "https://www.youtube.com/watch?v=3rzgrP7VA_Q"
-    },
-    {
-        "NewsTitle": "Trzeci tytul",
-        "NewsText": "Trzecia wiadomość",
-        "NewsLink": "https://www.youtube.com/watch?v=3rzgrP7VA_Q"
-    }
-]
-// PRZYKŁAD! ---------------------------------------------------------
+const MainPage = (props) => {
 
-const MainPage = () => {
+    const [news, setNews] = useState([]);
+
+    const fetchNewsWorld = () => {
+        axios.get(`http://localhost:8080/news/${props.city}`)
+            .then(res =>{setNews(res.data);})
+            .catch(err => {console.log(err)});
+    };
+
+    useEffect(()=>{
+        fetchNewsWorld()
+    })
+
     return (
         <div>
             <NewsBox news={news}/>
