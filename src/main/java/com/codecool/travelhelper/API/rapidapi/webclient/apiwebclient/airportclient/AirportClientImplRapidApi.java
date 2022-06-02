@@ -18,6 +18,7 @@ public class AirportClientImplRapidApi extends ApiWebClientRapidApi {
     }
 
     public AirportDtoRapidApi getCityAirport(String cityName) {
+        this.setUrl("https://world-airports-directory.p.rapidapi.com/v1/airports/");
         String currentUrl = this.getUrl();
         String newUrl = currentUrl + cityName;
         this.setUrl(newUrl);
