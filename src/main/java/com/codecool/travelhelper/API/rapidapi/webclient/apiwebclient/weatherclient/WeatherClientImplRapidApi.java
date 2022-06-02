@@ -55,3 +55,4 @@ public class WeatherClientImplRapidApi extends ApiWebClientRapidApi implements W
                 .build();
     }
 }
+

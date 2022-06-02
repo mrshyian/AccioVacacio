@@ -8,8 +8,8 @@ const MainPage = (props) => {
     const [news, setNews] = useState([]);
 
     const fetchNewsWorld = () => {
-        axios.get(`http://localhost:8080/weather/${props.city}`)
-            .then(res =>{setNews(res.data);})
+        axios.get(`http://localhost:8080/news/${props.city}`)
+            .then(res =>{console.log(res.data);})
             .catch(err => {console.log(err)});
         console.log(news)
     };
