@@ -10,7 +10,7 @@ public enum ApiMetaDataRapidApi {
     }}),
     NEWSWORLD("https://newscatcher.p.rapidapi.com/v1/search_free", new HashMap<>(){{
         put("X-RapidAPI-Host", "newscatcher.p.rapidapi.com");
-        put("X-RapidAPI-Key", "29286b8312msh036071eab35d511p1068e3jsnb3e521501cd7");
+        put("X-RapidAPI-Key", "691ed8695cmsh482afe9729a78bcp12feeejsnecea9fc7b2c1");
     }})
 
 

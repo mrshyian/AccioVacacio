@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {logDOM} from "@testing-library/react";
+import NewsBox from "./newsBox/NewsBox";
 
 
 const MainPage = (props) => {
@@ -9,9 +9,8 @@ const MainPage = (props) => {
 
     const fetchNewsWorld = () => {
         axios.get(`http://localhost:8080/news/${props.city}`)
-            .then(res =>{console.log(res.data);})
+            .then(res =>{setNews(res.data);})
             .catch(err => {console.log(err)});
-        console.log(news)
     };
 
     useEffect(()=>{
@@ -20,7 +19,7 @@ const MainPage = (props) => {
 
     return (
         <div>
-            {/*<NewsBox news={news}/>*/}
+            <NewsBox news={news}/>
         </div>
     );
 };

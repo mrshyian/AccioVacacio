@@ -19,6 +19,7 @@ const UserProfiles = () => {
   };
 
 
+
   useEffect(() => {
     fetchUserProfiles();
   }, []);
