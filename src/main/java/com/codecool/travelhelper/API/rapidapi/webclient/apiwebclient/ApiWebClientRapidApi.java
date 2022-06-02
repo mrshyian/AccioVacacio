@@ -86,6 +86,7 @@ public abstract class ApiWebClientRapidApi {
      * @return String with value for "base", where "base" is element of the first level of nesting.
      */
     public String getValueByKeyFromJsonObject (String key, JsonObject jsonObject) {
+        System.out.println(jsonObject.get(key).getAsString());
         return jsonObject.get(key).getAsString();
     }
 
