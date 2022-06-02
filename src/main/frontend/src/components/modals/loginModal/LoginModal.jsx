@@ -13,7 +13,7 @@ const LoginModal = ({ setLoginOpenModal }) => {
                     <button style={{width: "8%"}} onClick={() => {setLoginOpenModal(false);}}>X</button>
                 </div>
                 <div className="title">
-                    <h2>Log in</h2>
+                    <h1>Log in</h1>
                 </div>
                 <div className="body">
                     <input className="myInput" type="country" placeholder="E-mail" value={email} onChange={e=> setEmail(e.target.value)}/>
