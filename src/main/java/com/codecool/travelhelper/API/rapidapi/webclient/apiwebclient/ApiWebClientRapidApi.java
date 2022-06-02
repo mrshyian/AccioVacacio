@@ -46,6 +46,31 @@ public abstract class ApiWebClientRapidApi {
         return responseJson;
     }
 
+    public JsonObject getApiResponse(String url, Map<String, String> headersData){
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+
+        // set Content-Type and Accept headers
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        for (var entry: headersData.entrySet()) {
+            headers.set(entry.getKey(), entry.getValue());
+        }
+
+        HttpEntity request = new HttpEntity(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                request,
+                String.class
+        );
+        JsonObject responseJson = new JsonParser().parse(response.getBody()).getAsJsonObject();
+
+        return responseJson;
+    }
+
 
     /**
      * Should be used for case "base":
@@ -103,6 +128,28 @@ public abstract class ApiWebClientRapidApi {
     public String getValueByKeyFromJsonObjectInsideJsonArray (String keyForValue, String keyForJsonArray, JsonObject jsonObject){
         JsonArray jsonArray = jsonObject.getAsJsonArray(keyForJsonArray);
         JsonObject innerJsonObject = jsonArray.get(0).getAsJsonObject();
+        JsonElement value = innerJsonObject.get(keyForValue);
+        return value.getAsString();
+    }
+
+    /**
+     * * Should be used for case "weather":
+     *      *      * response = {"base":"stations",
+     *      *      *              "coord":{"lon":-0.1257,"lat":51.5085},
+     *      *      *              "weather":[
+     *      *      *                          {"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}
+     *      *      *                        ]
+     *      *      *             }
+     *      *      *
+     * @param keyForValue
+     * @param keyForJsonArray
+     * @param jsonObject
+     * @param elementIndex
+     * @return String with value for "weather", where "coord" is element of the third level of nesting - json object inside json array.
+     */
+    public String getValueByKeyFromJsonObjectInsideJsonArray (String keyForValue, String keyForJsonArray, JsonObject jsonObject, int elementIndex){
+        JsonArray jsonArray = jsonObject.getAsJsonArray(keyForJsonArray);
+        JsonObject innerJsonObject = jsonArray.get(elementIndex).getAsJsonObject();
         JsonElement value = innerJsonObject.get(keyForValue);
         return value.getAsString();
     }
