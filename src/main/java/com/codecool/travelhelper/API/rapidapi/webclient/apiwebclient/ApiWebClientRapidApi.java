@@ -46,6 +46,31 @@ public abstract class ApiWebClientRapidApi {
         return responseJson;
     }
 
+    public JsonObject getApiResponse(String url, Map<String, String> headersData){
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+
+        // set Content-Type and Accept headers
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        for (var entry: headersData.entrySet()) {
+            headers.set(entry.getKey(), entry.getValue());
+        }
+
+        HttpEntity request = new HttpEntity(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                request,
+                String.class
+        );
+        JsonObject responseJson = new JsonParser().parse(response.getBody()).getAsJsonObject();
+
+        return responseJson;
+    }
+
 
     /**
      * Should be used for case "base":
