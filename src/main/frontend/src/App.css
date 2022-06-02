@@ -48,4 +48,7 @@ body {
   background-image: url("https://media.self.com/photos/5f0885ffef7a10ffa6640daa/3:4/w_2945,h_3927,c_limit/travel_plane_corona.jpeg");
   background-repeat: no-repeat;
   background-size: 100%;
+  display: block;
+  padding: 0;
+  margin: 0;
 }
