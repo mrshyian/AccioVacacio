@@ -15,7 +15,7 @@ const MainPage = (props) => {
 
     useEffect(()=>{
         fetchNewsWorld()
-    })
+    }, [])
 
     return (
         <div>

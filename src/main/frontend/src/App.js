@@ -4,8 +4,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useDropzone} from 'react-dropzone'
 import Header from "./components/header/Header";
 import SearchBox from "./components/searchBox/SearchBox";
-import NewsBox from "./components/mainPage/newsBox/NewsBox";
-import MainPage from "./components/mainPage/MainPage";
 
 
 const UserProfiles = () => {
@@ -82,8 +80,8 @@ function App() {
     return (
         <div className="App">
             <Header inSession={false}/>
-            {/*<SearchBox/>*/}
-            <MainPage country="Poland" city="Warsaw"/>
+            <SearchBox/>
+            {/*<MainPage country="Poland" city="Warsaw"/>*/}
             {/*<UserProfiles/>*/}
         </div>
     );

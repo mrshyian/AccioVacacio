@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import "./SearchBox.css"
+import ReactDOM from "react-dom/client";
+import App from "../../App";
+import Header from "../header/Header";
+import MainPage from "../mainPage/MainPage";
 
 const SearchBox = () => {
 
@@ -36,8 +40,16 @@ const SearchBox = () => {
         setSelectedCity(e.target.value)
     }
 
-    const loadAllAPIs = () => {
-    //    TODO: load all APIs with selectedCountry and selectedCity
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+    const loadSearchingPage = () => {
+        root.render(
+            <React.StrictMode>
+                <Header inSession={false}/>
+                <MainPage country={selectedCountry} city={selectedCity}/>
+            </React.StrictMode>
+        );
     }
     console.log(selectedCountry, selectedState, selectedCity)
 
@@ -61,7 +73,7 @@ const SearchBox = () => {
                     {cities.map(items=> <option key={items.name}>{items.name}</option> )}
                 </select>
             </div>
-            <button onClick={loadAllAPIs}>Search</button>
+            <button onClick={loadSearchingPage}>Search</button>
         </div>
     );
 };
