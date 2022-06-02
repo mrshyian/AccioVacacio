@@ -7,7 +7,9 @@ import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClien
 import com.google.gson.JsonObject;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -18,7 +20,7 @@ public class WorldNewsClientImplRapidApi extends ApiWebClientRapidApi implements
     }
 
     @Override
-    public WorldNewsDtoRapidApi getCityNews(String cityName) {
+    public List<WorldNewsDtoRapidApi> getCityNews(String cityName, int amountOfNews) {
         Map<String, Object> parameters = new HashMap<>(){{
             put("q", cityName);
         }};
@@ -27,24 +29,32 @@ public class WorldNewsClientImplRapidApi extends ApiWebClientRapidApi implements
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData(), this.getParameters());
         System.out.println(response);
 
-        WorldNewsDtoRapidApi newsDto = getnewsDto(response);
-        System.out.println(newsDto.toString());
+        List<WorldNewsDtoRapidApi> listOfNewsDetails = getListOfNewsDetails(response,amountOfNews);
 
-        return newsDto;
+        return listOfNewsDetails;
     }
 
-    private WorldNewsDtoRapidApi getnewsDto(JsonObject response) {
-        String title = getValueByKeyFromJsonObjectInsideJsonArray("title","articles",response,17);
-        String summary = getValueByKeyFromJsonObjectInsideJsonArray("summary","articles",response,17);
-        System.out.println(title);
-        System.out.println(summary);
+    private List<WorldNewsDtoRapidApi> getListOfNewsDetails(JsonObject response, int amountOfNews) {
+        List<WorldNewsDtoRapidApi> listOfNews = new ArrayList<>();
+        for (int i = 0; i < amountOfNews; i++) {
+            WorldNewsDtoRapidApi singleNews = getSingleNewsDto(response, i);
+            listOfNews.add(singleNews);
+        }
+        return listOfNews;
+    }
+
+
+    private WorldNewsDtoRapidApi getSingleNewsDto(JsonObject response, int index) {
+        String title = getValueByKeyFromJsonObjectInsideJsonArray("title","articles",response,index);
+        String summary = getValueByKeyFromJsonObjectInsideJsonArray("summary","articles",response,index);
+        String link = getValueByKeyFromJsonObjectInsideJsonArray("link","articles",response,index);
 
         WorldNewsDtoRapidApi worldNews = WorldNewsDtoRapidApi.builder()
                 .summary(summary)
                 .title(title)
+                .link(link)
                 .build();
         return worldNews;
     }
-
 
 }

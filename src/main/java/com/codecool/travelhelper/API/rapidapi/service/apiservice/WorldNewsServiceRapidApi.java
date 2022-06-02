@@ -8,14 +8,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class WorldNewsServiceRapidApi {
     @Autowired
     private final WorldNewsClientImplRapidApi newsClient;
 
-    public WorldNewsDtoRapidApi getNews(String cityName){
-        WorldNewsDtoRapidApi response = newsClient.getCityNews(cityName);
+    public List<WorldNewsDtoRapidApi> getNews(String cityName){
+        int amountOfNews = 3;
+        List<WorldNewsDtoRapidApi> response = newsClient.getCityNews(cityName, amountOfNews);
         return response;
     }
 }
