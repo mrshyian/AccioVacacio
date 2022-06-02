@@ -3,7 +3,7 @@ import React from 'react';
 const SingleNews = (props) => {
 
     let currentMonth = new Date().toLocaleString("en-US", { month: "long" });
-    let currentDay = new Date().getDay();
+    let currentDay = new Date().getUTCDate();
     let currentYear = new Date().getFullYear()
 
     return (

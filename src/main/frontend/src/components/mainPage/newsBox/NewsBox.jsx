@@ -9,7 +9,6 @@ const NewsBox = (props) => {
             return (
             <SingleNews news={news}/>
             )
-
         })}
         </div>
     )
