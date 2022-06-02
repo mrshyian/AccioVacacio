@@ -39,7 +39,7 @@ const Header = (inSession) => {
                 </span>}
             {loginModalOpen && <LoginModal setLoginOpenModal={setLoginModalOpen} />}
             {registrationModalOpen && <RegistrationModal setRegistrationOpenModal={setRegistrationModalOpen} />}
-            {errorModalOpen && <ErrorModal setErrorModalOpen={setErrorModalOpen} error={"no nie ma jeszcze tego"}/>}
+            {errorModalOpen && <ErrorModal setErrorModalOpen={setErrorModalOpen} error={"tekst pomylki"}/>}
         </div>
     );
 };
