@@ -36,8 +36,8 @@ public class WeatherClientImplRapidApi extends ApiWebClientRapidApi implements W
         String description = getValueByKeyFromJsonObjectInsideJsonArray("description", "weather", response);
         String icon = getValueByKeyFromJsonObjectInsideJsonArray("icon", "weather", response);
 
-        float temperature = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("temp", "main", response));
-        float feelsLike = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("feels_like", "main", response));
+        int temperature = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("temp", "main", response)) - 273.15);
+        int feelsLike = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("feels_like", "main", response)) - 273.15);
         int pressure = Integer.parseInt(getValueByKeyFromJsonObjectInsideJsonObject("pressure", "main", response));
         int humidity = Integer.parseInt(getValueByKeyFromJsonObjectInsideJsonObject("humidity", "main", response));
 
@@ -45,7 +45,7 @@ public class WeatherClientImplRapidApi extends ApiWebClientRapidApi implements W
 
         return WeatherDtoRapidApi.builder()
                 .mainParameter(mainParameter)
-                .description(description)
+                .description(description.substring(0, 1).toUpperCase() + description.substring(1))
                 .icon(icon)
                 .temperature(temperature)
                 .feelsLike(feelsLike)
