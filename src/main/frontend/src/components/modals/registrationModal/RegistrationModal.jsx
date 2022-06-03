@@ -19,7 +19,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                     <button style={{width: "8%"}} onClick={() => {setRegistrationOpenModal(false);}}>X</button>
                 </div>
                 <div className="registrationTitle">
-                    <h2>Registration</h2>
+                    <h1>Registration</h1>
                 </div>
                 <div className="registrationBody">
                     <input className="myInputForRegistration" type="text" placeholder="Full name" value={fullName} onChange={e=> setFullName(e.target.value)}/>

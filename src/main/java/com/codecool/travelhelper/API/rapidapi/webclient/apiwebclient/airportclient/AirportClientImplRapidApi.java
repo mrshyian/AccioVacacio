@@ -24,7 +24,6 @@ public class AirportClientImplRapidApi extends ApiWebClientRapidApi {
         this.setUrl(newUrl);
         System.out.println(newUrl);
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData());
-        System.out.println(response);
 
         AirportDtoRapidApi airportDto = getAirportDto(response);
         System.out.println(airportDto.toString());

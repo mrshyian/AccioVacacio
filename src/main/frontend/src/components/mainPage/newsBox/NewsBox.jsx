@@ -5,9 +5,10 @@ import SingleNews from "./SingleNews";
 
 const NewsBox = (props) => {
     return (<div className="newsInline">
-        {props.news.map(news => {
+            <h1 style={{textAlign: "center", color: "coral"}}>NEWS</h1>
+        {props.news.map((news, index) => {
             return (
-            <SingleNews news={news}/>
+            <SingleNews key={index} news={news}/>
             )
         })}
         </div>

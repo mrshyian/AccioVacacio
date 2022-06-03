@@ -23,6 +23,7 @@ public class WorldNewsClientImplRapidApi extends ApiWebClientRapidApi implements
     public List<WorldNewsDtoRapidApi> getCityNews(String cityName, int amountOfNews) {
         Map<String, Object> parameters = new HashMap<>(){{
             put("q", cityName);
+            put("lang", "en");
         }};
         this.setParameters(parameters);
 

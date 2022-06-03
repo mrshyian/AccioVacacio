@@ -36,7 +36,7 @@ html {
     z-index: -1;
     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
     border-radius: 100%;
-    position: absolute;
+    position: fixed;
     left: -30px;
     top: 10px;
     transform: translateY(-50%);
@@ -45,7 +45,7 @@ html {
 img {
     height: 100px;
     width: 100px;
-    position: relative;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -103,4 +103,24 @@ p {
 
 .minus-margin{
     margin-bottom: -30px;
+}
+
+
+.newsInline1 {
+    width: 45%;
+    display: block;
+    border: 2px solid #9b9b9b;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);
+}
+
+.newsInline2 {
+    background: #ff9687;
+    text-align: center;
+    display: block;
+    border: 2px solid #9b9b9b;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);
 }

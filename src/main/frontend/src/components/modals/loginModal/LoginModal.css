@@ -5,13 +5,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .modalContainer {
     width: 500px;
     height: 500px;
     border-radius: 12px;
-    background-color: rgba(218, 218, 218, 0.69);
+    background-color: rgba(70, 70, 70, 0.82);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;
