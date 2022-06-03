@@ -33,7 +33,9 @@ const Header = (inSession) => {
                 <Button onClick={renderToForumPage}>Forum</Button>
                 <Button onClick={renderToMainPage}>Main page</Button>
             </span>
+
             <NightModeTogle/>
+
             {inSession===true ? <span className="right-buttons"><Button>Logout</Button></span> :
                 <span className="right-buttons">
                     <button className="noselect" onClick={() => {setLoginModalOpen(true);}}>Log in</button>

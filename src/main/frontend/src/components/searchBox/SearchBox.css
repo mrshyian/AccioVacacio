@@ -9,19 +9,20 @@ select {
     background: transparent;
     flex: 1;
     padding: 0 .5em;
-    color:#fff;
+    color: #797979;
     cursor:pointer;
-    font-size: 1em;
+    font-size: 2em;
     font-family: 'Open Sans', sans-serif;
 }
 select::-ms-expand {
     display: none;
 }
 .select {
+    margin: 10px;
     position: relative;
     display: flex;
     width: 20em;
-    height: 3em;
+    height: 4em;
     line-height: 3;
     background: transparent;
     overflow: hidden;
@@ -31,8 +32,9 @@ select::-ms-expand {
 .select::after {
     content: '\25BC';
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 2px;
+    height: 3em;
+    right: 2px;
     padding: 0 1em;
     background: transparent;
     cursor:pointer;
@@ -45,5 +47,17 @@ select::-ms-expand {
 }
 
 .search-box {
-    margin-left: 6%;
+    position: center;
+    padding: 20px;
+    margin-top: 10%;
+    margin-left: 20%;
+    align-items: center;
+    width: 20%;
+    background: transparent;
+    align-content: center;
+    text-align: center;
+    display: block;
+    border: 2px solid #9b9b9b;
+    border-radius: 8px;
+    box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);
 }

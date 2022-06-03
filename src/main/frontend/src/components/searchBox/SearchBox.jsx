@@ -54,6 +54,7 @@ const SearchBox = () => {
 
     return (
         <div className="search-box">
+            <h1>Choose a place</h1>
             <div className="select">
                 <select onChange={(e) => handleCountry(e)}>
                     <option value="">Select Country</option>
