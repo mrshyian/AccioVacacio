@@ -18,12 +18,12 @@ public class AirportClientImplRapidApi extends ApiWebClientRapidApi {
     }
 
     public AirportDtoRapidApi getCityAirport(String cityName) {
+        this.setUrl("https://world-airports-directory.p.rapidapi.com/v1/airports/");
         String currentUrl = this.getUrl();
         String newUrl = currentUrl + cityName;
         this.setUrl(newUrl);
         System.out.println(newUrl);
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData());
-        System.out.println(response);
 
         AirportDtoRapidApi airportDto = getAirportDto(response);
         System.out.println(airportDto.toString());

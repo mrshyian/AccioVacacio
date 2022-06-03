@@ -53,7 +53,6 @@ public abstract class ApiWebClientRapidApi {
         // set Content-Type and Accept headers
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
         for (var entry: headersData.entrySet()) {
             headers.set(entry.getKey(), entry.getValue());
         }

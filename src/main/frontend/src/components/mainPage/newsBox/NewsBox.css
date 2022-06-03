@@ -104,3 +104,23 @@ p {
 .minus-margin{
     margin-bottom: -30px;
 }
+
+
+.newsInline1 {
+    width: 45%;
+    display: block;
+    border: 2px solid #9b9b9b;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);
+}
+
+.newsInline2 {
+    background: #ff9687;
+    text-align: center;
+    display: block;
+    border: 2px solid #9b9b9b;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);
+}

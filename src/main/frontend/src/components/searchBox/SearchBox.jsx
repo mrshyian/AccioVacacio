@@ -51,7 +51,6 @@ const SearchBox = () => {
             </React.StrictMode>
         );
     }
-    console.log(selectedCountry, selectedState, selectedCity)
 
     return (
         <div className="search-box">

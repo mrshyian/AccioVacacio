@@ -27,17 +27,21 @@
 
 
 .post {
-  display: block;
-  width: 800px;
-  padding: 15px;
-  border: 5px solid rgb(235, 13, 172);
-  margin-top: 15px;
-  justify-content: space-between;
-  align-items: center;
   text-align: center;
+  width: 45%;
+  display: block;
+  border: 2px solid #9b9b9b;
+  margin: 16px;
+  border-radius: 8px;
+  box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);
+
 }
 
-img {
+.myimg {
+  margin-left: 40%;
+  margin-bottom: -90px;
+  margin-top: 160px;
+  position: static;
   width: 300px;
   height: 300px;
   object-fit: cover;

@@ -15,7 +15,7 @@ public class AirportDetailClientImplRapidApi extends ApiWebClientRapidApi {
     }
 
     public AirportDetailDtoRapidApi getCityAirportByIata(String cityName){
-        System.out.println("https://airport-info.p.rapidapi.com/airport?iata=WMI");
+        this.setUrl("https://airport-info.p.rapidapi.com/airport?iata=");
         String currentUrl = this.getUrl();
         String newUrl = currentUrl + cityName;
         this.setUrl(newUrl);
@@ -38,7 +38,6 @@ public class AirportDetailClientImplRapidApi extends ApiWebClientRapidApi {
         String state = getValueByKeyFromJsonObject("state", response);
         String phone = getValueByKeyFromJsonObject("phone", response);
         String website = getValueByKeyFromJsonObject("website", response);
-
         AirportDetailDtoRapidApi airportDetailDto = AirportDetailDtoRapidApi.builder()
                 .name(name)
                 .location(location)
