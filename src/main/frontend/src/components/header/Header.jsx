@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import Button from "../button/Button";
+import Button from "./button/Button";
 import './Header.css'
 import LoginModal from "../modals/loginModal/LoginModal";
 import RegistrationModal from "../modals/registrationModal/RegistrationModal";
 import ErrorModal from "../modals/errorModals/ErrorModal";
+import NightModeTogle from "./togleNightMode/NightModeTogle";
 
 
 const Header = (inSession) => {
@@ -32,6 +33,9 @@ const Header = (inSession) => {
                 <Button onClick={renderToForumPage}>Forum</Button>
                 <Button onClick={renderToMainPage}>Main page</Button>
             </span>
+
+            <NightModeTogle/>
+
             {inSession===true ? <span className="right-buttons"><Button>Logout</Button></span> :
                 <span className="right-buttons">
                     <button className="noselect" onClick={() => {setLoginModalOpen(true);}}>Log in</button>
