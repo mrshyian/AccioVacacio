@@ -34,7 +34,6 @@ const MainPage = (props) => {
             <SearchingPlaceBar country={props.country} city={props.city}/>
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode}/>
-            <AddImage/>
         </div>
     );
 };
