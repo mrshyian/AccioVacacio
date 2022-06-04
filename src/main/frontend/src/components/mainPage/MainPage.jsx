@@ -16,9 +16,10 @@ const MainPage = (props) => {
     const [livingCosts, setLivingCosts] = useState([]);
 
     const fetchLivingCosts = () => {
-        console.log(props.itemName)
+        // console.log(props.itemName)
         axios.get(`http://localhost:8080/living-costs/${props.city}/${props.country}`)
-            .then(res =>{setLivingCosts(res.data);})
+            .then(res =>{setLivingCosts(res.data);
+                console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 
@@ -41,10 +42,10 @@ const MainPage = (props) => {
     };
 
     useEffect(()=>{
-        fetchLivingCosts();
         fetchNewsWorld();
         fetchIATACode();
         fetchWeather();
+        fetchLivingCosts();
     }, [])
 
     return (

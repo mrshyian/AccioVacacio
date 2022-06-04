@@ -1,27 +1,51 @@
-import React from 'react';
-
-const SingleLivingCosts = (props) => {
-    return (
-        <div className="livingCosts">
-            <h1 style={{textAlign: "center", color: "coral"}}>Living Costs</h1>
-            <div className="wrapper">
-                <div className="blog_post">
-                    <div className="img_pod">
-                        <img
-                            src="https://cdn.icon-icons.com/icons2/3456/PNG/512/clipboard_paper_file_correct_done_list_document_icon_219518.png"
-                            alt="file"/>
-                    </div>
-                    <div className="minus-margin">
-                    <span className="container_copy">
-                        <h1>{props.livingCosts.item_name}</h1>
-                    </span>
-                        <p>{props.livingCosts.item_name} <br/> {props.livingCosts.average_price} <br/> {props.livingCosts.currency}
-                            {/*<br/> {airportDetail.street} <br/> {airportDetail.street_number} <br/> {airportDetail.phone}*/}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-export default SingleLivingCosts;
+// import React from 'react';
+//
+// const SingleLivingCosts = (props) => {
+//     return (
+//
+//         <div className="livingCosts">
+//             {/*<h1 style={{textAlign: "center", color: "coral"}}>Living Costs</h1>*/}
+//             {/*{props.livingCosts.map((livingCosts, index) => {*/}
+//             {/*    return (*/}
+//             {/*        <SingleLivingCosts key={index} livingCosts={livingCosts} />*/}
+//             {/*    )*/}
+//
+//             {/*})}*/}
+//             {/*<h1 style={{textAlign: "center", color: "coral"}}>Weather</h1>*/}
+//             <div className="dupa">
+//                 <div className="back">
+//                     <table>
+//                         <tr>
+//                             <td>
+//                                 <h2>{props.livingCosts.itemName}</h2>
+//                             </td>
+//                         </tr>
+//                         <tr>
+//                             <td>
+//                                 <h2>{props.livingCosts.averagePrice}</h2>
+//                             </td>
+//                         </tr>
+//                         <tr>
+//                             <td>
+//                                 <h2>{props.livingCosts.cost}</h2>
+//                             </td>
+//                         </tr>
+//                     </table>
+//                 </div>
+//             </div>
+//
+//         </div>
+//     );
+// };
+// // <h2>{props.livingCosts.itemName}</h2>
+// // </td>
+// // </tr>
+// // <tr>
+// //     <td>
+// //         <h2>{props.livingCosts.averagePrice}</h2>
+// //     </td>
+// // </tr>
+// // <tr>
+// //     <td>
+// //         <h2>{props.livingCosts.cost}</h2>
+// export default SingleLivingCosts;

@@ -8,14 +8,14 @@ import lombok.Getter;
 public class LivingCostsDtoRapidApi {
     String itemName;
     String averagePrice;
-    String currency;
+    String cost;
 
     @Override
     public String toString() {
         return "LivingCostsDtoRapidApi{" +
                 "itemName='" + itemName + '\'' +
                 ", averagePrice='" + averagePrice + '\'' +
-                ", currency='" + currency + '\'' +
+                ", currency='" + cost + '\'' +
                 '}';
     }
 }

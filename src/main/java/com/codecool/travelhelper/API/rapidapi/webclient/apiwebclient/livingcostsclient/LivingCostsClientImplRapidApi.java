@@ -46,12 +46,12 @@ public class LivingCostsClientImplRapidApi extends ApiWebClientRapidApi {
     public LivingCostsDtoRapidApi getSingleLivingCosts(JsonObject response, int index) {
         String itemName = getValueByKeyFromJsonObjectInsideJsonArray("item_name", "prices", response, index);
         String averagePrice = getValueByKeyFromJsonObjectInsideJsonArray("avg", "prices", response, index);
-        String currency = getValueByKeyFromJsonObjectInsideJsonArray("currency_code", "prices", response, index);
+        String cost = getValueByKeyFromJsonObjectInsideJsonArray("currency_code", "prices", response, index);
 
         LivingCostsDtoRapidApi LivingCostDto = LivingCostsDtoRapidApi.builder()
                 .itemName(itemName)
                 .averagePrice(averagePrice)
-                .currency(currency)
+                .cost(cost)
                 .build();
         return LivingCostDto;
 
