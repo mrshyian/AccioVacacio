@@ -5,6 +5,7 @@ import AirportDetails from "./airportDetails/AirportDetails";
 import SearchingPlaceBar from "./searchingPlaceBar/SearchingPlaceBar";
 import AddImage from "../userPage/addImage/AddImage";
 import WeatherBox from "./weather/WeatherBox";
+import LivingCosts from "./livingCosts/LivingCosts";
 
 
 const MainPage = (props) => {
@@ -12,6 +13,14 @@ const MainPage = (props) => {
     const [news, setNews] = useState([]);
     const [IATACode, setIATACode] = useState("WMI");
     const [weather, setWeather] = useState("");
+    const [livingCosts, setLivingCosts] = useState([]);
+
+    const fetchLivingCosts = () => {
+        console.log(props.itemName)
+        axios.get(`http://localhost:8080/living-costs/${props.city}/${props.country}`)
+            .then(res =>{setLivingCosts(res.data);})
+            .catch(err => {console.log(err)});
+    };
 
     const fetchNewsWorld = () => {
         axios.get(`http://localhost:8080/news/${props.city}`)
@@ -32,6 +41,7 @@ const MainPage = (props) => {
     };
 
     useEffect(()=>{
+        fetchLivingCosts();
         fetchNewsWorld();
         fetchIATACode();
         fetchWeather();
@@ -43,6 +53,7 @@ const MainPage = (props) => {
             <WeatherBox weather={weather}/>
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode}/>
+            <LivingCosts livingCosts={livingCosts} />
         </div>
     );
 };
