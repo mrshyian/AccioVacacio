@@ -6,33 +6,56 @@ import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClien
 import com.google.gson.JsonObject;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Component
-public class LivingCostsClientImplRapidApi extends ApiWebClientRapidApi  {
+public class LivingCostsClientImplRapidApi extends ApiWebClientRapidApi {
 
-    public LivingCostsClientImplRapidApi() {super(ApiMetaDataRapidApi.WEATHER);}
+    public LivingCostsClientImplRapidApi() {
+        super(ApiMetaDataRapidApi.LIVING_COSTS);
+    }
 
-    public LivingCostsDtoRapidApi getCityLivingCosts(String cityName){
-        Map<String, Object> parameters = new HashMap<>(){{
-            put("q", cityName);
+    public List<LivingCostsDtoRapidApi> getCityLivingCosts(String cityName, String countryName) {
+        Map<String, Object> parameters = new HashMap<>() {{
+            put("city_name", cityName);
+            put("country_name", countryName);
         }};
         this.setParameters(parameters);
 
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData(), this.getParameters());
         System.out.println(response);
 
-        LivingCostsDtoRapidApi livingCostsDtoRapidApi = toconadole(response);
-        System.out.println(livingCostsDtoRapidApi.toString());
+        List<LivingCostsDtoRapidApi> livingCostsDto = getListOfLivingCosts(response);
+        System.out.println(livingCostsDto.toString());
 
-        return livingCostsDtoRapidApi;
+        return livingCostsDto;
     }
 
 
-    public LivingCostsDtoRapidApi toconadole(JsonObject response){
-        //nie wiem co tu będzie bo nie mam dostępu do api
-        return null;
+    public List<LivingCostsDtoRapidApi> getListOfLivingCosts(JsonObject response) {
+        List<LivingCostsDtoRapidApi> listOfLivingCosts = new ArrayList<>();
+        List<Integer> listOfIndexes = Arrays.asList(4,7,9,10,11,13,15,17, 0,1,2,3,34,36,40,48);
+        for (Integer index: listOfIndexes) {
+            LivingCostsDtoRapidApi livingCostsDto = getSingleLivingCosts(response, index);
+            listOfLivingCosts.add(livingCostsDto);
+        }
+        return listOfLivingCosts;
     }
+
+
+    public LivingCostsDtoRapidApi getSingleLivingCosts(JsonObject response, int index) {
+        String itemName = getValueByKeyFromJsonObjectInsideJsonArray("item_name", "prices", response, index);
+        String averagePrice = getValueByKeyFromJsonObjectInsideJsonArray("avg", "prices", response, index);
+        String currency = getValueByKeyFromJsonObjectInsideJsonArray("currency_code", "prices", response, index);
+
+        LivingCostsDtoRapidApi LivingCostDto = LivingCostsDtoRapidApi.builder()
+                .itemName(itemName)
+                .averagePrice(averagePrice)
+                .currency(currency)
+                .build();
+        return LivingCostDto;
+
+    }
+
 
 }

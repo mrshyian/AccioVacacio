@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class LivingCostsApiController {
@@ -16,9 +18,9 @@ public class LivingCostsApiController {
     @Autowired
     private final LivingCostsServiceRapidApi livingCostsServiceRapidApi;
 
-    @GetMapping("/living-costs/{cityName}")
-    public LivingCostsDtoRapidApi getLivingCosts(@PathVariable String cityName){
-        return livingCostsServiceRapidApi.getLivingCosts(cityName);
+    @GetMapping("/living-costs/{cityName}/{countryName}")
+    public List<LivingCostsDtoRapidApi> getLivingCosts(@PathVariable String cityName, @PathVariable String countryName){
+        return livingCostsServiceRapidApi.getLivingCosts(cityName, countryName);
     }
 
 }
