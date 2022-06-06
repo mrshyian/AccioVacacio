@@ -23,12 +23,8 @@ public class WeatherClientImplRapidApi extends ApiWebClientRapidApi implements W
         this.setParameters(parameters);
 
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData(), this.getParameters());
-        System.out.println(response);
 
-        WeatherDtoRapidApi weatherDto = getWeatherDto(response);
-        System.out.println(weatherDto.toString());
-
-        return weatherDto;
+        return getWeatherDto(response);
     }
 
     private WeatherDtoRapidApi getWeatherDto (JsonObject response){

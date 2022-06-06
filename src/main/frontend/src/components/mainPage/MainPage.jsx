@@ -3,9 +3,9 @@ import axios from "axios";
 import NewsBox from "./newsBox/NewsBox";
 import AirportDetails from "./airportDetails/AirportDetails";
 import SearchingPlaceBar from "./searchingPlaceBar/SearchingPlaceBar";
-import AddImage from "../userPage/addImage/AddImage";
 import WeatherBox from "./weather/WeatherBox";
-import LivingCosts from "./livingCosts/LivingCosts";
+import EmergencyNumbers from "./emergencyNumbers/EmergencyNumbers";
+import LivingCoasts from "./livingCosts/LivingCoasts";
 
 
 const MainPage = (props) => {
@@ -13,10 +13,10 @@ const MainPage = (props) => {
     const [news, setNews] = useState([]);
     const [IATACode, setIATACode] = useState("WMI");
     const [weather, setWeather] = useState("");
+    const [emergencyNumber, setEmergencyNumber] = useState("");
     const [livingCosts, setLivingCosts] = useState([]);
 
     const fetchLivingCosts = () => {
-        // console.log(props.itemName)
         axios.get(`http://localhost:8080/living-costs/${props.city}/${props.country}`)
             .then(res =>{setLivingCosts(res.data);
                 console.log(res.data)})
@@ -41,20 +41,30 @@ const MainPage = (props) => {
             .catch(err => {console.log(err)});
     };
 
+    const fetchEmergencyNumbers = () => {
+        axios.get(`http://localhost:8080/emergency_numbers/${props.country}`)
+            .then(res =>{setEmergencyNumber(res.data);})
+            .catch(err => {console.log(err)});
+    };
+
     useEffect(()=>{
         fetchNewsWorld();
         fetchIATACode();
         fetchWeather();
         fetchLivingCosts();
+        fetchEmergencyNumbers()
     }, [])
 
     return (
         <div>
             <SearchingPlaceBar country={props.country} city={props.city}/>
-            <WeatherBox weather={weather}/>
+            <div className="weather-box">
+                <WeatherBox weather={weather}/>
+                <EmergencyNumbers emergencyNumber={emergencyNumber}/>
+            </div>
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode}/>
-            <LivingCosts livingCosts={livingCosts} />
+            <LivingCoasts livingCosts={livingCosts} />
         </div>
     );
 };

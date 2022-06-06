@@ -41,9 +41,8 @@ public abstract class ApiWebClientRapidApi {
                 request,
                 String.class
         );
-        JsonObject responseJson = new JsonParser().parse(response.getBody()).getAsJsonObject();
 
-        return responseJson;
+        return new JsonParser().parse(response.getBody()).getAsJsonObject();
     }
 
     public JsonObject getApiResponse(String url, Map<String, String> headersData){

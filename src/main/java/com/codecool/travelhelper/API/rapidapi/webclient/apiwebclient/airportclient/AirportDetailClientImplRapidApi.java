@@ -2,7 +2,6 @@ package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.airportcli
 
 
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.AirportDetailDtoRapidApi;
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.AirportDtoRapidApi;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaDataRapidApi;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClientRapidApi;
 import com.google.gson.JsonObject;
@@ -19,14 +18,9 @@ public class AirportDetailClientImplRapidApi extends ApiWebClientRapidApi {
         String currentUrl = this.getUrl();
         String newUrl = currentUrl + cityName;
         this.setUrl(newUrl);
-        System.out.println(newUrl);
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData());
-        System.out.println(response);
 
-        AirportDetailDtoRapidApi airporDetailtDto = getAirportDetailDto(response);
-        System.out.println(airporDetailtDto.toString());
-
-        return airporDetailtDto;
+        return getAirportDetailDto(response);
     }
 
     public AirportDetailDtoRapidApi getAirportDetailDto(JsonObject response){
@@ -38,7 +32,8 @@ public class AirportDetailClientImplRapidApi extends ApiWebClientRapidApi {
         String state = getValueByKeyFromJsonObject("state", response);
         String phone = getValueByKeyFromJsonObject("phone", response);
         String website = getValueByKeyFromJsonObject("website", response);
-        AirportDetailDtoRapidApi airportDetailDto = AirportDetailDtoRapidApi.builder()
+
+        return AirportDetailDtoRapidApi.builder()
                 .name(name)
                 .location(location)
                 .streetNumber(streetNumber)
@@ -48,10 +43,5 @@ public class AirportDetailClientImplRapidApi extends ApiWebClientRapidApi {
                 .phone(phone)
                 .website(website)
                 .build();
-
-        return airportDetailDto;
     }
-
-
-
 }

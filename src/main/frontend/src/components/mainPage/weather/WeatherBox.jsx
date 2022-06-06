@@ -3,10 +3,10 @@ import "./WeaterBox.css"
 
 const WeatherBox = (props) => {
     return (
-        <div className="weather-box">
-            <h1 style={{textAlign: "center", color: "coral"}}>Weather</h1>
+        <div>
             <div className="dupa">
                 <div className="back">
+                    <h1 style={{textAlign: "center", color: "coral"}}>Weather</h1>
                     <table>
                         <tr>
                             <td>

@@ -1,8 +1,6 @@
 package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public enum ApiMetaDataRapidApi {
@@ -30,8 +28,6 @@ public enum ApiMetaDataRapidApi {
         put("X-RapidAPI-Host", "best-booking-com-hotel.p.rapidapi.com");
         put("X-RapidAPI-Key", "a8cfbec453mshc149424874fe8e0p10b6f0jsnfb37d454318e");
     }})
-
-
     ;
 
 

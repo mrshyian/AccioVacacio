@@ -1,6 +1,5 @@
 package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.newsclient;
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.WeatherDtoRapidApi;
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.WorldNewsDtoRapidApi;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaDataRapidApi;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClientRapidApi;
@@ -28,11 +27,8 @@ public class WorldNewsClientImplRapidApi extends ApiWebClientRapidApi implements
         this.setParameters(parameters);
 
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData(), this.getParameters());
-        System.out.println(response);
 
-        List<WorldNewsDtoRapidApi> listOfNewsDetails = getListOfNewsDetails(response,amountOfNews);
-
-        return listOfNewsDetails;
+        return getListOfNewsDetails(response,amountOfNews);
     }
 
     private List<WorldNewsDtoRapidApi> getListOfNewsDetails(JsonObject response, int amountOfNews) {
@@ -50,12 +46,10 @@ public class WorldNewsClientImplRapidApi extends ApiWebClientRapidApi implements
         String summary = getValueByKeyFromJsonObjectInsideJsonArray("summary","articles",response,index);
         String link = getValueByKeyFromJsonObjectInsideJsonArray("link","articles",response,index);
 
-        WorldNewsDtoRapidApi worldNews = WorldNewsDtoRapidApi.builder()
+        return WorldNewsDtoRapidApi.builder()
                 .summary(summary)
                 .title(title)
                 .link(link)
                 .build();
-        return worldNews;
     }
-
 }

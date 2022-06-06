@@ -1,14 +1,10 @@
 package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.airportclient;
 
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.AirportDtoRapidApi;
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.WeatherDtoRapidApi;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaDataRapidApi;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClientRapidApi;
 import com.google.gson.JsonObject;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class AirportClientImplRapidApi extends ApiWebClientRapidApi {
@@ -22,27 +18,20 @@ public class AirportClientImplRapidApi extends ApiWebClientRapidApi {
         String currentUrl = this.getUrl();
         String newUrl = currentUrl + cityName;
         this.setUrl(newUrl);
-        System.out.println(newUrl);
+
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData());
 
-        AirportDtoRapidApi airportDto = getAirportDto(response);
-        System.out.println(airportDto.toString());
-
-        return airportDto;
+        return getAirportDto(response);
     }
 
     public AirportDtoRapidApi getAirportDto(JsonObject response) {
         String airportName = getValueByKeyFromJsonObjectInsideJsonArray("AirportName", "results", response, 0);
         String airportCode = getValueByKeyFromJsonObjectInsideJsonArray("AirportCode", "results" , response, 0);
 
-        System.out.println(airportName);
-
-        AirportDtoRapidApi airportDto = AirportDtoRapidApi.builder()
+        return AirportDtoRapidApi.builder()
                 .AirportName(airportName)
                 .AirportCode(airportCode)
                 .build();
-
-        return airportDto;
     }
 }
 

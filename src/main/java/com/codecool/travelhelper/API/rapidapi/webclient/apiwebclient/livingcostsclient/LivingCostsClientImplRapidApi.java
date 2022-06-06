@@ -23,12 +23,8 @@ public class LivingCostsClientImplRapidApi extends ApiWebClientRapidApi {
         this.setParameters(parameters);
 
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData(), this.getParameters());
-        System.out.println(response);
 
-        List<LivingCostsDtoRapidApi> livingCostsDto = getListOfLivingCosts(response);
-        System.out.println(livingCostsDto.toString());
-
-        return livingCostsDto;
+        return getListOfLivingCosts(response);
     }
 
 
@@ -48,14 +44,11 @@ public class LivingCostsClientImplRapidApi extends ApiWebClientRapidApi {
         String averagePrice = getValueByKeyFromJsonObjectInsideJsonArray("avg", "prices", response, index);
         String cost = getValueByKeyFromJsonObjectInsideJsonArray("currency_code", "prices", response, index);
 
-        LivingCostsDtoRapidApi LivingCostDto = LivingCostsDtoRapidApi.builder()
+        return LivingCostsDtoRapidApi.builder()
                 .itemName(itemName)
                 .averagePrice(averagePrice)
                 .cost(cost)
                 .build();
-        return LivingCostDto;
 
     }
-
-
 }
