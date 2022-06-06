@@ -25,6 +25,10 @@ public enum ApiMetaDataRapidApi {
     AIRPORT_DETAIL ("https://airport-info.p.rapidapi.com/airport", new HashMap<>(){{
         put("X-RapidAPI-Host", "airport-info.p.rapidapi.com");
         put("X-RapidAPI-Key", "b186afc8b1msh4bc0a73b4bf87bdp1d1bafjsn15bd5f30345d");
+    }}),
+    BOOKING ("https://best-booking-com-hotel.p.rapidapi.com/booking/best-accommodation", new HashMap<>(){{
+        put("X-RapidAPI-Host", "best-booking-com-hotel.p.rapidapi.com");
+        put("X-RapidAPI-Key", "a8cfbec453mshc149424874fe8e0p10b6f0jsnfb37d454318e");
     }})
 
 
