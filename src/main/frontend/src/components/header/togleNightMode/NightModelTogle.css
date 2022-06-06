@@ -68,7 +68,7 @@
     top: 20px;
     background: var(--blue-color);
     border-radius: 100px;
-    border: 5px solid var(--first-border);
+    border: 5px solid var(--first-border);/*7C7C7CFF*/
     display: flex;
     position: relative;
     transition: all 350ms ease-in;
@@ -115,6 +115,6 @@
         width: 28px;
     }
     100% {
-        left: 1px;
+        left: -13px;
     }
 }

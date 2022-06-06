@@ -14,9 +14,9 @@ public enum ApiMetaDataRapidApi {
         put("X-RapidAPI-Host", "newscatcher.p.rapidapi.com");
         put("X-RapidAPI-Key", "691ed8695cmsh482afe9729a78bcp12feeejsnecea9fc7b2c1");
     }}),
-    LING_COSTS ("https://cost-of-living-and-prices.p.rapidapi.com/prices", new HashMap<>(){{
+    LIVING_COSTS ("https://cost-of-living-and-prices.p.rapidapi.com/prices", new HashMap<>(){{
         put("X-RapidAPI-Host", "cost-of-living-and-prices.p.rapidapi.com");
-        put("X-RapidAPI-Key", "8e560c9551mshdb3c4cc5251d75bp1ade0bjsn2dea18c2c74a");
+        put("X-RapidAPI-Key", "b186afc8b1msh4bc0a73b4bf87bdp1d1bafjsn15bd5f30345d");
     }}),
     AIRPORT ("https://world-airports-directory.p.rapidapi.com/v1/airports/", new HashMap<>(){{
         put("X-RapidAPI-Host", "world-airports-directory.p.rapidapi.com");
