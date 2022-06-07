@@ -1,8 +1,8 @@
 package com.codecool.travelhelper.API.rapidapi.controller.apicontroller;
 
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.LivingCostsDtoRapidApi;
-import com.codecool.travelhelper.API.rapidapi.service.apiservice.LivingCostsServiceRapidApi;
+import com.codecool.travelhelper.API.rapidapi.model.apimodel.LivingCostsApiModel;
+import com.codecool.travelhelper.API.rapidapi.service.apiservice.LivingCostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,11 +18,11 @@ import java.util.List;
 public class LivingCostsApiController {
 
     @Autowired
-    private final LivingCostsServiceRapidApi livingCostsServiceRapidApi;
+    private final LivingCostsService livingCostsService;
 
     @GetMapping("/living-costs/{cityName}/{countryName}")
-    public List<LivingCostsDtoRapidApi> getLivingCosts(@PathVariable String cityName, @PathVariable String countryName){
-        return livingCostsServiceRapidApi.getLivingCosts(cityName, countryName);
+    public List<LivingCostsApiModel> getLivingCosts(@PathVariable String cityName, @PathVariable String countryName){
+        return livingCostsService.getLivingCosts(cityName, countryName);
     }
 
 }

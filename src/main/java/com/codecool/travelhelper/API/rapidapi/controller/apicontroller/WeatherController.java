@@ -1,7 +1,7 @@
 package com.codecool.travelhelper.API.rapidapi.controller.apicontroller;
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.AirportDetailApiModel;
-import com.codecool.travelhelper.API.rapidapi.service.apiservice.AirportDetailService;
+import com.codecool.travelhelper.API.rapidapi.model.apimodel.WeatherApiModel;
+import com.codecool.travelhelper.API.rapidapi.service.apiservice.WeatherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class AirportDetailApiController {
-
+public class WeatherController {
     @Autowired
-    AirportDetailService airportDetailService;
+    private final WeatherService weatherService;
 
-    @GetMapping("/airport-details/{airportCode}")
-    public AirportDetailApiModel getAirportDetail(@PathVariable String airportCode){
-        return airportDetailService.getAirportDetail(airportCode);
+    @GetMapping("/")
+    public String test() {
+        return "test";
+    }
+
+    @GetMapping("/weather/{cityName}")
+    public WeatherApiModel getWeather(@PathVariable String cityName){
+        return weatherService.getWeather(cityName);
     }
 }

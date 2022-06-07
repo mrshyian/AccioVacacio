@@ -1,7 +1,7 @@
 package com.codecool.travelhelper.API.rapidapi.controller.apicontroller;
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.AirportDtoRapidApi;
-import com.codecool.travelhelper.API.rapidapi.service.apiservice.AirportServiceRapidApi;
+import com.codecool.travelhelper.API.rapidapi.model.apimodel.AirportApiModel;
+import com.codecool.travelhelper.API.rapidapi.service.apiservice.AirportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AirportApiController {
 
     @Autowired
-    AirportServiceRapidApi airportServiceRapidApi;
+    AirportService airportService;
 
     @GetMapping("/airport/{cityName}")
-    public AirportDtoRapidApi getAirport(@PathVariable String cityName){
-        return airportServiceRapidApi.getAirport(cityName);
+    public AirportApiModel getAirport(@PathVariable String cityName){
+        return airportService.getAirport(cityName);
     }
 
 }

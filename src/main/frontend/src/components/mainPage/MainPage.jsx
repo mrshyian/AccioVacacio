@@ -6,6 +6,7 @@ import SearchingPlaceBar from "./searchingPlaceBar/SearchingPlaceBar";
 import WeatherBox from "./weather/WeatherBox";
 import EmergencyNumbers from "./emergencyNumbers/EmergencyNumbers";
 import LivingCoasts from "./livingCosts/LivingCoasts";
+import CrimeRating from "./crimaRating/CrimeRating";
 
 
 const MainPage = (props) => {
@@ -15,6 +16,7 @@ const MainPage = (props) => {
     const [weather, setWeather] = useState("");
     const [emergencyNumber, setEmergencyNumber] = useState("");
     const [livingCosts, setLivingCosts] = useState([]);
+    const [crimeRating, setCrimeRating] = useState([]);
 
     const fetchLivingCosts = () => {
         axios.get(`http://localhost:8080/living-costs/${props.city}/${props.country}`)
@@ -47,12 +49,19 @@ const MainPage = (props) => {
             .catch(err => {console.log(err)});
     };
 
+    const fetchCrimeRating = () => {
+        axios.get(`http://localhost:8080/crime_rating/`)
+            .then(res =>{setCrimeRating(res.data);})
+            .catch(err => {console.log(err)});
+    };
+
     useEffect(()=>{
         fetchNewsWorld();
         fetchIATACode();
         fetchWeather();
         fetchLivingCosts();
-        fetchEmergencyNumbers()
+        fetchEmergencyNumbers();
+        fetchCrimeRating();
     }, [])
 
     return (
@@ -60,6 +69,7 @@ const MainPage = (props) => {
             <SearchingPlaceBar country={props.country} city={props.city}/>
             <div className="weather-box">
                 <WeatherBox weather={weather}/>
+                <CrimeRating crimeRating={crimeRating} city={props.city}/>
                 <EmergencyNumbers emergencyNumber={emergencyNumber}/>
             </div>
             <NewsBox news={news}/>
