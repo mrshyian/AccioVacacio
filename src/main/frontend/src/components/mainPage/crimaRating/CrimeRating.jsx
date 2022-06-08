@@ -10,7 +10,7 @@ import "./CrimeRating.css"
 
 const CrimeRating = (props) => {
     let img;
-    let returned;
+    let returned=1;
     props.crimeRating.map((rating, index) => {
         if (props.city === props.crimeRating[index].city) {
             if (props.crimeRating[index].index < 21) {
@@ -36,7 +36,7 @@ const CrimeRating = (props) => {
         }
     })
 
-    if (returned !== null) {
+    if (returned !== 1) {
         return (
             returned
         );

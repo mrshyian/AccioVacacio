@@ -30,7 +30,7 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
     private WeatherApiModel getWeatherDto (JsonObject response){
         String mainParameter = getValueByKeyFromJsonObjectInsideJsonArray("main", "weather", response);
         String description = getValueByKeyFromJsonObjectInsideJsonArray("description", "weather", response);
-        String icon = getValueByKeyFromJsonObjectInsideJsonArray("src/main/frontend/src/icon", "weather", response);
+        String icon = getValueByKeyFromJsonObjectInsideJsonArray("icon", "weather", response);
 
         int temperature = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("temp", "main", response)) - 273.15);
         int feelsLike = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("feels_like", "main", response)) - 273.15);
