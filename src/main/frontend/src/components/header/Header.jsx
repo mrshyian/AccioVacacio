@@ -5,6 +5,9 @@ import LoginModal from "../modals/loginModal/LoginModal";
 import RegistrationModal from "../modals/registrationModal/RegistrationModal";
 import ErrorModal from "../modals/errorModals/ErrorModal";
 import NightModeTogle from "./togleNightMode/NightModeTogle";
+import ReactDOM from 'react-dom/client';
+import App from "../../App";
+import SearchBox from "../searchBox/SearchBox";
 
 
 const Header = (inSession) => {
@@ -23,7 +26,15 @@ const Header = (inSession) => {
     }
 
     const renderToMainPage = () => {
-    //TODO: methode to render to "Main page" page
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <React.StrictMode>
+                <div className="App">
+                    <Header inSession={false}/>
+                    <SearchBox/>
+                </div>
+            </React.StrictMode>
+        );
     }
 
     return (
