@@ -6,27 +6,40 @@ import RegistrationModal from "../modals/registrationModal/RegistrationModal";
 import ErrorModal from "../modals/errorModals/ErrorModal";
 import NightModeTogle from "./togleNightMode/NightModeTogle";
 import ReactDOM from 'react-dom/client';
-import App from "../../App";
 import SearchBox from "../searchBox/SearchBox";
 
 
 const Header = (inSession) => {
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
 
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
 
     const renderToMyProfilePage = () => {
-    //TODO: methode to render to "My profile" page
+        root.render(
+            <React.StrictMode>
+                <div className="App">
+                    <Header inSession={false}/>
+
+                </div>
+            </React.StrictMode>
+        );
     }
 
     const renderToForumPage = () => {
-        setErrorModalOpen(true)
-    //TODO: methode to render to "Forum" page
+        root.render(
+            <React.StrictMode>
+                <div className="App">
+                    <Header inSession={false}/>
+
+                </div>
+            </React.StrictMode>
+        );
     }
 
     const renderToMainPage = () => {
-        const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(
             <React.StrictMode>
                 <div className="App">
