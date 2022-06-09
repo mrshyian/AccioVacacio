@@ -7,6 +7,8 @@ import ErrorModal from "../modals/errorModals/ErrorModal";
 import NightModeTogle from "./togleNightMode/NightModeTogle";
 import ReactDOM from 'react-dom/client';
 import SearchBox from "../searchBox/SearchBox";
+import MainPage from "../mainPage/MainPage";
+import UserPage from "../userPage/UserPage";
 
 
 const Header = (inSession) => {
@@ -20,10 +22,7 @@ const Header = (inSession) => {
     const renderToMyProfilePage = () => {
         root.render(
             <React.StrictMode>
-                <div className="App">
-                    <Header inSession={false}/>
-
-                </div>
+                <UserPage/>
             </React.StrictMode>
         );
     }
