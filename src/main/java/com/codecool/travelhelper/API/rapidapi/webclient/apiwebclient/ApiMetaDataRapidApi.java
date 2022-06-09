@@ -8,9 +8,15 @@ public enum ApiMetaDataRapidApi {
         put("X-RapidAPI-Host", "community-open-weather-map.p.rapidapi.com");
         put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
     }}),
-    NEXT_API("http://", new HashMap<>(){{
-        put("first-key", "smth");
-        put("second-key", "123");
+    TRUE_WAY_PLACES("https://trueway-places.p.rapidapi.com/FindPlacesNearby", new HashMap<>(){{
+        put("X-RapidAPI-Host", "trueway-places.p.rapidapi.com");
+        put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
+    }}),
+
+    //todo: use it very carefully! Price is 200/month for free + US$0.001 each other
+    GOOGLE_AUTOCOMPLETE_PLUS("https://google-maps-autocomplete-plus.p.rapidapi.com/autocomplete",  new HashMap<>(){{
+        put("X-RapidAPI-Host", "google-maps-autocomplete-plus.p.rapidapi.com");
+        put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
     }})
 
     ;

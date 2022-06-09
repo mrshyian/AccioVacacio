@@ -16,6 +16,7 @@ public class WeatherClientImplRapidApi extends ApiWebClientRapidApi implements W
         super(ApiMetaDataRapidApi.WEATHER);
     }
 
+    @Override
     public WeatherDtoRapidApi getCityWeather(String cityName) {
         Map<String, Object> parameters = new HashMap<>(){{
             put("q", cityName);
@@ -23,10 +24,8 @@ public class WeatherClientImplRapidApi extends ApiWebClientRapidApi implements W
         this.setParameters(parameters);
 
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData(), this.getParameters());
-        System.out.println(response);
 
         WeatherDtoRapidApi weatherDto = getWeatherDto(response);
-        System.out.println(weatherDto.toString());
 
         return weatherDto;
     }
