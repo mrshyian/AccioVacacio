@@ -25,19 +25,19 @@ public class Comments {
     private String commentImage;
     private String country;
     private String city;
-    private DateTime commentDate;
+    private DateTime commentDateTime;
     private UUID likedByUser;
 
     public Comments() {
     }
 
-    public Comments(UUID userId, String commentTex, String commentImage, String country, String city, DateTime commentDate, UUID likedByUser) {
+    public Comments(UUID userId, String commentTex, String commentImage, String country, String city, DateTime commentDateTime, UUID likedByUser) {
         this.userId = userId;
         this.commentTex = commentTex;
         this.commentImage = commentImage;
         this.country = country;
         this.city = city;
-        this.commentDate = commentDate;
+        this.commentDateTime = commentDateTime;
         this.likedByUser = likedByUser;
     }
 }

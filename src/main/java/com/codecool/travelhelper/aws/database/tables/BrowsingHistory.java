@@ -3,18 +3,18 @@ package com.codecool.travelhelper.aws.database.tables;
 
 import lombok.Getter;
 import lombok.ToString;
+import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Getter
 @ToString
-public class BrowsingHostory {
+public class BrowsingHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,15 +23,15 @@ public class BrowsingHostory {
     private UUID userId;
     private String country;
     private String city;
-    private Date dateForSearch;
+    private DateTime dateTime;
 
-    public BrowsingHostory() {
+    public BrowsingHistory() {
     }
 
-    public BrowsingHostory(UUID userId, String country, String city, Date dateForSearch) {
+    public BrowsingHistory(UUID userId, String country, String city, DateTime dateTime) {
         this.userId = userId;
         this.country = country;
         this.city = city;
-        this.dateForSearch = dateForSearch;
+        this.dateTime = dateTime;
     }
 }

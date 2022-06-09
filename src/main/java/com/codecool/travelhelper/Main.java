@@ -42,8 +42,6 @@ public class Main {
 					"very helpful programmer",
 					"user",
 					true ));
-
 		};
 	}
-
 }

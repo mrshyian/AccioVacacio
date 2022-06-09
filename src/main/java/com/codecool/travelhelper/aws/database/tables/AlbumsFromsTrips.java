@@ -2,12 +2,12 @@ package com.codecool.travelhelper.aws.database.tables;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 import java.util.UUID;
 
 @Entity
@@ -22,14 +22,14 @@ public class AlbumsFromsTrips {
     private UUID userId;
     private String country;
     private String city;
-    private DateTime tripDate;
+    private Date tripDate;
     private String albumName;
     private String aboutAlbum;
 
     public AlbumsFromsTrips() {
     }
 
-    public AlbumsFromsTrips(UUID userId, String country, String city, DateTime tripDate, String albumName, String aboutAlbum) {
+    public AlbumsFromsTrips(UUID userId, String country, String city, Date tripDate, String albumName, String aboutAlbum) {
         this.userId = userId;
         this.country = country;
         this.city = city;
