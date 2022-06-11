@@ -1,13 +1,7 @@
 package com.codecool.travelhelper;
 
-import com.codecool.travelhelper.aws.database.repositories.UserRepository;
-import com.codecool.travelhelper.aws.database.tables.MyUser;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.sql.Date;
 
 @SpringBootApplication
 public class Main {

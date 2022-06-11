@@ -1,38 +1,38 @@
 
-.back-for-crime-rating {
-    position: relative;
-    padding: 3rem 3rem 1rem 6rem;
-    background: #fff;
-    max-width: 90%;
-    border-radius: 10px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
-}
+/*.back-for-crime-rating {*/
+/*    position: relative;*/
+/*    padding: 3rem 3rem 1rem 6rem;*/
+/*    background: #fff;*/
+/*    max-width: 90%;*/
+/*    border-radius: 10px;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);*/
+/*}*/
 
-.dupa-for-crime-rating {
-    font-size: 15px;
-    width: 60vh;
-    height: 60vh;
-}
+/*.dupa-for-crime-rating {*/
+/*    font-size: 15px;*/
+/*    width: 60vh;*/
+/*    height: 60vh;*/
+/*}*/
 
 
-.container-copy-for-crime-rating {
-    display: flex;
-    justify-content: space-between;
-}
+/*.container-copy-for-crime-rating {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*}*/
 
-.minus_margin-for-crime-rating{
-    margin-bottom: -30px;
-}
+/*.minus_margin-for-crime-rating{*/
+/*    margin-bottom: -30px;*/
+/*}*/
 
-.img-for-crime-rating {
-    position: initial;
-    width: 100%;
-    height: 70%;
-    left: 20%;
-    border-radius: 0;
-    box-shadow: none;
-    transform: none;
-}
+/*.img-for-crime-rating {*/
+/*    position: initial;*/
+/*    width: 100%;*/
+/*    height: 70%;*/
+/*    left: 20%;*/
+/*    border-radius: 0;*/
+/*    box-shadow: none;*/
+/*    transform: none;*/
+/*}*/

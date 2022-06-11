@@ -1,17 +1,12 @@
 import React, {useState} from 'react';
-import Button from "./button/Button";
-import './Header.css'
-import LoginModal from "../modals/loginModal/LoginModal";
-import RegistrationModal from "../modals/registrationModal/RegistrationModal";
-import ErrorModal from "../modals/errorModals/ErrorModal";
-import NightModeTogle from "./togleNightMode/NightModeTogle";
+import "./Header.css"
+import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import ReactDOM from 'react-dom/client';
-import SearchBox from "../searchBox/SearchBox";
-import MainPage from "../mainPage/MainPage";
 import UserPage from "../userPage/UserPage";
+import SearchBox from "../searchBox/SearchBox";
+import NightModeTogle from "./togleNightMode/NightModeTogle";
 
-
-const Header = (inSession) => {
+const Header = (props) => {
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -49,25 +44,34 @@ const Header = (inSession) => {
         );
     }
 
+
     return (
-        <div className="header-box">
-            <span className="left-buttons">
-                <Button onClick={renderToMyProfilePage}>My profile</Button>
-                <Button onClick={renderToForumPage}>Forum</Button>
-                <Button onClick={renderToMainPage}>Main page</Button>
-            </span>
+        <Navbar  bg="dark" variant="dark">
+            <Container fluid>
+                <Navbar.Brand  href="#">Travel Helper</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav
+                        className="me-auto my-2 my-lg-0"
+                        style={{ maxHeight: '100px' }}
+                        navbarScroll
+                    >
+                        <Button variant="outline-warning" onClick={renderToMyProfilePage}>My Profile</Button>
+                        <Button variant="outline-warning" onClick={renderToForumPage} style={{marginLeft: "5px"}}>Forum</Button>
+                        <Button variant="outline-warning" onClick={renderToMainPage} style={{marginLeft: "5px"}}>Search City</Button>
+                    </Nav>
+                    <NightModeTogle/>
 
-            <NightModeTogle/>
+                    {props.inSession===true ? <Button variant="outline-warning">Logout</Button> :
+                        <span>
+                    <Button variant="outline-warning" onClick={renderToMyProfilePage}>Log In</Button>
+                    <Button variant="outline-warning" style={{marginLeft: "5px"}} onClick={() => {setRegistrationModalOpen(true);}}>Registration</Button>
+                        </span>}
 
-            {inSession===true ? <span className="right-buttons"><Button>Logout</Button></span> :
-                <span className="right-buttons">
-                    <button className="noselect" onClick={() => {setLoginModalOpen(true);}}>Log in</button>
-                    <button className="noselect" onClick={() => {setRegistrationModalOpen(true);}}>Registration</button>
-                </span>}
-            {loginModalOpen && <LoginModal setLoginOpenModal={setLoginModalOpen} />}
-            {registrationModalOpen && <RegistrationModal setRegistrationOpenModal={setRegistrationModalOpen} />}
-            {errorModalOpen && <ErrorModal setErrorModalOpen={setErrorModalOpen} error={"tekst pomylki"}/>}
-        </div>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+
     );
 };
 
