@@ -22,6 +22,8 @@ const LoginModal = (props) => {
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label style={{color: "orange"}}>Email address</Form.Label>
                         <Form.Control
+                            value={email}
+                            onChange={e=> setEmail(e.target.value)}
                             type="email"
                             placeholder="name@example.com"
                             autoFocus
@@ -33,6 +35,8 @@ const LoginModal = (props) => {
                     >
                         <Form.Label style={{color: "orange"}}>Password</Form.Label>
                         <Form.Control
+                            value={password}
+                            onChange={e=> setPassword(e.target.value)}
                             type="password"
                             placeholder="*******"/>
                     </Form.Group>
