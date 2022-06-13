@@ -1,72 +1,72 @@
-/*.registrationModalBackground {*/
-/*    width: 100vw;*/
-/*    height: 100vh;*/
-/*    position: fixed;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    z-index: 1;*/
-/*}*/
+.registrationModalBackground {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
 
-/*.registrationModalContainer {*/
-/*    width: 500px;*/
-/*    height: auto;*/
-/*    border-radius: 12px;*/
-/*    background-color: rgba(70, 70, 70, 0.82);*/
-/*    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    padding: 25px;*/
-/*}*/
+.registrationModalContainer {
+    width: 500px;
+    height: auto;
+    border-radius: 12px;
+    background-color: rgba(70, 70, 70, 0.82);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
 
-/*.registrationModalContainer .registrationTitle {*/
-/*    display: inline-block;*/
-/*    text-align: center;*/
-/*    margin-top: 10px;*/
-/*}*/
+.registrationModalContainer .registrationTitle {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+}
 
-/*.registrationTitleCloseBtn {*/
-/*    display: flex;*/
-/*    justify-content: flex-end;*/
-/*}*/
+.registrationTitleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+}
 
-/*.registrationTitleCloseBtn button {*/
-/*    background-color: transparent;*/
-/*    border: none;*/
-/*    font-size: 25px;*/
-/*    cursor: pointer;*/
-/*}*/
+.registrationTitleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
 
-/*.registrationModalContainer .registrationBody {*/
-/*    display: contents;*/
-/*    justify-content: center;*/
-/*    align-items: end;*/
-/*    font-size: 5rem;*/
-/*    text-align: center;*/
-/*}*/
+.registrationModalContainer .registrationBody {
+    display: contents;
+    justify-content: center;
+    align-items: end;
+    font-size: 5rem;
+    text-align: center;
+}
 
-/*.registrationModalContainer .registrationFooter {*/
-/*    flex: 20%;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
+.registrationModalContainer .registrationFooter {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/*.registrationModalContainer .registrationFooter button {*/
-/*    width: 150px;*/
-/*    height: 45px;*/
-/*    margin: 10px;*/
-/*    border: none;*/
-/*    border-radius: 8px;*/
-/*    font-size: 20px;*/
-/*    cursor: pointer;*/
-/*}*/
+.registrationModalContainer .registrationFooter button {
+    width: 150px;
+    height: 45px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
 
-/*.myInputForRegistration {*/
-/*    width: 100%;*/
-/*    height: 40px;*/
-/*    margin: 10px;*/
-/*    padding: 2px 15px;*/
-/*    border: 3px solid #656767;*/
-/*}*/
+.myInputForRegistration {
+    width: 100%;
+    height: 40px;
+    margin: 10px;
+    padding: 2px 15px;
+    border: 3px solid #656767;
+}
