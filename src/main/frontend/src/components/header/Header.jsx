@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import UserPage from "../userPage/UserPage";
 import SearchBox from "../searchBox/SearchBox";
 import AllCarousel from "../carousel/AllCarousel";
+import Forum from "../forum/Forum";
 
 
 const Header = (props) => {
@@ -35,10 +36,7 @@ const Header = (props) => {
     const renderToForumPage = () => {
         root.render(
             <React.StrictMode>
-                <div className="App">
-                    <Header inSession={false}/>
-
-                </div>
+                <Forum/>
             </React.StrictMode>
         );
     }

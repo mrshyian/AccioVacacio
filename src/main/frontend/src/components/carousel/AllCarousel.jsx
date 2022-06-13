@@ -47,7 +47,7 @@ const AllCarousel = () => {
                 />
 
                 <Carousel.Caption>
-                    <h3 style={{color: "orange", background: "rgba(0, 0, 0, 0.5)"}}>You will start by clicking on "Search city"</h3>
+                    <h3 style={{color: "orange", background: "rgba(0, 0, 0, 0.5)"}}>Click on "Search City" and begin your trip.</h3>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
