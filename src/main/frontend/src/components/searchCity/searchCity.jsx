@@ -9,7 +9,7 @@ import LivingCoasts from "./livingCosts/LivingCoasts";
 import CrimeRating from "./crimaRating/CrimeRating";
 
 
-const MainPage = (props) => {
+const SearchCity = (props) => {
 
     const [news, setNews] = useState([]);
     const [IATACode, setIATACode] = useState("WMI");
@@ -79,4 +79,4 @@ const MainPage = (props) => {
     );
 };
 
-export default MainPage;
+export default SearchCity;

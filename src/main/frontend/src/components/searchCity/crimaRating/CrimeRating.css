@@ -27,12 +27,11 @@
 /*    margin-bottom: -30px;*/
 /*}*/
 
-/*.img-for-crime-rating {*/
-/*    position: initial;*/
-/*    width: 100%;*/
-/*    height: 70%;*/
-/*    left: 20%;*/
-/*    border-radius: 0;*/
-/*    box-shadow: none;*/
-/*    transform: none;*/
-/*}*/
+.img-for-crime-rating {
+    position: initial;
+    width: 50%;
+    height: 50%;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+}

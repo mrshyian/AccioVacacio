@@ -47,12 +47,12 @@
 /*    margin-bottom: -30px;*/
 /*}*/
 
-/*.img-for-emergency-number {*/
-/*    position: initial;*/
-/*    height: 50px;*/
-/*    width: 50px;*/
-/*    left: 20%;*/
-/*    border-radius: 0;*/
-/*    box-shadow: none;*/
-/*    transform: none;*/
-/*}*/
+.img-for-emergency-number {
+    position: initial;
+    height: 50px;
+    width: 50px;
+    left: 20%;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+}

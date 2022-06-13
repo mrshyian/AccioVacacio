@@ -4,7 +4,8 @@ import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import ReactDOM from 'react-dom/client';
 import UserPage from "../userPage/UserPage";
 import SearchBox from "../searchBox/SearchBox";
-import NightModeTogle from "./togleNightMode/NightModeTogle";
+import AllCarousel from "../carousel/AllCarousel";
+
 
 const Header = (props) => {
 
@@ -22,6 +23,15 @@ const Header = (props) => {
         );
     }
 
+    const renderToMainPage = () => {
+        root.render(
+            <React.StrictMode>
+                <Header inSession={false}/>
+                <AllCarousel/>
+            </React.StrictMode>
+        );
+    }
+
     const renderToForumPage = () => {
         root.render(
             <React.StrictMode>
@@ -33,7 +43,7 @@ const Header = (props) => {
         );
     }
 
-    const renderToMainPage = () => {
+    const renderToSearchPage = () => {
         root.render(
             <React.StrictMode>
                 <div className="App">
@@ -48,7 +58,7 @@ const Header = (props) => {
     return (
         <Navbar  bg="dark" variant="dark">
             <Container fluid>
-                <Navbar.Brand  href="#">Travel Helper</Navbar.Brand>
+                <Navbar.Brand style={{cursor: "pointer"}}  onClick={renderToMainPage}>Travel Helper</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -58,9 +68,9 @@ const Header = (props) => {
                     >
                         <Button variant="outline-warning" onClick={renderToMyProfilePage}>My Profile</Button>
                         <Button variant="outline-warning" onClick={renderToForumPage} style={{marginLeft: "5px"}}>Forum</Button>
-                        <Button variant="outline-warning" onClick={renderToMainPage} style={{marginLeft: "5px"}}>Search City</Button>
+                        <Button variant="outline-warning" onClick={renderToSearchPage} style={{marginLeft: "5px"}}>Search City</Button>
                     </Nav>
-                    <NightModeTogle/>
+
 
                     {props.inSession===true ? <Button variant="outline-warning">Logout</Button> :
                         <span>
