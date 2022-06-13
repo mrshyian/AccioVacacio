@@ -1,20 +1,16 @@
 package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.touristattractions;
 
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.touristattractions.GoogleAutocompletePlusDto;
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.touristattractions.TrueWayPlacesDto;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaDataRapidApi;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClientRapidApi;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaData;
+import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClient;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class GoogleAutocompletePlusClientRapidApi extends ApiWebClientRapidApi {
-    public GoogleAutocompletePlusClientRapidApi() {
-        super(ApiMetaDataRapidApi.GOOGLE_AUTOCOMPLETE_PLUS);
+public class GoogleAutocompletePlusClient extends ApiWebClient {
+    public GoogleAutocompletePlusClient() {
+        super(ApiMetaData.GOOGLE_AUTOCOMPLETE_PLUS);
     }
 
     /**

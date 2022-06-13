@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class PopularAttractionDtoRapidApi {
+public class PopularAttractionDto {
     String locationName;
     String locationAddress;
     int distanceToLocation;
