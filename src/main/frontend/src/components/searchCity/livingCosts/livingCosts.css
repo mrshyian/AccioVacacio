@@ -1,18 +1,19 @@
-/*.living-costs {*/
-/*    display: block;*/
-/*    border: 2px solid #9b9b9b;*/
-/*    text-align: center;*/
-/*    margin: 16px;*/
-/*    border-radius: 8px;*/
-/*    box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);*/
-/*}*/
+.living-costs {
+    display: block;
+    padding: 10px;
+    border: 2px solid #9b9b9b;
+    text-align: center;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);
+}
 
-/*.space-between {*/
-/*    margin: 10px;*/
-/*    padding: 3px;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*}*/
+.space-between {
+    margin: 10px;
+    padding: 3px;
+    display: flex;
+    justify-content: space-between;
+}
 
 
 /*.back-for-living-cost {*/
