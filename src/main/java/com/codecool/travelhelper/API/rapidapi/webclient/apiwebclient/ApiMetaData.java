@@ -31,6 +31,16 @@ public enum ApiMetaData {
     CRIME_RATING ("https://ranked-crime-cities.p.rapidapi.com/Kc4Qth/ranked_crime_cities", new HashMap<>(){{
         put("X-RapidAPI-Host", "ranked-crime-cities.p.rapidapi.com");
         put("X-RapidAPI-Key", "b186afc8b1msh4bc0a73b4bf87bdp1d1bafjsn15bd5f30345d");
+    }}),
+    TRUE_WAY_PLACES("https://trueway-places.p.rapidapi.com/FindPlacesNearby", new HashMap<>(){{
+        put("X-RapidAPI-Host", "trueway-places.p.rapidapi.com");
+        put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
+    }}),
+
+    //todo: use it very carefully! Price is 200/month for free + US$0.001 each other
+    GOOGLE_AUTOCOMPLETE_PLUS("https://google-maps-autocomplete-plus.p.rapidapi.com/autocomplete",  new HashMap<>(){{
+        put("X-RapidAPI-Host", "google-maps-autocomplete-plus.p.rapidapi.com");
+        put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
     }})
     ;
 
