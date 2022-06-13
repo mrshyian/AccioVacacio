@@ -1,61 +1,68 @@
 import React, {useState} from 'react';
 import "./LoginModal.css"
-import { Button, Form, Modal } from 'react-bootstrap';
-import {render} from "react-dom";
+import {Button, Card, Modal, Form} from "react-bootstrap";
 
-const LoginModal = (showProps) => {
+const LoginModal = (props) => {
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    function OpenLoginModal() {
-        const [show, setShow] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(true);
+    const handleCloseLoginModal = () => setShowLoginModal(false);
+    const handleShowLoginModal = () => setShowLoginModal(true);
 
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow(true);
 
-        return (
-            <>
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Log In</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    value={email} onChange={e=> setEmail(e.target.value)}
-                                    type="email"
-                                    placeholder="name@example.com"
-                                    autoFocus
-                                />
-                            </Form.Group>
-                            <Form.Group
-                                className="mb-3"
-                                controlId="exampleForm.ControlInput2"
-                            >
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    value={password} onChange={e=> setPassword(e.target.value)}
-                                    type="password"
-                                    placeholder="********"
-                                />
-                            </Form.Group>
-                        </Form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
-        );
-    }
-    render(<OpenLoginModal />);
+    return (
+        <Modal show={showLoginModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
+            <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
+                <Modal.Title>Log In</Modal.Title>
+            </Modal.Header>
+            <Modal.Body style={{background: "rgb(20,20,20)"}}>
+                <Form style={{background: "rgb(20,20,20)"}}>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label style={{color: "orange"}}>Email address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="name@example.com"
+                            autoFocus
+                        />
+                    </Form.Group>
+                    <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlTextarea1"
+                    >
+                        <Form.Label style={{color: "orange"}}>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="*******"/>
+                    </Form.Group>
+                </Form>
+            </Modal.Body>
+            <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
+                <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
+                    Close
+                </Button>
+                <Button variant="outline-warning" onClick={handleCloseLoginModal}>
+                    Save Changes
+                </Button>
+            </Modal.Footer>
+        </Modal>
+        // <Modal.Dialog>
+        //     <Modal.Header style={{background: "rgb(40,40,40)"}} closeButton variant={"warning"} onClick={() => {setLoginOpenModal(false);}}>
+        //         <Modal.Title>Log in</Modal.Title>
+        //     </Modal.Header>
+        //     <Modal.Body style={{background: "rgb(20,20,20)"}}>
+        //         <Card.Text>
+        //             <input className="myInput" type="country" placeholder="E-mail" value={email} onChange={e=> setEmail(e.target.value)}/>
+        //             <input className="myInput" type="password" placeholder="Password" value={password} onChange={e=> setPassword(e.target.value)}/>
+        //         </Card.Text>
+        //     </Modal.Body>
+        //     <Modal.Footer style={{background: "rgb(40,40,40)"}}>
+        //         <Button variant={"warning"} onClick={() => {setLoginOpenModal(false);}}>Cancel</Button>
+        //         <Button variant={"warning"} >Continue</Button>
+        //     </Modal.Footer>
+        // </Modal.Dialog>
+    );
 };
 
 export default LoginModal;
