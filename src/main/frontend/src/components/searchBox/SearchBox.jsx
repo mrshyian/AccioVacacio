@@ -51,7 +51,7 @@ const SearchBox = () => {
         );
     }
     return (
-        <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "5%"}}>
+        <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "15%"}}>
             <Container fluid>
                 <Navbar.Brand href="#home">Select a city:</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbar-dark-example"/>
