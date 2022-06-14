@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import "./SearchBox.css"
 import ReactDOM from "react-dom/client";
-import App from "../../App";
 import Header from "../header/Header";
-import MainPage from "../mainPage/MainPage";
+import SearchCity from "../searchCity/searchCity";
+import {Navbar, Container, Button, Nav} from 'react-bootstrap';
 
 const SearchBox = () => {
 
@@ -21,7 +20,7 @@ const SearchBox = () => {
             .catch(err => console.log(err))
     }, [])
 
-    const country = [...new Set(data.map(item=> item.country))].sort();
+    const country = [...new Set(data.map(item => item.country))].sort();
 
     const handleCountry = (e) => {
         setSelectedCountry(e.target.value)
@@ -47,34 +46,40 @@ const SearchBox = () => {
         root.render(
             <React.StrictMode>
                 <Header inSession={false}/>
-                <MainPage country={selectedCountry} city={selectedCity}/>
+                <SearchCity country={selectedCountry} city={selectedCity}/>
             </React.StrictMode>
         );
     }
-
     return (
-        <div className="search-box">
-            <h1>Choose a place</h1>
-            <div className="select">
-                <select onChange={(e) => handleCountry(e)}>
-                    <option value="">Select Country</option>
-                    {country.map(items=> <option key={items} value={selectedCountry}>{items}</option> )}
-                </select>
-            </div>
-            <div className="select">
-                <select onChange={(e) => handleState(e)}>
-                    <option value="">Select State</option>
-                    {getState.map(items=> <option key={items} value={selectedState}>{items}</option> )}
-                </select>
-            </div>
-            <div className="select">
-                <select onChange={(e) => handleCity(e)}>
-                    <option value="">Select City</option>
-                    {cities.map(items=> <option key={items.name}>{items.name}</option> )}
-                </select>
-            </div>
-            <button onClick={loadSearchingPage}>Search</button>
-        </div>
+        <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "15%"}}>
+            <Container fluid>
+                <Navbar.Brand href="#home">Select a city:</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbar-dark-example"/>
+                <Navbar.Collapse id="navbar-dark-example">
+                    <Nav>
+                        <div className="select">
+                            <select onChange={(e) => handleCountry(e)}>
+                                <option value="">Select Country</option>
+                                {country.map(items => <option key={items} value={selectedCountry}>{items}</option>)}
+                            </select>
+                        </div>
+                        <div className="select">
+                            <select onChange={(e) => handleState(e)}>
+                                <option value="">Select State</option>
+                                {getState.map(items => <option key={items} value={selectedState}>{items}</option>)}
+                            </select>
+                        </div>
+                        <div className="select">
+                            <select onChange={(e) => handleCity(e)}>
+                                <option value="">Select City</option>
+                                {cities.map(items => <option key={items.name}>{items.name}</option>)}
+                            </select>
+                        </div>
+                        <Button variant="warning" onClick={loadSearchingPage}>Search</Button>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 };
 
