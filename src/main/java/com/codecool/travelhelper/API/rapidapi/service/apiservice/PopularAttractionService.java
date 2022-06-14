@@ -14,8 +14,8 @@ public class PopularAttractionService {
     @Autowired
     private final PopularAttractionsClientImpl popularAttractionsClient;
 
-    public List<PopularAttractionDto> getPopularAttractions(String cityName, String countryIsoCode, int distance, int amountOfAttractions){
-        List<PopularAttractionDto> response = popularAttractionsClient.getPopularAttractions(cityName, countryIsoCode, distance, amountOfAttractions);
+    public List<PopularAttractionDto> getPopularAttractions(String cityName, String countryIsoCode, int distance, int amountOfAttractions, int howMuchImages){
+        List<PopularAttractionDto> response = popularAttractionsClient.getPopularAttractions(cityName, countryIsoCode, distance, amountOfAttractions, howMuchImages);
         return response;
     }
 }

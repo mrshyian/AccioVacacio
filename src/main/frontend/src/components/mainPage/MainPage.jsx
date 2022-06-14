@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import countries from "i18n-iso-countries";
+import english from "i18n-iso-countries/langs/en.json";
+
 import NewsBox from "./newsBox/NewsBox";
 import AirportDetails from "./airportDetails/AirportDetails";
 import SearchingPlaceBar from "./searchingPlaceBar/SearchingPlaceBar";
@@ -7,6 +10,7 @@ import WeatherBox from "./weather/WeatherBox";
 import EmergencyNumbers from "./emergencyNumbers/EmergencyNumbers";
 import LivingCoasts from "./livingCosts/LivingCoasts";
 import CrimeRating from "./crimaRating/CrimeRating";
+import TouristAttractionsBox from "./touristAttractions/TouristAttractionsBox";
 
 
 const MainPage = (props) => {
@@ -17,6 +21,7 @@ const MainPage = (props) => {
     const [emergencyNumber, setEmergencyNumber] = useState("");
     const [livingCosts, setLivingCosts] = useState([]);
     const [crimeRating, setCrimeRating] = useState([]);
+    const [attractions, setAttractions] = useState([]);
 
     const fetchLivingCosts = () => {
         axios.get(`http://localhost:8080/living-costs/${props.city}/${props.country}`)
@@ -55,6 +60,13 @@ const MainPage = (props) => {
             .catch(err => {console.log(err)});
     };
 
+    const fetchAttractions = () => {
+        const countryIsoCode = getCountryIsoCode(props.country);
+        axios.get(`http://localhost:8080/attractions/${props.city}/${countryIsoCode}`)
+            .then(res =>{setAttractions(res.data);})
+            .catch(err => {console.log(err)});
+    };
+
     useEffect(()=>{
         fetchNewsWorld();
         fetchIATACode();
@@ -62,6 +74,7 @@ const MainPage = (props) => {
         fetchLivingCosts();
         fetchEmergencyNumbers();
         fetchCrimeRating();
+        fetchAttractions();
     }, [])
 
     return (
@@ -72,6 +85,7 @@ const MainPage = (props) => {
                 <CrimeRating crimeRating={crimeRating} city={props.city}/>
                 <EmergencyNumbers emergencyNumber={emergencyNumber}/>
             </div>
+            <TouristAttractionsBox attractions={attractions}/>
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode}/>
             <LivingCoasts livingCosts={livingCosts} />
@@ -80,3 +94,8 @@ const MainPage = (props) => {
 };
 
 export default MainPage;
+
+function getCountryIsoCode(countryName){
+    countries.registerLocale(english);
+    return countries.getAlpha2Code(countryName, "en");
+}

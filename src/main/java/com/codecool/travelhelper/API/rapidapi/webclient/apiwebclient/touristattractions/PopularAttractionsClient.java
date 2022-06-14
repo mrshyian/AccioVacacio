@@ -5,5 +5,5 @@ import com.codecool.travelhelper.API.rapidapi.model.apimodel.touristattractions.
 import java.util.List;
 
 public interface PopularAttractionsClient {
-    List<PopularAttractionDto> getPopularAttractions(String cityName, String countryIsoCode, int distance, int amountOfAttractions);
+    List<PopularAttractionDto> getPopularAttractions(String cityName, String countryIsoCode, int distance, int amountOfAttractions, int howMuchImages);
 }
