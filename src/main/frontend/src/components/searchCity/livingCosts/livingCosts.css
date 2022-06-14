@@ -1,5 +1,6 @@
 .living-costs {
     display: block;
+    justify-content: space-between;
     padding: 10px;
     border: 2px solid #9b9b9b;
     text-align: center;

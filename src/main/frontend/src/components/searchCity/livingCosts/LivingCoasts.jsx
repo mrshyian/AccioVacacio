@@ -11,7 +11,7 @@ const LivingCosts = (props) => {
                     bg={"dark"}
                     key={"dark"}
                     text={'white'}
-                    style={{width: '45rem', margin: "5px"}}
+                    style={{width: '100%', margin: "5px"}}
                     className="mb-2"
                 >
                     <Card.Body>
@@ -32,7 +32,7 @@ const LivingCosts = (props) => {
                     bg={"dark"}
                     key={"dark"}
                     text={'white'}
-                    style={{width: '45rem', margin: "5px"}}
+                    style={{width: '100%', margin: "5px"}}
                     className="mb-2"
                 >
                     <Card.Body>
