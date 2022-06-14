@@ -35,7 +35,7 @@ public class CrimeRatingClientImpl extends ApiWebClient {
 
     public List<CrimeRatingApiModel> getCrimeRatingDto(JsonArray response, String cityName, String countryName) {
         List<CrimeRatingApiModel> crimeRatingApiModels = new ArrayList<>();
-        int indexOfSearchingCity = 0;
+        int indexOfSearchingCity = 111;
         for (int i=1; i<100; i++) {
             String index = getValueByKeyFromJsonObjectInsideList("id", response, i);
             String city = getValueByKeyFromJsonObjectInsideList("Name", response, i);
