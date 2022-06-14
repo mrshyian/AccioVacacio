@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.aws.database.tables;
+package com.codecool.travelhelper.aws.database.tables.user_page_tables;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Getter
 @ToString
-public class MyUser {
+public class MyUserTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +31,10 @@ public class MyUser {
     private boolean privateAccount;
 
 
-    public MyUser() {
+    public MyUserTable() {
     }
 
-    public MyUser(String fullName, String nickName, Date birthday, String eMail, String password, String avatar, String instagram, String facebook, String aboutMe, String role, boolean privateAccount) {
+    public MyUserTable(String fullName, String nickName, Date birthday, String eMail, String password, String avatar, String instagram, String facebook, String aboutMe, String role, boolean privateAccount) {
         this.fullName = fullName;
         this.nickName = nickName;
         this.birthday = birthday;

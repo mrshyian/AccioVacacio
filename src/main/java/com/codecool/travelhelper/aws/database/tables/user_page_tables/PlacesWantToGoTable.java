@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.aws.database.tables;
+package com.codecool.travelhelper.aws.database.tables.user_page_tables;
 
 
 import lombok.Getter;
@@ -8,16 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 @Getter
 @ToString
-public class PhotosFromTrips {
-
+public class PlacesWantToGoTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long albumId;
-    private String linkToPhoto;
+    private UUID userId;
+    private String country;
+    private String city;
 }

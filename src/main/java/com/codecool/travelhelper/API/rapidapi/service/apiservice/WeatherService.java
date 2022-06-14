@@ -12,8 +12,8 @@ public class WeatherService {
     @Autowired
     private final WeatherClientImpl weatherClient;
 
-    public WeatherApiModel getWeather(String cityName){
-        WeatherApiModel response = weatherClient.getCityWeather(cityName);
+    public WeatherApiModel getWeather(String cityName, String countryName){
+        WeatherApiModel response = weatherClient.getCityWeather(cityName, countryName);
         return response;
     }
 }
