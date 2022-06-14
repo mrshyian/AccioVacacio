@@ -86,8 +86,8 @@ const Header = (props) => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-            {loginModalOpen && <LoginModal/>}
-            {registrationModalOpen && <RegistrationModal/>}
+            {loginModalOpen && <LoginModal open={loginModalOpen}/>}
+            {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
             {errorModalOpen && <ErrorModal error={"tekst pomylki"}/>}
         </div>
     );

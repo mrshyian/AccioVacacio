@@ -12,6 +12,7 @@ const LoginModal = (props) => {
     const handleShowLoginModal = () => setShowLoginModal(true);
 
 
+
     return (
         <Modal show={showLoginModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
             <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
@@ -51,21 +52,6 @@ const LoginModal = (props) => {
                 </Button>
             </Modal.Footer>
         </Modal>
-        // <Modal.Dialog>
-        //     <Modal.Header style={{background: "rgb(40,40,40)"}} closeButton variant={"warning"} onClick={() => {setLoginOpenModal(false);}}>
-        //         <Modal.Title>Log in</Modal.Title>
-        //     </Modal.Header>
-        //     <Modal.Body style={{background: "rgb(20,20,20)"}}>
-        //         <Card.Text>
-        //             <input className="myInput" type="country" placeholder="E-mail" value={email} onChange={e=> setEmail(e.target.value)}/>
-        //             <input className="myInput" type="password" placeholder="Password" value={password} onChange={e=> setPassword(e.target.value)}/>
-        //         </Card.Text>
-        //     </Modal.Body>
-        //     <Modal.Footer style={{background: "rgb(40,40,40)"}}>
-        //         <Button variant={"warning"} onClick={() => {setLoginOpenModal(false);}}>Cancel</Button>
-        //         <Button variant={"warning"} >Continue</Button>
-        //     </Modal.Footer>
-        // </Modal.Dialog>
     );
 };
 
