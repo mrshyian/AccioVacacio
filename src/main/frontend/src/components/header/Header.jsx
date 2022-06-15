@@ -22,37 +22,37 @@ const Header = (props) => {
 
     const renderToMyProfilePage = () => {
         root.render(
-            <React.StrictMode>
+            <React.Profiler>
                 <UserPage/>
-            </React.StrictMode>
+            </React.Profiler>
         );
     }
 
     const renderToMainPage = () => {
         root.render(
-            <React.StrictMode>
+            <React.Profiler>
                 <Header inSession={false}/>
                 <AllCarousel/>
-            </React.StrictMode>
+            </React.Profiler>
         );
     }
 
     const renderToForumPage = () => {
         root.render(
-            <React.StrictMode>
+            <React.Profiler>
                 <Forum/>
-            </React.StrictMode>
+            </React.Profiler>
         );
     }
 
     const renderToSearchPage = () => {
         root.render(
-            <React.StrictMode>
+            <React.Profiler>
                 <div className="App">
                     <Header inSession={false}/>
                     <SearchBox/>
                 </div>
-            </React.StrictMode>
+            </React.Profiler>
         );
     }
 
