@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.aws.database.tables.search_city_tables;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -9,8 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Getter
-@ToString
+@Data
 public class CrimeRatingTable {
 
     @Id
@@ -30,5 +30,10 @@ public class CrimeRatingTable {
         this.cityName = cityName;
         this.countryName = countryName;
         this.starCount = starCount;
+    }
+
+
+    public int getStarCount() {
+        return starCount;
     }
 }
