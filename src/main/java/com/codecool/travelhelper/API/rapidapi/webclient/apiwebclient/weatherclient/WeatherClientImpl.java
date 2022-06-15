@@ -39,7 +39,30 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
 //        try {
 //            return getWeatherDto(response, cityName, countryName);
 //        } catch (Exception e) {
-//            new ResponseEntity<List<WeatherTable>>(weatherRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK).getBody()
+//            //----------------------------getting weather from database----------------------------
+//            String responseStr = (new ResponseEntity<List<WeatherTable>>(weatherRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK).getBody().toString());
+//
+//            int begin = responseStr.indexOf("(") + 1;
+//            int end = responseStr.lastIndexOf(")");
+//            responseStr = responseStr.substring(begin, end);
+//
+//            String[] responseList = responseStr.split(", ");
+//
+//            String responseDescription = responseList[3].split("=")[1];
+//            int responseTemperature = Integer.parseInt(responseList[4].split("=")[1]);
+//            int responseFeelsLike = Integer.parseInt(responseList[5].split("=")[1]);
+//            int responsePressure = Integer.parseInt(responseList[6].split("=")[1]);
+//            int responseHumidity = Integer.parseInt(responseList[7].split("=")[1]);
+//            float responseWingSpeed = Float.parseFloat(responseList[8].split("=")[1]);
+//            return WeatherApiModel.builder()
+//                    .description(responseDescription)
+//                    .temperature(responseTemperature)
+//                    .feelsLike(responseFeelsLike)
+//                    .pressure(responsePressure)
+//                    .humidity(responseHumidity)
+//                    .wingSpeed(responseWingSpeed)
+//                    .build();
+//            //--------------------------------------------------------------------------------------------
 //        }
         return getWeatherDto(response, cityName, countryName);
     }
@@ -55,7 +78,7 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
         float wingSpeed = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("speed", "wind", response));
 
         // Long searchingPlaceId = 1L;
-        //----------------------------saving emergency numbers to database----------------------------
+        //----------------------------saving weather to database----------------------------
         weatherRepository.save(
                 new WeatherTable(
                         cityName,
@@ -70,28 +93,33 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
         );
         //--------------------------------------------------------------------------------------------
 
-        //----------------------------saving emergency numbers to database----------------------------
+        //----------------------------getting weather from database----------------------------
+        System.out.println("At start: " + new ResponseEntity<List<WeatherTable>>(weatherRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK));
         String responseStr = (new ResponseEntity<List<WeatherTable>>(weatherRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK).getBody().toString());
+        System.out.println();
+        System.out.println("Response body: " + responseStr);
         int begin = responseStr.indexOf("(") + 1;
         int end = responseStr.lastIndexOf(")");
         responseStr = responseStr.substring(begin, end);
-        System.out.println(responseStr);
+        System.out.println();
+        System.out.println("After substring: " + responseStr);
+        System.out.println();
 
-        String[] responceList = responseStr.split(", ");
+        String[] responseList = responseStr.split(", ");
 
-        String responceDescription = responceList[3].split("=")[1];
-        int responceTemperature = Integer.parseInt(responceList[4].split("=")[1]);
-        int responceFeelsLike = Integer.parseInt(responceList[5].split("=")[1]);
-        int responcePressure = Integer.parseInt(responceList[6].split("=")[1]);
-        int responceHumidity = Integer.parseInt(responceList[7].split("=")[1]);
-        float responceWingSpeed = Float.parseFloat(responceList[8].split("=")[1]);
-
-        System.out.println("responceDescription: " + responceDescription);
-        System.out.println("responceTemperature: " + responceTemperature);
-        System.out.println("responceFeelsLike: " + responceFeelsLike);
-        System.out.println("responcePressure: " + responcePressure);
-        System.out.println("responceHumidity: " + responceHumidity);
-        System.out.println("responceWingSpeed: " + responceWingSpeed);
+        String responseDescription = responseList[3].split("=")[1];
+        int responseTemperature = Integer.parseInt(responseList[4].split("=")[1]);
+        int responseFeelsLike = Integer.parseInt(responseList[5].split("=")[1]);
+        int responsePressure = Integer.parseInt(responseList[6].split("=")[1]);
+        int responseHumidity = Integer.parseInt(responseList[7].split("=")[1]);
+        float responseWingSpeed = Float.parseFloat(responseList[8].split("=")[1]);
+        System.out.println("After splitting:");
+        System.out.println("responseDescription: " + responseDescription);
+        System.out.println("responseTemperature: " + responseTemperature);
+        System.out.println("responseFeelsLike: " + responseFeelsLike);
+        System.out.println("responsePressure: " + responsePressure);
+        System.out.println("responseHumidity: " + responseHumidity);
+        System.out.println("responseWingSpeed: " + responseWingSpeed);
         //--------------------------------------------------------------------------------------------
 
 
