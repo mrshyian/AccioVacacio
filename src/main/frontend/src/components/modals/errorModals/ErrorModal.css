@@ -1,64 +1,64 @@
-.errorModalBackground {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
+/*.errorModalBackground {*/
+/*    width: 100vw;*/
+/*    height: 100vh;*/
+/*    position: fixed;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    z-index: 1;*/
+/*}*/
 
-.errorModalContainer {
-    width: 500px;
-    height: 500px;
-    border-radius: 12px;
-    background-color: rgba(70, 70, 70, 0.82);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-}
+/*.errorModalContainer {*/
+/*    width: 500px;*/
+/*    height: 500px;*/
+/*    border-radius: 12px;*/
+/*    background-color: rgba(70, 70, 70, 0.82);*/
+/*    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    padding: 25px;*/
+/*}*/
 
-.errorModalContainer .errorTitle {
-    display: inline-block;
-    text-align: center;
-    margin-top: 10px;
-}
+/*.errorModalContainer .errorTitle {*/
+/*    display: inline-block;*/
+/*    text-align: center;*/
+/*    margin-top: 10px;*/
+/*}*/
 
-.errorTitleCloseBtn {
-    display: flex;
-    justify-content: flex-end;
-}
+/*.errorTitleCloseBtn {*/
+/*    display: flex;*/
+/*    justify-content: flex-end;*/
+/*}*/
 
-.errorTitleCloseBtn button {
-    background-color: transparent;
-    border: none;
-    font-size: 25px;
-    cursor: pointer;
-}
+/*.errorTitleCloseBtn button {*/
+/*    background-color: transparent;*/
+/*    border: none;*/
+/*    font-size: 25px;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.errorModalContainer .errorBody {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    font-size: 5rem;
-    text-align: center;
-    color: red;
-}
+/*.errorModalContainer .errorBody {*/
+/*    display: block;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    font-size: 5rem;*/
+/*    text-align: center;*/
+/*    color: red;*/
+/*}*/
 
-.errorModalContainer .errorFooter {
-    flex: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/*.errorModalContainer .errorFooter {*/
+/*    flex: 20%;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 
-.errorModalContainer .errorFooter button {
-    width: 150px;
-    height: 45px;
-    margin: 10px;
-    border: none;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
-}
+/*.errorModalContainer .errorFooter button {*/
+/*    width: 150px;*/
+/*    height: 45px;*/
+/*    margin: 10px;*/
+/*    border: none;*/
+/*    border-radius: 8px;*/
+/*    font-size: 20px;*/
+/*    cursor: pointer;*/
+/*}*/

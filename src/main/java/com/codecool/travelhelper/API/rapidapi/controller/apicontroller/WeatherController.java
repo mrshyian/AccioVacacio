@@ -21,8 +21,8 @@ public class WeatherController {
         return "test";
     }
 
-    @GetMapping("/weather/{cityName}")
-    public WeatherApiModel getWeather(@PathVariable String cityName){
-        return weatherService.getWeather(cityName);
+    @GetMapping("/weather/{cityName}/{countryName}")
+    public WeatherApiModel getWeather(@PathVariable String cityName, @PathVariable String countryName){
+        return weatherService.getWeather(cityName, countryName);
     }
 }

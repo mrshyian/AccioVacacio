@@ -17,8 +17,8 @@ public class AirportDetailApiController {
     @Autowired
     AirportDetailService airportDetailService;
 
-    @GetMapping("/airport-details/{airportCode}")
-    public AirportDetailApiModel getAirportDetail(@PathVariable String airportCode){
-        return airportDetailService.getAirportDetail(airportCode);
+    @GetMapping("/airport-details/{airportCode}/{cityName}/{countryName}")
+    public AirportDetailApiModel getAirportDetail(@PathVariable String airportCode, @PathVariable String cityName, @PathVariable String countryName){
+        return airportDetailService.getAirportDetail(airportCode, cityName, countryName);
     }
 }

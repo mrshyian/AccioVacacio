@@ -14,9 +14,9 @@ public class WorldNewsService {
     @Autowired
     private final WorldNewsClientImpl newsClient;
 
-    public List<WorldNewsApiModel> getNews(String cityName){
+    public List<WorldNewsApiModel> getNews(String cityName, String countryName){
         int amountOfNews = 3;
-        List<WorldNewsApiModel> response = newsClient.getCityNews(cityName, amountOfNews);
+        List<WorldNewsApiModel> response = newsClient.getCityNews(cityName, amountOfNews, countryName);
         return response;
     }
 }

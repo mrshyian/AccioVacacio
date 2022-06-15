@@ -13,8 +13,8 @@ public class AirportService {
     @Autowired
     AirportClientImpl airportClientImpl;
 
-    public AirportApiModel getAirport(String cityName){
-        AirportApiModel response = airportClientImpl.getCityAirport(cityName);
+    public AirportApiModel getAirport(String cityName, String countryName){
+        AirportApiModel response = airportClientImpl.getCityAirport(cityName, countryName);
         return response;
     }
 
