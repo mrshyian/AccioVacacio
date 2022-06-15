@@ -44,10 +44,10 @@ const SearchBox = () => {
 
     const loadSearchingPage = () => {
         root.render(
-            <React.StrictMode>
+            <React.Profiler>
                 <Header inSession={false}/>
                 <SearchCity country={selectedCountry} city={selectedCity}/>
-            </React.StrictMode>
+            </React.Profiler>
         );
     }
     return (

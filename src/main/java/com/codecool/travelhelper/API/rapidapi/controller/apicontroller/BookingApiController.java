@@ -17,8 +17,8 @@ public class BookingApiController {
     @Autowired
     BookingService bookingService;
 
-    @GetMapping("/booking/{cityName}/{countryName}")
-    public BookingApiModel getBooking(@PathVariable String cityName, @PathVariable String countryName){
-        return bookingService.getBooking(cityName, countryName);
-    }
+//    @GetMapping("/booking/{cityName}/{countryName}")
+//    public BookingApiModel getBooking(@PathVariable String cityName, @PathVariable String countryName){
+//        return bookingService.getBooking(cityName, countryName);
+//    }
 }

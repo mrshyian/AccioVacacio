@@ -20,9 +20,8 @@ public class WorldNewsController {
     private final WorldNewsService worldNewsService;
 
 
-    @GetMapping("/news/{cityName}")
-    public List<WorldNewsApiModel> getNews(@PathVariable String cityName){
-        System.out.println(worldNewsService.getNews(cityName));
-        return worldNewsService.getNews(cityName);
+    @GetMapping("/news/{cityName}/{countryName}")
+    public List<WorldNewsApiModel> getNews(@PathVariable String cityName, @PathVariable String countryName){
+        return worldNewsService.getNews(cityName, countryName);
     }
 }

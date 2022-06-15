@@ -8,7 +8,7 @@ const AirportDetails = (props) => {
 
     const fetchAirportDetails = () => {
         console.log(props.iata)
-        axios.get(`http://localhost:8080/airport-details/${props.iata}`)
+        axios.get(`http://localhost:8080/airport-details/${props.iata}/${props.city}/${props.country}`)
             .then(res => {
                 setAirportDetail(res.data);
                 console.log(res.data)

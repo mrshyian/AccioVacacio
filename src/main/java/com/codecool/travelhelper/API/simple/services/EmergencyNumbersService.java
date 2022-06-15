@@ -16,9 +16,9 @@ public class EmergencyNumbersService {
     @Autowired
     private final EmergencyNumbersClient emergencyNumbersClient;
 
-    public EmergencyNumbersDto getEmergencyNumbers(String country){
-        CountryCode countryCode = CountryCode.findByName(country).get(0);
+    public EmergencyNumbersDto getEmergencyNumbers(String countryName, String cityName){
+        CountryCode countryCode = CountryCode.findByName(countryName).get(0);
 
-        return emergencyNumbersClient.getEmergencyNumbers(countryCode.toString());
+        return emergencyNumbersClient.getEmergencyNumbers(countryCode.toString(), countryName, cityName);
     }
 }

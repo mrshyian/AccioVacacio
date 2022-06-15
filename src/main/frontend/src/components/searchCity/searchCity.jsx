@@ -19,6 +19,7 @@ const SearchCity = (props) => {
     const [crimeRating, setCrimeRating] = useState([]);
 
     const fetchLivingCosts = () => {
+
         axios.get(`http://localhost:8080/living-costs/${props.city}/${props.country}`)
             .then(res =>{setLivingCosts(res.data);
                 console.log(res.data)})
@@ -26,31 +27,31 @@ const SearchCity = (props) => {
     };
 
     const fetchNewsWorld = () => {
-        axios.get(`http://localhost:8080/news/${props.city}`)
+        axios.get(`http://localhost:8080/news/${props.city}/${props.country}`)
             .then(res =>{setNews(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchIATACode = () => {
-        axios.get(`http://localhost:8080/airport/${props.city}`)
+        axios.get(`http://localhost:8080/airport/${props.city}/${props.country}`)
             .then(res =>{setIATACode(res.data.airportCode);})
             .catch(err => {console.log(err)});
     };
 
     const fetchWeather = () => {
-        axios.get(`http://localhost:8080/weather/${props.city}`)
+        axios.get(`http://localhost:8080/weather/${props.city}/${props.country}`)
             .then(res =>{setWeather(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchEmergencyNumbers = () => {
-        axios.get(`http://localhost:8080/emergency_numbers/${props.country}`)
+        axios.get(`http://localhost:8080/emergency_numbers/${props.city}/${props.country}`)
             .then(res =>{setEmergencyNumber(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchCrimeRating = () => {
-        axios.get(`http://localhost:8080/crime_rating/`)
+        axios.get(`http://localhost:8080/crime_rating/${props.city}/${props.country}`)
             .then(res =>{setCrimeRating(res.data);})
             .catch(err => {console.log(err)});
     };
@@ -73,7 +74,7 @@ const SearchCity = (props) => {
                 <EmergencyNumbers emergencyNumber={emergencyNumber}/>
             </div>
             <NewsBox news={news}/>
-            <AirportDetails iata={IATACode}/>
+            <AirportDetails iata={IATACode} country={props.country} city={props.city}/>
             <LivingCoasts livingCosts={livingCosts} />
         </div>
     );
