@@ -22,7 +22,7 @@ public class WorldNewsTable {
     private String countryName;
 
     private String newsTitle;
-    private String newsSummary;
+
     private String newsLink;
 
     public WorldNewsTable() {
@@ -32,7 +32,7 @@ public class WorldNewsTable {
         this.cityName = cityName;
         this.countryName = countryName;
         this.newsTitle = newsTitle;
-        this.newsSummary = newsSummary;
+
         this.newsLink = newsLink;
     }
 }

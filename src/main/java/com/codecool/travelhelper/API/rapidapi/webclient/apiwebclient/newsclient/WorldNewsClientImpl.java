@@ -55,15 +55,15 @@ public class WorldNewsClientImpl extends ApiWebClient implements WorldNewsClient
 
         // Long searchingPlaceId = 1L;
         //----------------------------saving emergency numbers to database----------------------------
-//        worldNewsRepository.save(
-//                new WorldNewsTable(
-//                        cityName,
-//                        countryName,
-//                        title,
-//                        summary,
-//                        link
-//                )
-//        );
+        worldNewsRepository.save(
+                new WorldNewsTable(
+                        cityName,
+                        countryName,
+                        title,
+                        summary,
+                        link
+                )
+        );
         //--------------------------------------------------------------------------------------------
 
         return WorldNewsApiModel.builder()
