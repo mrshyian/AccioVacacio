@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageBingSearch from "../../ImageBingSearch";
+import {Button} from "react-bootstrap";
 
 const TouristSingleAttractionCard = (props) => {
 
@@ -12,15 +13,15 @@ const TouristSingleAttractionCard = (props) => {
         <div className="wrapper">
             <div className="blog_post">
                 <div className="img_pod">
-                    <img src="https://cdn.icon-icons.com/icons2/203/PNG/128/diagram-01_24516.png" alt="random image"/>
+                    <img src="https://img.icons8.com/external-smashingstocks-glyph-smashing-stocks/344/external-map-pointer-medical-smashingstocks-glyph-smashing-stocks.png" alt="random image"
+                    style={{maxWidth: "60px", maxHeight:"60px"}}/>
                 </div>
-                <div className="minus-margin">
+                <div className="minus-margin" style={{width: "49%", flex: "50%"}}>
                     <h1>{locationName}</h1>
-                    <p>{locationAddress}</p>
-                    <p>{distanceToLocation}</p>
-                    <ImageBingSearch key={props.index} attractions={props.attractions}/>
-                    <a className="btn_primary" href={website}>Read About...</a>
+                    <p>Address: <em>{locationAddress}</em></p>
+                    <p>Only in <strong>{distanceToLocation}</strong> meters from center</p>
                 </div>
+                <ImageBingSearch key={props.index} attractions={props.attractions} website={{website}}/>
             </div>
         </div>
     );

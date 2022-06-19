@@ -3,6 +3,7 @@ package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.touristatt
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.touristattractions.GoogleAutocompletePlusDto;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaData;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClient;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
@@ -20,8 +21,10 @@ public class GoogleAutocompletePlusClient extends ApiWebClient {
      * @return
      * */
     public GoogleAutocompletePlusDto getLocationCoordinates(String cityName, String countryIsoCode){
-       Map<String, Object> parameters = new HashMap<>(){{
-            put("query", cityName);
+        String queryContent = cityName + " " + countryIsoCode;
+
+        Map<String, Object> parameters = new HashMap<>(){{
+            put("query", queryContent);
             put("limit", 10);
         }};
         this.setParameters(parameters);
@@ -34,8 +37,24 @@ public class GoogleAutocompletePlusClient extends ApiWebClient {
     }
 
     private GoogleAutocompletePlusDto getGoogleAutocompletePlusDto(JsonObject response, String countryCode){
-        for (int i = 0; i < response.size(); i++) {
-            GoogleAutocompletePlusDto googleAutocompletePlusDto = getSingleGoogleAutocompletePlusDto(response,countryCode, i);
+        JsonArray responseValue = (response.getAsJsonObject("response")).getAsJsonArray("predictions");
+
+        for (int i = 0; i < responseValue.size(); i++) {
+            GoogleAutocompletePlusDto googleAutocompletePlusDto = getCountryMatchedGoogleAutocompletePlusDto(response,countryCode, i);
+
+            if (googleAutocompletePlusDto != null){
+                return googleAutocompletePlusDto;
+            }
+        }
+
+        return getFirstNotNullGoogleAutocompletePlusDto(response, countryCode);
+    }
+    
+    private GoogleAutocompletePlusDto getFirstNotNullGoogleAutocompletePlusDto(JsonObject response, String countryCode){
+        JsonArray responseValue = (response.getAsJsonObject("response")).getAsJsonArray("predictions");
+
+        for (int i = 0; i < responseValue.size(); i++) {
+            GoogleAutocompletePlusDto googleAutocompletePlusDto = getGoogleAutocompletePlusDto(response, i);
 
             if (googleAutocompletePlusDto != null){
                 return googleAutocompletePlusDto;
@@ -45,25 +64,34 @@ public class GoogleAutocompletePlusClient extends ApiWebClient {
         return null;
     }
 
-    private GoogleAutocompletePlusDto getSingleGoogleAutocompletePlusDto (JsonObject response, String countryIsoCode, int elementIndex){
+    private GoogleAutocompletePlusDto getCountryMatchedGoogleAutocompletePlusDto(JsonObject response, String countryIsoCode, int elementIndex){
         JsonObject responseValue = response.getAsJsonObject("response");
 
         if (isCountryMatching(responseValue, countryIsoCode, elementIndex)){
-            float latitude = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonArray("latitude", "predictions", responseValue, elementIndex));
-            float longitude = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonArray("longitude", "predictions", responseValue, elementIndex));
-
-            GoogleAutocompletePlusDto googleAutocompletePlusDto = GoogleAutocompletePlusDto.builder()
-                    .latitude(latitude)
-                    .longitude(longitude)
-                    .build();
-            return googleAutocompletePlusDto;
+            return getGoogleAutocompletePlusDto(responseValue, elementIndex);
         }
+
         return null;
+    }
+
+    private GoogleAutocompletePlusDto getGoogleAutocompletePlusDto(JsonObject response, int elementIndex){
+        float latitude = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonArray("latitude", "predictions", response, elementIndex));
+        float longitude = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonArray("longitude", "predictions", response, elementIndex));
+
+        GoogleAutocompletePlusDto googleAutocompletePlusDto = GoogleAutocompletePlusDto.builder()
+                .latitude(latitude)
+                .longitude(longitude)
+                .build();
+        return googleAutocompletePlusDto;
     }
 
     private boolean isCountryMatching(JsonObject response, String countryIsoName, int elementIndex){
         String responseCountryValue = getValueByKeyFromJsonObjectInsideJsonArray("country", "predictions", response, elementIndex);
 
-        return responseCountryValue.equals(countryIsoName);
+        if (responseCountryValue != null){
+            return responseCountryValue.equals(countryIsoName);
+        }
+
+        return false;
     }
 }

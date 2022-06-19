@@ -37,9 +37,9 @@ const AirportDetails = (props) => {
                         <table>
                             <tr>
                                 <td>
-                                    <img
-                                        src="https://cdn.icon-icons.com/icons2/187/PNG/256/Falcon_22858.png"
-                                        alt="random image"/>
+                                    {/*<img*/}
+                                    {/*    src="https://cdn.icon-icons.com/icons2/187/PNG/256/Falcon_22858.png"*/}
+                                    {/*    alt="random image"/>*/}
                                 </td>
                                 <td>
                                     <h1>{airportDetail.name}</h1>

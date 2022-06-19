@@ -11,7 +11,7 @@ function App() {
     return (
         <div>
             <Header inSession={false}/>
-            <AllCarousel/>
+            {/*<AllCarousel/>*/}
         </div>
     );
 }
