@@ -18,9 +18,9 @@ public class EmergencyNumbersController {
     @Autowired
     private final EmergencyNumbersService emergencyNumbersService;
 
-    @GetMapping("/emergency_numbers/{country}")
-    public EmergencyNumbersDto getWeather(Model model, @PathVariable String country) {
+    @GetMapping("/emergency_numbers/{cityName}/{countryName}")
+    public EmergencyNumbersDto getWeather(Model model, @PathVariable String countryName, @PathVariable String cityName) {
 
-        return emergencyNumbersService.getEmergencyNumbers(country);
+        return emergencyNumbersService.getEmergencyNumbers(countryName, cityName);
     }
 }

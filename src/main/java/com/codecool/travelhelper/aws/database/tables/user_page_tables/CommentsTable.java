@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.aws.database.tables;
+package com.codecool.travelhelper.aws.database.tables.user_page_tables;
 
 
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @ToString
-public class Comments {
+public class CommentsTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +28,10 @@ public class Comments {
     private DateTime commentDateTime;
     private UUID likedByUser;
 
-    public Comments() {
+    public CommentsTable() {
     }
 
-    public Comments(UUID userId, String commentTex, String commentImage, String country, String city, DateTime commentDateTime, UUID likedByUser) {
+    public CommentsTable(UUID userId, String commentTex, String commentImage, String country, String city, DateTime commentDateTime, UUID likedByUser) {
         this.userId = userId;
         this.commentTex = commentTex;
         this.commentImage = commentImage;

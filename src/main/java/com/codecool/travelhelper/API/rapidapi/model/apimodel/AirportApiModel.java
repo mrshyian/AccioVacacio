@@ -8,12 +8,16 @@ import lombok.Getter;
 public class AirportApiModel {
     String AirportName;
     String AirportCode;
+    String cityName;
+    String countryName;
 
     @Override
     public String toString() {
-        return "AirportDtoRapidApi{" +
+        return "AirportApiModel{" +
                 "AirportName='" + AirportName + '\'' +
                 ", AirportCode='" + AirportCode + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", countryName='" + countryName + '\'' +
                 '}';
     }
 }

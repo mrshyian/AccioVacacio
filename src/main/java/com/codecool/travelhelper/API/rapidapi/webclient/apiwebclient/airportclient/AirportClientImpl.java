@@ -13,7 +13,7 @@ public class AirportClientImpl extends ApiWebClient {
         super(ApiMetaData.AIRPORT);
     }
 
-    public AirportApiModel getCityAirport(String cityName) {
+    public AirportApiModel getCityAirport(String cityName, String countryName) {
         this.setUrl("https://world-airports-directory.p.rapidapi.com/v1/airports/");
         String currentUrl = this.getUrl();
         String newUrl = currentUrl + cityName;
@@ -21,16 +21,18 @@ public class AirportClientImpl extends ApiWebClient {
 
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData());
 
-        return getAirportDto(response);
+        return getAirportDto(response, cityName, countryName);
     }
 
-    public AirportApiModel getAirportDto(JsonObject response) {
+    public AirportApiModel getAirportDto(JsonObject response, String cityName, String countryName) {
         String airportName = getValueByKeyFromJsonObjectInsideJsonArray("AirportName", "results", response, 0);
         String airportCode = getValueByKeyFromJsonObjectInsideJsonArray("AirportCode", "results" , response, 0);
 
         return AirportApiModel.builder()
                 .AirportName(airportName)
                 .AirportCode(airportCode)
+                .cityName(cityName)
+                .countryName(countryName)
                 .build();
     }
 }
