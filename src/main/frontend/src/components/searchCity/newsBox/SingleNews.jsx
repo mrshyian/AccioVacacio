@@ -27,7 +27,7 @@ const SingleNews = (props) => {
                 <Card.Text>
                     {props.news.summary}
                 </Card.Text>
-                    <Button variant={"warning"} href={props.news.link}>Read more</Button>
+                <Button variant={"warning"} href={props.news.link}>Read more</Button>
             </Card.Body>
         </Card>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import "./TouristAttractionsBox.css"
 import TouristSingleAttractionCard from "./TouristSingleAttractionCard";
-import {Button, Card} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 
 const CARD_HEADER_TITLES = ["Must see", "Your friends will be shocked", "Mom, look...", "Hurry up", "Special place for special you"];
 
@@ -11,7 +11,7 @@ const TouristAttractionsBox = (props) => {
 
     return (
 
-        <div className="newsInline">
+        <div className="attraction-box">
             <h1 style={{textAlign: "center", color: "orange"}}>ATTRACTIONS</h1>
             <div style={{display: "flex", flexWrap: "wrap"}}>
                 {props.attractions.map((attractions, index) => {

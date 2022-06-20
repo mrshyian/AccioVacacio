@@ -1,6 +1,5 @@
 import React from 'react';
-import ImageBingSearch from "../../ImageBingSearch";
-import {Button} from "react-bootstrap";
+import ImageBingSearch from "../imagesAsApiResponse/ImageBingSearch";
 
 const TouristSingleAttractionCard = (props) => {
 

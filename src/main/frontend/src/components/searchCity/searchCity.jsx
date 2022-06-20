@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import countries from "i18n-iso-countries";
-import english from "i18n-iso-countries/langs/en.json";
-
 import NewsBox from "./newsBox/NewsBox";
 import AirportDetails from "./airportDetails/AirportDetails";
 import SearchingPlaceBar from "./searchingPlaceBar/SearchingPlaceBar";
@@ -10,6 +7,8 @@ import WeatherBox from "./weather/WeatherBox";
 import EmergencyNumbers from "./emergencyNumbers/EmergencyNumbers";
 import LivingCoasts from "./livingCosts/LivingCoasts";
 import CrimeRating from "./crimaRating/CrimeRating";
+import countries from "i18n-iso-countries";
+import english from "i18n-iso-countries/langs/en.json";
 import TouristAttractionsBox from "./touristAttractions/TouristAttractionsBox";
 
 

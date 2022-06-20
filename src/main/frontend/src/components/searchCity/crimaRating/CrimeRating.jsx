@@ -27,24 +27,24 @@ const CrimeRating = (props) => {
             }
             returned =
                 <div style={{margin: "5px"}}>
-                <Card
-                    bg={"dark"}
-                    key={"dark"}
-                    text={'white'}
-                    style={{ width: '20rem' }}
-                    className="mb-2"
-                >
-                    <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Crime Rating</h2></Card.Header>
-                    <Card.Body>
-                        <Card.Text>
-                            <div style={{textAlign: "center"}}>
-                            <img className="img-for-crime-rating"
-                                 src={img}
-                                 alt="random image"/>
-                            </div>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                    <Card
+                        bg={"dark"}
+                        key={"dark"}
+                        text={'white'}
+                        style={{ width: '20rem' }}
+                        className="mb-2"
+                    >
+                        <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Crime Rating</h2></Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                <div style={{textAlign: "center"}}>
+                                    <img className="img-for-crime-rating"
+                                         src={img}
+                                         alt="random image"/>
+                                </div>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
                 </div>
         }
     })
@@ -56,24 +56,24 @@ const CrimeRating = (props) => {
     } else {
         return (
             <div style={{margin: "5px"}}>
-            <Card
-                bg={"dark"}
-                key={"dark"}
-                text={'white'}
-                style={{ width: '20rem' }}
-                className="mb-2"
-            >
-                <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Crime Rating</h2></Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        <div style={{textAlign: "center"}}>
-                        <img className="img-for-crime-rating"
-                             src={safely}
-                             alt="random image"/>
-                        </div>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+                <Card
+                    bg={"dark"}
+                    key={"dark"}
+                    text={'white'}
+                    style={{ width: '20rem' }}
+                    className="mb-2"
+                >
+                    <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Crime Rating</h2></Card.Header>
+                    <Card.Body>
+                        <Card.Text>
+                            <div style={{textAlign: "center"}}>
+                                <img className="img-for-crime-rating"
+                                     src={safely}
+                                     alt="random image"/>
+                            </div>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
             </div>
         );
     }

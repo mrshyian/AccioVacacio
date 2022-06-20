@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
+import "./ImageBingSearch.css"
 
 const ImageBingSearch = (props) => {
     const images = props.attractions.imageUrl;
@@ -8,9 +9,9 @@ const ImageBingSearch = (props) => {
     const imageUrl = imagesList[imageIndex];
 
     return (
-        <div style={{flexDirection: "column", display: "inline", buttom: "2px"}}>
-            <img src={imageUrl}/>
-            <Button variant={"warning"} style={{position: "fixed", right: "50px"}}>
+        <div  style={{flexDirection: "column", display: "inline", buttom: "2px"}}>
+            <img className="img-bing-search" src={imageUrl}/>
+            <Button variant={"warning"} style={{position: "fixed", right: "50px", top: "210px"}}>
                 <a href={props.website} style={{color: "black"}}>
                     <strong>Read more</strong>
                 </a>
