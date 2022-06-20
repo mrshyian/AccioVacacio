@@ -14,6 +14,8 @@ import java.util.Map;
 @Component
 public class BingImageSearchClientImpl extends ApiWebClient implements BingImageSearchClient {
 
+    private String EMPTY_IMAGE_URL = "https://memegenerator.net/img/instances/75128323/i-think-i-saw-nothing.jpg";
+
     public BingImageSearchClientImpl() {
         super(ApiMetaData.BING_IMAGE_SEARCH);
     }
@@ -43,6 +45,17 @@ public class BingImageSearchClientImpl extends ApiWebClient implements BingImage
 
         for (int i = 0; i <amountOfImages ; i++) {
             contentUrl = getValueByKeyFromJsonObjectInsideJsonArray("contentUrl", "value", response,i);
+
+            if (contentUrl.contains(".jpg")){
+                String imageName = contentUrl.split(".jpg")[0];
+                contentUrl = imageName + ".jpg";
+            } else if (contentUrl.contains(".jpeg")){
+                String imageName = contentUrl.split(".jpeg")[0];
+                contentUrl = imageName + ".jpeg";
+            } else {
+                contentUrl = EMPTY_IMAGE_URL;
+            }
+
             images.add(contentUrl);
         }
 
