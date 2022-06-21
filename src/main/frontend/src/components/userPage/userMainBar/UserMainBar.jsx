@@ -2,32 +2,32 @@ import React from 'react';
 import InformationAboutUser from "./userMainBarComponents/informationAboutUser/InformationAboutUser";
 import ProfileImage from "./userMainBarComponents/profileImage/ProfileImage";
 import SocialMedia from "./userMainBarComponents/socialMedia/SocialMedia";
+import CountryCounter from "./userMainBarComponents/countryCounter/CountryCounter";
 import {Card} from "react-bootstrap";
+import "./UserMainBar.css"
 
 const UserMainBar = () => {
     return (
-        <div>
-            <Card
-                bg={"dark"}
-                key={"dark"}
-                text={'white'}
-                className="mb-2"
-            >
-                <Card.Header style={{textAlign: "center", color: "orange"}}><h2>User Page</h2></Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        <div style={{textAlign: "center"}}>
-                            <img className="img-for-crime-rating"
-                                 src={""}
-                                 alt="random image"/>
+        <Card
+            bg={"dark"}
+            key={"dark"}
+            text={'white'}
+            className="mb-2 bg-opacity"
+        >
+            <Card.Header style={{textAlign: "center", color: "orange"}}><h2>User Page</h2></Card.Header>
+            <Card.Body>
+                <Card.Text>
+                    <div style={{justifyContent: "space-between", display: "flex"}}>
+                        <div style={{display: "block"}}>
+                            <InformationAboutUser/>
+                            <CountryCounter/>
                         </div>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-            <InformationAboutUser/>
-            <ProfileImage/>
-            <SocialMedia/>
-        </div>
+                        <ProfileImage/>
+                    </div>
+                    <SocialMedia/>
+                </Card.Text>
+            </Card.Body>
+        </Card>
     );
 };
 
