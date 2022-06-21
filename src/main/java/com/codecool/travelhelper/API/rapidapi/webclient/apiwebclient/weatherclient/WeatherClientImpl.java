@@ -93,34 +93,34 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
         );
         //--------------------------------------------------------------------------------------------
 
-        //----------------------------getting weather from database----------------------------
-        System.out.println("At start: " + new ResponseEntity<List<WeatherTable>>(weatherRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK));
-        String responseStr = (new ResponseEntity<List<WeatherTable>>(weatherRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK).getBody().toString());
-        System.out.println();
-        System.out.println("Response body: " + responseStr);
-        int begin = responseStr.indexOf("(") + 1;
-        int end = responseStr.lastIndexOf(")");
-        responseStr = responseStr.substring(begin, end);
-        System.out.println();
-        System.out.println("After substring: " + responseStr);
-        System.out.println();
-
-        String[] responseList = responseStr.split(", ");
-
-        String responseDescription = responseList[3].split("=")[1];
-        int responseTemperature = Integer.parseInt(responseList[4].split("=")[1]);
-        int responseFeelsLike = Integer.parseInt(responseList[5].split("=")[1]);
-        int responsePressure = Integer.parseInt(responseList[6].split("=")[1]);
-        int responseHumidity = Integer.parseInt(responseList[7].split("=")[1]);
-        float responseWingSpeed = Float.parseFloat(responseList[8].split("=")[1]);
-        System.out.println("After splitting:");
-        System.out.println("responseDescription: " + responseDescription);
-        System.out.println("responseTemperature: " + responseTemperature);
-        System.out.println("responseFeelsLike: " + responseFeelsLike);
-        System.out.println("responsePressure: " + responsePressure);
-        System.out.println("responseHumidity: " + responseHumidity);
-        System.out.println("responseWingSpeed: " + responseWingSpeed);
-        //--------------------------------------------------------------------------------------------
+//        //----------------------------getting weather from database----------------------------
+//        System.out.println("At start: " + new ResponseEntity<List<WeatherTable>>(weatherRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK));
+//        String responseStr = (new ResponseEntity<List<WeatherTable>>(weatherRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK).getBody().toString());
+//        System.out.println();
+//        System.out.println("Response body: " + responseStr);
+//        int begin = responseStr.indexOf("(") + 1;
+//        int end = responseStr.lastIndexOf(")");
+//        responseStr = responseStr.substring(begin, end);
+//        System.out.println();
+//        System.out.println("After substring: " + responseStr);
+//        System.out.println();
+//
+//        String[] responseList = responseStr.split(", ");
+//
+//        String responseDescription = responseList[3].split("=")[1];
+//        int responseTemperature = Integer.parseInt(responseList[4].split("=")[1]);
+//        int responseFeelsLike = Integer.parseInt(responseList[5].split("=")[1]);
+//        int responsePressure = Integer.parseInt(responseList[6].split("=")[1]);
+//        int responseHumidity = Integer.parseInt(responseList[7].split("=")[1]);
+//        float responseWingSpeed = Float.parseFloat(responseList[8].split("=")[1]);
+//        System.out.println("After splitting:");
+//        System.out.println("responseDescription: " + responseDescription);
+//        System.out.println("responseTemperature: " + responseTemperature);
+//        System.out.println("responseFeelsLike: " + responseFeelsLike);
+//        System.out.println("responsePressure: " + responsePressure);
+//        System.out.println("responseHumidity: " + responseHumidity);
+//        System.out.println("responseWingSpeed: " + responseWingSpeed);
+//        //--------------------------------------------------------------------------------------------
 
 
         return WeatherApiModel.builder()
