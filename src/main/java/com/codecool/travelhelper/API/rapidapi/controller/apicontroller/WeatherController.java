@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class WeatherController {
+
     @Autowired
     private final WeatherService weatherService;
 
