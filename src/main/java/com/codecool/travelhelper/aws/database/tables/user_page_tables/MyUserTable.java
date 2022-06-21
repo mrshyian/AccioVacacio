@@ -1,17 +1,17 @@
 package com.codecool.travelhelper.aws.database.tables.user_page_tables;
 
+import com.codecool.travelhelper.aws.database.repositories.user_page_repositories.UserRepository;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Getter
 @ToString
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "eMail"))
 public class MyUserTable {
 
     @Id
@@ -47,4 +47,24 @@ public class MyUserTable {
         this.role = role;
         this.privateAccount = privateAccount;
     }
+
+//    @Autowired
+//    UserRepository userRepository;
+
+
+//            userRepository.save(
+//                    new MyUserTable(
+//                        "Seba",
+//                                "Basket",
+//                                new Date(),
+//                        "seba@wp.pl",
+//                                "1234",
+//                                "Lol",
+//                                "instagram",
+//                                "facebook;",
+//                                "Lubie placki",
+//                                "Admin",
+//                                true
+//                                )
+//                                );
 }
