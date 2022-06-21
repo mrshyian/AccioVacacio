@@ -14,17 +14,10 @@ const UserMainBar = () => {
             text={'white'}
             className="mb-2 bg-opacity"
         >
-            <Card.Header style={{textAlign: "center", color: "orange"}}><h2>User Page</h2></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <div style={{justifyContent: "space-between", display: "flex"}}>
-                        <div style={{display: "block"}}>
-                            <InformationAboutUser/>
-                            <CountryCounter/>
-                        </div>
-                        <ProfileImage/>
-                    </div>
-                    <SocialMedia/>
+                    <InformationAboutUser/>
+                    <CountryCounter/>
                 </Card.Text>
             </Card.Body>
         </Card>

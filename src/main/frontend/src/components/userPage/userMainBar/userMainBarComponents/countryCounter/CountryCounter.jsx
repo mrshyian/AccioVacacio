@@ -8,7 +8,7 @@ const CountryCounter = () => {
             key={"dark"}
             text={'white'}
             className="mb-2"
-            style={{width: "40%"}}
+            style={{width: "100%"}}
         >
             <Card.Header style={{textAlign: "center", color: "orange"}}><h4>Country Counter</h4></Card.Header>
             <Card.Body>
