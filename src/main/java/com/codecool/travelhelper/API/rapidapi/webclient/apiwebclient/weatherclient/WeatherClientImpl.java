@@ -79,9 +79,8 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
 
         // Long searchingPlaceId = 1L;
         //----------------------------saving weather to database----------------------------
-        weatherRepository.save(
-                new WeatherTable(
-                        cityName,
+        weatherRepository.setWeatherDataByCityAndCountryName (
+                new WeatherTable(cityName,
                         countryName,
                         description.substring(0, 1).toUpperCase() + description.substring(1),
                         temperature,
@@ -89,7 +88,8 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
                         pressure,
                         humidity,
                         wingSpeed
-                )
+                        )
+
         );
         //--------------------------------------------------------------------------------------------
 
