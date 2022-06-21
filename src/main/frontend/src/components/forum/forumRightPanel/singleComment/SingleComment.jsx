@@ -13,18 +13,17 @@ const SingleComment = (props) => {
             <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex", backgroundColor: "rgb(35, 35, 35)"}}>
 
                 <p style={{ marginBottom: -30 }}>
-                    <Image fluid="true" className="imgForPost" src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE" alt="user photo"/>
+                    <Image fluid="true" className="imgForPost" src={props.comments.commentImage} alt="user photo"/>
                     <p>Sebastian Ryndak</p></p>
-                <h4 style={{marginTop: "auto", marginBottom: "auto"}}> Italian Restaurante  </h4>
-                <p>10/10/10</p>
+                <h4 style={{marginTop: "auto", marginBottom: "auto"}}>{props.comments.city} {props.comments.country} </h4>
+                <p>{props.comments.commentDateTime}</p>
             </Card.Header>
             {/*<Card.Header style={{ color: "orange", backgroundColor: "rgb(35, 35, 35)"}}> {props.commentImage} zdjęcie usera + {props.userName} Username*/}
             {/*    + {props.commentDateTime}data</Card.Header>*/}
             <Card.Body style={{ backgroundColor: "rgb(55, 55, 55)"}}>
                 <Card.Text style={{color: "white"}}>
-                    {props.commentText}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                    erat a ante.
+                    {props.comments.commentTex}
+
                     <p><Image rounded="true" fluid="true" className="addImage" src="https://cdn.icon-icons.com/icons2/2184/PNG/512/healthy_strength_strong_health_heart_icon_133538.png" alt=""/></p>
                 </Card.Text>
             </Card.Body>

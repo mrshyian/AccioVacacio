@@ -2,8 +2,9 @@ import React from 'react';
 import {Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
+import SingleNews from "../../../searchCity/newsBox/SingleNews";
 
-const SinglePost = () => {
+const SinglePost = (props) => {
     return (
         <Card
             bg="dark"
@@ -29,7 +30,12 @@ const SinglePost = () => {
             </Card.Body>
             <Card.Footer>
                 <p>Comments:</p>
-                <SingleComment/><SingleComment/><SingleComment/><SingleComment/>
+                {props.comments.map((comment, index) => {
+                    return (
+                        <SingleComment key={index} comments={comment}/>
+                    )
+                })}
+                {/*<SingleComment comments={props.comments}/>*/}
             </Card.Footer>
         </Card>
     );

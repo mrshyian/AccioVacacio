@@ -28,7 +28,8 @@ const SearchCity = (props) => {
 
     const fetchNewsWorld = () => {
         axios.get(`http://localhost:8080/news/${props.city}/${props.country}`)
-            .then(res =>{setNews(res.data);})
+            .then(res =>{setNews(res.data);
+                console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 

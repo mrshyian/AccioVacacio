@@ -16,7 +16,8 @@ const Right = (props) => {
             <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Forum</h2></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <SinglePost/>
+                    <SinglePost comments={props.comments}/>
+                    {/*{props.comments.city}*/}
                 </Card.Text>
             </Card.Body>
         </Card>
