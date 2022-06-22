@@ -2,12 +2,10 @@ package com.codecool.travelhelper.aws.database.tables.user_page_tables;
 
 import com.codecool.travelhelper.forum.model.CommentsTable;
 import com.codecool.travelhelper.forum.model.PostTable;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,34 +13,12 @@ import java.util.List;
 @Getter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 public class MyUserTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
-
-
-
-    @OneToMany(mappedBy = "myUserTable")
-    private List<CommentsTable> comments;
-
-
-
-    @ManyToOne
-    @JoinColumn(name = "comment_id")
-    private CommentsTable commentsTable;
-
-    // post connected to user
-    @OneToMany(mappedBy = "myUserTable")
-    private List<PostTable> posts;
-
-    // connected user to post
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private PostTable postTable;
-
 
     private String fullName;
     private String nickName;
@@ -55,6 +31,30 @@ public class MyUserTable {
     private String aboutMe;
     private String role;
     private boolean privateAccount;
+
+
+//----------------------------------------------------------------------
+
+    // comments to user
+    @OneToMany(mappedBy = "myUserTable")
+    private List<CommentsTable> comments;
+//---------------------------------------------------
+
+    // liked by user to user
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    private CommentsTable commentsTable;
+//---------------------------------------------------
+
+    // post to user
+    @OneToMany(mappedBy = "myUserTable")
+    private List<PostTable> posts;
+
+    // user to post
+    @OneToOne
+    @JoinColumn(name = "post_id")
+    private PostTable postTable;
+//---------------------------------------------------
 
 
     public MyUserTable(String fullName, String nickName, Date birthday, String eMail, String password, String avatar, String instagram, String facebook, String aboutMe, String role, boolean privateAccount) {
