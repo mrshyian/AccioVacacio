@@ -75,6 +75,17 @@ public class MyUserTable {
 
 //---------------------------------------------------
 
+    // places to user
+    @OneToMany(mappedBy = "myUserTable")
+    List<PlacesWantToGoTable> placesWantToGoTable;
+
+    // user to place
+    @OneToOne
+    @JoinColumn(name = "place_id")
+    private PlacesWantToGoTable placesWantToGo;
+
+//---------------------------------------------------
+
     public MyUserTable(String fullName, String nickName, Date birthday, String eMail, String password, String avatar, String instagram, String facebook, String aboutMe, String role, boolean privateAccount) {
         this.fullName = fullName;
         this.nickName = nickName;
