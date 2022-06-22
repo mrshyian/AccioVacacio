@@ -1,6 +1,6 @@
 package com.codecool.travelhelper.forum.controller;
 
-import com.codecool.travelhelper.aws.database.tables.user_page_tables.CommentsTable;
+import com.codecool.travelhelper.forum.model.CommentsTable;
 import com.codecool.travelhelper.forum.service.CommentService;
 import com.codecool.travelhelper.forum.webclient.CommentImpl;
 import lombok.RequiredArgsConstructor;
