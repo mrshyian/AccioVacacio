@@ -3,7 +3,7 @@ import "./Header.css"
 import {Button, Container, Nav, Navbar, Modal, Form} from 'react-bootstrap';
 import ReactDOM from 'react-dom/client';
 import UserPage from "../userPage/UserPage";
-import SearchBox from "../searchBox/SearchBox";
+import SearchBox from "../searchCity/searchBox/SearchBox";
 import AllCarousel from "../carousel/AllCarousel";
 import Forum from "../forum/Forum";
 import LoginModal from "../modals/loginModal/LoginModal";
