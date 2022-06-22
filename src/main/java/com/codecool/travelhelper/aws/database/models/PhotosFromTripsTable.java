@@ -22,12 +22,12 @@ public class PhotosFromTripsTable {
     // photos to album
     @ManyToOne
     @JoinColumn(name = "album_id")
-    AlbumsFromsTripsTable albumsFromsTripsTable;
+    AlbumFromTripsTable albumFromTripsTable;
 //---------------------------------------------------
 
     // album to photo
     @OneToOne(mappedBy = "photosFromTripsTable")
-    AlbumsFromsTripsTable album;
+    AlbumFromTripsTable album;
 //---------------------------------------------------
 
 

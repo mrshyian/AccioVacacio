@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @ToString
-public class AlbumsFromsTripsTable {
+public class AlbumFromTripsTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class AlbumsFromsTripsTable {
 //---------------------------------------------------
 
     // photos to album
-    @OneToMany(mappedBy = "albumsFromsTripsTable")
+    @OneToMany(mappedBy = "albumFromTripsTable")
     List<PhotosFromTripsTable> photos;
 
 //---------------------------------------------------
@@ -29,6 +29,18 @@ public class AlbumsFromsTripsTable {
     @OneToOne
     @JoinColumn(name = "photo_id")
     PhotosFromTripsTable photosFromTripsTable;
+
+//---------------------------------------------------
+
+    //albums to user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private MyUserTable myUserTable;
+
+    // user to album
+    @OneToOne(mappedBy = "albumFromTripsTable")
+    private MyUserTable userTable;
+
 //---------------------------------------------------
 
     private String country;
@@ -37,10 +49,10 @@ public class AlbumsFromsTripsTable {
     private String albumName;
     private String aboutAlbum;
 
-    public AlbumsFromsTripsTable() {
+    public AlbumFromTripsTable() {
     }
 
-    public AlbumsFromsTripsTable( String country, String city, Date tripDate, String albumName, String aboutAlbum) {
+    public AlbumFromTripsTable(String country, String city, Date tripDate, String albumName, String aboutAlbum) {
 
         this.country = country;
         this.city = city;

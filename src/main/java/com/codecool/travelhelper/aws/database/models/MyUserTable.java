@@ -64,6 +64,16 @@ public class MyUserTable {
 
 //---------------------------------------------------
 
+    // albums to user
+    @OneToMany(mappedBy = "myUserTable")
+    List<AlbumFromTripsTable> albumsFromTripsTable;
+
+    // user to album
+    @OneToOne
+    @JoinColumn(name = "album_id")
+    private AlbumFromTripsTable albumFromTripsTable;
+
+//---------------------------------------------------
 
     public MyUserTable(String fullName, String nickName, Date birthday, String eMail, String password, String avatar, String instagram, String facebook, String aboutMe, String role, boolean privateAccount) {
         this.fullName = fullName;
