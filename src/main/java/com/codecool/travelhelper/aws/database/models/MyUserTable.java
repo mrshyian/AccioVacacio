@@ -75,14 +75,25 @@ public class MyUserTable {
 
 //---------------------------------------------------
 
-    // places to user
+    // placesWantToGo to user
     @OneToMany(mappedBy = "myUserTable")
     List<PlacesWantToGoTable> placesWantToGoTable;
 
-    // user to place
+    // user to placeWantToGo
     @OneToOne
-    @JoinColumn(name = "place_id")
+    @JoinColumn(name = "place_want_to_go_id")
     private PlacesWantToGoTable placesWantToGo;
+
+//---------------------------------------------------
+
+    // visitedPlaces to user
+    @OneToMany(mappedBy = "myUserTable")
+    List<VisitedPlaceTable> visitedPlacesTable;
+
+    // user to visitedPlace
+    @OneToOne
+    @JoinColumn(name = "visited_place_id")
+    private VisitedPlaceTable visitedPlaceTable;
 
 //---------------------------------------------------
 

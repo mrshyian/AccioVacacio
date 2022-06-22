@@ -1,21 +1,20 @@
 package com.codecool.travelhelper.aws.database.models;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Getter
 @ToString
 @NoArgsConstructor
-public class PlacesWantToGoTable {
+public class VisitedPlaceTable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "place_want_to_go_id")
+    @Column(name = "visited_place_id")
     private Long id;
 
     private String country;
@@ -23,20 +22,14 @@ public class PlacesWantToGoTable {
 
 //------------------------------------------------
 
-    // placesWantToGo to user
+    // visitedPlaces to user
     @ManyToOne
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
 
-    // user to placeWantToGo
-    @OneToOne(mappedBy = "placesWantToGo")
+    // user to visitedPlace
+    @OneToOne(mappedBy = "visitedPlace")
     private MyUserTable userTable;
 
 //------------------------------------------------
-
-
-    public PlacesWantToGoTable(String country, String city) {
-        this.country = country;
-        this.city = city;
-    }
 }
