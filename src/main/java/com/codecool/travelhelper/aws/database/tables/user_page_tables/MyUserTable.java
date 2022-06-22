@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.aws.database.tables.user_page_tables;
 
+import com.codecool.travelhelper.forum.model.CommentsTable;
 import com.codecool.travelhelper.forum.model.PostTable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity(name = "MyUserTable")
 @Getter
 @ToString
 @NoArgsConstructor
@@ -19,10 +20,29 @@ public class MyUserTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
-    @OneToMany(mappedBy = "my_user_table")
+
+
+    @OneToMany(mappedBy = "myUserTable")
+    private List<CommentsTable> comments;
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    private CommentsTable commentsTable;
+
+    // post connected to user
+    @OneToMany(mappedBy = "myUserTable")
     private List<PostTable> posts;
+
+    // connected user to post
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private PostTable postTable;
+
 
     private String fullName;
     private String nickName;

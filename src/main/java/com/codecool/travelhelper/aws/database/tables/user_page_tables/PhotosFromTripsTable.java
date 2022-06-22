@@ -4,10 +4,8 @@ package com.codecool.travelhelper.aws.database.tables.user_page_tables;
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,8 +14,16 @@ public class PhotosFromTripsTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "photo_id")
     private Long id;
 
-    private Long albumId;
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    AlbumsFromsTripsTable albumsFromsTripsTable;
+
+    @OneToOne(mappedBy = "photosFromTripsTable")
+    AlbumsFromsTripsTable album;
+
     private String linkToPhoto;
+
 }
