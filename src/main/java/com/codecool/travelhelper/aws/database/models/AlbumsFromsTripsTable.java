@@ -17,13 +17,19 @@ public class AlbumsFromsTripsTable {
     @Column(name = "album_id")
     private Long id;
 
+//---------------------------------------------------
+
+    // photos to album
     @OneToMany(mappedBy = "albumsFromsTripsTable")
     List<PhotosFromTripsTable> photos;
 
+//---------------------------------------------------
+
+    // album to photo
     @OneToOne
     @JoinColumn(name = "photo_id")
     PhotosFromTripsTable photosFromTripsTable;
-
+//---------------------------------------------------
 
     private String country;
     private String city;

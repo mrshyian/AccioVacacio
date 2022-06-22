@@ -15,14 +15,21 @@ public class PhotosFromTripsTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "photo_id")
     private Long id;
+    private String linkToPhoto;
 
+//---------------------------------------------------
+
+    // photos to album
     @ManyToOne
     @JoinColumn(name = "album_id")
     AlbumsFromsTripsTable albumsFromsTripsTable;
+//---------------------------------------------------
 
+    // album to photo
     @OneToOne(mappedBy = "photosFromTripsTable")
     AlbumsFromsTripsTable album;
+//---------------------------------------------------
 
-    private String linkToPhoto;
+
 
 }
