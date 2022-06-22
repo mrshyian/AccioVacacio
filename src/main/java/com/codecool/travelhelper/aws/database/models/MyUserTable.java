@@ -93,7 +93,18 @@ public class MyUserTable {
     // user to visitedPlace
     @OneToOne
     @JoinColumn(name = "visited_place_id")
-    private VisitedPlaceTable visitedPlaceTable;
+    private VisitedPlaceTable visitedPlace;
+
+//---------------------------------------------------
+
+    // trips to user
+    @OneToMany(mappedBy = "myUserTable")
+    List<TripTable> tripsTable;
+
+    // user to trip
+    @OneToOne
+    @JoinColumn(name = "trip_id")
+    private TripTable tripTable;
 
 //---------------------------------------------------
 

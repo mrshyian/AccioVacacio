@@ -32,4 +32,10 @@ public class VisitedPlaceTable {
     private MyUserTable userTable;
 
 //------------------------------------------------
+
+
+    public VisitedPlaceTable(String country, String city) {
+        this.country = country;
+        this.city = city;
+    }
 }
