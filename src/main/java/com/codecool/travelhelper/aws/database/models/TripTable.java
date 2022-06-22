@@ -41,4 +41,18 @@ public class TripTable {
     private MyUserTable userTable;
 
 //---------------------------------------------
+
+
+    public TripTable(String country, String city, String startDate, String finishDate, float meals, float booking, float souvenirs, float transport, float entertainments, String currency) {
+        this.country = country;
+        this.city = city;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.meals = meals;
+        this.booking = booking;
+        this.souvenirs = souvenirs;
+        this.transport = transport;
+        this.entertainments = entertainments;
+        this.currency = currency;
+    }
 }
