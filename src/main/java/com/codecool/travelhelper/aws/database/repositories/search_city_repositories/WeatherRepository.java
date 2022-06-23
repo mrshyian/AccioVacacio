@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 //@Repository
 //public interface WeatherRepository  extends JpaRepository<WeatherTable, Long> {
@@ -15,7 +16,9 @@ import java.util.List;
 //}
 
 
-public interface WeatherRepository{
+public interface WeatherRepository  extends JpaRepository<WeatherTable, Long>{
     void setWeatherDataByCityAndCountryName(WeatherTable weatherTable);
+
+    Optional<WeatherTable> findAllByCityNameAndCountryName(String cityName, String countryName);
 }
 
