@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface CrimeRatingRepository  extends JpaRepository<CrimeRatingTable, Long> {
 
-    Optional<CrimeRatingTable> findByCityNameAndCountryName(String cityName, String countryName);
+    Optional<CrimeRatingTable> findAllByCityNameAndCountryName(String cityName, String countryName);
 
     void deleteByCityNameAndCountryName(String cityName, String countryName);
 }
