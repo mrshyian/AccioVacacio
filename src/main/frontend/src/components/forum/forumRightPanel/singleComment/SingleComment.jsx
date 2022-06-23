@@ -15,14 +15,14 @@ const SingleComment = (props) => {
                 <p style={{ marginBottom: -30 }}>
                     <Image fluid="true" className="imgForPost" src={props.comments.commentImage} alt="user photo"/>
                     <p>Sebastian Ryndak</p></p>
-                <h4 style={{marginTop: "auto", marginBottom: "auto"}}>{props.comments.city} {props.comments.country} </h4>
+                {/*<h4 style={{marginTop: "auto", marginBottom: "auto"}}></h4>*/}
                 <p>{props.comments.commentDateTime}</p>
             </Card.Header>
             {/*<Card.Header style={{ color: "orange", backgroundColor: "rgb(35, 35, 35)"}}> {props.commentImage} zdjęcie usera + {props.userName} Username*/}
             {/*    + {props.commentDateTime}data</Card.Header>*/}
             <Card.Body style={{ backgroundColor: "rgb(55, 55, 55)"}}>
                 <Card.Text style={{color: "white"}}>
-                    {props.comments.commentTex}
+                    {props.comments.commentText}
 
                     <p><Image rounded="true" fluid="true" className="addImage" src="https://cdn.icon-icons.com/icons2/2184/PNG/512/healthy_strength_strong_health_heart_icon_133538.png" alt=""/></p>
                 </Card.Text>

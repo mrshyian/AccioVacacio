@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.UUID;
 
 @Entity(name = "CommentsTable")
 @Getter
@@ -20,7 +19,7 @@ public class CommentsTable {
     @Column(name = "comment_id")
     private Long id;
 
-    private String commentTex;
+    private String commentText;
     private String commentImage;
     private String country;
     private String city;
@@ -54,7 +53,7 @@ public class CommentsTable {
 //------------------------------------------------------
 
     public CommentsTable(String commentTex, String commentImage, String country, String city) {
-        this.commentTex = commentTex;
+        this.commentText = commentTex;
         this.commentImage = commentImage;
         this.country = country;
         this.city = city;

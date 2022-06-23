@@ -3,6 +3,7 @@ import {Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
 import SingleNews from "../../../searchCity/newsBox/SingleNews";
+import AddNewComment from "../AddNewComment";
 
 const SinglePost = (props) => {
     return (
@@ -36,6 +37,7 @@ const SinglePost = (props) => {
                     )
                 })}
                 {/*<SingleComment comments={props.comments}/>*/}
+                <AddNewComment/>
             </Card.Footer>
         </Card>
     );
