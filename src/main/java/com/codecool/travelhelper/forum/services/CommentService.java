@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.aws.database.services;
+package com.codecool.travelhelper.forum.services;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;

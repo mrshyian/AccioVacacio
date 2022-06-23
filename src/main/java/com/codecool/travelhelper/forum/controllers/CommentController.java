@@ -1,8 +1,8 @@
-package com.codecool.travelhelper.aws.database.controllers;
+package com.codecool.travelhelper.forum.controllers;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
-import com.codecool.travelhelper.aws.database.services.CommentService;
-import com.codecool.travelhelper.aws.database.webclients.CommentImpl;
+import com.codecool.travelhelper.forum.services.CommentService;
+import com.codecool.travelhelper.forum.webclients.CommentImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
