@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import "./RegistrationModal.css"
 import {Button, Form, Modal} from "react-bootstrap";
+import axios from "axios";
 
 const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
@@ -15,7 +16,22 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
     const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
     const handleShowRegistrationModal = () => setShowRegistrationModal(true);
 
-    console.log(fullName, nickName, birthday, email, password, repeatPassword)
+    const printDate = () => {
+        const url = "http://localhost:8080/registration";
+
+        axios.post(url,{
+            fullName: fullName,
+            nickName: nickName,
+            birthday: birthday,
+            email: email,
+            password: password,
+            repeatPassword: repeatPassword
+        })
+            .then(res=>{
+                console.log(res)})
+        handleCloseRegistrationModal()
+    }
+
 
     return (
         <Modal show={showRegistrationModal} onHide={handleCloseRegistrationModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
@@ -24,7 +40,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
             </Modal.Header>
             <Modal.Body style={{background: "rgb(20,20,20)"}}>
                 <Form style={{background: "rgb(20,20,20)"}}>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Group className="mb-3" controlId="control-input-1">
                         <Form.Label style={{color: "orange"}}>Full name</Form.Label>
                         <Form.Control
                             type="text"
@@ -36,7 +52,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-1"
                     >
                         <Form.Label style={{color: "orange"}}>Nickname</Form.Label>
                         <Form.Control
@@ -48,7 +64,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-2"
                     >
                         <Form.Label style={{color: "orange"}}>Birthday</Form.Label>
                         <Form.Control
@@ -60,7 +76,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-3"
                     >
                         <Form.Label style={{color: "orange"}}>E-mail</Form.Label>
                         <Form.Control
@@ -72,7 +88,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-4"
                     >
                         <Form.Label style={{color: "orange"}}>Password</Form.Label>
                         <Form.Control
@@ -84,7 +100,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-5"
                     >
                         <Form.Label style={{color: "orange"}}>Repeat password</Form.Label>
                         <Form.Control
@@ -99,8 +115,8 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                 <Button variant="outline-secondary" onClick={handleCloseRegistrationModal}>
                     Close
                 </Button>
-                <Button variant="outline-warning" onClick={handleCloseRegistrationModal}>
-                    Save Changes
+                <Button variant="outline-warning" onClick={printDate}>
+                    Submit
                 </Button>
             </Modal.Footer>
         </Modal>

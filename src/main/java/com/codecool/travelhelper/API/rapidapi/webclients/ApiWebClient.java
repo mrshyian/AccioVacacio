@@ -193,7 +193,11 @@ public abstract class ApiWebClient {
         JsonArray jsonArray = jsonObject.getAsJsonArray(keyForJsonArray);
         JsonObject innerJsonObject = jsonArray.get(elementIndex).getAsJsonObject();
         JsonElement value = innerJsonObject.get(keyForValue);
-        return value.getAsString();
+        try {
+            return value.getAsString();
+        } catch (NullPointerException e){
+            return null;
+        }
     }
 
     public ApiWebClient() {}

@@ -4,10 +4,7 @@ import com.codecool.travelhelper.API.rapidapi.models.WeatherApiModel;
 import com.codecool.travelhelper.API.rapidapi.services.WeatherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +17,12 @@ public class WeatherController {
     @GetMapping("/")
     public String test() {
         return "test";
+    }
+
+    @PostMapping("/registration")
+    String addDada(@RequestBody String data) {
+        System.out.println("post mapping check");
+        return "passed";
     }
 
     @GetMapping("/weather/{cityName}/{countryName}")

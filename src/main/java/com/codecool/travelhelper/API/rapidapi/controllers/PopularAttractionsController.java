@@ -20,7 +20,8 @@ public class PopularAttractionsController {
 
     @GetMapping("/attractions/{cityName}/{countryIsoCode}")
     public List<PopularAttractionDto> getPopularAttractions(@PathVariable String cityName, @PathVariable String countryIsoCode){
-        return popularAttractionService.getPopularAttractions(cityName, countryIsoCode, 2000, 5);
+        int howMuchImages = 5;
+        return popularAttractionService.getPopularAttractions(cityName, countryIsoCode, 2000, 5, howMuchImages);
     }
 
 }
