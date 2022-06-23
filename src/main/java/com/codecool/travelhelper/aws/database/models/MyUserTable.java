@@ -47,20 +47,11 @@ public class MyUserTable {
     @OneToMany(mappedBy = "myUserTable")
     private List<PostTable> posts;
 
-    // user to post
-    @OneToOne
-    @JoinColumn(name = "post_id")
-    private PostTable postTable;
 //---------------------------------------------------
 
     //note to user
     @OneToOne(mappedBy = "myUserTable")
     private NoteTable noteTable;
-
-    //user to note
-    @OneToOne
-    @JoinColumn(name = "note_id")
-    private NoteTable note;
 
 //---------------------------------------------------
 
@@ -68,21 +59,11 @@ public class MyUserTable {
     @OneToMany(mappedBy = "myUserTable")
     List<AlbumFromTripsTable> albumsFromTripsTable;
 
-    // user to album
-    @OneToOne
-    @JoinColumn(name = "album_id")
-    private AlbumFromTripsTable albumFromTripsTable;
-
 //---------------------------------------------------
 
     // placesWantToGo to user
     @OneToMany(mappedBy = "myUserTable")
     List<PlacesWantToGoTable> placesWantToGoTable;
-
-    // user to placeWantToGo
-    @OneToOne
-    @JoinColumn(name = "place_want_to_go_id")
-    private PlacesWantToGoTable placesWantToGo;
 
 //---------------------------------------------------
 
@@ -90,21 +71,11 @@ public class MyUserTable {
     @OneToMany(mappedBy = "myUserTable")
     List<VisitedPlaceTable> visitedPlacesTable;
 
-    // user to visitedPlace
-    @OneToOne
-    @JoinColumn(name = "visited_place_id")
-    private VisitedPlaceTable visitedPlace;
-
 //---------------------------------------------------
 
     // trips to user
     @OneToMany(mappedBy = "myUserTable")
     List<TripTable> tripsTable;
-
-    // user to trip
-    @OneToOne
-    @JoinColumn(name = "trip_id")
-    private TripTable tripTable;
 
 //---------------------------------------------------
 

@@ -36,9 +36,6 @@ public class TripTable {
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
 
-    // user to trip
-    @OneToOne(mappedBy = "tripTable")
-    private MyUserTable userTable;
 
 //---------------------------------------------
 

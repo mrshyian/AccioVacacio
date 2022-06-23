@@ -29,10 +29,6 @@ public class PostTable {
     @OneToMany(mappedBy = "post")
     private List<CommentsTable> comments;
 
-    // post to comments
-    @OneToOne
-    @JoinColumn(name="comment_id")
-    private CommentsTable comment;
 //----------------------------------------------------------------------
 
     // post to user
@@ -40,22 +36,14 @@ public class PostTable {
     @JoinColumn(name="user_id")
     private MyUserTable myUserTable;
 
-    // user to post
-    @OneToOne(mappedBy = "postTable")
-    private MyUserTable userTable;
-
     //---------------------------------------------------
 
 
-    public PostTable(String topic, String postText, String postImage, String postDateTime, List<CommentsTable> comments, CommentsTable comment, MyUserTable myUserTable, MyUserTable userTable) {
+    public PostTable(String topic, String postText, String postImage, String postDateTime) {
         this.topic = topic;
         this.postText = postText;
         this.postImage = postImage;
         this.postDateTime = postDateTime;
-        this.comments = comments;
-        this.comment = comment;
-        this.myUserTable = myUserTable;
-        this.userTable = userTable;
     }
 }
 

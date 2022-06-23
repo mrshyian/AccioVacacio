@@ -27,9 +27,6 @@ public class VisitedPlaceTable {
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
 
-    // user to visitedPlace
-    @OneToOne(mappedBy = "visitedPlace")
-    private MyUserTable userTable;
 
 //------------------------------------------------
 

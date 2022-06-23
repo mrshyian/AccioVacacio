@@ -25,21 +25,10 @@ public class AlbumFromTripsTable {
 
 //---------------------------------------------------
 
-    // album to photo
-    @OneToOne
-    @JoinColumn(name = "photo_id")
-    PhotosFromTripsTable photosFromTripsTable;
-
-//---------------------------------------------------
-
     //albums to user
     @ManyToOne
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
-
-    // user to album
-    @OneToOne(mappedBy = "albumFromTripsTable")
-    private MyUserTable userTable;
 
 //---------------------------------------------------
 

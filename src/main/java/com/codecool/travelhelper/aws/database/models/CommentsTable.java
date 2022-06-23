@@ -41,14 +41,9 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // comments to post
-
     @ManyToOne
     @JoinColumn(name="post_id")
     private PostTable post;
-
-    // post to comments
-    @OneToOne(mappedBy = "comment")
-    private PostTable posts;
 
 //------------------------------------------------------
 

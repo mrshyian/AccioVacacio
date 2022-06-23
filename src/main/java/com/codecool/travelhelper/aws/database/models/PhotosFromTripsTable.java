@@ -2,6 +2,7 @@ package com.codecool.travelhelper.aws.database.models;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @ToString
+@NoArgsConstructor
 public class PhotosFromTripsTable {
 
     @Id
@@ -25,11 +27,9 @@ public class PhotosFromTripsTable {
     AlbumFromTripsTable albumFromTripsTable;
 //---------------------------------------------------
 
-    // album to photo
-    @OneToOne(mappedBy = "photosFromTripsTable")
-    AlbumFromTripsTable album;
-//---------------------------------------------------
 
-
+    public PhotosFromTripsTable(String linkToPhoto) {
+        this.linkToPhoto = linkToPhoto;
+    }
 
 }

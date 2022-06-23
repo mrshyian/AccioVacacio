@@ -28,10 +28,6 @@ public class PlacesWantToGoTable {
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
 
-    // user to placeWantToGo
-    @OneToOne(mappedBy = "placesWantToGo")
-    private MyUserTable userTable;
-
 //------------------------------------------------
 
 

@@ -26,11 +26,6 @@ public class NoteTable {
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
 
-
-    //user to note
-    @OneToOne(mappedBy = "note")
-    private MyUserTable userTable;
-
 //---------------------------------------------------
 
     public NoteTable(String noteText) {
