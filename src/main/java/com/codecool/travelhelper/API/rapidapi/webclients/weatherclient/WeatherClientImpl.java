@@ -1,12 +1,12 @@
-package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.weatherclient;
+package com.codecool.travelhelper.API.rapidapi.webclients.weatherclient;
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.WeatherApiModel;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaData;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClient;
-import com.codecool.travelhelper.aws.database.repositories.search_city_repositories.WeatherRepository;
-import com.codecool.travelhelper.aws.database.tables.search_city_tables.AirportDetailsTable;
-import com.codecool.travelhelper.aws.database.tables.search_city_tables.CrimeRatingTable;
-import com.codecool.travelhelper.aws.database.tables.search_city_tables.WeatherTable;
+import com.codecool.travelhelper.API.rapidapi.models.WeatherApiModel;
+import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
+import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
+import com.codecool.travelhelper.aws.database.repositories.WeatherRepository;
+import com.codecool.travelhelper.aws.database.models.AirportDetailsTable;
+import com.codecool.travelhelper.aws.database.models.CrimeRatingTable;
+import com.codecool.travelhelper.aws.database.models.WeatherTable;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

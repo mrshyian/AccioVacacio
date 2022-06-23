@@ -1,8 +1,8 @@
-package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.touristattractions;
+package com.codecool.travelhelper.API.rapidapi.webclients.touristattractions;
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.touristattractions.GoogleAutocompletePlusDto;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaData;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClient;
+import com.codecool.travelhelper.API.rapidapi.models.touristattractions.GoogleAutocompletePlusDto;
+import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
+import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 

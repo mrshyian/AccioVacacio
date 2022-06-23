@@ -1,8 +1,8 @@
-package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.bingimagesearch;
+package com.codecool.travelhelper.API.rapidapi.webclients.bingimagesearch;
 
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.BingImageSearch;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaData;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClient;
+import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
+import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.google.gson.JsonObject;
 import org.springframework.stereotype.Component;
 

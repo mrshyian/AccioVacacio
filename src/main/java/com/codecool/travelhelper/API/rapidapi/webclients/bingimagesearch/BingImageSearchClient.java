@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.bingimagesearch;
+package com.codecool.travelhelper.API.rapidapi.webclients.bingimagesearch;
 
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.BingImageSearch;
 

@@ -1,11 +1,11 @@
-package com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.touristattractions;
+package com.codecool.travelhelper.API.rapidapi.webclients.touristattractions;
 
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.BingImageSearch;
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.touristattractions.GoogleAutocompletePlusDto;
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.touristattractions.PopularAttractionDto;
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.touristattractions.TrueWayPlacesDto;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClient;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.bingimagesearch.BingImageSearchClientImpl;
+import com.codecool.travelhelper.API.rapidapi.models.touristattractions.GoogleAutocompletePlusDto;
+import com.codecool.travelhelper.API.rapidapi.models.touristattractions.PopularAttractionDto;
+import com.codecool.travelhelper.API.rapidapi.models.touristattractions.TrueWayPlacesDto;
+import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
+import com.codecool.travelhelper.API.rapidapi.webclients.bingimagesearch.BingImageSearchClientImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

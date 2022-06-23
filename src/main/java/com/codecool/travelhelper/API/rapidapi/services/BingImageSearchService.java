@@ -1,11 +1,10 @@
-package com.codecool.travelhelper.API.rapidapi.service.apiservice;
+package com.codecool.travelhelper.API.rapidapi.services;
 
 import com.codecool.travelhelper.API.rapidapi.model.apimodel.BingImageSearch;
-import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.bingimagesearch.BingImageSearchClientImpl;
+import com.codecool.travelhelper.API.rapidapi.webclients.bingimagesearch.BingImageSearchClientImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class BingImageSearchService {
