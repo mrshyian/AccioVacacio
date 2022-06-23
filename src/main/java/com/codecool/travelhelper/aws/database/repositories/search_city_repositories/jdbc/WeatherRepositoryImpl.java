@@ -26,17 +26,30 @@ public class WeatherRepositoryImpl{
 
 
     public void setWeatherDataByCityAndCountryName(WeatherTable weatherTable) {
+        WeatherTable updatedResponseObject;
         String cityName = weatherTable.getCityName();
         String countryName = weatherTable.getCountryName();
 
         Optional<WeatherTable> response = weatherRepository.findAllByCityNameAndCountryName(cityName, countryName);
 
         if (response.isPresent()){
-            WeatherTable newsWeather = response.get();
-
+            updatedResponseObject = response.get();
+            updateResponseObject(weatherTable, updatedResponseObject);
+        } else {
+            updatedResponseObject = weatherTable;
         }
 
-        System.out.println(response.toString());
+        weatherRepository.save(updatedResponseObject);
+    }
+
+    private void updateResponseObject(WeatherTable newObject, WeatherTable objectFromDB){
+        objectFromDB.setDescription(newObject.getDescription());
+        objectFromDB.setHumidity(newObject.getHumidity());
+        objectFromDB.setFeelsLike(newObject.getFeelsLike());
+        objectFromDB.setPressure(newObject.getPressure());
+        objectFromDB.setTemperature(newObject.getTemperature());
+        objectFromDB.setWingSpeed(newObject.getWingSpeed());
+
     }
 
 }
