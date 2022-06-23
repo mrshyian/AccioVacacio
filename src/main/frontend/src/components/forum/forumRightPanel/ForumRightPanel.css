@@ -1,0 +1,8 @@
+.right {
+    --bs-bg-opacity: 0.6;
+}
+
+.centre{
+    margin-left: auto;
+    margin-right: auto;
+}

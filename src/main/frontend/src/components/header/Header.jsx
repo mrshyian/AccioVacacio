@@ -3,7 +3,7 @@ import "./Header.css"
 import {Button, Container, Nav, Navbar, Modal, Form} from 'react-bootstrap';
 import ReactDOM from 'react-dom/client';
 import UserPage from "../userPage/UserPage";
-import SearchBox from "../searchBox/SearchBox";
+import SearchBox from "../searchCity/searchBox/SearchBox";
 import AllCarousel from "../carousel/AllCarousel";
 import Forum from "../forum/Forum";
 import LoginModal from "../modals/loginModal/LoginModal";
@@ -31,8 +31,12 @@ const Header = (props) => {
     const renderToMainPage = () => {
         root.render(
             <React.Profiler>
-                <Header inSession={false}/>
-                <AllCarousel/>
+                <div style={{textAlign: "center"}}>
+                    <Header inSession={false}/>
+                    <AllCarousel/>
+                    <Button style={{marginTop: "1%", width: "20%", lineHeight: "3", border: "1px solid black", fontSize: 30, boxShadow: "2px 2px 4px #000000"}} size="lg" variant="warning" onClick={renderToSearchPage} >Search
+                        City</Button>
+                </div>
             </React.Profiler>
         );
     }
