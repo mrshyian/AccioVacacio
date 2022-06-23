@@ -17,8 +17,9 @@ import java.util.Optional;
 
 
 public interface WeatherRepository  extends JpaRepository<WeatherTable, Long>{
-    void setWeatherDataByCityAndCountryName(WeatherTable weatherTable);
 
     Optional<WeatherTable> findAllByCityNameAndCountryName(String cityName, String countryName);
+
+
 }
 

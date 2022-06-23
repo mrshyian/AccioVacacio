@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.aws.database.tables.search_city_tables;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @ToString
+@Setter
 public class WeatherTable {
 
     @Id

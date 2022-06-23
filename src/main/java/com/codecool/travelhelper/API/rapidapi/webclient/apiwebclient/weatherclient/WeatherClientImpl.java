@@ -4,6 +4,7 @@ import com.codecool.travelhelper.API.rapidapi.model.apimodel.WeatherApiModel;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiMetaData;
 import com.codecool.travelhelper.API.rapidapi.webclient.apiwebclient.ApiWebClient;
 import com.codecool.travelhelper.aws.database.repositories.search_city_repositories.WeatherRepository;
+import com.codecool.travelhelper.aws.database.repositories.search_city_repositories.jdbc.WeatherRepositoryImpl;
 import com.codecool.travelhelper.aws.database.tables.search_city_tables.AirportDetailsTable;
 import com.codecool.travelhelper.aws.database.tables.search_city_tables.CrimeRatingTable;
 import com.codecool.travelhelper.aws.database.tables.search_city_tables.WeatherTable;
@@ -22,7 +23,7 @@ import java.util.Objects;
 public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
 
     @Autowired
-    WeatherRepository weatherRepository;
+    WeatherRepositoryImpl weatherRepositoryImpl;
 
     public WeatherClientImpl() {
         super(ApiMetaData.WEATHER);
@@ -79,18 +80,15 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
 
         // Long searchingPlaceId = 1L;
         //----------------------------saving weather to database----------------------------
-        weatherRepository.setWeatherDataByCityAndCountryName (
-                new WeatherTable(cityName,
-                        countryName,
-                        description.substring(0, 1).toUpperCase() + description.substring(1),
-                        temperature,
-                        feelsLike,
-                        pressure,
-                        humidity,
-                        wingSpeed
-                        )
-
-        );
+        WeatherTable newWeather = new WeatherTable(cityName,
+                countryName,
+                description.substring(0, 1).toUpperCase() + description.substring(1),
+                temperature,
+                feelsLike,
+                pressure,
+                humidity,
+                wingSpeed);
+        weatherRepositoryImpl.setWeatherDataByCityAndCountryName(newWeather);
         //--------------------------------------------------------------------------------------------
 
 //        //----------------------------getting weather from database----------------------------
