@@ -6,7 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Entity(name = "Note_table")
+@Entity(name = "note_table")
 @Getter
 @ToString
 @NoArgsConstructor

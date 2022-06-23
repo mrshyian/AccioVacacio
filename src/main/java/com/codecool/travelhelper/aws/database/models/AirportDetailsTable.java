@@ -17,7 +17,6 @@ public class AirportDetailsTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    private Long searchingPlaceId;
     private String cityName;
     private String countryName;
 

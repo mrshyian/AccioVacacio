@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.aws.database.models;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,16 +14,15 @@ import javax.persistence.Id;
 @Getter
 @ToString
 @Setter
+@NoArgsConstructor
 public class WeatherTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    private Long searchingPlaceId;
     private String cityName;
     private String countryName;
-
     private String description;
     private int temperature;
     private int feelsLike;
@@ -30,8 +30,6 @@ public class WeatherTable {
     private int humidity;
     private float wingSpeed;
 
-    public WeatherTable() {
-    }
 
     public WeatherTable(String cityName, String countryName, String description, int temperature, int feelsLike, int pressure, int humidity, float wingSpeed) {
         this.cityName = cityName;

@@ -3,6 +3,8 @@ package com.codecool.travelhelper.aws.database.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class MyUserTable {
 
     private String fullName;
     private String nickName;
-    private Date birthday;
+    private String birthday;
     private String eMail;
     private String password;
     private String avatar;
@@ -35,12 +37,7 @@ public class MyUserTable {
     // comments to user
     @OneToMany(mappedBy = "myUserTable")
     private List<CommentsTable> comments;
-//---------------------------------------------------
 
-    // liked by user to user
-    @ManyToOne
-    @JoinColumn(name = "comment_id")
-    private CommentsTable commentsTable;
 //---------------------------------------------------
 
     // post to user
@@ -79,7 +76,7 @@ public class MyUserTable {
 
 //---------------------------------------------------
 
-    public MyUserTable(String fullName, String nickName, Date birthday, String eMail, String password, String avatar, String instagram, String facebook, String aboutMe, String role, boolean privateAccount) {
+    public MyUserTable(String fullName, String nickName, String birthday, String eMail, String password, String avatar, String instagram, String facebook, String aboutMe, boolean privateAccount) {
         this.fullName = fullName;
         this.nickName = nickName;
         this.birthday = birthday;
@@ -89,7 +86,7 @@ public class MyUserTable {
         this.instagram = instagram;
         this.facebook = facebook;
         this.aboutMe = aboutMe;
-        this.role = role;
         this.privateAccount = privateAccount;
+        this.role = "User";
     }
 }

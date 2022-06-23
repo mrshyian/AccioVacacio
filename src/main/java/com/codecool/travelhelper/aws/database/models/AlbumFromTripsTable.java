@@ -34,14 +34,14 @@ public class AlbumFromTripsTable {
 
     private String country;
     private String city;
-    private Date tripDate;
+    private String tripDate;
     private String albumName;
     private String aboutAlbum;
 
     public AlbumFromTripsTable() {
     }
 
-    public AlbumFromTripsTable(String country, String city, Date tripDate, String albumName, String aboutAlbum) {
+    public AlbumFromTripsTable(String country, String city, String tripDate, String albumName, String aboutAlbum) {
 
         this.country = country;
         this.city = city;

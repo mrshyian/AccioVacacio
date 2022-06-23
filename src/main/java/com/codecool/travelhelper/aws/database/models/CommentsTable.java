@@ -1,12 +1,14 @@
 package com.codecool.travelhelper.aws.database.models;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "CommentsTable")
 @Getter
@@ -29,8 +31,11 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // liked by user to user
-    @OneToMany(mappedBy = "commentsTable")
-    private List<MyUserTable> likedByUsers;
+    @ManyToMany
+    @JoinTable(name = "liked_comments_by_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    private Set<MyUserTable> likedByUsers = new HashSet<>();
 
 //---------------------------------------------------
 
@@ -54,7 +59,6 @@ public class CommentsTable {
         this.country = country;
         this.city = city;
         this.commentDateTime = getCurrentTime();
-        this.likedByUsers = new ArrayList<>();
     }
 
     private String getCurrentTime(){

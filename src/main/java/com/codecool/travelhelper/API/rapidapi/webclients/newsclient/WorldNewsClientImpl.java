@@ -59,7 +59,6 @@ public class WorldNewsClientImpl extends ApiWebClient implements WorldNewsClient
                         cityName,
                         countryName,
                         title,
-                        summary,
                         link
                 )
         );
