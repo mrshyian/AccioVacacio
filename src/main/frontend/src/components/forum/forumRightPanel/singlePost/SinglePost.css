@@ -1,0 +1,7 @@
+.imgForForum {
+
+    max-width: 50%;
+    max-height: 70%;
+    object-fit: cover;
+    border-radius: 50%;
+}
