@@ -37,6 +37,7 @@ const SinglePost = (props) => {
                     )
                 })}
                 {/*<SingleComment comments={props.comments}/>*/}
+                // what is this?
                 <AddNewComment/>
             </Card.Footer>
         </Card>
