@@ -7,7 +7,9 @@ import com.codecool.travelhelper.aws.database.repositories.CrimeRatingRepository
 import com.codecool.travelhelper.aws.database.models.CrimeRatingTable;
 import com.google.gson.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +76,10 @@ public class CrimeRatingClientImpl extends ApiWebClient {
         );
         //--------------------------------------------------------------------------------------------
 
+
+//        //--------------------------getting emergency numbers from database--------------------------
+//        System.out.println(new ResponseEntity<List<CrimeRatingTable>>(crimeRatingRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK));
+//        //--------------------------------------------------------------------------------------------
         return crimeRatingApiModels;
     }
 }

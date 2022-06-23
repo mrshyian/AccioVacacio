@@ -48,7 +48,6 @@ public class EmergencyNumbersClient {
     }
 
     public <T> T callGetMethode(String url, Class<T> responseType) {
-        System.out.println(WEATHER_URL + url);
         return restTemplate.getForObject(WEATHER_URL + url, responseType);
     }
 }
