@@ -76,17 +76,17 @@ public class MyUserTable {
 
 //---------------------------------------------------
 
-    public MyUserTable(String fullName, String nickName, String birthday, String eMail, String password, String avatar, String instagram, String facebook, String aboutMe, boolean privateAccount) {
+    public MyUserTable(String fullName, String nickName, String birthday, String eMail, String password) {
         this.fullName = fullName;
         this.nickName = nickName;
         this.birthday = birthday;
         this.eMail = eMail;
         this.password = password;
-        this.avatar = avatar;
-        this.instagram = instagram;
-        this.facebook = facebook;
-        this.aboutMe = aboutMe;
-        this.privateAccount = privateAccount;
+        this.avatar = "";
+        this.instagram = "";
+        this.facebook = "";
+        this.aboutMe = "";
+        this.privateAccount = false;
         this.role = "User";
     }
 }
