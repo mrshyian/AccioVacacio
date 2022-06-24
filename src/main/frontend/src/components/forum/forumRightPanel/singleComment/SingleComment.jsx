@@ -15,11 +15,8 @@ const SingleComment = (props) => {
                 <p style={{ marginBottom: -30 }}>
                     <Image fluid="true" className="imgForPost" src={props.comments.commentImage} alt="user photo"/>
                     <p>Sebastian Ryndak</p></p>
-                {/*<h4 style={{marginTop: "auto", marginBottom: "auto"}}></h4>*/}
                 <p>{props.comments.commentDateTime}</p>
             </Card.Header>
-            {/*<Card.Header style={{ color: "orange", backgroundColor: "rgb(35, 35, 35)"}}> {props.commentImage} zdjęcie usera + {props.userName} Username*/}
-            {/*    + {props.commentDateTime}data</Card.Header>*/}
             <Card.Body style={{ backgroundColor: "rgb(55, 55, 55)"}}>
                 <Card.Text style={{color: "white"}}>
                     {props.comments.commentText}

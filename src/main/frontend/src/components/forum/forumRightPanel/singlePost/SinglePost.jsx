@@ -20,24 +20,25 @@ const SinglePost = (props) => {
                         <p style={{ marginBottom: -20 }}>
                             <img className="imgForForum" src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE" alt="user photo"/>
                             <p>Sebastian Ryndak</p></p>
-                        <h2 style={{marginTop: "auto", marginBottom: "auto"}}>Restauracja pod choinami</h2>
-                        <p>10/10/10</p>
+                        <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
+                        <p>{props.post.postDateTime}</p>
             </Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <h4>To jest lipa jakaś</h4>
+                    <h4>{props.post.postText}</h4>
 
                 </Card.Text>
             </Card.Body>
             <Card.Footer>
                 <p>Comments:</p>
                 {props.comments.map((comment, index) => {
+                    console.log( "singlepost =")
+                    console.log( comment)
+                    console.log( " jako post")
                     return (
                         <SingleComment key={index} comments={comment}/>
                     )
                 })}
-                {/*<SingleComment comments={props.comments}/>*/}
-                // what is this?
                 <AddNewComment/>
             </Card.Footer>
         </Card>

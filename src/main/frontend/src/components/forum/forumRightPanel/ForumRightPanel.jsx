@@ -1,10 +1,20 @@
-import React from 'react';
-import {Card} from "react-bootstrap";
+import React, {useState} from 'react';
+import {Button, Card} from "react-bootstrap";
 import "./ForumRightPanel.css"
-import SingleComment from "./singleComment/SingleComment";
 import SinglePost from "./singlePost/SinglePost";
+import {FaCommentDots} from "react-icons/fa";
+import NewPostModal from "../../modals/newPostModal/NewPostModal";
+import SingleComment from "./singleComment/SingleComment";
+// import {useState} from "@types/react";
 
-const Right = (props) => {
+const ForumRightPanel = (props) => {
+
+    // const [NewModalOpen, setNewModalOpen] = useState(false);
+    //
+    // const openModal = () =>{
+    //     setNewModalOpen(true)
+    // }
+
     return (
         <Card
             bg="dark"
@@ -16,7 +26,16 @@ const Right = (props) => {
             <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Forum</h2></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <SinglePost comments={props.comments}/>
+                    {props.posts.map((singlePost, index) => {
+
+                        return (
+                            <SinglePost post={singlePost} comments={props.comments} key={index}/>
+                        )
+                    })}
+
+                    {/*<SinglePost comments={props.comments}/>*/}
+                    {/*<Button variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</Button>*/}
+                    {/*{NewModalOpen && <NewPostModal open={NewModalOpen}/>}*/}
                     {/*{props.comments.city}*/}
                 </Card.Text>
             </Card.Body>
@@ -24,4 +43,4 @@ const Right = (props) => {
     );
 };
 
-export default Right;
+export default ForumRightPanel;
