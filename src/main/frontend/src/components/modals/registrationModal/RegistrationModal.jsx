@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "./RegistrationModal.css"
 import {Button, Form, Modal} from "react-bootstrap";
-import axios, {Axios} from "axios";
+import axios from "axios";
 
 const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
@@ -15,14 +15,10 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
     const [showRegistrationModal, setShowRegistrationModal] = useState(true);
     const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
     const handleShowRegistrationModal = () => setShowRegistrationModal(true);
+
     const printDate = () => {
         const url = "http://localhost:8080/registration";
-        // console.log(fullName)
-        // console.log(nickName)
-        // console.log(birthday)
-        // console.log(email)
-        // console.log(password)
-        // console.log(repeatPassword)
+
         axios.post(url,{
             fullName: fullName,
             nickName: nickName,
@@ -32,7 +28,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
             repeatPassword: repeatPassword
         })
             .then(res=>{
-                console.log(res.data)})
+                console.log(res)})
         handleCloseRegistrationModal()
     }
 
@@ -44,10 +40,9 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
             </Modal.Header>
             <Modal.Body style={{background: "rgb(20,20,20)"}}>
                 <Form style={{background: "rgb(20,20,20)"}}>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Group className="mb-3" controlId="control-input-1">
                         <Form.Label style={{color: "orange"}}>Full name</Form.Label>
                         <Form.Control
-
                             type="text"
                             placeholder="Full name"
                             value={fullName}
@@ -57,11 +52,10 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-1"
                     >
                         <Form.Label style={{color: "orange"}}>Nickname</Form.Label>
                         <Form.Control
-
                             type="text"
                             placeholder="Nickname"
                             value={nickName}
@@ -70,11 +64,10 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-2"
                     >
                         <Form.Label style={{color: "orange"}}>Birthday</Form.Label>
                         <Form.Control
-
                             type="date"
                             placeholder="Birthday"
                             value={birthday}
@@ -83,11 +76,10 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-3"
                     >
                         <Form.Label style={{color: "orange"}}>E-mail</Form.Label>
                         <Form.Control
-
                             type="email"
                             placeholder="name@example.com"
                             value={email}
@@ -96,11 +88,10 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-4"
                     >
                         <Form.Label style={{color: "orange"}}>Password</Form.Label>
                         <Form.Control
-
                             type="password"
                             placeholder="********"
                             value={password}
@@ -109,9 +100,9 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
                     <Form.Group
                         className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
+                        controlId="textarea-5"
                     >
-                        <Form.Label style={{color: "orange"}}>Repeat password</Form.Label >
+                        <Form.Label style={{color: "orange"}}>Repeat password</Form.Label>
                         <Form.Control
                             type="password"
                             placeholder="********"

@@ -7,6 +7,9 @@ import WeatherBox from "./weather/WeatherBox";
 import EmergencyNumbers from "./emergencyNumbers/EmergencyNumbers";
 import LivingCoasts from "./livingCosts/LivingCoasts";
 import CrimeRating from "./crimaRating/CrimeRating";
+import countries from "i18n-iso-countries";
+import english from "i18n-iso-countries/langs/en.json";
+import TouristAttractionsBox from "./touristAttractions/TouristAttractionsBox";
 
 
 const SearchCity = (props) => {
@@ -17,6 +20,7 @@ const SearchCity = (props) => {
     const [emergencyNumber, setEmergencyNumber] = useState("");
     const [livingCosts, setLivingCosts] = useState([]);
     const [crimeRating, setCrimeRating] = useState([]);
+    const [attractions, setAttractions] = useState([]);
 
     const fetchLivingCosts = () => {
 
@@ -28,7 +32,8 @@ const SearchCity = (props) => {
 
     const fetchNewsWorld = () => {
         axios.get(`http://localhost:8080/news/${props.city}/${props.country}`)
-            .then(res =>{setNews(res.data);})
+            .then(res =>{setNews(res.data);
+                console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 
@@ -56,6 +61,13 @@ const SearchCity = (props) => {
             .catch(err => {console.log(err)});
     };
 
+    const fetchAttractions = () => {
+        const countryIsoCode = getCountryIsoCode(props.country);
+        axios.get(`http://localhost:8080/attractions/${props.city}/${countryIsoCode}`)
+            .then(res =>{setAttractions(res.data);})
+            .catch(err => {console.log(err)});
+    };
+
     useEffect(()=>{
         fetchNewsWorld();
         fetchIATACode();
@@ -63,6 +75,7 @@ const SearchCity = (props) => {
         fetchLivingCosts();
         fetchEmergencyNumbers();
         fetchCrimeRating();
+        fetchAttractions();
     }, [])
 
     return (
@@ -73,6 +86,7 @@ const SearchCity = (props) => {
                 <CrimeRating crimeRating={crimeRating} city={props.city}/>
                 <EmergencyNumbers emergencyNumber={emergencyNumber}/>
             </div>
+            <TouristAttractionsBox attractions={attractions}/>
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode} country={props.country} city={props.city}/>
             <LivingCoasts livingCosts={livingCosts} />
@@ -81,3 +95,8 @@ const SearchCity = (props) => {
 };
 
 export default SearchCity;
+
+function getCountryIsoCode(countryName){
+    countries.registerLocale(english);
+    return countries.getAlpha2Code(countryName, "en");
+}

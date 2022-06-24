@@ -55,9 +55,9 @@ const AirportDetails = (props) => {
                         <Button variant={"warning"} href={airportDetail.website}>See more</Button>
                     </Card.Body>
                 </Card>
+            </div>
         </div>
-        </div>
-);
+    );
 };
 
 export default AirportDetails;

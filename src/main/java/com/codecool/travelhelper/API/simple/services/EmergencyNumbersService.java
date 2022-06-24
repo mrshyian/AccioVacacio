@@ -1,8 +1,8 @@
 package com.codecool.travelhelper.API.simple.services;
 
-import com.codecool.travelhelper.API.simple.model.EmergencyNumbersDto;
+import com.codecool.travelhelper.API.simple.models.EmergencyNumbersDto;
 
-import com.codecool.travelhelper.API.simple.webclient.emergency_numbers.EmergencyNumbersClient;
+import com.codecool.travelhelper.API.simple.webclient.EmergencyNumbersClient;
 import com.neovisionaries.i18n.CountryCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

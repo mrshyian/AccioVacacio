@@ -1,7 +1,7 @@
 package com.codecool.travelhelper.API.simple.controllers;
 
 
-import com.codecool.travelhelper.API.simple.model.EmergencyNumbersDto;
+import com.codecool.travelhelper.API.simple.models.EmergencyNumbersDto;
 import com.codecool.travelhelper.API.simple.services.EmergencyNumbersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
