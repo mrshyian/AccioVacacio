@@ -4,8 +4,9 @@ import ReactDOM from "react-dom/client";
 import Header from "../../header/Header";
 import SearchCity from "../searchCity";
 import {Navbar, Container, Button, Nav} from 'react-bootstrap';
+import {availiablePages} from "../../../types";
 
-const SearchBox = () => {
+const SearchBox = (props) => {
 
     const [data, setData] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState();
@@ -39,17 +40,6 @@ const SearchBox = () => {
         setSelectedCity(e.target.value)
     }
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-
-
-    const loadSearchingPage = () => {
-        root.render(
-            <React.Profiler>
-                <Header inSession={false}/>
-                <SearchCity country={selectedCountry} city={selectedCity}/>
-            </React.Profiler>
-        );
-    }
     return (
         <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "15%"}}>
             <Container fluid>
@@ -75,7 +65,7 @@ const SearchBox = () => {
                                 {cities.map(items => <option key={items.name}>{items.name}</option>)}
                             </select>
                         </div>
-                        <Button variant="warning" onClick={loadSearchingPage}>Search</Button>
+                        <Button variant="warning" onClick={() => {props.setPage(availiablePages.searchCity); props.setCountry(selectedCountry); props.setCity(selectedCity)}}>Search</Button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
