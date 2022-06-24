@@ -9,7 +9,7 @@ const UserLeftBar = () => {
     return (
         <div className="App">
             <header>
-                <ProSidebar className="sidebar" style={{height: "1000px"}}>
+                <ProSidebar className="sidebar" style={{height: "100%"}}>
                     <Menu iconShape="square">
                         <MenuItem icon={<FaPencilAlt />}>Notes</MenuItem>
                         <MenuItem icon={<FaMapMarked />}>Places i want to go</MenuItem>

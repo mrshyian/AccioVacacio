@@ -16,20 +16,23 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
     const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
     const handleShowRegistrationModal = () => setShowRegistrationModal(true);
 
-    const printDate = () => {
-        const url = "http://localhost:8080/registration";
+    const sendDataToServer = () => {
+        if (password === repeatPassword){
+            const url = "http://localhost:8080/registration";
+            axios.post(url,{
+                fullName: fullName,
+                nickName: nickName,
+                birthday: birthday,
+                email: email,
+                password: password,
+            })
+                .then(res=>{
+                    console.log(res)})
+            handleCloseRegistrationModal()
+        }else {
+            alert("The passwords are not the same")
+        }
 
-        axios.post(url,{
-            fullName: fullName,
-            nickName: nickName,
-            birthday: birthday,
-            email: email,
-            password: password,
-            repeatPassword: repeatPassword
-        })
-            .then(res=>{
-                console.log(res)})
-        handleCloseRegistrationModal()
     }
 
 
@@ -115,7 +118,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                 <Button variant="outline-secondary" onClick={handleCloseRegistrationModal}>
                     Close
                 </Button>
-                <Button variant="outline-warning" onClick={printDate}>
+                <Button variant="outline-warning" onClick={sendDataToServer}>
                     Submit
                 </Button>
             </Modal.Footer>
