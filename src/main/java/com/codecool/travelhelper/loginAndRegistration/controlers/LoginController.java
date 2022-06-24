@@ -1,7 +1,6 @@
 package com.codecool.travelhelper.loginAndRegistration.controlers;
 
 
-import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.loginAndRegistration.webclients.LoginImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class UserLoginController {
+public class LoginController {
 
     @Autowired
     LoginImpl loginImpl;
