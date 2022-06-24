@@ -60,7 +60,7 @@ function App() {
 
     return (
         <div style={{ textAlign: 'center' }}>
-            <Header inSession={false} setPage={setCurrentPage}/>
+            <Header setPage={setCurrentPage}/>
             {pageToDisplay}
         </div>
     );

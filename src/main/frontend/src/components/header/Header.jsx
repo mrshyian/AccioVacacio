@@ -6,10 +6,13 @@ import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import ErrorModal from '../modals/errorModals/ErrorModal';
 import {availiablePages} from '../../types/index';
 
+
 const Header = (props) => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
+    const [userIdInSession, setUserIdInSession] = useState(false);
+
 
     return (
         <div>
@@ -43,7 +46,7 @@ const Header = (props) => {
                             </Button>
                         </Nav>
 
-                        {props.inSession === true ? (
+                        {userIdInSession === true ? (
                             <Button variant="outline-warning">Logout</Button>
                         ) : (
                             <span>
@@ -69,7 +72,7 @@ const Header = (props) => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {loginModalOpen && <LoginModal open={loginModalOpen} />}
+            {loginModalOpen && <LoginModal setsession={setUserIdInSession} open={loginModalOpen} />}
             {registrationModalOpen && <RegistrationModal open={registrationModalOpen} />}
             {errorModalOpen && <ErrorModal error={'tekst pomylki'} />}
         </div>
