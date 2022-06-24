@@ -5,6 +5,7 @@ import com.codecool.travelhelper.API.simple.models.EmergencyNumbersDto;
 import com.codecool.travelhelper.API.simple.webclient.dto.OpenEmergencyNumbersEmergencyNumbersDto;
 import com.codecool.travelhelper.aws.database.repositories.EmergencyNumbersRepository;
 import com.codecool.travelhelper.aws.database.models.EmergencyNumbersTable;
+import com.codecool.travelhelper.aws.database.repositories.jdbc.EmergencyNumbersRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +15,7 @@ public class EmergencyNumbersClient {
     private final RestTemplate restTemplate = new RestTemplate();
     private final static String WEATHER_URL = "https://emergencynumberapi.com/api/country/";
     @Autowired
-    EmergencyNumbersRepository emergencyNumbersRepository;
+    EmergencyNumbersRepositoryImpl emergencyNumbersRepository;
 
     public EmergencyNumbersDto getEmergencyNumbers(String countryCode, String countryName, String cityName) {
         OpenEmergencyNumbersEmergencyNumbersDto openEmergencyNumbersEmergencyNumbersDto =  callGetMethode(countryCode,
@@ -25,9 +26,8 @@ public class EmergencyNumbersClient {
         String fireGuardNumber = openEmergencyNumbersEmergencyNumbersDto.getData().getFire().getAll().get(0);
         String dispatchNumber = openEmergencyNumbersEmergencyNumbersDto.getData().getDispatch().getAll().get(0);
 
-//        Long searchingPlaceId = 1L;
         //----------------------------saving emergency numbers to database----------------------------
-        emergencyNumbersRepository.save(
+        emergencyNumbersRepository.setEmergencyNumbersDataByCityAndCountryName(
                 new EmergencyNumbersTable(
                         cityName,
                         countryName,

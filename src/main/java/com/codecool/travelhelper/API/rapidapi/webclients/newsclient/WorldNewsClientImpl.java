@@ -52,7 +52,6 @@ public class WorldNewsClientImpl extends ApiWebClient implements WorldNewsClient
         String summary = getValueByKeyFromJsonObjectInsideJsonArray("summary","articles",response,index);
         String link = getValueByKeyFromJsonObjectInsideJsonArray("link","articles",response,index);
 
-        // Long searchingPlaceId = 1L;
         //----------------------------saving emergency numbers to database----------------------------
         worldNewsRepository.save(
                 new WorldNewsTable(

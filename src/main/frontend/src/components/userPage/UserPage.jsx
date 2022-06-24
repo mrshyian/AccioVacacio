@@ -6,7 +6,6 @@ import Header from "../header/Header";
 const UserPage = () => {
     return (
         <div>
-            <Header/>
             <UserLeftBar/>
             <UserMainBar/>
         </div>

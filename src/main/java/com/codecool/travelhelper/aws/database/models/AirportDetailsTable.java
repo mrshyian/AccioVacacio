@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.aws.database.models;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @ToString
+@Setter
 public class AirportDetailsTable {
 
     @Id

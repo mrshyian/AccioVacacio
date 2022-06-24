@@ -7,6 +7,7 @@ import com.codecool.travelhelper.aws.database.repositories.WeatherRepository;
 import com.codecool.travelhelper.aws.database.models.AirportDetailsTable;
 import com.codecool.travelhelper.aws.database.models.CrimeRatingTable;
 import com.codecool.travelhelper.aws.database.models.WeatherTable;
+import com.codecool.travelhelper.aws.database.repositories.jdbc.WeatherRepositoryImpl;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ import java.util.Objects;
 public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
 
     @Autowired
-    WeatherRepository weatherRepository;
+    WeatherRepositoryImpl weatherRepositoryImpl;
 
     public WeatherClientImpl() {
         super(ApiMetaData.WEATHER);
@@ -49,20 +50,17 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
 
         float wingSpeed = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("speed", "wind", response));
 
-        // Long searchingPlaceId = 1L;
         //----------------------------saving weather to database----------------------------
-        weatherRepository.save(
-                new WeatherTable(
-                        cityName,
-                        countryName,
-                        description.substring(0, 1).toUpperCase() + description.substring(1),
-                        temperature,
-                        feelsLike,
-                        pressure,
-                        humidity,
-                        wingSpeed
-                )
-        );
+        weatherRepositoryImpl.setWeatherDataByCityAndCountryName(new WeatherTable(cityName,
+                countryName,
+                description.substring(0, 1).toUpperCase() + description.substring(1),
+                temperature,
+                feelsLike,
+                pressure,
+                humidity,
+                wingSpeed));
+        //--------------------------------------------------------------------------------------------
+
 
         return WeatherApiModel.builder()
                 .description(description.substring(0, 1).toUpperCase() + description.substring(1))

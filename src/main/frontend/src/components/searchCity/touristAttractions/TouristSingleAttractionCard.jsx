@@ -16,7 +16,7 @@ const TouristSingleAttractionCard = (props) => {
                     style={{maxWidth: "60px", maxHeight:"60px"}}/>
                 </div>
                 <div className="minus-margin" style={{width: "49%", flex: "50%"}}>
-                    <h1>{locationName}</h1>
+                    <h2>{locationName}</h2>
                     <p>Address: <em>{locationAddress}</em></p>
                     <p>Only in <strong>{distanceToLocation}</strong> meters from center</p>
                 </div>
