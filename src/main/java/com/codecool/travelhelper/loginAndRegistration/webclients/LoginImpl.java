@@ -8,23 +8,24 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpSession;
 
 @Component
+
 public class LoginImpl {
 
+    @Autowired
     HttpSession session;
 
     @Autowired
     UserRepository userRepository;
 
     public void findUser(String email, String password) {
-        MyUserTable userObject = userRepository.findByEMail(email);
+        MyUserTable userObject = userRepository.findAllByUserEMail(email);
         String passwordFromDB = userObject.getPassword();
-        System.out.println(validationPassword(password, passwordFromDB));
-//        if(validationPassword(password,passwordFromDB)){
-//            session.setAttribute("fullname", userObject.getFullName());
-//            System.out.println(session.getAttributeNames());
-//        }else {
-//            System.out.println("ujuw sto");
-//        }
+
+        if(validationPassword(password,passwordFromDB)){
+            session.setAttribute("userId", userObject.getId());
+        }else {
+            System.out.println("ujuw sto");
+        }
     }
 
     public boolean validationPassword(String password, String passwordFromDB ){

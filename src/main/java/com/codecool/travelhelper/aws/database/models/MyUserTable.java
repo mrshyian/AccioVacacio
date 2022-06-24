@@ -3,9 +3,6 @@ package com.codecool.travelhelper.aws.database.models;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 @Entity(name = "MyUserTable")
@@ -22,7 +19,7 @@ public class MyUserTable {
     private String fullName;
     private String nickName;
     private String birthday;
-    private String eMail;
+    private String userEMail;
     private String password;
     private String avatar;
     private String instagram;
@@ -76,11 +73,11 @@ public class MyUserTable {
 
 //---------------------------------------------------
 
-    public MyUserTable(String fullName, String nickName, String birthday, String eMail, String password) {
+    public MyUserTable(String fullName, String nickName, String birthday, String userEMail, String password) {
         this.fullName = fullName;
         this.nickName = nickName;
         this.birthday = birthday;
-        this.eMail = eMail;
+        this.userEMail = userEMail;
         this.password = password;
         this.avatar = "";
         this.instagram = "";

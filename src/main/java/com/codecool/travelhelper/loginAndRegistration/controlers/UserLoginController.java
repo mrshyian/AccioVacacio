@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.loginAndRegistration.controlers;
 
 
+import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.loginAndRegistration.webclients.LoginImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -17,16 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserLoginController {
 
     @Autowired
-    LoginImpl login;
+    LoginImpl loginImpl;
 
     @PostMapping("/login")
     public void login(@RequestBody String data){
-        System.out.println(data);
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(data);
         String email = commentJsonObject.get("email").getAsString();
         String password = commentJsonObject.get("password").getAsString();
 
-        login.findUser(email, password);
+        loginImpl.findUser(email, password);
     }
 }

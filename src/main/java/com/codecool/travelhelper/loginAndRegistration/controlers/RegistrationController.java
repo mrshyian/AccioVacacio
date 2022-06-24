@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegistrationController {
 
     @Autowired
-    RegistrationImpl registration;
+    RegistrationImpl registrationImpl;
 
 
 
@@ -32,6 +32,6 @@ public class RegistrationController {
         String password = commentJsonObject.get("password").getAsString();
 
 
-        registration.saveNewUserToDB(fullName, nickName, birthday, email, password);
+        registrationImpl.saveNewUserToDB(fullName, nickName, birthday, email, password);
     }
 }
