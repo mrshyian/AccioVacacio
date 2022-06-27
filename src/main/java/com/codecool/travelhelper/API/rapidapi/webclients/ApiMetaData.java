@@ -36,6 +36,10 @@ public enum ApiMetaData {
         put("X-RapidAPI-Host", "trueway-places.p.rapidapi.com");
         put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
     }}),
+    BING_IMAGE_SEARCH("https://bing-image-search1.p.rapidapi.com/images/search", new HashMap<>(){{
+            put("X-RapidAPI-Host", "bing-image-search1.p.rapidapi.com");
+            put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
+        }}),
 
     //todo: use it very carefully! Price is 200/month for free + US$0.001 each other
     GOOGLE_AUTOCOMPLETE_PLUS("https://google-maps-autocomplete-plus.p.rapidapi.com/autocomplete",  new HashMap<>(){{

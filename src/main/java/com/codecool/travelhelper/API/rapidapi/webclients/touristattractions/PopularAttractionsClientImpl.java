@@ -1,9 +1,11 @@
 package com.codecool.travelhelper.API.rapidapi.webclients.touristattractions;
 
+import com.codecool.travelhelper.API.rapidapi.model.apimodel.BingImageSearch;
 import com.codecool.travelhelper.API.rapidapi.models.touristattractions.GoogleAutocompletePlusDto;
 import com.codecool.travelhelper.API.rapidapi.models.touristattractions.PopularAttractionDto;
 import com.codecool.travelhelper.API.rapidapi.models.touristattractions.TrueWayPlacesDto;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
+import com.codecool.travelhelper.API.rapidapi.webclients.bingimagesearch.BingImageSearchClientImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ public class PopularAttractionsClientImpl extends ApiWebClient implements Popula
     public PopularAttractionsClientImpl() {}
 
     @Override
-    public List<PopularAttractionDto> getPopularAttractions(String cityName, String countryIsoCode, int distance, int amountOfAttractions) {
+    public List<PopularAttractionDto> getPopularAttractions(String cityName, String countryIsoCode, int distance, int amountOfAttractions, int howMuchImages) {
         List<PopularAttractionDto> popularAttractionDtoRapidApiList = new ArrayList<>();
 
         GoogleAutocompletePlusClient googleAutocompletePlusClient = new GoogleAutocompletePlusClient();
@@ -28,24 +30,28 @@ public class PopularAttractionsClientImpl extends ApiWebClient implements Popula
         List<TrueWayPlacesDto> trueWayPlacesDtoList = trueWayPlacesClient.getLocationData(latitude, longitude, distance, amountOfAttractions);
 
         for (TrueWayPlacesDto place: trueWayPlacesDtoList) {
-            PopularAttractionDto attractionDto = getSinglePopularAttractionsDto(place);
+            PopularAttractionDto attractionDto = getSinglePopularAttractionsDto(place, howMuchImages);
             popularAttractionDtoRapidApiList.add(attractionDto);
         }
 
         return popularAttractionDtoRapidApiList;
     }
 
-    private PopularAttractionDto getSinglePopularAttractionsDto(TrueWayPlacesDto trueWayPlacesDtoList){
+    private PopularAttractionDto getSinglePopularAttractionsDto(TrueWayPlacesDto trueWayPlacesDtoList, int howMuchImages){
         String locationName = trueWayPlacesDtoList.getLocationName();
         String locationAddress = trueWayPlacesDtoList.getLocationAddress();
         int distanceToLocation = trueWayPlacesDtoList.getDistanceToLocation();
         String website = trueWayPlacesDtoList.getWebsite();
+
+        BingImageSearchClientImpl imagesUrlClient= new BingImageSearchClientImpl();
+        BingImageSearch imagesUrl = imagesUrlClient.getImagesUrl(locationName, howMuchImages);
 
         PopularAttractionDto popularAttractionsDto = PopularAttractionDto.builder()
                 .locationName(locationName)
                 .locationAddress(locationAddress)
                 .distanceToLocation(distanceToLocation)
                 .website(website)
+                .imageUrl(imagesUrl)
                 .build();
 
         return popularAttractionsDto;

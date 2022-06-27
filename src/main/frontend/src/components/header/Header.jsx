@@ -63,33 +63,33 @@ const Header = (props) => {
 
     return (
         <div>
-        <Navbar bg="dark" variant="dark">
-            <Container fluid>
-                <Navbar.Brand style={{cursor: "pointer"}} onClick={renderToMainPage}>Travel Helper</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbarScroll"/>
-                <Navbar.Collapse id="navbarScroll">
-                    <Nav
-                        className="me-auto my-2 my-lg-0"
-                        style={{maxHeight: '100px'}}
-                        navbarScroll
-                    >
-                        <Button variant="outline-warning" onClick={renderToMyProfilePage}>My Profile</Button>
-                        <Button variant="outline-warning" onClick={renderToForumPage}
-                                style={{marginLeft: "5px"}}>Forum</Button>
-                        <Button variant="outline-warning" onClick={renderToSearchPage} style={{marginLeft: "5px"}}>Search
-                            City</Button>
-                    </Nav>
+            <Navbar bg="dark" variant="dark">
+                <Container fluid>
+                    <Navbar.Brand style={{cursor: "pointer"}} onClick={renderToMainPage}>Travel Helper</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbarScroll"/>
+                    <Navbar.Collapse id="navbarScroll">
+                        <Nav
+                            className="me-auto my-2 my-lg-0"
+                            style={{maxHeight: '100px'}}
+                            navbarScroll
+                        >
+                            <Button variant="outline-warning" onClick={renderToMyProfilePage}>My Profile</Button>
+                            <Button variant="outline-warning" onClick={renderToForumPage}
+                                    style={{marginLeft: "5px"}}>Forum</Button>
+                            <Button variant="outline-warning" onClick={renderToSearchPage} style={{marginLeft: "5px"}}>Search
+                                City</Button>
+                        </Nav>
 
 
-                    {props.inSession === true ? <Button variant="outline-warning">Logout</Button> :
-                        <span>
+                        {props.inSession === true ? <Button variant="outline-warning">Logout</Button> :
+                            <span>
                     <Button variant="outline-warning" onClick={() => {setLoginModalOpen(true);}}>Log In</Button>
                     <Button variant="outline-warning" style={{marginLeft: "5px"}} onClick={() => {setRegistrationModalOpen(true);}}>Registration</Button>
                         </span>}
 
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
             {loginModalOpen && <LoginModal open={loginModalOpen}/>}
             {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
             {errorModalOpen && <ErrorModal error={"tekst pomylki"}/>}

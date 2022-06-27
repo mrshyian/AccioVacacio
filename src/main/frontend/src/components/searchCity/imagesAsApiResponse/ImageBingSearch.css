@@ -1,0 +1,8 @@
+.img-bing-search {
+    height: 200px;
+    width: 200px;
+    position: fixed;
+    right: 5px;
+    top: 5px;
+    box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+}
