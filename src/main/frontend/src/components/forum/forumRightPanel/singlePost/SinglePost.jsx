@@ -4,6 +4,7 @@ import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
 import SingleNews from "../../../searchCity/newsBox/SingleNews";
 import AddNewComment from "../AddNewComment";
+import {Link} from "react-router-dom";
 
 const SinglePost = (props) => {
     return (
@@ -22,6 +23,7 @@ const SinglePost = (props) => {
                             <p>Sebastian Ryndak</p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
                         <p>{props.post.postDateTime}</p>
+
             </Card.Header>
             <Card.Body>
                 <Card.Text>
@@ -32,14 +34,11 @@ const SinglePost = (props) => {
             <Card.Footer>
                 <p>Comments:</p>
                 {props.comments.map((comment, index) => {
-                    console.log( "singlepost =")
-                    console.log( comment)
-                    console.log( " jako post")
                     return (
                         <SingleComment key={index} comments={comment}/>
                     )
                 })}
-                <AddNewComment/>
+                <AddNewComment />
             </Card.Footer>
         </Card>
     );

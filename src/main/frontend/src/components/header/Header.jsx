@@ -5,6 +5,8 @@ import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import ErrorModal from '../modals/errorModals/ErrorModal';
 import {availiablePages} from '../../types/index';
+import {  Outlet, Link} from "react-router-dom";
+import Forum from "../forum/Forum";
 
 
 const Header = (props) => {
@@ -13,6 +15,10 @@ const Header = (props) => {
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [userIdInSession, setUserIdInSession] = useState(false);
 
+    function refreshPage(){
+        console.log("działa")
+        window.location.reload();
+    }
 
     return (
         <div>
@@ -34,6 +40,7 @@ const Header = (props) => {
                                 variant="outline-warning"
                                 onClick={() => props.setPage(availiablePages.forum)}
                                 style={{ marginLeft: '5px' }}
+
                             >
                                 Forum
                             </Button>
@@ -44,6 +51,28 @@ const Header = (props) => {
                             >
                                 Search City
                             </Button>
+                            <Button
+                                variant="outline-warning"
+                                style={{ marginLeft: '5px' }}
+                            >
+                                <Link to="/forum">Forum</Link>
+                            </Button>
+                            <Button
+                                variant="outline-warning"
+                                style={{ marginLeft: '5px' }}
+                            >
+                                <Link to="/userpage">userpage</Link>
+                            </Button>
+                            <Button
+                                variant="outline-warning"
+                                style={{ marginLeft: '5px' }}
+                                onClick={ refreshPage}
+                            >
+                                userpage
+                            </Button>
+
+
+
                         </Nav>
 
                         {userIdInSession === true ? (
@@ -75,6 +104,7 @@ const Header = (props) => {
             {loginModalOpen && <LoginModal setsession={setUserIdInSession} open={loginModalOpen} />}
             {registrationModalOpen && <RegistrationModal open={registrationModalOpen} />}
             {errorModalOpen && <ErrorModal error={'tekst pomylki'} />}
+
         </div>
     );
 };
