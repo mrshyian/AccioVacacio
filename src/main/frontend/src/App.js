@@ -15,6 +15,8 @@ function App() {
     const [selectedCity, setSelectedCity] = useState("");
     const [selectedCountry, setSelectedCountry] = useState("");
 
+
+
     const getPageToDisplay = () => {
         switch (currentPage) {
             case availiablePages.travelHelper: {
@@ -43,10 +45,9 @@ function App() {
                 return <UserPage />;
             }
             case availiablePages.forum: {
-                return <Forum />;
+                return <Forum setPage={setCurrentPage}/>;
             }
             case availiablePages.searchCity: {
-                console.log(currentPage)
                 return <SearchCity country={selectedCountry} city={selectedCity}/>;
             }
             case availiablePages.searchBox: {

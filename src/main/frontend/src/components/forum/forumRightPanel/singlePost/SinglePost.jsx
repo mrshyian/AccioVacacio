@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
 import SingleNews from "../../../searchCity/newsBox/SingleNews";
 import AddNewComment from "../AddNewComment";
+import {availiablePages} from "../../../../types";
 
 const SinglePost = (props) => {
+
+    const [currentPage, setCurrentPage] = useState(availiablePages.forum);
+
+    useEffect(() =>{
+        props.setPage(currentPage)
+    }, [])
+
     return (
         <Card
             bg="dark"
@@ -32,14 +40,11 @@ const SinglePost = (props) => {
             <Card.Footer>
                 <p>Comments:</p>
                 {props.comments.map((comment, index) => {
-                    console.log( "singlepost =")
-                    console.log( comment)
-                    console.log( " jako post")
                     return (
                         <SingleComment key={index} comments={comment}/>
                     )
                 })}
-                <AddNewComment/>
+                <AddNewComment setPage={setCurrentPage}/>
             </Card.Footer>
         </Card>
     );

@@ -1,14 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import Header from "../header/Header";
 import ForumLeftPanel from "./forumleftpanel/ForumLeftPanel";
 import ForumRightPanel from "./forumRightPanel/ForumRightPanel";
 import axios from "axios";
+import {availiablePages} from "../../types";
 
 
-const Forum = () => {
+const Forum = (props) => {
+
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+    const [currentPage, setCurrentPage] = useState(availiablePages.forum);
+
+    useEffect(() =>{
+        props.setPage(currentPage)
+    }, [])
 
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
+
 
     const fetchComment = () => {
         axios.get(`http://localhost:8080/comments`)
@@ -33,7 +42,7 @@ const Forum = () => {
         <div>
             <div style={{display: "flex"}}>
                 <ForumLeftPanel/>
-                <ForumRightPanel posts={post} comments={comment}/>
+                <ForumRightPanel posts={post} comments={comment} setPage={setCurrentPage}/>
             </div>
 
         </div>

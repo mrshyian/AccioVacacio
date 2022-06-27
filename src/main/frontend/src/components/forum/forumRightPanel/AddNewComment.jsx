@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import Axios from "axios";
 import app from "../../../App";
 import {logDOM} from "@testing-library/react";
+import {availiablePages} from "../../../types";
 
 
-function AddNewComment() {
+function AddNewComment(props) {
 
     const url = "http://localhost:8080/comments"
     const [name, setName] = useState({
@@ -23,6 +24,7 @@ function AddNewComment() {
         Axios.post(url, {
             name: name.name
         }).then(r => console.log(r.data))
+        props.setPage(availiablePages.forum)
     }
 
     return (

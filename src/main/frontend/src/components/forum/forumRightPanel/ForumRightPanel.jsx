@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import "./ForumRightPanel.css"
 import SinglePost from "./singlePost/SinglePost";
 import {FaCommentDots} from "react-icons/fa";
 import NewPostModal from "../../modals/newPostModal/NewPostModal";
 import SingleComment from "./singleComment/SingleComment";
-// import {useState} from "@types/react";
+import {availiablePages} from "../../../types";
+
 
 const ForumRightPanel = (props) => {
+
+    const [currentPage, setCurrentPage] = useState(availiablePages.forum);
+
+    useEffect(() =>{
+        props.setPage(currentPage)
+    }, [])
 
     // const [NewModalOpen, setNewModalOpen] = useState(false);
     //
@@ -29,7 +36,7 @@ const ForumRightPanel = (props) => {
                     {props.posts.map((singlePost, index) => {
 
                         return (
-                            <SinglePost post={singlePost} comments={props.comments} key={index}/>
+                            <SinglePost post={singlePost} comments={props.comments} key={index} setPage={setCurrentPage}/>
                         )
                     })}
 
