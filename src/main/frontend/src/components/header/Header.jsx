@@ -24,7 +24,7 @@ const Header = (props) => {
         <div>
             <Navbar bg="dark" variant="dark">
                 <Container fluid>
-                    <Link style={{textDecoration: "none"}} to="/travelHelper">
+                    <Link style={{textDecoration: "none"}} to="/">
                     <Navbar.Brand
                         style={{ cursor: 'pointer' }}
                         // onClick={() => props.setPage(availiablePages.travelHelper)}

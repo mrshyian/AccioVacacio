@@ -66,7 +66,7 @@ function App() {
         <div style={{ textAlign: 'center' }}>
             {/*<Link to="/forum">Foruum</Link>*/}
             <Header setPage={setCurrentPage}/>
-            {/*{pageToDisplay}*/}//nie działa bo jest nie używane
+            {/*{pageToDisplay}*/}{/*//nie działa bo jest nie używane*/}
             <Outlet />
         </div>
     );

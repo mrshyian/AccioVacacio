@@ -17,12 +17,10 @@ root.render(
                   <Route path="/forum" element={<Forum />}/>
                   <Route path="/userpage" element={<UserPage />}/>
                   <Route path="/searchCity" element={<SearchBox />}/>
-                  <Route path="/travelHelper" element={<AllCarousel />}/>
+                  <Route path="/" element={<AllCarousel />}/>
               </Route>
           </Routes>
       </BrowserRouter>
 
 
 );
-
-// <button><Link to="/forum">Foruum</Link></button>
