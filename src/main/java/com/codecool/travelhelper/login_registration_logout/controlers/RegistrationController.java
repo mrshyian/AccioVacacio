@@ -19,7 +19,6 @@ public class RegistrationController {
     RegistrationImpl registrationImpl;
 
 
-
     @PostMapping("/registration")
     public void registration(@RequestBody String data){
         JsonParser jsonParser = new JsonParser();
