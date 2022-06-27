@@ -5,6 +5,8 @@ import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import ErrorModal from '../modals/errorModals/ErrorModal';
 import {availiablePages} from '../../types/index';
+import axios from "axios";
+import {ReactSession} from "react-client-session";
 
 
 const Header = (props) => {
@@ -12,6 +14,16 @@ const Header = (props) => {
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [userIdInSession, setUserIdInSession] = useState(false);
+
+    const sendLogoutRequest = () => {
+        const url = "http://localhost:8080/logout";
+        axios.post(url,{
+        })
+            .then(res=>{
+                console.log(res);
+            })
+        console.log(ReactSession.get("userId"))
+    }
 
 
     return (
@@ -47,7 +59,7 @@ const Header = (props) => {
                         </Nav>
 
                         {userIdInSession === true ? (
-                            <Button variant="outline-warning">Logout</Button>
+                            <Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button>
                         ) : (
                             <span>
 								<Button

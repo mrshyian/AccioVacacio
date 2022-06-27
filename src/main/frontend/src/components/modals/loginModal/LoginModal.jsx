@@ -14,11 +14,12 @@ const LoginModal = (props) => {
     const handleShowLoginModal = () => setShowLoginModal(true);
 
     const getUserIdFromSession = () => {
-        if (ReactSession.get("userId")!== null){
+        if (ReactSession.get("userId") !== null){
             props.setsession(true)
         }
-
+        console.log(ReactSession.get("userId"))
     }
+
 
     const sendDataToServer = () => {
             const url = "http://localhost:8080/login";
