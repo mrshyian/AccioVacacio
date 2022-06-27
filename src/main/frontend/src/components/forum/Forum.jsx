@@ -31,7 +31,6 @@ const Forum = () => {
 
     return (
         <div>
-            <Header/>
             <div style={{display: "flex"}}>
                 <ForumLeftPanel/>
                 <ForumRightPanel posts={post} comments={comment}/>

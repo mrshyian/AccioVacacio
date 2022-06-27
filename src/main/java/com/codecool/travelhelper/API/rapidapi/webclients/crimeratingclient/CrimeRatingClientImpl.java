@@ -5,6 +5,7 @@ import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.codecool.travelhelper.aws.database.repositories.CrimeRatingRepository;
 import com.codecool.travelhelper.aws.database.models.CrimeRatingTable;
+import com.codecool.travelhelper.aws.database.repositories.jdbc.CrimeRatingRepositoryImpl;
 import com.google.gson.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import java.util.List;
 public class CrimeRatingClientImpl extends ApiWebClient {
 
     @Autowired
-    CrimeRatingRepository crimeRatingRepository;
+    CrimeRatingRepositoryImpl crimeRatingRepositoryImpl;
 
     public CrimeRatingClientImpl()  {
         super(ApiMetaData.CRIME_RATING);
@@ -65,9 +66,8 @@ public class CrimeRatingClientImpl extends ApiWebClient {
             starsCount = 1;
         }
 
-        // Long searchingPlaceId = 1L;
         //----------------------------saving emergency numbers to database----------------------------
-        crimeRatingRepository.save(
+        crimeRatingRepositoryImpl.setCrimeRatingDataByCityAndCountryName(
                 new CrimeRatingTable(
                         cityName,
                         countryName,
@@ -76,10 +76,6 @@ public class CrimeRatingClientImpl extends ApiWebClient {
         );
         //--------------------------------------------------------------------------------------------
 
-
-//        //--------------------------getting emergency numbers from database--------------------------
-//        System.out.println(new ResponseEntity<List<CrimeRatingTable>>(crimeRatingRepository.findByCityNameAndCountryName(cityName, countryName), HttpStatus.OK));
-//        //--------------------------------------------------------------------------------------------
         return crimeRatingApiModels;
     }
 }

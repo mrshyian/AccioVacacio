@@ -5,6 +5,7 @@ import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.aws.database.repositories.LivingCostsRepository;
 import com.codecool.travelhelper.aws.database.models.LivingCostsTable;
+import com.codecool.travelhelper.aws.database.repositories.jdbc.LivingCostsRepositoryImpl;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import java.util.*;
 public class LivingCostsClientImpl extends ApiWebClient {
 
     @Autowired
-    LivingCostsRepository livingCostsRepository;
+    LivingCostsRepositoryImpl livingCostsRepositoryImpl;
 
     public LivingCostsClientImpl() {
         super(ApiMetaData.LIVING_COSTS);
@@ -53,7 +54,7 @@ public class LivingCostsClientImpl extends ApiWebClient {
 
 //        Long searchingPlaceId = 1L;
         //----------------------------saving emergency numbers to database----------------------------
-        livingCostsRepository.save(
+        livingCostsRepositoryImpl.setLivingCostsDataByCityAndCountryNameAndItemName(
                 new LivingCostsTable(
                         cityName,
                         countryName,

@@ -10,29 +10,30 @@ const TouristAttractionsBox = (props) => {
     const cardHeaders = randomArrayShuffle(CARD_HEADER_TITLES);
 
     return (
+        <div className="bubble-box">
+            <div className="attraction-box">
+                <h1 style={{textAlign: "center", color: "orange"}}>ATTRACTIONS</h1>
+                <div style={{display: "flex", flexWrap: "wrap"}}>
+                    {props.attractions.map((attractions, index) => {
+                        return (
+                            <Card
+                                bg={"dark"}
+                                key={"dark"}
+                                text={'white'}
+                                style={{width: "49%", flex: "50%"}}
+                                className="mb-2"
+                            >
+                                <Card.Header style={{textAlign: "center", color: "orange"}}>
+                                    <h3>{cardHeaders[index]}</h3>
+                                </Card.Header>
+                                <Card.Body>
+                                    <TouristSingleAttractionCard key={index} attractions={attractions}/>
+                                </Card.Body>
+                            </Card>
+                        )
+                    })}
 
-        <div className="attraction-box">
-            <h1 style={{textAlign: "center", color: "orange"}}>ATTRACTIONS</h1>
-            <div style={{display: "flex", flexWrap: "wrap"}}>
-                {props.attractions.map((attractions, index) => {
-                    return (
-                        <Card
-                            bg={"dark"}
-                            key={"dark"}
-                            text={'white'}
-                            style={{width: "49%", flex: "50%"}}
-                            className="mb-2"
-                        >
-                            <Card.Header style={{textAlign: "center", color: "orange"}}>
-                                <h3>{cardHeaders[index]}</h3>
-                            </Card.Header>
-                            <Card.Body>
-                                <TouristSingleAttractionCard key={index} attractions={attractions}/>
-                            </Card.Body>
-                        </Card>
-                    )
-                })}
-
+                </div>
             </div>
         </div>
     )

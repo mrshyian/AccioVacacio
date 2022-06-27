@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import "./LoginModal.css"
 import {Button, Card, Modal, Form} from "react-bootstrap";
+import axios from "axios";
+import {ReactSession} from "react-client-session";
 
 const LoginModal = (props) => {
 
@@ -11,6 +13,26 @@ const LoginModal = (props) => {
     const handleCloseLoginModal = () => setShowLoginModal(false);
     const handleShowLoginModal = () => setShowLoginModal(true);
 
+    const getUserIdFromSession = () => {
+        if (ReactSession.get("userId")!== null){
+            props.setsession(true)
+        }
+
+    }
+
+    const sendDataToServer = () => {
+            const url = "http://localhost:8080/login";
+            axios.post(url,{
+                email: email,
+                password: password,
+            })
+                .then(res=>{
+                    console.log(res);
+                    getUserIdFromSession();
+                })
+            handleCloseLoginModal()
+
+    }
 
 
     return (
@@ -47,7 +69,7 @@ const LoginModal = (props) => {
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>
-                <Button variant="outline-warning" onClick={handleCloseLoginModal}>
+                <Button variant="outline-warning" onClick={sendDataToServer}>
                     Save Changes
                 </Button>
             </Modal.Footer>

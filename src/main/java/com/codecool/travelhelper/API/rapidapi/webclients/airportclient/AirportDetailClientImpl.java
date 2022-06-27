@@ -6,6 +6,7 @@ import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.aws.database.repositories.AirportDetailsRepository;
 import com.codecool.travelhelper.aws.database.models.AirportDetailsTable;
+import com.codecool.travelhelper.aws.database.repositories.jdbc.AirportDetailsRepositoryImpl;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AirportDetailClientImpl extends ApiWebClient {
     @Autowired
-    AirportDetailsRepository airportDetailsRepository;
+    AirportDetailsRepositoryImpl airportDetailsRepositoryImpl;
 
     public AirportDetailClientImpl() {
         super(ApiMetaData.AIRPORT_DETAIL);
@@ -39,9 +40,8 @@ public class AirportDetailClientImpl extends ApiWebClient {
         String phone = getValueByKeyFromJsonObject("phone", response);
         String website = getValueByKeyFromJsonObject("website", response);
 
-        // Long searchingPlaceId = 1L;
         //----------------------------saving emergency numbers to database----------------------------
-        airportDetailsRepository.save(
+        airportDetailsRepositoryImpl.setAirportDetailsDataByCityAndCountryName(
                 new AirportDetailsTable(
                         cityName,
                         countryName,
