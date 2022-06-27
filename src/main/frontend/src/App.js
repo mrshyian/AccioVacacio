@@ -9,8 +9,7 @@ import UserPage from './components/userPage/UserPage';
 import Forum from './components/forum/Forum';
 import SearchBox from "./components/searchCity/searchBox/SearchBox";
 import SearchCity from "./components/searchCity/searchCity";
-import { Outlet, Link } from "react-router-dom";
-import {logDOM} from "@testing-library/react";
+import {Outlet} from "react-router-dom";
 
 function App() {
     const [currentPage, setCurrentPage] = useState(availiablePages.travelHelper);
@@ -64,13 +63,11 @@ function App() {
     const pageToDisplay = getPageToDisplay();
 
     return (
-
         <div style={{ textAlign: 'center' }}>
             {/*<Link to="/forum">Foruum</Link>*/}
             <Header setPage={setCurrentPage}/>
-            {pageToDisplay}
-            {/*<Outlet />*/}
-
+            {/*{pageToDisplay}*/}//nie działa bo jest nie używane
+            <Outlet />
         </div>
     );
 }

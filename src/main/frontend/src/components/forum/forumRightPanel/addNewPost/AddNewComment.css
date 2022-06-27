@@ -1,0 +1,27 @@
+textarea {
+    margin-left: 10%;
+    border: 1px solid whitesmoke;
+    margin-right: 10%;
+    border-radius: 7px ;
+
+    background: transparent;
+    color: whitesmoke;
+    /*resize: none;*/
+
+    width: 100%;
+    font-size: 5em;
+    /*outline: none;*/
+    height: 100%;
+    position: relative;
+}
+
+
+
+.text-container {
+
+    background: #4492E0;
+    padding: 20px;
+    height: 50%;
+    width: 50%;
+    position: relative;
+}

@@ -24,52 +24,68 @@ const Header = (props) => {
         <div>
             <Navbar bg="dark" variant="dark">
                 <Container fluid>
+                    <Link style={{textDecoration: "none"}} to="/travelHelper">
                     <Navbar.Brand
                         style={{ cursor: 'pointer' }}
-                        onClick={() => props.setPage(availiablePages.travelHelper)}
+                        // onClick={() => props.setPage(availiablePages.travelHelper)}
                     >
                         Travel Helper
                     </Navbar.Brand>
+                    </Link>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                            <Button variant="outline-warning" onClick={() => props.setPage(availiablePages.myProfile)}>
-                                My Profile
-                            </Button>
-                            <Button
-                                variant="outline-warning"
-                                onClick={() => props.setPage(availiablePages.forum)}
-                                style={{ marginLeft: '5px' }}
+                            <Link to="/userpage" target="_blank">
+                                <Button
+                                    variant="outline-warning"
+                                    style={{ marginLeft: '5px' }}
+                                >
+                                    My Profile
+                                </Button>
+                            </Link>
+                            <Link to="/forum" >
+                                <Button
+                                    variant="outline-warning"
+                                    style={{ marginLeft: '5px' }}
+                                >
+                                    Forum
+                                </Button>
+                            </Link>
+                            {/*<Button*/}
+                            {/*    variant="outline-warning"*/}
+                            {/*    onClick={() => props.setPage(availiablePages.searchBox)}*/}
+                            {/*    style={{ marginLeft: '5px' }}*/}
+                            {/*>*/}
+                            {/*    Search City*/}
+                            {/*</Button>*/}
 
-                            >
-                                Forum
-                            </Button>
-                            <Button
-                                variant="outline-warning"
-                                onClick={() => props.setPage(availiablePages.searchBox)}
-                                style={{ marginLeft: '5px' }}
-                            >
-                                Search City
-                            </Button>
-                            <Button
-                                variant="outline-warning"
-                                style={{ marginLeft: '5px' }}
-                            >
-                                <Link to="/forum">Forum</Link>
-                            </Button>
-                            <Button
-                                variant="outline-warning"
-                                style={{ marginLeft: '5px' }}
-                            >
-                                <Link to="/userpage">userpage</Link>
-                            </Button>
-                            <Button
-                                variant="outline-warning"
-                                style={{ marginLeft: '5px' }}
-                                onClick={ refreshPage}
-                            >
-                                userpage
-                            </Button>
+                            <Link to="/searchCity">
+                                <Button
+                                    variant="outline-warning"
+                                    style={{ marginLeft: '5px' }}
+                                >
+                                    Search City
+                                </Button>
+                            </Link>
+
+                            {/*<Link to="/forum">*/}
+                            {/*<Button*/}
+                            {/*    variant="outline-warning"*/}
+                            {/*    style={{ marginLeft: '5px' }}*/}
+                            {/*>*/}
+                            {/*    Forum*/}
+                            {/*</Button>*/}
+                            {/*</Link>*/}
+
+                            {/*<Link to="/userpage">*/}
+                            {/*<Button*/}
+                            {/*    variant="outline-warning"*/}
+                            {/*    style={{ marginLeft: '5px' }}*/}
+                            {/*>*/}
+                            {/*    My Profile*/}
+                            {/*</Button>*/}
+                            {/*</Link>*/}
+
 
 
 
