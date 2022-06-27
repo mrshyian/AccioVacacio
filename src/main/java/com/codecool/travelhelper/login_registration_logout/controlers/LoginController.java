@@ -1,7 +1,7 @@
-package com.codecool.travelhelper.loginAndRegistration.controlers;
+package com.codecool.travelhelper.login_registration_logout.controlers;
 
-import com.codecool.travelhelper.aws.database.models.MyUserTable;
-import com.codecool.travelhelper.loginAndRegistration.webclients.RegistrationImpl;
+
+import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
@@ -14,24 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class RegistrationController {
+public class LoginController {
 
     @Autowired
-    RegistrationImpl registrationImpl;
+    LoginImpl loginImpl;
 
-
-
-    @PostMapping("/registration")
-    public void registration(@RequestBody String data){
+    @PostMapping("/login")
+    public void login(@RequestBody String data){
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(data);
-        String fullName = commentJsonObject.get("fullName").getAsString();
-        String nickName = commentJsonObject.get("nickName").getAsString();
-        String birthday = commentJsonObject.get("birthday").getAsString();
         String email = commentJsonObject.get("email").getAsString();
         String password = commentJsonObject.get("password").getAsString();
 
-
-        registrationImpl.saveNewUserToDB(fullName, nickName, birthday, email, password);
+        loginImpl.findUser(email, password);
     }
 }
