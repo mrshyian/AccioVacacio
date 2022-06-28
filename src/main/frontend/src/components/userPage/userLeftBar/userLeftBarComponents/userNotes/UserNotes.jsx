@@ -20,9 +20,9 @@ function fetchNoteText() {
 
 
 const UserNotes = () => {
-    console.log(text)
-    const [noteText, setNoteText] = useState(text)
+
     fetchNoteText();
+    const [noteText, setNoteText] = useState(text)
 
 
     function textInCenter() {
@@ -98,13 +98,16 @@ const UserNotes = () => {
                             <Button variant="warning" className="save-note-button"
                                     onClick={(e) => submit(e)}>Save</Button>
                         </Card.Header>
-                    </Card>
-                    <input
-                        id="note-input-id"
-                        className="note-input"
-                        type="textarea"
-                        value={noteText}
-                        onChange={(e) => setNoteText(e.target.value)}/>
+                        </Card>
+                    <InputGroup>
+                        <FormControl
+                            id="note-input-id"
+                            className="note-input"
+                            as="textarea"
+                            aria-label="With textarea"
+                            value={noteText}
+                            onChange={(e) => setNoteText(e.target.value)}/>
+                    </InputGroup>
                 </Card.Text>
             </Card.Body>
         </Card>
