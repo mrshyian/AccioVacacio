@@ -1,11 +1,8 @@
-import React, {useState} from 'react';
-import {Button, Card} from "react-bootstrap";
+import React from 'react';
+import {Card} from "react-bootstrap";
 import "./ForumRightPanel.css"
 import SinglePost from "./singlePost/SinglePost";
-import {FaCommentDots} from "react-icons/fa";
-import NewPostModal from "../../modals/newPostModal/NewPostModal";
-import SingleComment from "./singleComment/SingleComment";
-// import {useState} from "@types/react";
+
 
 const ForumRightPanel = (props) => {
 

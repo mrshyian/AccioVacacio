@@ -8,7 +8,7 @@ import {availiablePages} from './types/index';
 import UserPage from './components/userPage/UserPage';
 import Forum from './components/forum/Forum';
 import SearchBox from "./components/searchCity/searchBox/SearchBox";
-import SearchCity from "./components/searchCity/searchCity";
+import SearchCity from "./components/searchCity/SearchCity";
 import {Outlet} from "react-router-dom";
 
 function App() {

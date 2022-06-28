@@ -14,7 +14,7 @@ import {useLocation, useParams} from "react-router-dom";
 
 
 const SearchCity = (props) => {
-
+    console.log("jestem w searchCity")
     const [news, setNews] = useState([]);
     const [IATACode, setIATACode] = useState("WMI");
     const [weather, setWeather] = useState("");
@@ -22,53 +22,54 @@ const SearchCity = (props) => {
     const [livingCosts, setLivingCosts] = useState([]);
     const [crimeRating, setCrimeRating] = useState([]);
     const [attractions, setAttractions] = useState([]);
-    const {type} = useParams();
-    const stateParam = useLocation().state.city;
-    console.log(type);
-    console.log(stateParam);
+    const {handle} = useParams()
+    const location = useLocation()
+    // const {dupa} =
+    const country = location.state.country;
+    const city = location.state.city;
 
     const fetchLivingCosts = () => {
 
-        axios.get(`http://localhost:8080/living-costs/${props.city}/${props.country}`)
+        axios.get(`http://localhost:8080/living-costs/${city}/${country}`)
             .then(res =>{setLivingCosts(res.data);
                 console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 
     const fetchNewsWorld = () => {
-        axios.get(`http://localhost:8080/news/${props.city}/${props.country}`)
+        axios.get(`http://localhost:8080/news/${city}/${country}`)
             .then(res =>{setNews(res.data);
                 console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 
     const fetchIATACode = () => {
-        axios.get(`http://localhost:8080/airport/${props.city}/${props.country}`)
+        axios.get(`http://localhost:8080/airport/${city}/${country}`)
             .then(res =>{setIATACode(res.data.airportCode);})
             .catch(err => {console.log(err)});
     };
 
     const fetchWeather = () => {
-        axios.get(`http://localhost:8080/weather/${props.city}/${props.country}`)
+        axios.get(`http://localhost:8080/weather/${city}/${country}`)
             .then(res =>{setWeather(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchEmergencyNumbers = () => {
-        axios.get(`http://localhost:8080/emergency_numbers/${props.city}/${props.country}`)
+        axios.get(`http://localhost:8080/emergency_numbers/${city}/${country}`)
             .then(res =>{setEmergencyNumber(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchCrimeRating = () => {
-        axios.get(`http://localhost:8080/crime_rating/${props.city}/${props.country}`)
+        axios.get(`http://localhost:8080/crime_rating/${city}/${country}`)
             .then(res =>{setCrimeRating(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchAttractions = () => {
-        const countryIsoCode = getCountryIsoCode(props.country);
-        axios.get(`http://localhost:8080/attractions/${props.city}/${countryIsoCode}`)
+        const countryIsoCode = getCountryIsoCode(country);
+        axios.get(`http://localhost:8080/attractions/${city}/${countryIsoCode}`)
             .then(res =>{setAttractions(res.data);})
             .catch(err => {console.log(err)});
     };
@@ -85,15 +86,15 @@ const SearchCity = (props) => {
 
     return (
         <div>
-            <SearchingPlaceBar country={props.country} city={props.city}/>
+            <SearchingPlaceBar country={country} city={city}/>
             <div className="weather-box">
                 <WeatherBox weather={weather}/>
-                <CrimeRating crimeRating={crimeRating} city={props.city}/>
+                <CrimeRating crimeRating={crimeRating} city={city}/>
                 <EmergencyNumbers emergencyNumber={emergencyNumber}/>
             </div>
             <TouristAttractionsBox attractions={attractions}/>
             <NewsBox news={news}/>
-            <AirportDetails iata={IATACode} country={props.country} city={props.city}/>
+            <AirportDetails iata={IATACode} country={country} city={city}/>
             <LivingCoasts livingCosts={livingCosts} />
         </div>
     );

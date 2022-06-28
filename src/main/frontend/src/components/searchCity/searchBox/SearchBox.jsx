@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import ReactDOM from "react-dom/client";
 import Header from "../../header/Header";
-import SearchCity from "../searchCity";
+import SearchCity from "../SearchCity";
 import {Navbar, Container, Button, Nav} from 'react-bootstrap';
 import {availiablePages} from "../../../types";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const SearchBox = (props) => {
 
@@ -15,6 +15,7 @@ const SearchBox = (props) => {
     const [selectedState, setSelectedState] = useState();
     const [cities, setCities] = useState([]);
     const [selectedCity, setSelectedCity] = useState();
+    const navigate = useNavigate();
     // console.log(selectedState)
     // console.log(selectedCity)
     // console.log(selectedCountry)
@@ -79,14 +80,16 @@ const SearchBox = (props) => {
                             </select>
                         </div>
                         {/*<Button variant="warning" onClick={() => showData()}>Search</Button>*/}
-                        <Link to={{pathname:"/SearchCity", state:{city:"dupa"}}} >
-                            <Button
-                                variant="warning"
-                                style={{ marginLeft: '5px' }}
-                            >
-                                search
-                            </Button>
-                        </Link>
+                        <Button
+                            variant="outline-warning"
+                            style={{ marginLeft: '5px' }}
+                            onClick={()=> navigate("/SearchCity", {state: {
+                                    city: selectedCity,
+                                    country: selectedCountry
+                                }})}
+                        >
+                            send
+                        </Button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

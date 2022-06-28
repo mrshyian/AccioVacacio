@@ -1,10 +1,6 @@
 import React, {useState} from 'react';
 import Axios from "axios";
 import "./AddNewComment.css"
-import app from "../../../../App";
-import {logDOM} from "@testing-library/react";
-import {availiablePages} from "../../../../types";
-import {Link} from "react-router-dom";
 import {Button, Card} from "react-bootstrap";
 
 

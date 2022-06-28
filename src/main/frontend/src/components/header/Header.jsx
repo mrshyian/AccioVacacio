@@ -5,7 +5,7 @@ import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import ErrorModal from '../modals/errorModals/ErrorModal';
 import {availiablePages} from '../../types/index';
-import {  Outlet, Link} from "react-router-dom";
+import {  Outlet, Link, useNavigate, useLocation} from "react-router-dom";
 import Forum from "../forum/Forum";
 
 
@@ -14,6 +14,8 @@ const Header = (props) => {
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [userIdInSession, setUserIdInSession] = useState(false);
+
+    const navigate = useNavigate();
 
     function refreshPage(){
         console.log("działa")
@@ -69,14 +71,18 @@ const Header = (props) => {
                             </Link>
 
 
-                            {/*<Link to="/forum">*/}
+
                             {/*<Button*/}
                             {/*    variant="outline-warning"*/}
                             {/*    style={{ marginLeft: '5px' }}*/}
+                            {/*    onClick={()=> navigate("/SearchCity", {state: {*/}
+                            {/*        dupa: '9000',*/}
+                            {/*            kupa: "399"*/}
+                            {/*        }})}*/}
                             {/*>*/}
-                            {/*    Forum*/}
+                            {/*    navi*/}
                             {/*</Button>*/}
-                            {/*</Link>*/}
+
 
                             {/*<Link to="/userpage">*/}
                             {/*<Button*/}

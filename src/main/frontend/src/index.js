@@ -4,7 +4,7 @@ import App from './App';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Forum from "./components/forum/Forum";
 import UserPage from "./components/userPage/UserPage";
-import SearchCity from "./components/searchCity/searchCity";
+import SearchCity from "./components/searchCity/SearchCity";
 import SearchBox from "./components/searchCity/searchBox/SearchBox";
 import AllCarousel from "./components/carousel/AllCarousel";
 

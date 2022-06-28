@@ -2,9 +2,7 @@ import React from 'react';
 import {Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
-import SingleNews from "../../../searchCity/newsBox/SingleNews";
 import AddNewComment from "../addNewPost/AddNewComment";
-import {Link} from "react-router-dom";
 
 const SinglePost = (props) => {
     return (
