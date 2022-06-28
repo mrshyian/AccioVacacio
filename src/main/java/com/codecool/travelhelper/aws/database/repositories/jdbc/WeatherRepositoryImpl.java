@@ -1,7 +1,7 @@
-package com.codecool.travelhelper.aws.database.models.repositories.jdbc;
+package com.codecool.travelhelper.aws.database.repositories.jdbc;
 
 import com.codecool.travelhelper.aws.database.models.WeatherTable;
-import com.codecool.travelhelper.aws.database.models.repositories.WeatherRepository;
+import com.codecool.travelhelper.aws.database.repositories.WeatherRepository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

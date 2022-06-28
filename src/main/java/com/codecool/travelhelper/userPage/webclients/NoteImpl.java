@@ -2,8 +2,8 @@ package com.codecool.travelhelper.userPage.webclients;
 
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.NoteTable;
-import com.codecool.travelhelper.aws.database.models.repositories.NoteRepository;
-import com.codecool.travelhelper.aws.database.models.repositories.UserRepository;
+import com.codecool.travelhelper.aws.database.repositories.NoteRepository;
+import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.loginAndRegistration.webclients.LoginImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

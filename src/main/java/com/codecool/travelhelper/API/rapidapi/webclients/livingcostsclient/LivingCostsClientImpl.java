@@ -4,7 +4,7 @@ import com.codecool.travelhelper.API.rapidapi.models.LivingCostsApiModel;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.aws.database.models.LivingCostsTable;
-import com.codecool.travelhelper.aws.database.models.repositories.jdbc.LivingCostsRepositoryImpl;
+import com.codecool.travelhelper.aws.database.repositories.jdbc.LivingCostsRepositoryImpl;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

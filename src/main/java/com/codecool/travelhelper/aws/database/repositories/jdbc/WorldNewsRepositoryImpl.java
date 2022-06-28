@@ -1,6 +1,6 @@
-package com.codecool.travelhelper.aws.database.models.repositories.jdbc;
+package com.codecool.travelhelper.aws.database.repositories.jdbc;
 
-import com.codecool.travelhelper.aws.database.models.repositories.WorldNewsRepository;
+import com.codecool.travelhelper.aws.database.repositories.WorldNewsRepository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

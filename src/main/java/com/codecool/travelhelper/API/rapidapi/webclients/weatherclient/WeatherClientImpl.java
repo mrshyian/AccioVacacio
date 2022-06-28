@@ -4,7 +4,7 @@ import com.codecool.travelhelper.API.rapidapi.models.WeatherApiModel;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.codecool.travelhelper.aws.database.models.WeatherTable;
-import com.codecool.travelhelper.aws.database.models.repositories.jdbc.WeatherRepositoryImpl;
+import com.codecool.travelhelper.aws.database.repositories.jdbc.WeatherRepositoryImpl;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

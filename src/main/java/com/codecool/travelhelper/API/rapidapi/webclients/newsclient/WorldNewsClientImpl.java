@@ -3,7 +3,7 @@ package com.codecool.travelhelper.API.rapidapi.webclients.newsclient;
 import com.codecool.travelhelper.API.rapidapi.models.WorldNewsApiModel;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
-import com.codecool.travelhelper.aws.database.models.repositories.WorldNewsRepository;
+import com.codecool.travelhelper.aws.database.repositories.WorldNewsRepository;
 import com.codecool.travelhelper.aws.database.models.WorldNewsTable;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.aws.database.models.repositories;
+package com.codecool.travelhelper.aws.database.repositories;
 
 import com.codecool.travelhelper.aws.database.models.WeatherTable;
 import org.springframework.data.jpa.repository.JpaRepository;

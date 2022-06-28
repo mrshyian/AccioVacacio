@@ -31,8 +31,9 @@ public class PlacesWantToGoTable {
 //------------------------------------------------
 
 
-    public PlacesWantToGoTable(String country, String city) {
+    public PlacesWantToGoTable(String country, String city, MyUserTable myUserTable) {
         this.country = country;
         this.city = city;
+        this.myUserTable = myUserTable;
     }
 }

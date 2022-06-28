@@ -1,22 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Modal, Form} from "react-bootstrap";
 import axios from "axios";
 
 
-const PlaceWantToGoModal = () => {
-
+const PlaceWantToGoModal = (props) => {
+    useEffect(()=>{
+        setShowLoginModal(props.visible)
+    }, [])
     const [country, setCountry] = useState("")
     const [city, setCity] = useState("")
 
     console.log("country->" + country)
     console.log("city->" + city)
 
-    const [showLoginModal, setShowLoginModal] = useState(true);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const handleCloseLoginModal = () => setShowLoginModal(false);
 
 
     const sendDataToServer = () => {
-        const url = "http://localhost:8080/place_want_to_go";
+        const url = "http://localhost:8080/placewanttogo";
         axios.post(url,{
             country: country,
             city: city
@@ -42,7 +44,7 @@ const PlaceWantToGoModal = () => {
                             value={country}
                             onChange={e=> setCountry(e.target.value)}
                             type="text"
-                            placeholder="Poland"
+                            placeholder="for example Poland"
                             autoFocus
                         />
                     </Form.Group>
@@ -54,7 +56,7 @@ const PlaceWantToGoModal = () => {
                             value={city}
                             onChange={e=> setCity(e.target.value)}
                             type="text"
-                            placeholder="Warsaw"/>
+                            placeholder="for example Warsaw"/>
                     </Form.Group>
                 </Form>
             </Modal.Body>
