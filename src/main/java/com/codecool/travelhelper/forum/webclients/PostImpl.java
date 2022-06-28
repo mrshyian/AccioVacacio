@@ -1,8 +1,7 @@
 package com.codecool.travelhelper.forum.webclients;
 
-import com.codecool.travelhelper.aws.database.models.CommentsTable;
+
 import com.codecool.travelhelper.aws.database.models.PostTable;
-import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -4,23 +4,14 @@ import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import ErrorModal from '../modals/errorModals/ErrorModal';
-import {availiablePages} from '../../types/index';
-import {  Outlet, Link, useNavigate, useLocation} from "react-router-dom";
-import Forum from "../forum/Forum";
+import {Link} from "react-router-dom";
 
 
-const Header = (props) => {
+const Header = () => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [userIdInSession, setUserIdInSession] = useState(false);
-
-    const navigate = useNavigate();
-
-    function refreshPage(){
-        console.log("działa")
-        window.location.reload();
-    }
 
     return (
         <div>
@@ -29,7 +20,6 @@ const Header = (props) => {
                     <Link style={{textDecoration: "none"}} to="/">
                     <Navbar.Brand
                         style={{ cursor: 'pointer' }}
-                        // onClick={() => props.setPage(availiablePages.travelHelper)}
                     >
                         Travel Helper
                     </Navbar.Brand>
@@ -53,14 +43,6 @@ const Header = (props) => {
                                     Forum
                                 </Button>
                             </Link>
-                            {/*<Button*/}
-                            {/*    variant="outline-warning"*/}
-                            {/*    onClick={() => props.setPage(availiablePages.searchBox)}*/}
-                            {/*    style={{ marginLeft: '5px' }}*/}
-                            {/*>*/}
-                            {/*    Search City*/}
-                            {/*</Button>*/}
-
                             <Link to="/SearchBox">
                                 <Button
                                     variant="outline-warning"
@@ -69,33 +51,6 @@ const Header = (props) => {
                                     Search City
                                 </Button>
                             </Link>
-
-
-
-                            {/*<Button*/}
-                            {/*    variant="outline-warning"*/}
-                            {/*    style={{ marginLeft: '5px' }}*/}
-                            {/*    onClick={()=> navigate("/SearchCity", {state: {*/}
-                            {/*        dupa: '9000',*/}
-                            {/*            kupa: "399"*/}
-                            {/*        }})}*/}
-                            {/*>*/}
-                            {/*    navi*/}
-                            {/*</Button>*/}
-
-
-                            {/*<Link to="/userpage">*/}
-                            {/*<Button*/}
-                            {/*    variant="outline-warning"*/}
-                            {/*    style={{ marginLeft: '5px' }}*/}
-                            {/*>*/}
-                            {/*    My Profile*/}
-                            {/*</Button>*/}
-                            {/*</Link>*/}
-
-
-
-
                         </Nav>
 
                         {userIdInSession === true ? (

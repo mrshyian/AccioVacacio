@@ -1,13 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import ReactDOM from "react-dom/client";
-import Header from "../../header/Header";
-import SearchCity from "../SearchCity";
-import {Navbar, Container, Button, Nav} from 'react-bootstrap';
-import {availiablePages} from "../../../types";
-import {Link, useNavigate} from "react-router-dom";
+import {Button, Container, Nav, Navbar} from 'react-bootstrap';
+import {useNavigate} from "react-router-dom";
 
-const SearchBox = (props) => {
+const SearchBox = () => {
 
     const [data, setData] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState();
@@ -16,9 +12,6 @@ const SearchBox = (props) => {
     const [cities, setCities] = useState([]);
     const [selectedCity, setSelectedCity] = useState();
     const navigate = useNavigate();
-    // console.log(selectedState)
-    // console.log(selectedCity)
-    // console.log(selectedCountry)
     useEffect(() => {
         axios.get("https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json")
             .then(res => setData(res.data))
@@ -32,27 +25,18 @@ const SearchBox = (props) => {
         let states = data.filter(state => state.country === e.target.value);
         states = [...new Set(states.map(item => item.subcountry))].sort();
         setState(states);
-
-
     }
 
     const handleState = (e) => {
         setSelectedState(e.target.value)
         let cities = data.filter(city => city.subcountry === e.target.value);
         setCities(cities);
-
     }
 
     const handleCity = (e) => {
         setSelectedCity(e.target.value)
-        // console.log()
-        // console.log()
     }
 
-    function showData(){
-
-        // return <SearchCity country={selectedCountry} city={selectedCity}/>
-    }
 
     return (
         <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "15%"}}>
@@ -79,7 +63,6 @@ const SearchBox = (props) => {
                                 {cities.map(items => <option key={items.name}>{items.name}</option>)}
                             </select>
                         </div>
-                        {/*<Button variant="warning" onClick={() => showData()}>Search</Button>*/}
                         <Button
                             variant="outline-warning"
                             style={{ marginLeft: '5px' }}
@@ -88,7 +71,7 @@ const SearchBox = (props) => {
                                     country: selectedCountry
                                 }})}
                         >
-                            send
+                            Search
                         </Button>
                     </Nav>
                 </Navbar.Collapse>

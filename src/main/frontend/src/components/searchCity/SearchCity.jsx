@@ -10,11 +10,10 @@ import CrimeRating from "./crimaRating/CrimeRating";
 import countries from "i18n-iso-countries";
 import english from "i18n-iso-countries/langs/en.json";
 import TouristAttractionsBox from "./touristAttractions/TouristAttractionsBox";
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 
-const SearchCity = (props) => {
-    console.log("jestem w searchCity")
+const SearchCity = () => {
     const [news, setNews] = useState([]);
     const [IATACode, setIATACode] = useState("WMI");
     const [weather, setWeather] = useState("");
@@ -22,9 +21,7 @@ const SearchCity = (props) => {
     const [livingCosts, setLivingCosts] = useState([]);
     const [crimeRating, setCrimeRating] = useState([]);
     const [attractions, setAttractions] = useState([]);
-    const {handle} = useParams()
     const location = useLocation()
-    // const {dupa} =
     const country = location.state.country;
     const city = location.state.city;
 
@@ -81,7 +78,7 @@ const SearchCity = (props) => {
         fetchLivingCosts();
         fetchEmergencyNumbers();
         fetchCrimeRating();
-        fetchAttractions();
+        // fetchAttractions();
     }, [])
 
     return (
