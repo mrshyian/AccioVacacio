@@ -11,7 +11,6 @@ const LoginModal = (props) => {
 
     const [showLoginModal, setShowLoginModal] = useState(true);
     const handleCloseLoginModal = () => setShowLoginModal(false);
-    const handleShowLoginModal = () => setShowLoginModal(true);
 
     const getUserIdFromSession = () => {
         if (ReactSession.get("userId")!== null){
