@@ -3,14 +3,11 @@ package com.codecool.travelhelper.API.rapidapi.webclients.crimeratingclient;
 import com.codecool.travelhelper.API.rapidapi.models.CrimeRatingApiModel;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
-import com.codecool.travelhelper.aws.database.repositories.CrimeRatingRepository;
 import com.codecool.travelhelper.aws.database.models.CrimeRatingTable;
-import com.codecool.travelhelper.aws.database.repositories.jdbc.CrimeRatingRepositoryImpl;
+import com.codecool.travelhelper.aws.database.models.repositories.jdbc.CrimeRatingRepositoryImpl;
 import com.google.gson.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;

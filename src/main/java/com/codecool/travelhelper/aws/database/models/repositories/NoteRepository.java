@@ -1,0 +1,13 @@
+package com.codecool.travelhelper.aws.database.models.repositories;
+
+import com.codecool.travelhelper.aws.database.models.NoteTable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface NoteRepository extends JpaRepository<NoteTable, Long> {
+    Optional<NoteTable> findAllByMyUserTableId(Long userId);
+
+}

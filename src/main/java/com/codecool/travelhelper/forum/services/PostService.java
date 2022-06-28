@@ -1,9 +1,7 @@
 package com.codecool.travelhelper.forum.services;
 
-import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
-import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
-import com.codecool.travelhelper.aws.database.repositories.PostRepository;
+import com.codecool.travelhelper.aws.database.models.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

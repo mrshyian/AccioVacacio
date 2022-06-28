@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.aws.database.repositories;
+package com.codecool.travelhelper.aws.database.models.repositories;
 
 import com.codecool.travelhelper.aws.database.models.WorldNewsTable;
 import org.springframework.data.jpa.repository.JpaRepository;
