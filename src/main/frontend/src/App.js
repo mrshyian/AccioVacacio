@@ -65,7 +65,7 @@ function App() {
     return (
         <div style={{ textAlign: 'center' }}>
             {/*<Link to="/forum">Foruum</Link>*/}
-            <Header setPage={setCurrentPage}/>
+            <Header setCountry={setSelectedCountry} setCity={setSelectedCity} setPage={setCurrentPage}/>
             {/*{pageToDisplay}*/}{/*//nie działa bo jest nie używane*/}
             <Outlet />
         </div>

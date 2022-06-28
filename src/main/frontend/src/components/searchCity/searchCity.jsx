@@ -10,6 +10,7 @@ import CrimeRating from "./crimaRating/CrimeRating";
 import countries from "i18n-iso-countries";
 import english from "i18n-iso-countries/langs/en.json";
 import TouristAttractionsBox from "./touristAttractions/TouristAttractionsBox";
+import {useLocation, useParams} from "react-router-dom";
 
 
 const SearchCity = (props) => {
@@ -21,6 +22,10 @@ const SearchCity = (props) => {
     const [livingCosts, setLivingCosts] = useState([]);
     const [crimeRating, setCrimeRating] = useState([]);
     const [attractions, setAttractions] = useState([]);
+    const {type} = useParams();
+    const stateParam = useLocation().state.city;
+    console.log(type);
+    console.log(stateParam);
 
     const fetchLivingCosts = () => {
 

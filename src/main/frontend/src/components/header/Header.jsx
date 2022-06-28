@@ -59,7 +59,7 @@ const Header = (props) => {
                             {/*    Search City*/}
                             {/*</Button>*/}
 
-                            <Link to="/searchCity">
+                            <Link to="/SearchBox">
                                 <Button
                                     variant="outline-warning"
                                     style={{ marginLeft: '5px' }}
@@ -67,6 +67,7 @@ const Header = (props) => {
                                     Search City
                                 </Button>
                             </Link>
+
 
                             {/*<Link to="/forum">*/}
                             {/*<Button*/}

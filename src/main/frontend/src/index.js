@@ -16,7 +16,8 @@ root.render(
               <Route path="/" element={<App/>}>
                   <Route path="/forum" element={<Forum />}/>
                   <Route path="/userpage" element={<UserPage />}/>
-                  <Route path="/searchCity" element={<SearchBox />}/>
+                  <Route path="/SearchBox" element={<SearchBox />}/>
+                  <Route path="/SearchCity" element={<SearchCity />}/>
                   <Route path="/" element={<AllCarousel />}/>
               </Route>
           </Routes>
