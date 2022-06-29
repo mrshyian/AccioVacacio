@@ -2,6 +2,7 @@ package com.codecool.travelhelper.aws.database.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @Entity(name = "PostTable")
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class PostTable {

@@ -1,19 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
-import SingleNews from "../../../searchCity/newsBox/SingleNews";
-import AddNewComment from "../AddNewComment";
-import {availiablePages} from "../../../../types";
+import AddNewComment from "../addNewPost/AddNewComment";
 
 const SinglePost = (props) => {
-
-    const [currentPage, setCurrentPage] = useState(availiablePages.forum);
-
-    useEffect(() =>{
-        props.setPage(currentPage)
-    }, [])
-
     return (
         <Card
             bg="dark"
@@ -30,6 +21,7 @@ const SinglePost = (props) => {
                             <p>Sebastian Ryndak</p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
                         <p>{props.post.postDateTime}</p>
+
             </Card.Header>
             <Card.Body>
                 <Card.Text>
@@ -44,7 +36,7 @@ const SinglePost = (props) => {
                         <SingleComment key={index} comments={comment}/>
                     )
                 })}
-                <AddNewComment setPage={setCurrentPage}/>
+                <AddNewComment />
             </Card.Footer>
         </Card>
     );

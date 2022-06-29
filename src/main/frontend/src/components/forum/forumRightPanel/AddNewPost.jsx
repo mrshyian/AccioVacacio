@@ -22,8 +22,14 @@ function AddNewPost() {
         console.log(newData)
     }
 
+    function refreshPage(){
+        console.log("działa")
+        window.location.reload();
+    }
+
     function submit(e){
         handleClose();
+        refreshPage();
         e.preventDefault();
         console.log("submit działa")
         Axios.post(url, {
