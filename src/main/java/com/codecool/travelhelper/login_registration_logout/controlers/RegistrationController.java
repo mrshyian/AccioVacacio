@@ -1,7 +1,6 @@
-package com.codecool.travelhelper.loginAndRegistration.controlers;
+package com.codecool.travelhelper.login_registration_logout.controlers;
 
-import com.codecool.travelhelper.aws.database.models.MyUserTable;
-import com.codecool.travelhelper.loginAndRegistration.webclients.RegistrationImpl;
+import com.codecool.travelhelper.login_registration_logout.webclients.RegistrationImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,6 @@ public class RegistrationController {
 
     @Autowired
     RegistrationImpl registrationImpl;
-
 
 
     @PostMapping("/registration")

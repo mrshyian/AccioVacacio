@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import "./LoginModal.css"
 import {Button, Card, Modal, Form} from "react-bootstrap";
 import axios from "axios";
-import {ReactSession} from "react-client-session";
+
 
 const LoginModal = (props) => {
 
@@ -13,12 +13,13 @@ const LoginModal = (props) => {
     const handleCloseLoginModal = () => setShowLoginModal(false);
     const handleShowLoginModal = () => setShowLoginModal(true);
 
+
     const getUserIdFromSession = () => {
-        if (ReactSession.get("userId")!== null){
+        if (localStorage.getItem("userId") !== null){
             props.setsession(true)
         }
-
     }
+
 
     const sendDataToServer = () => {
             const url = "http://localhost:8080/login";
@@ -26,14 +27,20 @@ const LoginModal = (props) => {
                 email: email,
                 password: password,
             })
-                .then(res=>{
-                    console.log(res);
-                    getUserIdFromSession();
+                .then(()=>{
+                    fetchUserId();
                 })
             handleCloseLoginModal()
-
     }
 
+    const fetchUserId = () => {
+        axios.get("http://localhost:8080/login")
+            .then(res=> {
+                localStorage.setItem('userId', res.data)
+            })
+        .catch(err => {console.log(err)});
+        getUserIdFromSession();
+    }
 
     return (
         <Modal show={showLoginModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>

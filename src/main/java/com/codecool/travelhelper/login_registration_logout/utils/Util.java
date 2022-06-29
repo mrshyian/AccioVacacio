@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.loginAndRegistration.utils;
+package com.codecool.travelhelper.login_registration_logout.utils;
 
 import org.springframework.stereotype.Component;
 

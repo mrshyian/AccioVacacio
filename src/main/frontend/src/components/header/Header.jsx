@@ -13,6 +13,16 @@ const Header = () => {
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [userIdInSession, setUserIdInSession] = useState(false);
 
+    const sendLogoutRequest = () => {
+        const url = "http://localhost:8080/logout";
+        axios.post(url,{
+        })
+            .then(res=>{
+                console.log(res);
+            })
+    }
+
+
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -54,7 +64,7 @@ const Header = () => {
                         </Nav>
 
                         {userIdInSession === true ? (
-                            <Button variant="outline-warning">Logout</Button>
+                            <Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button>
                         ) : (
                             <span>
 								<Button
