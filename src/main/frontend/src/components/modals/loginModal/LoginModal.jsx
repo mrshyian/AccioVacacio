@@ -42,8 +42,6 @@ const LoginModal = (props) => {
         getUserIdFromSession();
     }
 
-
-
     return (
         <Modal show={showLoginModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
             <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
