@@ -26,8 +26,6 @@ const PlaceWantToGo = () => {
                     <SinglePlace country={"France"} city={"Paris"}/>
                     <SinglePlace country={"Germany"} city={"Berlin"}/>
 
-
-
                 {/*{places.map((place, index) => {*/}
                 {/*    return (*/}
                 {/*        <SinglePlace country={place.country} city={place.city} key={index}/>*/}

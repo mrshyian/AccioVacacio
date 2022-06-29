@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, FormControl, InputGroup} from "react-bootstrap";
 import {FaAlignCenter, FaAlignLeft, FaAlignRight} from 'react-icons/fa';
 import "./UserNotes.css"
@@ -6,24 +6,22 @@ import axios from "axios";
 import Axios from "axios";
 
 
-let text = "";
-
-function fetchNoteText() {
-    axios.get(`http://localhost:8080/notes`)
-        .then(res => {
-            text = res.data;
-        })
-        .catch(err => {
-            console.log(err)
-        });
-}
-
-
 const UserNotes = () => {
+    const [noteText, setNoteText] = useState("")
 
-    fetchNoteText();
-    const [noteText, setNoteText] = useState(text)
+    useEffect(() => {
+        fetchNoteText();
+    }, [])
 
+    function fetchNoteText() {
+        axios.get(`http://localhost:8080/notes`)
+            .then(res => {
+                setNoteText(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
 
     function textInCenter() {
         document.getElementById("note-input-id").classList.remove("text-in-left-side")

@@ -1,12 +1,12 @@
 package com.codecool.travelhelper.userPage.controllers;
 
+import com.codecool.travelhelper.userPage.models.PlaceWantToGoModel;
 import com.codecool.travelhelper.userPage.webclients.PlacesWantToGoImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,7 +17,12 @@ public class PlacesWantToGoController {
     PlacesWantToGoImpl placesWantToGoImpl;
 
     @PostMapping("/placewanttogo")
-    public void getPlace(@RequestBody String countryAndCity) {
+    public void setPlace(@RequestBody String countryAndCity) {
         placesWantToGoImpl.addNewPlace(countryAndCity);
+    }
+
+    @GetMapping("/placewanttogo")
+    public List<PlaceWantToGoModel> getPlace() {
+        return placesWantToGoImpl.getPlacesFromDB();
     }
 }

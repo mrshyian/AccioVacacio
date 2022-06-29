@@ -1,4 +1,4 @@
-package com.codecool.travelhelper.API.rapidapi.model.apimodel;
+package com.codecool.travelhelper.API.rapidapi.models;
 
 import lombok.Builder;
 import lombok.Getter;

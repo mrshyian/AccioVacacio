@@ -1,6 +1,6 @@
 package com.codecool.travelhelper.API.rapidapi.webclients.bingimagesearch;
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.BingImageSearch;
+import com.codecool.travelhelper.API.rapidapi.models.BingImageSearch;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.google.gson.JsonObject;
