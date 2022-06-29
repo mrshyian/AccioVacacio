@@ -2,14 +2,12 @@ import React, {useState} from 'react';
 import "./LoginModal.css"
 import {Button, Card, Modal, Form} from "react-bootstrap";
 import axios from "axios";
-import {ReactSession} from "react-client-session";
+
 
 const LoginModal = (props) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [userSessionId, setUserSessionId] = useState("")
-
 
     const [showLoginModal, setShowLoginModal] = useState(true);
     const handleCloseLoginModal = () => setShowLoginModal(false);
@@ -17,10 +15,9 @@ const LoginModal = (props) => {
 
 
     const getUserIdFromSession = () => {
-        if (ReactSession.get("userId") !== null){
+        if (localStorage.getItem("userId") !== null){
             props.setsession(true)
         }
-        console.log("Moje ID sesji "+ReactSession.get("userId"))
     }
 
 
@@ -32,20 +29,17 @@ const LoginModal = (props) => {
             })
                 .then(()=>{
                     fetchUserId();
-                    localStorage.setItem('userId', userSessionId)
-                })
-                .then(()=>{
-                    getUserIdFromSession();
                 })
             handleCloseLoginModal()
     }
 
     const fetchUserId = () => {
         axios.get("http://localhost:8080/login")
-            .then(res=>{setUserSessionId(res.data)
-            console.log("Id z fetch"+res.data)})
+            .then(res=> {
+                localStorage.setItem('userId', res.data)
+            })
         .catch(err => {console.log(err)});
-
+        getUserIdFromSession();
     }
 
 
