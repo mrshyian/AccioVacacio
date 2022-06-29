@@ -37,6 +37,7 @@ const LoginModal = (props) => {
         axios.get("http://localhost:8080/login")
             .then(res=> {
                 localStorage.setItem('userId', res.data)
+                sessionStorage.setItem("userId", res.data)
             })
         .catch(err => {console.log(err)});
         getUserIdFromSession();
