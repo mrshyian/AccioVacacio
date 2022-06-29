@@ -6,10 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +16,7 @@ public class LoginController {
     @Autowired
     LoginImpl loginImpl;
 
+
     @PostMapping("/login")
     public void login(@RequestBody String data){
         JsonParser jsonParser = new JsonParser();
@@ -27,5 +25,10 @@ public class LoginController {
         String password = commentJsonObject.get("password").getAsString();
 
         loginImpl.findUser(email, password);
+    }
+
+    @GetMapping("/login")
+    public Long sendingTheUserIDSessionToFront(){
+       return loginImpl.getCurrentUserId();
     }
 }

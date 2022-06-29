@@ -22,7 +22,6 @@ const Header = (props) => {
             .then(res=>{
                 console.log(res);
             })
-        console.log(ReactSession.get("userId"))
     }
 
 
