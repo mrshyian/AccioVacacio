@@ -35,22 +35,22 @@ public class CommentController {
         return commentService.findAll();
     }
 
-    // get user by id
-    @GetMapping("/user/{id}")
-    public ResponseEntity<MyUserTable> getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-        return commentService.findUserById(id);
-    }
-
-    // update comment by id
-    @PutMapping("/comment/{id}")
-    public ResponseEntity<CommentsTable> updateCommentById(@PathVariable(value = "id") Long id, @RequestBody CommentsTable commentsTable)
-            throws ResourceNotFoundException {
-        return commentService.updateComment(id, commentsTable);
-    }
-    // delete comment by id
-    @DeleteMapping("/comment/{id}")
-    public ResponseEntity<CommentsTable> deleteCommentById(@PathVariable(value = "id") Long id, @RequestBody CommentsTable commentsTable)
-            throws ResourceNotFoundException {
-        return commentService.deleteComment(id, commentsTable);
-    }
+//    // get user by id
+//    @GetMapping("/user/{id}")
+//    public ResponseEntity<MyUserTable> getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+//        return commentService.findUserById(id);
+//    }
+//
+//    // update comment by id
+//    @PutMapping("/comment/{id}")
+//    public ResponseEntity<CommentsTable> updateCommentById(@PathVariable(value = "id") Long id, @RequestBody CommentsTable commentsTable)
+//            throws ResourceNotFoundException {
+//        return commentService.updateComment(id, commentsTable);
+//    }
+//    // delete comment by id
+//    @DeleteMapping("/comment/{id}")
+//    public ResponseEntity<CommentsTable> deleteCommentById(@PathVariable(value = "id") Long id, @RequestBody CommentsTable commentsTable)
+//            throws ResourceNotFoundException {
+//        return commentService.deleteComment(id, commentsTable);
+//    }
 }

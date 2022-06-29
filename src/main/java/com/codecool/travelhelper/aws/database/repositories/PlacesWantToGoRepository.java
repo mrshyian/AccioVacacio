@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface PlacesWantToGoRepository extends JpaRepository<PlacesWantToGoTable, Long> {
     Optional<PlacesWantToGoTable> findByCountryAndCityAndMyUserTableId(String country, String city, Long userId);
 
-    List<PlacesWantToGoTable> findAllByMyUserTableId(Long userId);
+    List<Optional<PlacesWantToGoTable>> findAllByMyUserTableId(Long userId);
 }

@@ -6,12 +6,6 @@ import SinglePost from "./singlePost/SinglePost";
 
 const ForumRightPanel = (props) => {
 
-    // const [NewModalOpen, setNewModalOpen] = useState(false);
-    //
-    // const openModal = () =>{
-    //     setNewModalOpen(true)
-    // }
-
     return (
         <Card
             bg="dark"

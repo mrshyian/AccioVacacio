@@ -4,6 +4,7 @@ import {FaAlignCenter, FaAlignLeft, FaAlignRight} from 'react-icons/fa';
 import "./UserNotes.css"
 import axios from "axios";
 import Axios from "axios";
+import UserLeftBar from "../../UserLeftBar";
 
 
 const UserNotes = () => {
@@ -68,47 +69,51 @@ const UserNotes = () => {
 
 
     return (
-        <Card
-            bg="dark"
-            key={"dark"}
-            text={'white'}
-            className="mb-2 right">
-            <Card.Header style={{textAlign: "center", color: "orange"}}><h2>NOTE</h2></Card.Header>
-            <Card.Body>
-                <Card.Text>
-                    <Card
-                        bg="dark"
-                        key={"dark"}>
-                        <Card.Header style={{display: "flex"}}>
-                            <Button className="text-align-button" variant="outline-warning"
-                                    onClick={textInLeftSide}><FaAlignLeft/></Button>
-                            <Button className="text-align-button" variant="outline-warning"
-                                    onClick={textInCenter}><FaAlignCenter/></Button>
-                            <Button className="text-align-button" variant="outline-warning"
-                                    onClick={textInRightSide}><FaAlignRight/></Button>
-                            <Form.Select onChange={handleChange} className="note-text-size-select">
-                                <option value="note-text-size-16">16</option>
-                                <option value="note-text-size-20">20</option>
-                                <option value="note-text-size-24">24</option>
-                                <option value="note-text-size-28">28</option>
-                                <option value="note-text-size-32">32</option>
-                            </Form.Select>
-                            <Button variant="warning" className="save-note-button"
-                                    onClick={(e) => submit(e)}>Save</Button>
-                        </Card.Header>
+        <div>
+            <UserLeftBar/>
+            <Card
+                bg="dark"
+                key={"dark"}
+                text={'white'}
+                className="mb-2 right">
+                <Card.Header style={{textAlign: "center", color: "orange"}}><h2>NOTE</h2></Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        <Card
+                            bg="dark"
+                            key={"dark"}>
+                            <Card.Header style={{display: "flex"}}>
+                                <Button className="text-align-button" variant="outline-warning"
+                                        onClick={textInLeftSide}><FaAlignLeft/></Button>
+                                <Button className="text-align-button" variant="outline-warning"
+                                        onClick={textInCenter}><FaAlignCenter/></Button>
+                                <Button className="text-align-button" variant="outline-warning"
+                                        onClick={textInRightSide}><FaAlignRight/></Button>
+                                <Form.Select onChange={handleChange} className="note-text-size-select">
+                                    <option value="note-text-size-16">16</option>
+                                    <option value="note-text-size-20">20</option>
+                                    <option value="note-text-size-24">24</option>
+                                    <option value="note-text-size-28">28</option>
+                                    <option value="note-text-size-32">32</option>
+                                </Form.Select>
+                                <Button variant="warning" className="save-note-button"
+                                        onClick={(e) => submit(e)}>Save</Button>
+                            </Card.Header>
                         </Card>
-                    <InputGroup>
-                        <FormControl
-                            id="note-input-id"
-                            className="note-input"
-                            as="textarea"
-                            aria-label="With textarea"
-                            value={noteText}
-                            onChange={(e) => setNoteText(e.target.value)}/>
-                    </InputGroup>
-                </Card.Text>
-            </Card.Body>
-        </Card>
+                        <InputGroup style={{marginLeft: "-12.5%", width: "125%"}}>
+                            <FormControl
+                                id="note-input-id"
+                                className="note-input"
+                                as="textarea"
+                                aria-label="With textarea"
+                                value={noteText}
+                                onChange={(e) => setNoteText(e.target.value)}/>
+                        </InputGroup>
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        </div>
+
     );
 };
 

@@ -23,6 +23,8 @@ public class PlacesWantToGoController {
 
     @GetMapping("/placewanttogo")
     public List<PlaceWantToGoModel> getPlace() {
-        return placesWantToGoImpl.getPlacesFromDB();
+        List<PlaceWantToGoModel> places = placesWantToGoImpl.getPlacesFromDB();
+        System.out.println(places);
+        return places;
     }
 }

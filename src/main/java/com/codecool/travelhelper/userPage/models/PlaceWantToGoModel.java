@@ -1,10 +1,9 @@
 package com.codecool.travelhelper.userPage.models;
 
 
-
-import com.codecool.travelhelper.API.rapidapi.models.BingImageSearch;
-import com.codecool.travelhelper.aws.database.models.PlacesWantToGoTable;
 import lombok.*;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +12,16 @@ import lombok.*;
 @Setter
 public class PlaceWantToGoModel {
 
-    private BingImageSearch imagesUrl;
-    private PlacesWantToGoTable placesWantToGo;
+    private List<String> imagesUrl;
+    private String country;
+    private String city;
 
+    @Override
+    public String toString() {
+        return "PlaceWantToGoModel{" +
+                "imagesUrl=" + imagesUrl +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

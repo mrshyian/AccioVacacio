@@ -13,7 +13,7 @@ public class NotesController {
     NoteImpl noteImpl;
 
     @PostMapping("/notes")
-    public void getNote(@RequestBody String noteText ) {
+    public void setNote(@RequestBody String noteText ) {
         noteImpl.setNoteTextByUserId(noteText);
     }
 

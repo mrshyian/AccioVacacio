@@ -10,7 +10,6 @@ import java.util.UUID;
 
 @Entity
 @Getter
-@ToString
 @NoArgsConstructor
 public class PlacesWantToGoTable {
     @Id
@@ -35,5 +34,14 @@ public class PlacesWantToGoTable {
         this.country = country;
         this.city = city;
         this.myUserTable = myUserTable;
+    }
+
+    @Override
+    public String toString() {
+        return "PlacesWantToGoTable{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                '}';
     }
 }

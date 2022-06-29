@@ -6,14 +6,7 @@ import axios from "axios";
 import {availiablePages} from "../../types";
 
 
-const Forum = (props) => {
-
-    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-    const [currentPage, setCurrentPage] = useState(availiablePages.forum);
-
-    useEffect(() =>{
-        props.setPage(currentPage)
-    }, [])
+const Forum = () => {
 
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
@@ -42,7 +35,7 @@ const Forum = (props) => {
         <div>
             <div style={{display: "flex"}}>
                 <ForumLeftPanel/>
-                <ForumRightPanel posts={post} comments={comment} setPage={setCurrentPage}/>
+                <ForumRightPanel posts={post} comments={comment}/>
             </div>
 
         </div>

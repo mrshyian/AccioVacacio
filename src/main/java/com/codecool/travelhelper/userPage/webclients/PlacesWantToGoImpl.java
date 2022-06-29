@@ -42,9 +42,6 @@ public class PlacesWantToGoImpl {
         JsonObject cityJsonObject = (JsonObject)jsonParser.parse(countryAndCity);
         String city = cityJsonObject.get("city").getAsString();
 
-        BingImageSearchClientImpl imagesUrlClient= new BingImageSearchClientImpl();
-        BingImageSearch imagesUrl = imagesUrlClient.getImagesUrl(country + " " + city, 3);
-
         Optional<PlacesWantToGoTable> response = placesWantToGoRepository.findByCountryAndCityAndMyUserTableId(country, city, userFromDB.getId());
 
         if (response.isPresent()){
@@ -62,18 +59,19 @@ public class PlacesWantToGoImpl {
 
         Long userId = loginImpl.getCurrentUserId();
 
-        List<PlacesWantToGoTable> placesList =  placesWantToGoRepository.findAllByMyUserTableId(userId);
+        List<Optional<PlacesWantToGoTable>> placesList =  placesWantToGoRepository.findAllByMyUserTableId(userId);
 
         List<PlaceWantToGoModel> placesListWithUrl = new ArrayList<>();
 
-        for (PlacesWantToGoTable singlePlace: placesList) {
-            placesListWithUrl.add(placeBuilder(singlePlace));
+        for (Optional<PlacesWantToGoTable> singlePlace: placesList) {
+            if (singlePlace.isPresent()){
+                placesListWithUrl.add(placeBuilder(singlePlace.get()));
+            }
         }
         return placesListWithUrl;
     }
 
     public PlaceWantToGoModel placeBuilder(PlacesWantToGoTable placeWantToGo){
-
         BingImageSearchClientImpl imagesUrlClient= new BingImageSearchClientImpl();
         BingImageSearch imagesUrl = imagesUrlClient.getImagesUrl(
                 placeWantToGo.getCountry() + " " + placeWantToGo.getCity(),
@@ -81,8 +79,9 @@ public class PlacesWantToGoImpl {
         );
 
         return PlaceWantToGoModel.builder()
-                .placesWantToGo(placeWantToGo)
-                .imagesUrl(imagesUrl)
+                .imagesUrl(imagesUrl.getImgUrls())
+                .country(placeWantToGo.getCountry())
+                .city(placeWantToGo.getCity())
                 .build();
     }
 
