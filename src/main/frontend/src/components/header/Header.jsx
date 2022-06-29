@@ -5,6 +5,7 @@ import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import ErrorModal from '../modals/errorModals/ErrorModal';
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 
 const Header = () => {

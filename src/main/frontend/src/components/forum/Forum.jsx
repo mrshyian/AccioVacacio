@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Header from "../header/Header";
 import ForumLeftPanel from "./forumleftpanel/ForumLeftPanel";
 import ForumRightPanel from "./forumRightPanel/ForumRightPanel";
 import axios from "axios";
