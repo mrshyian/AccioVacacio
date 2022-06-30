@@ -20,6 +20,7 @@ const AddNewAlbumModal = (props) => {
 
 
     const sendDataToServer = () => {
+        window.location.reload();
         const url = "http://localhost:8080/albumsfromtrips";
         axios.post(url,{
             country: country,

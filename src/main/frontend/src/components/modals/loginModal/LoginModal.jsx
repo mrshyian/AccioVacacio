@@ -21,6 +21,7 @@ const LoginModal = (props) => {
 
 
     const sendDataToServer = () => {
+        window.location.reload();
             const url = "http://localhost:8080/login";
             axios.post(url,{
                 email: email,

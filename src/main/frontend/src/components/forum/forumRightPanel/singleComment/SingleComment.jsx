@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Card, Image} from "react-bootstrap";
 import "./SingleComment.css"
 import {FaHeart} from "react-icons/fa";
@@ -22,6 +22,8 @@ const SingleComment = (props) => {
                 <Card.Text style={{color: "white"}}>
 
                     {props.comments.commentText}
+
+
 
                     <p><Image rounded="true" fluid="true" className="addImage" src="https://cdn.icon-icons.com/icons2/2184/PNG/512/healthy_strength_strong_health_heart_icon_133538.png" alt=""/></p>
                 </Card.Text>
