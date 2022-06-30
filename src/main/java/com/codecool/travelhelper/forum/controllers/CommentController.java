@@ -53,9 +53,9 @@ public class CommentController {
     }
 
     @GetMapping("/comment_user")
-    public MyUserTable getUserForComments(){
-        Long userId = loginImpl.getCurrentUserId();
-        return userRepository.findMyUserTableById(userId);
+    public List<MyUserTable> getUserForComments(){
+//        Long userId = loginImpl.getCurrentUserId();
+        return userRepository.findAll();
     }
 
 //    // get user by id

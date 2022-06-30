@@ -5,7 +5,7 @@ import "./SinglePost.css"
 import AddNewComment from "../addNewPost/AddNewComment";
 
 const SinglePost = (props) => {
-    // console.log(props.post)
+    // console.log(props.user)
     // console.log(props.comments)
 
     return (

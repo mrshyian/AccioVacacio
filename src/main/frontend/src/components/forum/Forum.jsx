@@ -44,6 +44,7 @@ const Forum = () => {
             <div style={{display: "flex"}}>
                 <ForumLeftPanel/>
                 <ForumRightPanel user={user} posts={post} comments={comment}/>
+
             </div>
 
         </div>
