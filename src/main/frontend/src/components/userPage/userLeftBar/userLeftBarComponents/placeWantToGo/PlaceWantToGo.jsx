@@ -36,8 +36,8 @@ const PlaceWantToGo = (props) => {
                 text={'white'}
                 className="mb-2">
                 <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Places want to go</h2><Button
-                    variant="warning" onClick={() => {
-                    setModalOpen(true);
+                    variant="warning"
+                    onClick={() => {setModalOpen(true);
                 }}>Add place</Button></Card.Header>
                 <Card.Body style={{display: "flex", flexWrap: "wrap"}}>
 

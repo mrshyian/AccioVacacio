@@ -10,8 +10,6 @@ const PlaceWantToGoModal = (props) => {
     const [country, setCountry] = useState("")
     const [city, setCity] = useState("")
 
-    console.log("country->" + country)
-    console.log("city->" + city)
 
     const [showLoginModal, setShowLoginModal] = useState(false);
     const handleCloseLoginModal = () => setShowLoginModal(false);

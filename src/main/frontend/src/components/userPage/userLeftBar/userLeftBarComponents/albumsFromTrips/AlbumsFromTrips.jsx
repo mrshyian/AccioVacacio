@@ -1,10 +1,15 @@
-import React from 'react';
-import {Card} from "react-bootstrap";
+import React, {useState} from 'react';
+import {Button, Card} from "react-bootstrap";
 import UserLeftBar from "../../UserLeftBar";
 import SingleAlbum from "./singleAlbum/SingleAlbum";
 import "./AlbumsFromTrips.css"
 
+import AddNewAlbumModal from "../../../../modals/addNewAlbumModal/AddNewAlbumModal";
+
 const AlbumsFromTrips = () => {
+
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
         <div>
             <UserLeftBar/>
@@ -13,7 +18,13 @@ const AlbumsFromTrips = () => {
                 key={"dark"}
                 text={'white'}
                 className="mb-2 right">
-                <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Photo albums</h2></Card.Header>
+                <Card.Header style={{textAlign: "center", color: "orange"}}>
+                    <h2>Photo albums</h2>
+                    <Button
+                        style={{marginLeft: "80%"}}
+                        variant={"warning"}
+                        onClick={() => {setModalOpen(true)}}>Add new album</Button>
+                </Card.Header>
                 <Card.Body>
                     <Card.Text className="albums-box">
                         <SingleAlbum
@@ -51,6 +62,7 @@ const AlbumsFromTrips = () => {
                     </Card.Text>
                 </Card.Body>
             </Card>
+            {modalOpen && <AddNewAlbumModal visible={modalOpen}/>}
         </div>
     );
 };
