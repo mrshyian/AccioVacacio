@@ -83,13 +83,6 @@ function AddNewPost() {
                 </Modal.Footer>
             </Modal>
         </>
-        // <div>
-        //     <form onSubmit={(e) => submit(e)}>
-        //         <input onChange={(e) => handle(e)} id="topic" value={data.topic} placeholder="topic" type="text"/>
-        //         <input onChange={(e) => handle(e)} id="postText" value={data.postText} placeholder="text" type="text"/>
-        //         <button type="submit">submit</button>
-        //     </form>
-        // </div>
     );
 }
 export default AddNewPost;

@@ -23,11 +23,6 @@ const ForumRightPanel = (props) => {
                             <SinglePost post={singlePost} comments={props.comments} key={index}/>
                         )
                     })}
-
-                    {/*<SinglePost comments={props.comments}/>*/}
-                    {/*<Button variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</Button>*/}
-                    {/*{NewModalOpen && <NewPostModal open={NewModalOpen}/>}*/}
-                    {/*{props.comments.city}*/}
                 </Card.Text>
             </Card.Body>
         </Card>
