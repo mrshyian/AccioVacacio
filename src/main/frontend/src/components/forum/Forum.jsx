@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import Header from "../header/Header";
 import ForumLeftPanel from "./forumleftpanel/ForumLeftPanel";
 import ForumRightPanel from "./forumRightPanel/ForumRightPanel";
 import axios from "axios";
+import {availiablePages} from "../../types";
 
 
 const Forum = () => {
 
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
+
 
     const fetchComment = () => {
         axios.get(`http://localhost:8080/comments`)

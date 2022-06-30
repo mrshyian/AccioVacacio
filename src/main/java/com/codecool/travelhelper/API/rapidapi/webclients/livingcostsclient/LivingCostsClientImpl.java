@@ -3,7 +3,6 @@ package com.codecool.travelhelper.API.rapidapi.webclients.livingcostsclient;
 import com.codecool.travelhelper.API.rapidapi.models.LivingCostsApiModel;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
-import com.codecool.travelhelper.aws.database.repositories.LivingCostsRepository;
 import com.codecool.travelhelper.aws.database.models.LivingCostsTable;
 import com.codecool.travelhelper.aws.database.repositories.jdbc.LivingCostsRepositoryImpl;
 import com.google.gson.JsonObject;
