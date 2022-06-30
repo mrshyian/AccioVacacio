@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+
 import {Button, Modal, Form} from "react-bootstrap";
 import axios from "axios";
+import {useEffect, useState} from "react";
 
 
 const PlaceWantToGoModal = (props) => {

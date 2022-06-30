@@ -6,7 +6,7 @@ import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PlacesWantToGoTable;
 import com.codecool.travelhelper.aws.database.repositories.PlacesWantToGoRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
-import com.codecool.travelhelper.loginAndRegistration.webclients.LoginImpl;
+import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.codecool.travelhelper.userPage.models.PlaceWantToGoModel;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

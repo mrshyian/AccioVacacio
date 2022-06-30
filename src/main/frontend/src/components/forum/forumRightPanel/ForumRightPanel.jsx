@@ -1,7 +1,7 @@
-import React from 'react';
-import {Card} from "react-bootstrap";
+import React from "react";
 import "./ForumRightPanel.css"
 import SinglePost from "./singlePost/SinglePost";
+import {Card} from "react-bootstrap";
 
 
 const ForumRightPanel = (props) => {

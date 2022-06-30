@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {Button, Card, Image} from "react-bootstrap";
 import "./SingleComment.css"
 import {FaHeart} from "react-icons/fa";
