@@ -23,8 +23,7 @@ import java.util.Optional;
 @Transactional
 public class CommentService {
 
-    @Autowired
-    LoginImpl loginImpl;
+
 
     @Autowired
     private CommentRepository commentRepo;
@@ -37,8 +36,7 @@ public class CommentService {
 
 
     @Transactional(readOnly = true)
-    public List<CommentsTable> findAll() {
-        Long userId = loginImpl.getCurrentUserId();
+    public List<CommentsTable> findAll(Long userId) {
         List<CommentsTable> list = this.commentRepo.findAllById(Collections.singleton(userId));
         System.out.println(list);
         return list;

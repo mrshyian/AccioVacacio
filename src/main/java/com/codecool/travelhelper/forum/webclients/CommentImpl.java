@@ -29,7 +29,7 @@ public class CommentImpl {
     @Autowired
     UserRepository userRepository;
 
-    public void getComments(String comments) {
+    public void getAndSaveComments(String comments) {
         System.out.println("string");
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(comments);

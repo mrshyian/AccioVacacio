@@ -5,6 +5,8 @@ import "./SinglePost.css"
 import AddNewComment from "../addNewPost/AddNewComment";
 
 const SinglePost = (props) => {
+    // console.log(props.post)
+    // console.log(props.comments)
 
     return (
         <Card
@@ -19,7 +21,7 @@ const SinglePost = (props) => {
 
                         <p style={{ marginBottom: -20 }}>
                             <img className="imgForForum" src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE" alt="user photo"/>
-                            <p>Sebastian Ryndak  </p></p>
+                            <p>Sebastian Ryndak {} </p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
                         <p>{props.post.postDateTime}</p>
 
