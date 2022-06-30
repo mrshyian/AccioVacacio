@@ -1,0 +1,5 @@
+.albums-box{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10%;
+}

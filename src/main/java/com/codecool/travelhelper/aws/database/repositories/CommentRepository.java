@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CommentRepository extends JpaRepository<CommentsTable, Long> {
-
+//    CommentsTable updateComment(Long id, CommentsTable comment);
+//    CommentsTable deleteCommentsTablesById(Long id);
 
 }

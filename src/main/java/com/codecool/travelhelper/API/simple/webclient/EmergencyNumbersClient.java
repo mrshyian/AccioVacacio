@@ -3,7 +3,6 @@ package com.codecool.travelhelper.API.simple.webclient;
 
 import com.codecool.travelhelper.API.simple.models.EmergencyNumbersDto;
 import com.codecool.travelhelper.API.simple.webclient.dto.OpenEmergencyNumbersEmergencyNumbersDto;
-import com.codecool.travelhelper.aws.database.repositories.EmergencyNumbersRepository;
 import com.codecool.travelhelper.aws.database.models.EmergencyNumbersTable;
 import com.codecool.travelhelper.aws.database.repositories.jdbc.EmergencyNumbersRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;

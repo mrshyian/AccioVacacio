@@ -13,15 +13,7 @@ const CountryCounter = () => {
             <Card.Header style={{textAlign: "center", color: "orange"}}><h4>Country Counter</h4></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    Cos tam <br/>
-                    Cos tam <br/>
-                    Cos tam <br/>
-                    Cos tam <br/>
-                    Cos tam <br/>
-                    Cos tam <br/>
-                    Cos tam <br/>
-                    Cos tam <br/>
-                    Cos tam <br/>
+                    Cos tam
                 </Card.Text>
             </Card.Body>
         </Card>

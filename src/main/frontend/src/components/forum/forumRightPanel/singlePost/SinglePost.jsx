@@ -2,7 +2,7 @@ import React from 'react';
 import {Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
-import SingleNews from "../../../searchCity/newsBox/SingleNews";
+import AddNewComment from "../addNewPost/AddNewComment";
 
 const SinglePost = (props) => {
     return (
@@ -19,12 +19,13 @@ const SinglePost = (props) => {
                         <p style={{ marginBottom: -20 }}>
                             <img className="imgForForum" src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE" alt="user photo"/>
                             <p>Sebastian Ryndak</p></p>
-                        <h2 style={{marginTop: "auto", marginBottom: "auto"}}>Restauracja pod choinami</h2>
-                        <p>10/10/10</p>
+                        <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
+                        <p>{props.post.postDateTime}</p>
+
             </Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <h4>To jest lipa jakaś</h4>
+                    <h4>{props.post.postText}</h4>
 
                 </Card.Text>
             </Card.Body>
@@ -35,7 +36,7 @@ const SinglePost = (props) => {
                         <SingleComment key={index} comments={comment}/>
                     )
                 })}
-                {/*<SingleComment comments={props.comments}/>*/}
+                <AddNewComment />
             </Card.Footer>
         </Card>
     );

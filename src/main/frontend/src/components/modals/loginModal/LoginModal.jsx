@@ -11,7 +11,6 @@ const LoginModal = (props) => {
 
     const [showLoginModal, setShowLoginModal] = useState(true);
     const handleCloseLoginModal = () => setShowLoginModal(false);
-    const handleShowLoginModal = () => setShowLoginModal(true);
 
 
     const getUserIdFromSession = () => {
@@ -22,6 +21,7 @@ const LoginModal = (props) => {
 
 
     const sendDataToServer = () => {
+        window.location.reload();
             const url = "http://localhost:8080/login";
             axios.post(url,{
                 email: email,
@@ -37,6 +37,7 @@ const LoginModal = (props) => {
         axios.get("http://localhost:8080/login")
             .then(res=> {
                 localStorage.setItem('userId', res.data)
+                sessionStorage.setItem("userId", res.data)
             })
         .catch(err => {console.log(err)});
         getUserIdFromSession();

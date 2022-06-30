@@ -2,12 +2,14 @@ package com.codecool.travelhelper.aws.database.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity(name = "note_table")
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class NoteTable {
@@ -28,7 +30,8 @@ public class NoteTable {
 
 //---------------------------------------------------
 
-    public NoteTable(String noteText) {
+    public NoteTable(String noteText, MyUserTable myUserTable) {
         this.noteText = noteText;
+        this.myUserTable=myUserTable;
     }
 }

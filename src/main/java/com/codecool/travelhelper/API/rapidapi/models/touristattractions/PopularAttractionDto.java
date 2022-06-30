@@ -1,6 +1,6 @@
 package com.codecool.travelhelper.API.rapidapi.models.touristattractions;
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.BingImageSearch;
+import com.codecool.travelhelper.API.rapidapi.models.BingImageSearch;
 import lombok.Builder;
 import lombok.Getter;
 
