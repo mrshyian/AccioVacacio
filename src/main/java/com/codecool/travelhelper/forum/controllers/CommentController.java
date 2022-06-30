@@ -34,12 +34,14 @@ public class CommentController {
     // get comment from frontend
     @PostMapping("/comments")
     public void getNewComments(@RequestBody String commentsTable) {
+        System.out.println("POST method");
         comment.getComments(commentsTable);
     }
 
     // send list of comments to frontend
     @GetMapping("/comments")
     public List<CommentsTable> getComments() {
+        System.out.println("Get method");
         return commentService.findAll();
     }
 //
