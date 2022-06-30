@@ -32,7 +32,7 @@ const SinglePost = (props) => {
             </Card.Body>
             <Card.Footer>
                 <p>Comments:</p>
-                {props.comments.map((comment, index) => {
+                {props.post.comments.map((comment, index) => {
 
                     return (
                         <SingleComment key={index} comments={comment} />
