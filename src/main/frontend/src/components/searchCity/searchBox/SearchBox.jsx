@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import ReactDOM from "react-dom/client";
-import Header from "../../header/Header";
-import SearchCity from "../searchCity";
-import {Navbar, Container, Button, Nav} from 'react-bootstrap';
-import {availiablePages} from "../../../types";
+import {Button, Container, Nav, Navbar} from 'react-bootstrap';
+import {useNavigate} from "react-router-dom";
 
-const SearchBox = (props) => {
+const SearchBox = () => {
 
     const [data, setData] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState();
@@ -14,7 +11,7 @@ const SearchBox = (props) => {
     const [selectedState, setSelectedState] = useState();
     const [cities, setCities] = useState([]);
     const [selectedCity, setSelectedCity] = useState();
-
+    const navigate = useNavigate();
     useEffect(() => {
         axios.get("https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json")
             .then(res => setData(res.data))
@@ -39,6 +36,7 @@ const SearchBox = (props) => {
     const handleCity = (e) => {
         setSelectedCity(e.target.value)
     }
+
 
     return (
         <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "15%"}}>
@@ -65,7 +63,16 @@ const SearchBox = (props) => {
                                 {cities.map(items => <option key={items.name}>{items.name}</option>)}
                             </select>
                         </div>
-                        <Button variant="warning" onClick={() => {props.setPage(availiablePages.searchCity); props.setCountry(selectedCountry); props.setCity(selectedCity)}}>Search</Button>
+                        <Button
+                            variant="outline-warning"
+                            style={{ marginLeft: '5px' }}
+                            onClick={()=> navigate("/SearchCity", {state: {
+                                    city: selectedCity,
+                                    country: selectedCountry
+                                }})}
+                        >
+                            Search
+                        </Button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

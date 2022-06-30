@@ -2,6 +2,7 @@ package com.codecool.travelhelper.aws.database.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @Entity(name = "CommentsTable")
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class CommentsTable {
@@ -21,7 +23,7 @@ public class CommentsTable {
     @Column(name = "comment_id")
     private Long id;
 
-    private String commentTex;
+    private String commentText;
     private String commentImage;
     private String country;
     private String city;
@@ -54,7 +56,7 @@ public class CommentsTable {
 
 
     public CommentsTable(String commentTex, String commentImage, String country, String city) {
-        this.commentTex = commentTex;
+        this.commentText = commentTex;
         this.commentImage = commentImage;
         this.country = country;
         this.city = city;

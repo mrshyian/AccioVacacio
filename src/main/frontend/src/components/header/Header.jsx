@@ -4,12 +4,11 @@ import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import ErrorModal from '../modals/errorModals/ErrorModal';
-import {availiablePages} from '../../types/index';
 import axios from "axios";
-import {ReactSession} from "react-client-session";
+import {Link} from "react-router-dom";
 
 
-const Header = (props) => {
+const Header = () => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
@@ -17,44 +16,50 @@ const Header = (props) => {
 
     const sendLogoutRequest = () => {
         const url = "http://localhost:8080/logout";
-        axios.post(url,{
-        })
-            .then(res=>{
+        axios.post(url, {})
+            .then(res => {
                 console.log(res);
             })
     }
-
 
     return (
         <div>
             <Navbar bg="dark" variant="dark">
                 <Container fluid>
+                    <Link style={{textDecoration: "none"}} to="/">
                     <Navbar.Brand
                         style={{ cursor: 'pointer' }}
-                        onClick={() => props.setPage(availiablePages.travelHelper)}
                     >
                         Travel Helper
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    </Link>
+                    <Navbar.Toggle aria-controls="navbarScroll"/>
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                            <Button variant="outline-warning" onClick={() => props.setPage(availiablePages.myProfile)}>
-                                My Profile
-                            </Button>
-                            <Button
-                                variant="outline-warning"
-                                onClick={() => props.setPage(availiablePages.forum)}
-                                style={{ marginLeft: '5px' }}
-                            >
-                                Forum
-                            </Button>
-                            <Button
-                                variant="outline-warning"
-                                onClick={() => props.setPage(availiablePages.searchBox)}
-                                style={{ marginLeft: '5px' }}
-                            >
-                                Search City
-                            </Button>
+                            <Link to="/userpage">
+                                <Button
+                                    variant="outline-warning"
+                                    style={{marginLeft: '5px'}}
+                                >
+                                    My Profile
+                                </Button>
+                            </Link>
+                            <Link to="/forum">
+                                <Button
+                                    variant="outline-warning"
+                                    style={{marginLeft: '5px'}}
+                                >
+                                    Forum
+                                </Button>
+                            </Link>
+                            <Link to="/SearchBox">
+                                <Button
+                                    variant="outline-warning"
+                                    style={{marginLeft: '5px'}}
+                                >
+                                    Search City
+                                </Button>
+                            </Link>
                         </Nav>
 
                         {userIdInSession === true ? (
@@ -71,7 +76,7 @@ const Header = (props) => {
 								</Button>
 								<Button
                                     variant="outline-warning"
-                                    style={{ marginLeft: '5px' }}
+                                    style={{marginLeft: '5px'}}
                                     onClick={() => {
                                         setRegistrationModalOpen(true);
                                     }}
@@ -83,9 +88,10 @@ const Header = (props) => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {loginModalOpen && <LoginModal setsession={setUserIdInSession} open={loginModalOpen} />}
-            {registrationModalOpen && <RegistrationModal open={registrationModalOpen} />}
-            {errorModalOpen && <ErrorModal error={'tekst pomylki'} />}
+            {loginModalOpen && <LoginModal setsession={setUserIdInSession} open={loginModalOpen}/>}
+            {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
+            {errorModalOpen && <ErrorModal error={'tekst pomylki'}/>}
+
         </div>
     );
 };

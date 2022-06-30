@@ -1,6 +1,6 @@
 package com.codecool.travelhelper.API.rapidapi.webclients.touristattractions;
 
-import com.codecool.travelhelper.API.rapidapi.model.apimodel.BingImageSearch;
+import com.codecool.travelhelper.API.rapidapi.models.BingImageSearch;
 import com.codecool.travelhelper.API.rapidapi.models.touristattractions.GoogleAutocompletePlusDto;
 import com.codecool.travelhelper.API.rapidapi.models.touristattractions.PopularAttractionDto;
 import com.codecool.travelhelper.API.rapidapi.models.touristattractions.TrueWayPlacesDto;

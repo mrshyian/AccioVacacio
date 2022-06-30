@@ -4,7 +4,6 @@ package com.codecool.travelhelper.API.rapidapi.webclients.airportclient;
 import com.codecool.travelhelper.API.rapidapi.models.AirportDetailApiModel;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
-import com.codecool.travelhelper.aws.database.repositories.AirportDetailsRepository;
 import com.codecool.travelhelper.aws.database.models.AirportDetailsTable;
 import com.codecool.travelhelper.aws.database.repositories.jdbc.AirportDetailsRepositoryImpl;
 import com.google.gson.JsonObject;

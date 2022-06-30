@@ -1,8 +1,29 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Menu, MenuItem, ProSidebar, SubMenu} from "react-pro-sidebar";
-import {FaComment, FaFilter, FaHeart, FaHourglassHalf, FaGlobeAmericas, FaGlobeEurope} from "react-icons/fa";
+import {
+    FaComment,
+    FaCommentDots,
+    FaFilter,
+    FaGlobeAmericas,
+    FaGlobeEurope,
+    FaHeart,
+    FaHourglassHalf
+} from "react-icons/fa";
+import RegistrationModal from "../../modals/registrationModal/RegistrationModal";
+import {Button} from "react-bootstrap";
+// import NewPostModal from "../../modals/newPostModal/NewPostModal";
+// import {useState} from "@types/react";
+import AddNewPost from "../forumRightPanel/AddNewPost";
+// import {FiMessageCircle} from "react-icons/fi"
 
 const ForumLeftPanel = () => {
+
+    const [NewModalOpen, setNewModalOpen] = useState(false);
+
+    const openModal = () =>{
+        setNewModalOpen(true)
+    }
+
     return (
         <header>
             <ProSidebar className="sidebar" style={{height: "1000px"}}>
@@ -14,6 +35,8 @@ const ForumLeftPanel = () => {
                         <MenuItem icon={<FaGlobeEurope />}><input type="text" placeholder="City"/></MenuItem>
                     </SubMenu>
                     <MenuItem icon={<FaHeart />}>Favourite comments</MenuItem>
+                    <MenuItem variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</MenuItem>
+                    {NewModalOpen && <AddNewPost open={NewModalOpen}/>}
                 </Menu>
             </ProSidebar>
         </header>

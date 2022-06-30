@@ -1,10 +1,11 @@
-import React from 'react';
-import {Card} from "react-bootstrap";
+import React from "react";
 import "./ForumRightPanel.css"
-import SingleComment from "./singleComment/SingleComment";
 import SinglePost from "./singlePost/SinglePost";
+import {Card} from "react-bootstrap";
 
-const Right = (props) => {
+
+const ForumRightPanel = (props) => {
+
     return (
         <Card
             bg="dark"
@@ -16,7 +17,16 @@ const Right = (props) => {
             <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Forum</h2></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <SinglePost comments={props.comments}/>
+                    {props.posts.map((singlePost, index) => {
+
+                        return (
+                            <SinglePost post={singlePost} comments={props.comments} key={index}/>
+                        )
+                    })}
+
+                    {/*<SinglePost comments={props.comments}/>*/}
+                    {/*<Button variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</Button>*/}
+                    {/*{NewModalOpen && <NewPostModal open={NewModalOpen}/>}*/}
                     {/*{props.comments.city}*/}
                 </Card.Text>
             </Card.Body>
@@ -24,4 +34,4 @@ const Right = (props) => {
     );
 };
 
-export default Right;
+export default ForumRightPanel;
