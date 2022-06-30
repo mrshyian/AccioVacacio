@@ -55,12 +55,13 @@ public class CommentsTable {
 //------------------------------------------------------
 
 
-    public CommentsTable(String commentTex, String commentImage, String country, String city) {
+    public CommentsTable(String commentTex, String commentImage, String country, String city, MyUserTable myUserTable) {
         this.commentText = commentTex;
         this.commentImage = commentImage;
         this.country = country;
         this.city = city;
         this.commentDateTime = getCurrentTime();
+        this.myUserTable = myUserTable;
     }
 
     private String getCurrentTime(){
