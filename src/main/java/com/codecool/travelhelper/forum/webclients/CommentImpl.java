@@ -12,6 +12,8 @@ import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class CommentImpl {
 
@@ -33,26 +35,29 @@ public class CommentImpl {
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(comments);
         String comment = commentJsonObject.get("name").getAsString();
         String postId = commentJsonObject.get("postId").getAsString();
-        System.out.println(postId);
+
+
 
         Long userId = loginImpl.getCurrentUserId();
         MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
-//        PostTable postTable = postRepository.findPostTableById(Long.parseLong(postId));
-
-
+        Optional<PostTable> postTable = postRepository.findById(Long.parseLong(postId));
         String commentImg = "https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE";
         String country = "Poland";
         String city = "Poznan";
-
-        commentRepository.save(new CommentsTable(
-                comment,
-                commentImg,
-                country,
-                city,
-                myUserTable,
-                new PostTable()
+        postTable.ifPresent(table -> commentRepository.save(new CommentsTable(
+                        comment,
+                        commentImg,
+                        country,
+                        city,
+                        myUserTable,
+                        table
                 )
-        );
+        ));
+
+
+
+
+
     }
 
 }

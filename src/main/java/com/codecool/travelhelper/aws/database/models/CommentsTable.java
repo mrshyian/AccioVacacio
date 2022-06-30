@@ -33,7 +33,7 @@ public class CommentsTable {
 
 //---------------------------------------------------
 
-    // liked by user to user
+//    // liked by user to user
 //    @ManyToMany
 //    @JoinTable(name = "liked_comments_by_user",
 //            joinColumns = @JoinColumn(name = "user_id"),
@@ -53,7 +53,7 @@ public class CommentsTable {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name="post_id")
-    private PostTable postTable;
+    private PostTable post;
 
 //------------------------------------------------------
 
@@ -65,7 +65,7 @@ public class CommentsTable {
         this.city = city;
         this.commentDateTime = getCurrentTime();
         this.myUserTable = myUserTable;
-        this.postTable = postTable;
+        this.post = postTable;
     }
 
     private String getCurrentTime(){

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<PostTable, Long> {
 
-//    PostTable findPostTableById(Long postId);
+//    PostTable findPostTableById(Long id);
 //    PostTable findAllById(Long id);
 
 

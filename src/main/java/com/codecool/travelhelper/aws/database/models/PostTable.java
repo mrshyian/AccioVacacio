@@ -32,17 +32,17 @@ public class PostTable {
 //---------------------------------------------------
 
 
-    // liked by user to user
-    @ManyToMany
-    @JoinTable(name = "liked_posts_by_user",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "post_id"))
-    private Set<MyUserTable> likedPostByUsers = new HashSet<>();
+//    // liked by user to user
+//    @ManyToMany
+//    @JoinTable(name = "liked_posts_by_user",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "post_id"))
+//    private Set<MyUserTable> likedPostByUsers = new HashSet<>();
 
 //---------------------------------------------------
 
     // comments to post
-    @OneToMany(mappedBy = "postTable")
+    @OneToMany(mappedBy = "post")
     private List<CommentsTable> comments;
 
 //----------------------------------------------------------------------
