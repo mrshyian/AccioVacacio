@@ -5,7 +5,7 @@ import "./SinglePost.css"
 import AddNewComment from "../addNewPost/AddNewComment";
 
 const SinglePost = (props) => {
-    console.log(props.comments)
+    // console.log(props.comments)
     return (
         <Card
             bg="dark"
@@ -33,6 +33,7 @@ const SinglePost = (props) => {
             <Card.Footer>
                 <p>Comments:</p>
                 {props.comments.map((comment, index) => {
+
                     return (
                         <SingleComment key={index} comments={comment}/>
                     )

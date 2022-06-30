@@ -12,7 +12,8 @@ const Forum = () => {
 
     const fetchComment = () => {
         axios.get(`http://localhost:8080/comments`)
-            .then(res =>{setComment(res.data);})
+            .then(res =>{setComment(res.data);
+                console.log(res.data)})
         .catch(err => {console.log(err)});
     };
 

@@ -14,7 +14,6 @@ import java.util.Set;
 @Entity(name = "CommentsTable")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class CommentsTable {
 
@@ -33,11 +32,11 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // liked by user to user
-    @ManyToMany
-    @JoinTable(name = "liked_comments_by_user",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "comment_id"))
-    private Set<MyUserTable> likedByUsers = new HashSet<>();
+//    @ManyToMany
+//    @JoinTable(name = "liked_comments_by_user",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "comment_id"))
+//    private Set<MyUserTable> likedByUsers = new HashSet<>();
 
 //---------------------------------------------------
 
@@ -70,4 +69,15 @@ public class CommentsTable {
         return dateTime.format(myFormatObj);
     }
 
+    @Override
+    public String toString() {
+        return "CommentsTable{" +
+                "id=" + id +
+                ", commentText='" + commentText + '\'' +
+                ", commentImage='" + commentImage + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", commentDateTime='" + commentDateTime + '\'' +
+                '}';
+    }
 }

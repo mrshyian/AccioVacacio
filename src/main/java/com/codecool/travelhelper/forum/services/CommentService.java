@@ -5,6 +5,7 @@ import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.exceptions.ResourceNotFoundException;
+import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ import java.util.Optional;
 public class CommentService {
 
     @Autowired
+    LoginImpl loginImpl;
+
+    @Autowired
     private CommentRepository commentRepo;
 
 //    @Autowired
@@ -27,7 +31,10 @@ public class CommentService {
 
     @Transactional(readOnly = true)
     public List<CommentsTable> findAll() {
-        return this.commentRepo.findAll();
+        Long userId = loginImpl.getCurrentUserId();
+        List<CommentsTable> list = this.commentRepo.findAllByMyUserTableId(userId);
+        System.out.println(list);
+        return list;
     }
 
 //    public ResponseEntity<MyUserTable> findUserById(Long id) throws ResourceNotFoundException {
