@@ -4,7 +4,7 @@ import "./AddNewComment.css"
 import {Button, Card} from "react-bootstrap";
 
 
-function AddNewComment(props) {
+function AddNewComment() {
 
     const url = "http://localhost:8080/comments"
     const [name, setName] = useState({
@@ -15,7 +15,6 @@ function AddNewComment(props) {
         const newName = {...name}
         newName[e.target.id] = e.target.value
         setName(newName)
-        console.log(newName)
     }
 
     function submit(e){
@@ -27,7 +26,6 @@ function AddNewComment(props) {
     }
 
     function refreshPage(){
-        console.log("działa")
         window.location.reload();
     }
 
