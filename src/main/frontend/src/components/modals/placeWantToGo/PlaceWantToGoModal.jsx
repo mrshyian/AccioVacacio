@@ -24,6 +24,7 @@ const PlaceWantToGoModal = (props) => {
         })
             .then(res=>{
                 console.log(res);
+                window.location.reload();
             })
         handleCloseLoginModal()
 
