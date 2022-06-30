@@ -9,6 +9,7 @@ const Forum = () => {
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
 
+
     const fetchComment = () => {
         axios.get(`http://localhost:8080/comments`)
             .then(res =>{setComment(res.data);})

@@ -14,21 +14,15 @@ const InformationAboutUser = () => {
             style={{width: "100%"}}
         >
             <Card.Header>
-                <table>
-                    <tr>
-                        <td style={{width: "30%"}}>
-                            <ProfileImage/>
-                        </td>
-                        <td>
-                            <h3>User Name</h3>
-                        </td>
-                    </tr>
-                </table>
+                <ProfileImage/>
+                <h3>User Name</h3>
             </Card.Header>
             <Card.Body>
                 <Card.Text>
-                    Change the underlying component CSS base class name and modifier class names prefix. This is an escape hatch for working with heavily customized bootstrap css.
-                    Change the underlying component CSS base class name and modifier class names prefix. This is an escape hatch for working with heavily customized bootstrap css.
+                    Change the underlying component CSS base class name and modifier class names prefix. This is an
+                    escape hatch for working with heavily customized bootstrap css.
+                    Change the underlying component CSS base class name and modifier class names prefix. This is an
+                    escape hatch for working with heavily customized bootstrap css.
                 </Card.Text>
             </Card.Body>
             <Card.Footer>

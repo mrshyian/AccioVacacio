@@ -22,7 +22,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-//    @Autowired
+    //    @Autowired
 //    private CommentRepository commentRepository;
 //
 //    @Autowired
@@ -44,11 +44,11 @@ public class CommentController {
         System.out.println("Get method");
         return commentService.findAll();
     }
-//
+
 //    // get user by id
 //    @GetMapping("/user/{id}")
-//    public MyUserTable getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-//        return userRepository.findMyUserTableById(id);
+//    public ResponseEntity<MyUserTable> getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+//        return commentService.findUserById(id);
 //    }
 //
 //    // update comment by id
@@ -57,11 +57,10 @@ public class CommentController {
 //            throws ResourceNotFoundException {
 //        return commentService.updateComment(id, commentsTable);
 //    }
-//
 //    // delete comment by id
 //    @DeleteMapping("/comment/{id}")
-//    public CommentsTable deleteCommentById(@PathVariable(value = "id") Long id)
+//    public ResponseEntity<CommentsTable> deleteCommentById(@PathVariable(value = "id") Long id, @RequestBody CommentsTable commentsTable)
 //            throws ResourceNotFoundException {
-//        return commentRepository.deleteCommentsTablesById(id);
+//        return commentService.deleteComment(id, commentsTable);
 //    }
 }

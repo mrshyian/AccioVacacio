@@ -3,21 +3,14 @@ package com.codecool.travelhelper.API.rapidapi.webclients.weatherclient;
 import com.codecool.travelhelper.API.rapidapi.models.WeatherApiModel;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiMetaData;
 import com.codecool.travelhelper.API.rapidapi.webclients.ApiWebClient;
-import com.codecool.travelhelper.aws.database.repositories.WeatherRepository;
-import com.codecool.travelhelper.aws.database.models.AirportDetailsTable;
-import com.codecool.travelhelper.aws.database.models.CrimeRatingTable;
 import com.codecool.travelhelper.aws.database.models.WeatherTable;
 import com.codecool.travelhelper.aws.database.repositories.jdbc.WeatherRepositoryImpl;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Component
 public class WeatherClientImpl extends ApiWebClient implements WeatherClient {

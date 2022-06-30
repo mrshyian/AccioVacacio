@@ -4,8 +4,8 @@ import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import ErrorModal from '../modals/errorModals/ErrorModal';
-import {Link} from "react-router-dom";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 
 const Header = () => {
@@ -35,21 +35,21 @@ const Header = () => {
                         Travel Helper
                     </Navbar.Brand>
                     </Link>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Toggle aria-controls="navbarScroll"/>
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                            <Link to="/userpage" target="_blank">
+                            <Link to="/userpage">
                                 <Button
                                     variant="outline-warning"
-                                    style={{ marginLeft: '5px' }}
+                                    style={{marginLeft: '5px'}}
                                 >
                                     My Profile
                                 </Button>
                             </Link>
-                            <Link to="/forum" >
+                            <Link to="/forum">
                                 <Button
                                     variant="outline-warning"
-                                    style={{ marginLeft: '5px' }}
+                                    style={{marginLeft: '5px'}}
                                 >
                                     Forum
                                 </Button>
@@ -57,7 +57,7 @@ const Header = () => {
                             <Link to="/SearchBox">
                                 <Button
                                     variant="outline-warning"
-                                    style={{ marginLeft: '5px' }}
+                                    style={{marginLeft: '5px'}}
                                 >
                                     Search City
                                 </Button>
@@ -78,7 +78,7 @@ const Header = () => {
 								</Button>
 								<Button
                                     variant="outline-warning"
-                                    style={{ marginLeft: '5px' }}
+                                    style={{marginLeft: '5px'}}
                                     onClick={() => {
                                         setRegistrationModalOpen(true);
                                     }}
@@ -90,9 +90,9 @@ const Header = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {loginModalOpen && <LoginModal setsession={setUserIdInSession} open={loginModalOpen} />}
-            {registrationModalOpen && <RegistrationModal open={registrationModalOpen} />}
-            {errorModalOpen && <ErrorModal error={'tekst pomylki'} />}
+            {loginModalOpen && <LoginModal setsession={setUserIdInSession} open={loginModalOpen}/>}
+            {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
+            {errorModalOpen && <ErrorModal error={'tekst pomylki'}/>}
 
         </div>
     );
