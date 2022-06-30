@@ -3,25 +3,29 @@ import {Button, Card} from "react-bootstrap";
 import PlaceWantToGoModal from "../../../../modals/placeWantToGo/PlaceWantToGoModal";
 import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
+import SinglePlace from "./SinglePlace";
 
 
 const PlaceWantToGo = (props) => {
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [places, setPlaces] = useState([])
-
-    console.log(places)
+    const [places, setPlaces] = useState([]);
 
     const getPlacesFromDB = () => {
         axios.get(`http://localhost:8080/placewanttogo`)
             .then(res => {
                 setPlaces(res.data);
-                console.log("data from fetch -> " + res.data)
             })
             .catch(err => {
                 console.log(err)
             });
     };
+
+    function randomNumberInRange() {
+        const number = Math.floor(Math.random() * (2 + 1))
+        console.log(number)
+        return number;
+    }
 
     useEffect(() => {
         getPlacesFromDB();
@@ -39,14 +43,14 @@ const PlaceWantToGo = (props) => {
                     variant="warning"
                     onClick={() => {setModalOpen(true);
                 }}>Add place</Button></Card.Header>
-                <Card.Body style={{display: "flex", flexWrap: "wrap"}}>
-
-
-                    {/*{places.map((place, index) => {*/}
-                    {/*    return (*/}
-                    {/*        <SinglePlace country={place.country} city={place.city} key={index}/>*/}
-                    {/*    )*/}
-                    {/*})}*/}
+                <Card.Body>
+                    <div style={{display: "flex", flexWrap: "wrap"}}>
+                        {places.map((place, index) => {
+                            return (
+                                <SinglePlace country={place.country} city={place.city} imageUrl={place.imagesUrl[randomNumberInRange()]} key={index}/>
+                            )
+                        })}
+                    </div>
                 </Card.Body>
                 {modalOpen && <PlaceWantToGoModal visible={modalOpen}/>}
             </Card>
