@@ -8,8 +8,12 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends JpaRepository<CommentsTable, Long> {
-    List<CommentsTable> findAllByMyUserTableId(Long userId);
-//    CommentsTable updateComment(Long id, CommentsTable comment);
+//    List<CommentsTable> findAllByMyUserTableId(Long userId);
+
+//    @Override
+//    List<CommentsTable> findAll();
+
+    //    CommentsTable updateComment(Long id, CommentsTable comment);
 //    CommentsTable deleteCommentsTablesById(Long id);
 
 }

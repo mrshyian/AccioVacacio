@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -42,12 +42,13 @@ public class PostTable {
 //---------------------------------------------------
 
     // comments to post
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "postTable")
     private List<CommentsTable> comments;
 
 //----------------------------------------------------------------------
 
     // post to user
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
     private MyUserTable myUserTable;
@@ -55,11 +56,12 @@ public class PostTable {
     //---------------------------------------------------
 
 
-    public PostTable(String topic, String postText, String postImage) {
+    public PostTable(String topic, String postText, String postImage, MyUserTable myUserTable ) {
         this.topic = topic;
         this.postText = postText;
         this.postImage = postImage;
         this.postDateTime = getCurrentTime();
+        this.myUserTable = myUserTable;
     }
 
     private String getCurrentTime(){

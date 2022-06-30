@@ -4,7 +4,7 @@ import "./AddNewComment.css"
 import {Button, Card} from "react-bootstrap";
 
 
-function AddNewComment() {
+function AddNewComment(props) {
 
     const url = "http://localhost:8080/comments"
     const [name, setName] = useState({
@@ -21,12 +21,13 @@ function AddNewComment() {
         refreshPage();
         e.preventDefault();
         Axios.post(url, {
-            name: name.name
+            name: name.name,
+            postId: props.postId
         }).then(r => console.log(r.data))
     }
 
     function refreshPage(){
-        // window.location.reload();
+        window.location.reload();
     }
 
     return (

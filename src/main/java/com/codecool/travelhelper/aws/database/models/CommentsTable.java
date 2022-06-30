@@ -1,5 +1,7 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,26 +43,29 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // comments to user
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
     private MyUserTable myUserTable;
 //---------------------------------------------------
 
     // comments to post
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="post_id")
-    private PostTable post;
+    private PostTable postTable;
 
 //------------------------------------------------------
 
 
-    public CommentsTable(String commentTex, String commentImage, String country, String city, MyUserTable myUserTable) {
+    public CommentsTable(String commentTex, String commentImage, String country, String city, MyUserTable myUserTable, PostTable postTable) {
         this.commentText = commentTex;
         this.commentImage = commentImage;
         this.country = country;
         this.city = city;
         this.commentDateTime = getCurrentTime();
         this.myUserTable = myUserTable;
+        this.postTable = postTable;
     }
 
     private String getCurrentTime(){

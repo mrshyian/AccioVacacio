@@ -2,7 +2,9 @@ package com.codecool.travelhelper.forum.services;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
+import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
+import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.exceptions.ResourceNotFoundException;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +29,9 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepo;
 
+    @Autowired
+    private PostRepository postRepository;
+
 //    @Autowired
 //    private UserRepository userRepository;
 
@@ -32,10 +39,12 @@ public class CommentService {
     @Transactional(readOnly = true)
     public List<CommentsTable> findAll() {
         Long userId = loginImpl.getCurrentUserId();
-        List<CommentsTable> list = this.commentRepo.findAllByMyUserTableId(userId);
+        List<CommentsTable> list = this.commentRepo.findAllById(Collections.singleton(userId));
         System.out.println(list);
         return list;
     }
+
+
 
 //    public ResponseEntity<MyUserTable> findUserById(Long id) throws ResourceNotFoundException {
 //        MyUserTable userTable =
