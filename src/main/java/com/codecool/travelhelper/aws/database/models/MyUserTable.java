@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
