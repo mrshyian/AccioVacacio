@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity(name = "MyUserTable")
 @Getter
-@ToString
 @NoArgsConstructor
 public class MyUserTable {
 
@@ -86,5 +85,23 @@ public class MyUserTable {
         this.aboutMe = "";
         this.privateAccount = false;
         this.role = "User";
+    }
+
+    @Override
+    public String toString() {
+        return "MyUserTable{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", userEMail='" + userEMail + '\'' +
+                ", password='" + password + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", instagram='" + instagram + '\'' +
+                ", facebook='" + facebook + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", role='" + role + '\'' +
+                ", privateAccount=" + privateAccount +
+                '}';
     }
 }

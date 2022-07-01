@@ -32,12 +32,13 @@ public class PostTable {
 //---------------------------------------------------
 
 
-//    // liked by user to user
-//    @ManyToMany
-//    @JoinTable(name = "liked_posts_by_user",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "post_id"))
-//    private Set<MyUserTable> likedPostByUsers = new HashSet<>();
+    // liked by user to user
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name = "liked_posts_by_user",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<MyUserTable> likedPostByUsers;
 
 //---------------------------------------------------
 
@@ -56,18 +57,29 @@ public class PostTable {
     //---------------------------------------------------
 
 
-    public PostTable(String topic, String postText, String postImage, MyUserTable myUserTable ) {
+    public PostTable(String topic, String postText, String postImage, MyUserTable myUserTable, Set<MyUserTable> likedPostByUsers) {
         this.topic = topic;
         this.postText = postText;
         this.postImage = postImage;
         this.postDateTime = getCurrentTime();
         this.myUserTable = myUserTable;
+        this.likedPostByUsers = likedPostByUsers;
     }
+
 
     private String getCurrentTime(){
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         return dateTime.format(myFormatObj);
+    }
+
+    public Set<MyUserTable> AddUserToLikedByUser(MyUserTable myUserTable){
+        System.out.println("dodanie się wywołało");
+        this.likedPostByUsers.add(myUserTable);
+        System.out.println("likes "+this.likedPostByUsers.size());
+        System.out.println(this.getLikedPostByUsers());
+        return this.getLikedPostByUsers();
+
     }
 }
 
