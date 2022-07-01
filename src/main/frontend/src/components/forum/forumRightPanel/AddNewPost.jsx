@@ -65,7 +65,8 @@ function AddNewPost() {
                             <Form.Control as="textarea" rows={3}
                                           type="text"
                                           id="postText"
-                                          autoFocus
+                                          placeholder="Post text"
+                                          style={{marginLeft: -4}}
                                           value={data.postText}
                                           onChange={(e) => handle(e)}
 
@@ -77,7 +78,7 @@ function AddNewPost() {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={ (e) => submit(e)}>
+                    <Button variant="warning" onClick={ (e) => submit(e)}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

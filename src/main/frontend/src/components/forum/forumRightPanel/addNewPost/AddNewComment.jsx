@@ -44,9 +44,11 @@ function AddNewComment(props) {
                     <Card.Body style={{ backgroundColor: "rgb(55, 55, 55)"}}>
                         <Card.Title>Special title treatment</Card.Title>
                         <Card.Text>
-                            <textarea   style={{width: "90%", height: "90%", fontSize: 22 }} onChange={(e) => handle(e)} id="name" value={name.name} placeholder="name" type="text"/>
+                            <textarea   style={{width: "90%", height: "90%", fontSize: 22, padding: 5 }} className="textarea" onChange={(e) => handle(e)} id="name" value={name.name} placeholder="name" type="text"/>
                         </Card.Text>
-                        <Button style={{marginLeft: "93%"}} variant="outline-warning" type="submit">submit</Button>
+                        <div style={{textAlign: "right"}}>
+                            <Button  variant="outline-warning" type="submit">submit</Button>
+                        </div>
                     </Card.Body>
                 </Card>
             </form>
