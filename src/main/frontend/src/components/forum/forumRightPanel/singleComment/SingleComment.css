@@ -11,9 +11,12 @@
 }
 
 .comment-card {
-    max-width: 50%;
-    margin: 10px 10px 10px 50%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
 }
+
 
 .comment-card-header {
     justify-content: space-between;

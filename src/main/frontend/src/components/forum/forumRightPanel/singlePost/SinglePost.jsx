@@ -33,11 +33,11 @@ const SinglePost = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer>
-                <h3 style={{marginLeft: "50%"}}>Comments:</h3>
+                <h3>Comments:</h3>
                 {props.post.comments.map((comment, index) => {
 
                     return (
-                        <SingleComment key={index} comments={comment} />
+                        <SingleComment key={index} comments={comment}/>
                     )
                 })}
             </Card.Footer>
