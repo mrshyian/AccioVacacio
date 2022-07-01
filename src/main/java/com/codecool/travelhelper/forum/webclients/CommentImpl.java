@@ -82,13 +82,6 @@ public class CommentImpl {
             commentRepository.save(commentsTable.get());
 
         }
-        //        this.commentText = commentTex;
-        //        this.commentImage = commentImage;
-        //        this.country = country;
-        //        this.city = city;
-        //        this.commentDateTime = getCurrentTime();
-        //        this.myUserTable = myUserTable;
-        //        this.post = postTable;
     }
 
 }

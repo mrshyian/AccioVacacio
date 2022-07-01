@@ -1,16 +1,10 @@
 package com.codecool.travelhelper.forum.controllers;
 
-import com.codecool.travelhelper.aws.database.models.CommentsTable;
-import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
-import com.codecool.travelhelper.forum.exceptions.ResourceNotFoundException;
 import com.codecool.travelhelper.forum.services.PostService;
 import com.codecool.travelhelper.forum.webclients.PostImpl;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

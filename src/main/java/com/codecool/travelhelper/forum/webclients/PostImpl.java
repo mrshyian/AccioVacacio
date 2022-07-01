@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
+
 
 @Component
 public class PostImpl {
@@ -60,20 +60,13 @@ public class PostImpl {
         Optional<PostTable> postTable = postRepository.findById(Long.valueOf(postId));
 
         if(postTable.isPresent()){
-//            postTable = Optional.of((new PostTable(
-//                    postTable.get().getTopic(),
-//                    postTable.get().getPostText(),
-//                    postTable.get().getPostImage(),
-//                    myUserTable,
-//                    new HashSet<>(postTable.get().AddUserToLikedByUser(myUserTable))
-//            )));
             postTable.get().setTopic(postTable.get().getTopic());
             postTable.get().setPostText(postTable.get().getPostText());
             postTable.get().setPostImage(postTable.get().getPostImage());
             postTable.get().setMyUserTable(myUserTable);
             postTable.get().AddUserToLikedByUser(myUserTable);
             postRepository.save(postTable.get());
-//            postTable = Optional.empty();
+
         }
 
     }

@@ -5,21 +5,16 @@ import "./SinglePost.css"
 import AddNewComment from "../addNewPost/AddNewComment";
 import {FaHeart} from "react-icons/fa";
 import axios from "axios";
-import {logDOM} from "@testing-library/react";
 
 const SinglePost = (props) => {
-    // console.log(props.user)
-    // console.log(props.comments)
     let like = 0;
 
     const AddLike = () =>{
         like = like + 1
-        // console.log(like)
         like <= 1 ? sendLike() : console.log("już dodałeś like")
     }
 
     const sendLike = () =>{
-
         axios.post(
             "http://localhost:8080/add_like_to_post",{
                 postId: props.post.id

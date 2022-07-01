@@ -26,11 +26,6 @@ public class CommentController {
     @Autowired
     private UserRepository userRepository;
 
-    //    @Autowired
-//    private CommentRepository commentRepository;
-//
-//    @Autowired
-//    private UserRepository userRepository;
 
     @Autowired
     private CommentImpl comment;
