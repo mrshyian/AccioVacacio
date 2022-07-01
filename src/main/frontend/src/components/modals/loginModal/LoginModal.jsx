@@ -16,6 +16,7 @@ const LoginModal = (props) => {
     const getUserIdFromSession = () => {
         if (localStorage.getItem("userId") !== null){
             props.setsession(true)
+            console.log(localStorage.getItem("userId"))
         }
     }
 
@@ -38,6 +39,7 @@ const LoginModal = (props) => {
             .then(res=> {
                 localStorage.setItem('userId', res.data)
                 sessionStorage.setItem("userId", res.data)
+                console.log(sessionStorage.getItem("userId"))
             })
         .catch(err => {console.log(err)});
         getUserIdFromSession();

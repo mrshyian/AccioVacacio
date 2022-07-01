@@ -1,10 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./ForumRightPanel.css"
 import SinglePost from "./singlePost/SinglePost";
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
+
 
 
 const ForumRightPanel = (props) => {
+
+    const [userIdInSession, setUserIdInSession] = useState(false);
+
+    // useEffect(()=>{
+    //     IsUserInSession();
+    // })
+
+    const IsUserInSession = () =>{
+        sessionStorage.getItem("userId") !== null ? setUserIdInSession(true) : console.log(sessionStorage.getItem("userId"))
+    }
 
     return (
         <Card
@@ -17,12 +28,20 @@ const ForumRightPanel = (props) => {
             <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Forum</h2></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    {props.posts.map((singlePost, index) => {
+                    {userIdInSession === true ? (
+                        props.posts.map((singlePost, index) => {
 
-                        return (
-                            <SinglePost post={singlePost} comments={props.comments} key={index}/>
-                        )
-                    })}
+                                return (
+                                    <SinglePost user={props.user[index]} post={singlePost} comments={props.comments} key={index}/>
+                                )
+                        })):
+                        props.posts.map((singlePost, index) => {
+
+                                return (
+                                    <SinglePost user={props.user} post={singlePost} comments={props.comments} key={index}/>
+                                )
+                            })}
+                    }
                 </Card.Text>
             </Card.Body>
         </Card>

@@ -9,11 +9,13 @@ const SingleComment = (props) => {
     let like=0;
 
     const AddLike = () =>{
+        console.log(localStorage.getItem("userId"))
         like = like + 1
         like <= 1 ? sendLikeData() : console.log("już dodałeś like")
     }
 
     const sendLikeData = () =>{
+
         axios.post(
             "http://localhost:8080/add_like_to_comment",{
                 commentId: props.comments.id
@@ -44,6 +46,7 @@ const SingleComment = (props) => {
                     <Image fluid="true" className="imgForPost" src={props.comments.commentImage} alt="user photo"/>
                     <p>Sebastian Ryndak</p></p>
                 <p>{props.comments.commentDateTime}</p>
+                {/*<p>{props.user.role}</p>*/}
             </Card.Header>
             <Card.Body style={{ backgroundColor: "rgb(55, 55, 55)"}}>
                 <Card.Text style={{color: "white"}}>
