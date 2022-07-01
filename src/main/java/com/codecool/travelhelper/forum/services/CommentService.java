@@ -61,7 +61,7 @@ public class CommentService {
 //        commentsTable.setCity(comment.getCity());
 //        commentsTable.setCountry(comment.getCountry());
 //        return ResponseEntity.ok().body(commentsTable);
-//    }
+//    }zxz
 
 //    public ResponseEntity<CommentsTable> deleteComment(Long id, CommentsTable comment)
 //            throws ResourceNotFoundException {
