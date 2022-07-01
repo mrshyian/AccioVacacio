@@ -3,8 +3,9 @@ import {Button, Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
 import AddNewComment from "../addNewPost/AddNewComment";
-import {FaHeart} from "react-icons/fa";
+import {FaHeart, FaTrash} from "react-icons/fa";
 import axios from "axios";
+
 
 const SinglePost = (props) => {
     let like = 0;
@@ -48,8 +49,9 @@ const SinglePost = (props) => {
                 </Card.Text>
 
             </Card.Body>
-            <Card.Footer>
+            <Card.Footer><Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{<FaTrash />}</Button><p></p>
                 <Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{<FaHeart />}</Button>
+
                 <p>Comments:</p>
                 {props.post.comments.map((comment, index) => {
 

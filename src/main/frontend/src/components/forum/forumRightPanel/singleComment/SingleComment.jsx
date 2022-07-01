@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Card, Image} from "react-bootstrap";
 import "./SingleComment.css"
-import {FaHeart} from "react-icons/fa";
+import {FaHeart, FaTrash} from "react-icons/fa";
 import axios from "axios";
 
 const SingleComment = (props) => {
@@ -16,6 +16,15 @@ const SingleComment = (props) => {
     const sendLikeData = () =>{
         axios.post(
             "http://localhost:8080/add_like_to_comment",{
+                commentId: props.comments.id
+            })
+            .then((r => console.log(r.data)
+            ));
+    }
+
+    const DeleteComment = () =>{
+        axios.post(
+            "http://localhost:8080/delete_comment",{
                 commentId: props.comments.id
             })
             .then((r => console.log(r.data)
@@ -44,7 +53,8 @@ const SingleComment = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer style={{ backgroundColor: "rgb(45, 45, 45)"}}>
-                <Button id="likeButton" onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{<FaHeart />}</Button>
+                <Button onClick={DeleteComment} style={{marginLeft: "92%"}} variant="outline-warning">{< FaTrash/>}</Button>FaTrash
+                <Button onClick={AddLike} style={{marginLeft: "92%"}} variant="outline-warning">{<FaHeart />}</Button>
             </Card.Footer>
         </Card>
     );

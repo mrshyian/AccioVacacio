@@ -63,14 +63,14 @@ public class CommentImpl {
 
     public void addLikeToComment(String likeComment){
         JsonParser jsonParser = new JsonParser();
-        JsonObject likeForPost = (JsonObject)jsonParser.parse(likeComment);
+        JsonObject likeForComment = (JsonObject)jsonParser.parse(likeComment);
 
         Long userId = loginImpl.getCurrentUserId();
         MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
 
-        String postId = likeForPost.get("commentId").getAsString();
+        String commentId = likeForComment.get("commentId").getAsString();
 
-        Optional<CommentsTable> commentsTable = commentRepository.findById(Long.valueOf(postId));
+        Optional<CommentsTable> commentsTable = commentRepository.findById(Long.valueOf(commentId));
 
         if(commentsTable.isPresent()){
             commentsTable.get().setCommentText(commentsTable.get().getCommentText());
@@ -82,6 +82,16 @@ public class CommentImpl {
             commentRepository.save(commentsTable.get());
 
         }
+    }
+
+    public void deleteComment(String commentId){
+        JsonParser jsonParser = new JsonParser();
+        JsonObject likeForPost = (JsonObject)jsonParser.parse(commentId);
+
+        Long userId = loginImpl.getCurrentUserId();
+        MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
+
+        String commentId1 = likeForPost.get("commentId").getAsString();
     }
 
 }

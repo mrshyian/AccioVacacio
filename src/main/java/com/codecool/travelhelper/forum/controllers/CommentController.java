@@ -54,9 +54,16 @@ public class CommentController {
     }
 
     @PostMapping("/add_like_to_comment")
-    public void getLikePost(@RequestBody String likeComment) {
+    public void getLikeComment(@RequestBody String likeComment) {
         comment.addLikeToComment(likeComment);
     }
+
+
+    @PostMapping("/delete_comment")
+    public void deleteComment(@RequestBody String commentId) {
+        comment.deleteComment(commentId);
+    }
+
 
 //    // get user by id
 //    @GetMapping("/user/{id}")
