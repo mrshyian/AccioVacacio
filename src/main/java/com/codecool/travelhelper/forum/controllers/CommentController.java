@@ -59,7 +59,7 @@ public class CommentController {
     }
 
 
-    @PostMapping("/delete_comment")
+    @PutMapping("/delete_comment")
     public void deleteComment(@RequestBody String commentId) {
         comment.deleteComment(commentId);
     }

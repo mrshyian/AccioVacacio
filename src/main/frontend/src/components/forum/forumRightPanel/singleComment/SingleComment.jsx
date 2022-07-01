@@ -23,7 +23,7 @@ const SingleComment = (props) => {
     }
 
     const DeleteComment = () =>{
-        axios.post(
+        axios.put(
             "http://localhost:8080/delete_comment",{
                 commentId: props.comments.id
             })
@@ -53,7 +53,7 @@ const SingleComment = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer style={{ backgroundColor: "rgb(45, 45, 45)"}}>
-                <Button onClick={DeleteComment} style={{marginLeft: "92%"}} variant="outline-warning">{< FaTrash/>}</Button>FaTrash
+                <Button onClick={DeleteComment} style={{marginLeft: "92%"}} variant="outline-warning">{< FaTrash/>}</Button>
                 <Button onClick={AddLike} style={{marginLeft: "92%"}} variant="outline-warning">{<FaHeart />}</Button>
             </Card.Footer>
         </Card>
