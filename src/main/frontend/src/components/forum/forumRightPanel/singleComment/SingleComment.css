@@ -1,4 +1,4 @@
-.imgForPost {
+.user-avatar-for-comment {
     max-width: 25%;
     max-height: 50%;
     object-fit: cover;
@@ -8,4 +8,36 @@
 .addImage{
     max-width: 100px;
     max-height: 100px;
+}
+
+.comment-card {
+    max-width: 50%;
+    margin: 10px 10px 10px 50%;
+}
+
+.comment-card-header {
+    justify-content: space-between;
+    color: orange;
+    display: flex;
+    background-color: rgb(35, 35, 35);
+}
+
+.comment-card-body {
+    background-color: rgb(55, 55, 55);
+}
+
+.comment-text {
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.comment-content-div {
+    display: flex;
+    justify-content: left;
+    color: white;
+}
+
+.comment-footer {
+    background-color: rgb(45, 45, 45);
 }

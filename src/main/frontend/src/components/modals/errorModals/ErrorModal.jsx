@@ -1,5 +1,4 @@
 import React from 'react';
-import "./ErrorModal.css"
 
 const ErrorModal = ({ error, setErrorModalOpen }) => {
     return (

@@ -5,7 +5,6 @@ import threeStar from './icon/3stars.png'
 import fourStar from './icon/4stars.png'
 import fiveStar from './icon/5stars.png'
 import safely from './icon/safely.png'
-import "./CrimeRating.css"
 import {Card} from "react-bootstrap";
 
 

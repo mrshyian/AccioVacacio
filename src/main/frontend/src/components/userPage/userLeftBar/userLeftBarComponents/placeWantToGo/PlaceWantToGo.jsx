@@ -4,6 +4,7 @@ import PlaceWantToGoModal from "../../../../modals/placeWantToGo/PlaceWantToGoMo
 import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
 import SinglePlace from "./SinglePlace";
+import "./PlaceWantToGo.css"
 
 
 const PlaceWantToGo = (props) => {
@@ -44,7 +45,7 @@ const PlaceWantToGo = (props) => {
                     onClick={() => {setModalOpen(true);
                 }}>Add place</Button></Card.Header>
                 <Card.Body>
-                    <div style={{display: "flex", flexWrap: "wrap"}}>
+                    <div className="flex-box-for-place-want-to-go">
                         {places.map((place, index) => {
                             return (
                                 <SinglePlace country={place.country} city={place.city} imageUrl={place.imagesUrl[randomNumberInRange()]} key={index}/>

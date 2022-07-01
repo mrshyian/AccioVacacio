@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import "./RegistrationModal.css"
 import {Button, Form, Modal} from "react-bootstrap";
 import axios from "axios";
 

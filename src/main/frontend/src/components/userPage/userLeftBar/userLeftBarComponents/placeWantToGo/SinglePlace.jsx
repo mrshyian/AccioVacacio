@@ -2,10 +2,9 @@ import React from 'react';
 import {Card} from "react-bootstrap";
 
 const SinglePlace = (props) => {
-    // console.log(props.placeUrl)
     return (
         <Card
-            style={{ width: '18rem', marginLeft: "5%" }}
+            className="single-place-card"
             bg="dark"
             key={"dark"}
             text={'white'}>

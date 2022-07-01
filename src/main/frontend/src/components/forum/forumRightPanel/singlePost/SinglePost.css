@@ -4,3 +4,37 @@
     object-fit: cover;
     border-radius: 50%;
 }
+.post-image{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.post-content-div {
+    display: flex;
+    justify-content: left;
+    color: white;
+}
+
+.post-text {
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: left;
+}
+
+.post-card-header {
+    justify-content: space-between;
+    color: orange;
+    display: flex;
+    background-color: rgb(59, 59, 59);
+}
+
+.post-card {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.post-topic{
+    margin-bottom: auto;
+    margin-top: auto;
+}
