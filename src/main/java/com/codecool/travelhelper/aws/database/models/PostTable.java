@@ -74,10 +74,7 @@ public class PostTable {
     }
 
     public Set<MyUserTable> AddUserToLikedByUser(MyUserTable myUserTable){
-        System.out.println("dodanie się wywołało");
         this.likedPostByUsers.add(myUserTable);
-        System.out.println("likes "+this.likedPostByUsers.size());
-        System.out.println(this.getLikedPostByUsers());
         return this.getLikedPostByUsers();
 
     }

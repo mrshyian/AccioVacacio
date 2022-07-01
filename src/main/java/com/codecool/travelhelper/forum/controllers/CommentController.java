@@ -58,6 +58,11 @@ public class CommentController {
         return userRepository.findAll();
     }
 
+    @PostMapping("/add_like_to_comment")
+    public void getLikePost(@RequestBody String likeComment) {
+        comment.addLikeToComment(likeComment);
+    }
+
 //    // get user by id
 //    @GetMapping("/user/{id}")
 //    public ResponseEntity<MyUserTable> getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {

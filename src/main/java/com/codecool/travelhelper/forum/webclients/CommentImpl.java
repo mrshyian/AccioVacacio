@@ -12,10 +12,16 @@ import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 @Component
 public class CommentImpl {
+
+    @Autowired
+    LoginImpl loginImpl;
+
+
 
     @Autowired
     CommentRepository commentRepository;
@@ -24,22 +30,20 @@ public class CommentImpl {
     PostRepository postRepository;
 
     @Autowired
-    LoginImpl loginImpl;
-
-    @Autowired
     UserRepository userRepository;
 
+
+
     public void getAndSaveComments(String comments) {
-        System.out.println("string");
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(comments);
-        String comment = commentJsonObject.get("name").getAsString();
-        String postId = commentJsonObject.get("postId").getAsString();
-
-
 
         Long userId = loginImpl.getCurrentUserId();
         MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
+
+        String comment = commentJsonObject.get("name").getAsString();
+        String postId = commentJsonObject.get("postId").getAsString();
+
         Optional<PostTable> postTable = postRepository.findById(Long.parseLong(postId));
         String commentImg = "https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE";
         String country = "Poland";
@@ -50,15 +54,41 @@ public class CommentImpl {
                         country,
                         city,
                         myUserTable,
-                        table
+                        table,
+                        new HashSet<>()
                 )
         ));
 
+    }
 
+    public void addLikeToComment(String likeComment){
+        JsonParser jsonParser = new JsonParser();
+        JsonObject likeForPost = (JsonObject)jsonParser.parse(likeComment);
 
+        Long userId = loginImpl.getCurrentUserId();
+        MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
 
+        String postId = likeForPost.get("commentId").getAsString();
 
+        Optional<CommentsTable> commentsTable = commentRepository.findById(Long.valueOf(postId));
 
+        if(commentsTable.isPresent()){
+            commentsTable.get().setCommentText(commentsTable.get().getCommentText());
+            commentsTable.get().setCommentImage(commentsTable.get().getCommentImage());
+            commentsTable.get().setCountry(commentsTable.get().getCountry());
+            commentsTable.get().setCity(commentsTable.get().getCity());
+            commentsTable.get().setMyUserTable(myUserTable);
+            commentsTable.get().AddUserToLikedByUser(myUserTable);
+            commentRepository.save(commentsTable.get());
+
+        }
+        //        this.commentText = commentTex;
+        //        this.commentImage = commentImage;
+        //        this.country = country;
+        //        this.city = city;
+        //        this.commentDateTime = getCurrentTime();
+        //        this.myUserTable = myUserTable;
+        //        this.post = postTable;
     }
 
 }

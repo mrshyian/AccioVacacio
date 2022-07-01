@@ -2,8 +2,30 @@ import React, {useState} from "react";
 import {Button, Card, Image} from "react-bootstrap";
 import "./SingleComment.css"
 import {FaHeart} from "react-icons/fa";
+import axios from "axios";
 
 const SingleComment = (props) => {
+
+    let like=0;
+    // const [disable, setDisable] = useState(false);
+
+
+    const AddLike = () =>{
+        // setDisable(true);
+        like = like + 1
+        // console.log(like)
+        like <= 1 ? sendLikeData() : console.log("już dodałeś like")
+    }
+
+    const sendLikeData = () =>{
+        axios.post(
+            "http://localhost:8080/add_like_to_comment",{
+                commentId: props.comments.id
+            })
+            .then((r => console.log(r.data)
+            ));
+    }
+
     return (
         <Card
               key={"dark"}
@@ -29,7 +51,7 @@ const SingleComment = (props) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer style={{ backgroundColor: "rgb(45, 45, 45)"}}>
-                <Button style={{marginLeft: "93%"}} variant="outline-warning">{<FaHeart />}</Button>
+                <Button id="likeButton" onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{<FaHeart />}</Button>
             </Card.Footer>
         </Card>
     );

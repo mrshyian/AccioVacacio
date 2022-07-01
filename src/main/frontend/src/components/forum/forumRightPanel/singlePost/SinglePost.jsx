@@ -16,15 +16,12 @@ const SinglePost = (props) => {
         like = like + 1
         // console.log(like)
         like <= 1 ? sendLike() : console.log("już dodałeś like")
-
-
     }
 
     const sendLike = () =>{
 
         axios.post(
             "http://localhost:8080/add_like_to_post",{
-                like: like,
                 postId: props.post.id
             })
             .then((r => console.log(r.data)
