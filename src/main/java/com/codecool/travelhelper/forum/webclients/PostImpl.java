@@ -71,5 +71,14 @@ public class PostImpl {
 
     }
 
+    public void deletePost(String postId){
+        JsonParser jsonParser = new JsonParser();
+        JsonObject postToDeleteId = (JsonObject)jsonParser.parse(postId);
+
+        String idPost = postToDeleteId.get("postId").getAsString();
+        postRepository.deleteById(Long.parseLong(idPost));
+
+    }
+
 
 }

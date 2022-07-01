@@ -35,6 +35,11 @@ public class PostController {
         post.addLikeToPost(likePost);
     }
 
+    @PutMapping("/delete_post")
+    public void deletePost(@RequestBody String postId) {
+        post.deletePost(postId);
+    }
+
 //    // get user by id
 //    @GetMapping("/user/{id}")
 //    public ResponseEntity<MyUserTable> getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {

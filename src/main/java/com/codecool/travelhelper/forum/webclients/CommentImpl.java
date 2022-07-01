@@ -86,12 +86,12 @@ public class CommentImpl {
 
     public void deleteComment(String commentId){
         JsonParser jsonParser = new JsonParser();
-        JsonObject likeForPost = (JsonObject)jsonParser.parse(commentId);
+        JsonObject commentToDeleteId = (JsonObject)jsonParser.parse(commentId);
 
 //        Long userId = loginImpl.getCurrentUserId();
 //        MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
 
-        String idComment = likeForPost.get("commentId").getAsString();
+        String idComment = commentToDeleteId.get("commentId").getAsString();
         commentRepository.deleteById(Long.parseLong(idComment));
 
     }

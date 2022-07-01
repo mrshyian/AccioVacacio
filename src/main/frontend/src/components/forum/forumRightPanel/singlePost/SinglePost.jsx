@@ -24,6 +24,15 @@ const SinglePost = (props) => {
             ));
     }
 
+    const DeletePost = () =>{
+        axios.put(
+            "http://localhost:8080/delete_post",{
+                postId: props.post.id
+            })
+            .then((r => console.log(r.data)
+            ));
+    }
+
     return (
         <Card
             bg="dark"
@@ -49,7 +58,7 @@ const SinglePost = (props) => {
                 </Card.Text>
 
             </Card.Body>
-            <Card.Footer><Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{<FaTrash />}</Button><p></p>
+            <Card.Footer><Button onClick={DeletePost} style={{marginLeft: "93%"}} variant="outline-warning">{<FaTrash />}</Button><p></p>
                 <Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{<FaHeart />}</Button>
 
                 <p>Comments:</p>
