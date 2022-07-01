@@ -21,8 +21,6 @@ public class CommentImpl {
     @Autowired
     LoginImpl loginImpl;
 
-
-
     @Autowired
     CommentRepository commentRepository;
 
@@ -88,10 +86,8 @@ public class CommentImpl {
         JsonParser jsonParser = new JsonParser();
         JsonObject commentToDeleteId = (JsonObject)jsonParser.parse(commentId);
 
-//        Long userId = loginImpl.getCurrentUserId();
-//        MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
-
         String idComment = commentToDeleteId.get("commentId").getAsString();
+
         commentRepository.deleteById(Long.parseLong(idComment));
 
     }

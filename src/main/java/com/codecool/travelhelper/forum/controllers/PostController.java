@@ -40,23 +40,4 @@ public class PostController {
         post.deletePost(postId);
     }
 
-//    // get user by id
-//    @GetMapping("/user/{id}")
-//    public ResponseEntity<MyUserTable> getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-//        return commentService.findUserById(id);
-//    }
-//
-//    // update post by id
-//    @PutMapping("/posts/{id}")
-//    public ResponseEntity<PostTable> updatePostById(@PathVariable(value = "id") Long id, @RequestBody PostTable postTable)
-//            throws ResourceNotFoundException {
-//        return postService.updatePost(id, postTable);
-//    }
-//
-//    // delete post by id
-//    @DeleteMapping("/posts/{id}")
-//    public ResponseEntity<PostTable> deletePostById(@PathVariable(value = "id") Long id)
-//            throws ResourceNotFoundException {
-//        return postService.deletePost(id);
-//    }
 }
