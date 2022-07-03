@@ -1,11 +1,9 @@
 package com.codecool.travelhelper.forum.controllers;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
-import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
-import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.services.CommentService;
 import com.codecool.travelhelper.forum.services.PostService;
 import com.codecool.travelhelper.forum.webclients.CommentImpl;
@@ -95,4 +93,11 @@ public class CommentController {
         comment.deleteComment(commentId);
     }
 
+
+    @PutMapping("/comment_edit")
+    public void getCommentToEdit(@RequestBody String commentDetails) {
+        System.out.println("działą");
+        System.out.println(commentDetails);
+        comment.editComment(commentDetails);
+    }
 }

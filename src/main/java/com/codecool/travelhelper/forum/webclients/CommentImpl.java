@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.forum.webclients;
 
+import com.amazonaws.services.dynamodbv2.xspec.S;
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
@@ -89,6 +90,23 @@ public class CommentImpl {
         String idComment = commentToDeleteId.get("commentId").getAsString();
 
         commentRepository.deleteById(Long.parseLong(idComment));
+
+    }
+
+    public void editComment(String commentDetails){
+        JsonParser jsonParser = new JsonParser();
+        JsonObject commentToDeleteId = (JsonObject)jsonParser.parse(commentDetails);
+
+        String commentText = commentToDeleteId.get("commentText").getAsString();
+        String idComment = commentToDeleteId.get("commentId").getAsString();
+
+        Optional<CommentsTable> commentsTable = commentRepository.findById(Long.valueOf(idComment));
+
+        if(commentsTable.isPresent()){
+            commentsTable.get().setCommentText(commentText);
+            commentRepository.save(commentsTable.get());
+        }
+
 
     }
 
