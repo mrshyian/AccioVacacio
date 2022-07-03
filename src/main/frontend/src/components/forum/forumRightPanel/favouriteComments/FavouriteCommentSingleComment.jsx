@@ -15,6 +15,7 @@ const FavouriteCommentSingleComment = (props) => {
             commentText: commentText,
             commentId: props.comments.id
         }).then(r => console.log(r.data))
+        window.location.reload()
     }
 
 
