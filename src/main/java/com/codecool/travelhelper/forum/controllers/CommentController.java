@@ -31,6 +31,8 @@ public class CommentController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    PostRepository postRepository;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -55,8 +57,18 @@ public class CommentController {
     }
 
     @GetMapping("/myComments")
-    public List<CommentsTable> getUserComments(){
-        return commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+    public List<PostTable> getUserComments(){
+        List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+        List<PostTable> posts= new ArrayList<>();
+        for (CommentsTable comment: userComments) {
+            if(postRepository.findById(comment.getPost().getId()).isPresent()){
+                if(!posts.contains(comment.getPost())){
+                    posts.add(comment.getPost());
+                }
+
+            }
+        }
+        return posts;
     }
 
     @GetMapping("/favouriteComments")
