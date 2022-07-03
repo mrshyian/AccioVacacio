@@ -28,6 +28,7 @@ public class PostTable {
     private String postText;
     private String postImage;
     private String postDateTime;
+    private String userName;
 
 //---------------------------------------------------
 
@@ -64,6 +65,7 @@ public class PostTable {
         this.postDateTime = getCurrentTime();
         this.myUserTable = myUserTable;
         this.likedPostByUsers = likedPostByUsers;
+        this.userName = myUserTable.getFullName();
     }
 
 

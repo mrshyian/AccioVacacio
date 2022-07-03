@@ -26,6 +26,7 @@ public class CommentsTable {
     private String country;
     private String city;
     private String commentDateTime;
+    private String userName;
 
 
 //---------------------------------------------------
@@ -65,6 +66,7 @@ public class CommentsTable {
         this.myUserTable = myUserTable;
         this.post = postTable;
         this.likedByUsers = likedCommentByUsers;
+        this.userName = myUserTable.getFullName();
     }
 
     private String getCurrentTime(){

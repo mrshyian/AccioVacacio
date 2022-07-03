@@ -9,19 +9,19 @@ const SingleComment = (props) => {
     let like=0;
 
     const AddLike = () =>{
-        console.log(localStorage.getItem("userId"))
         like = like + 1
         like <= 1 ? sendLikeData() : console.log("już dodałeś like")
     }
 
     const sendLikeData = () =>{
-
         axios.post(
             "http://localhost:8080/add_like_to_comment",{
                 commentId: props.comments.id
             })
             .then((r => console.log(r.data)
+
             ));
+        console.log(sessionStorage.getItem("userId"))
     }
 
     const DeleteComment = () =>{
@@ -37,14 +37,13 @@ const SingleComment = (props) => {
         <Card
               key={"dark"}
               text={'white'}
-
               style={{maxWidth: '90%', margin: "10px", marginLeft: "2.5%"}}
               className="mb-2 ">
             <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex", backgroundColor: "rgb(35, 35, 35)"}}>
 
                 <p style={{ marginBottom: -30 }}>
                     <Image fluid="true" className="imgForPost" src={props.comments.commentImage} alt="user photo"/>
-                    <p>Sebastian Ryndak</p></p>
+                    <p>{props.comments.userName}</p></p>
                 <p>{props.comments.commentDateTime}</p>
                 {/*<p>{props.user.role}</p>*/}
             </Card.Header>

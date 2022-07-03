@@ -16,13 +16,17 @@ const LoginModal = (props) => {
     const getUserIdFromSession = () => {
         if (localStorage.getItem("userId") !== null){
             props.setsession(true)
-            console.log(localStorage.getItem("userId"))
+            window.location.reload();
+            console.log(sessionStorage.getItem("userId"))
+            console.log("supa")
+
         }
+
     }
 
 
     const sendDataToServer = () => {
-        window.location.reload();
+
             const url = "http://localhost:8080/login";
             axios.post(url,{
                 email: email,
@@ -30,16 +34,17 @@ const LoginModal = (props) => {
             })
                 .then(()=>{
                     fetchUserId();
+                    console.log("sie wykonuje")
                 })
             handleCloseLoginModal()
+        // window.location.reload();
     }
 
     const fetchUserId = () => {
         axios.get("http://localhost:8080/login")
             .then(res=> {
-                localStorage.setItem('userId', res.data)
+                // localStorage.setItem('userId', res.data)
                 sessionStorage.setItem("userId", res.data)
-                console.log(sessionStorage.getItem("userId"))
             })
         .catch(err => {console.log(err)});
         getUserIdFromSession();

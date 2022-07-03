@@ -9,11 +9,12 @@ const ForumRightPanel = (props) => {
 
     const [userIdInSession, setUserIdInSession] = useState(false);
 
-    // useEffect(()=>{
-    //     IsUserInSession();
-    // })
+    useEffect(()=>{
+        IsUserInSession();
+    })
 
     const IsUserInSession = () =>{
+        // console.log("userId is: "+ sessionStorage.getItem("userId"))
         sessionStorage.getItem("userId") !== null ? setUserIdInSession(true) : console.log(sessionStorage.getItem("userId"))
     }
 
@@ -28,20 +29,12 @@ const ForumRightPanel = (props) => {
             <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Forum</h2></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    {userIdInSession === true ? (
-                        props.posts.map((singlePost, index) => {
+                    {props.posts.map((singlePost, index) => {
 
-                                return (
-                                    <SinglePost user={props.user[index]} post={singlePost} comments={props.comments} key={index}/>
-                                )
-                        })):
-                        props.posts.map((singlePost, index) => {
-
-                                return (
-                                    <SinglePost user={props.user} post={singlePost} comments={props.comments} key={index}/>
-                                )
-                            })}
-                    }
+                        return (
+                            <SinglePost post={singlePost} comments={props.comments} key={index}/>
+                        )
+                    })}
                 </Card.Text>
             </Card.Body>
         </Card>
