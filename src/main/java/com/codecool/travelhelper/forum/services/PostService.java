@@ -21,12 +21,9 @@ public class PostService {
     @Autowired
     private  PostRepository postRepository;
 
-//    @Autowired
-//    private UserRepository userRepository;
 
     public List<PostTable> getUserPostsByComments(List<CommentsTable> likedComments){
         List<PostTable> posts= new ArrayList<>();
-//        System.out.println(likedComments);
         for (CommentsTable comment: likedComments) {
             if(postRepository.findById(comment.getPost().getId()).isPresent()){
                 if(!posts.contains(comment.getPost())){

@@ -9,13 +9,8 @@ import {
     FaHeart,
     FaHourglassHalf
 } from "react-icons/fa";
-import RegistrationModal from "../../modals/registrationModal/RegistrationModal";
-import {Button} from "react-bootstrap";
-// import NewPostModal from "../../modals/newPostModal/NewPostModal";
-// import {useState} from "@types/react";
 import AddNewPost from "../forumRightPanel/addNewPost/AddNewPost";
 import {Link} from "react-router-dom";
-// import {FiMessageCircle} from "react-icons/fi"
 
 const ForumLeftPanel = () => {
 

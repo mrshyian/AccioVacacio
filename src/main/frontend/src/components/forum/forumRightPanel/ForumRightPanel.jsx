@@ -14,7 +14,6 @@ const ForumRightPanel = (props) => {
     })
 
     const IsUserInSession = () =>{
-        // console.log("userId is: "+ sessionStorage.getItem("userId"))
         sessionStorage.getItem("userId") !== null ? setUserIdInSession(true) : console.log(sessionStorage.getItem("userId"))
     }
 

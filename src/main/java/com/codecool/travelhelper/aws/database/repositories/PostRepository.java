@@ -8,18 +8,4 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<PostTable, Long> {
 
-//    List<PostTable> findby;
-    //    PostTable findPostTableById(Long id);
-//    PostTable findPostTableById(Long id);
-//    PostTable findAllById(Long id);
-
-
-//    List<PostTable> findPostTableByMyUserTableId(Long id);
-
-//    @Override
-//    List<PostTable> findAll();
-
-
-    //    PostTable updatePost(Long id, PostTable postTable);
-//    CommentsTable deleteCommentsTablesById(Long id);
 }

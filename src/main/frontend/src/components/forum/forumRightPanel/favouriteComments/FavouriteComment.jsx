@@ -1,11 +1,9 @@
 import React from 'react';
-import {Button, Card, Image} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
-import {FaHeart, FaTrash} from "react-icons/fa";
-import AddNewComment from "../addNewComment/AddNewComment";
 
 const FavouriteComment = (props) => {
-    // console.log(props.favouriteComments.comments)
+
     console.log(props.comments)
     return (
         <Card
