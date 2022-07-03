@@ -13,7 +13,8 @@ import RegistrationModal from "../../modals/registrationModal/RegistrationModal"
 import {Button} from "react-bootstrap";
 // import NewPostModal from "../../modals/newPostModal/NewPostModal";
 // import {useState} from "@types/react";
-import AddNewPost from "../forumRightPanel/AddNewPost";
+import AddNewPost from "../forumRightPanel/addNewPost/AddNewPost";
+import {Link} from "react-router-dom";
 // import {FiMessageCircle} from "react-icons/fi"
 
 const ForumLeftPanel = () => {
@@ -28,7 +29,7 @@ const ForumLeftPanel = () => {
         <header>
             <ProSidebar className="sidebar" style={{height: "1000px"}}>
                 <Menu iconShape="square">
-                    <MenuItem icon={<FaComment />}>My comments</MenuItem>
+                    <MenuItem icon={<FaComment />}> <Link to="/forum/my_comments"> My comments </Link></MenuItem>
                     <SubMenu title="Filter" icon={<FaFilter />}>
                         <MenuItem icon={<FaHourglassHalf />}>Latest / Oldest</MenuItem>
                         <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>

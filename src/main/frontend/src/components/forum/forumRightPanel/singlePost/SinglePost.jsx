@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
-import AddNewComment from "../addNewPost/AddNewComment";
+import AddNewComment from "../addNewComment/AddNewComment";
 import {FaHeart, FaTrash} from "react-icons/fa";
 import axios from "axios";
 

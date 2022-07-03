@@ -2,6 +2,7 @@ package com.codecool.travelhelper.forum.controllers;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
+import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.services.CommentService;
 import com.codecool.travelhelper.forum.webclients.CommentImpl;
@@ -26,6 +27,9 @@ public class CommentController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
 
     @Autowired
     private CommentImpl comment;
@@ -47,9 +51,9 @@ public class CommentController {
         return commentService.findAll(userId);
     }
 
-    @GetMapping("/comment_user")
-    public List<MyUserTable> getUserForComments(){
-        return userRepository.findAll();
+    @GetMapping("/myComments")
+    public List<CommentsTable> getUserForComments(){
+        return commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
     }
 
     @PostMapping("/add_like_to_comment")
