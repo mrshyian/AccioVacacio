@@ -17,7 +17,7 @@ const SinglePost = (props) => {
         like <= 1 ? sendLike() : console.log("już dodałeś like")
 
     }
-    // console.log(props.user.fullName)
+
     const sendLike = () =>{
         axios.post(
             "http://localhost:8080/add_like_to_post",{
@@ -26,7 +26,6 @@ const SinglePost = (props) => {
             .then((r => console.log(r.data)
             ));
     }
-
 
     const DeletePost = async () =>{
         await axios.put(

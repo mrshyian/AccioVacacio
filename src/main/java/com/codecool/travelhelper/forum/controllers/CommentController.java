@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,8 +53,20 @@ public class CommentController {
     }
 
     @GetMapping("/myComments")
-    public List<CommentsTable> getUserForComments(){
+    public List<CommentsTable> getUserComments(){
         return commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+    }
+
+    @GetMapping("/favouriteComments")
+    public List<CommentsTable> getUserFavouriteComments(){
+        List<CommentsTable> likedComments= new ArrayList<>();
+        List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+        for (CommentsTable comment: userComments) {
+            if(comment.getLikedByUsers().size() > 0){
+                likedComments.add(comment);
+            }
+        }
+        return likedComments;
     }
 
     @PostMapping("/add_like_to_comment")

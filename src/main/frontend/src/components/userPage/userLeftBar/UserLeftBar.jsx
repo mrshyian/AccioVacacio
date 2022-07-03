@@ -1,13 +1,10 @@
-import React, {useState} from "react"
+import React from "react"
 import './UserLeftBar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import {Menu, MenuItem, ProSidebar} from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { FaPencilAlt, FaMapMarked, FaHeart, FaPhotoVideo, FaBuromobelexperte } from 'react-icons/fa' ;
-import {availiableUserPages} from "../index";
-import axios from "axios";
+import {FaBuromobelexperte, FaHeart, FaMapMarked, FaPencilAlt, FaPhotoVideo} from 'react-icons/fa';
 import {Link} from "react-router-dom";
-
 
 
 const UserLeftBar = (props) => {

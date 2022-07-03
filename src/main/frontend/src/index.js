@@ -14,6 +14,7 @@ import AlbumsFromTrips from "./components/userPage/userLeftBar/userLeftBarCompon
 import FavouriteForumComments
     from "./components/userPage/userLeftBar/userLeftBarComponents/favouriteForumComments/FavouriteForumComments";
 import MyComments from "./components/forum/forumRightPanel/myComments/MyComments";
+import FavouriteComments from "./components/forum/forumRightPanel/favouriteComments/FavouriteComments";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,6 +33,7 @@ root.render(
                   <Route path="/userpage/albums_from_trips" element={<AlbumsFromTrips />}/>
                   <Route path="/userpage/favourite_forum_comments" element={<FavouriteForumComments />}/>
                   <Route path="/forum/my_comments" element={<MyComments />}/>
+                  <Route path="/forum/favourite_comments" element={<FavouriteComments />}/>
                   <Route path="/" element={<AllCarousel />}/>
               </Route>
           </Routes>

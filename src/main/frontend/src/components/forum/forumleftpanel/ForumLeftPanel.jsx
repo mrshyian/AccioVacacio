@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {Menu, MenuItem, ProSidebar, SubMenu} from "react-pro-sidebar";
 import {
     FaComment,
@@ -35,7 +35,7 @@ const ForumLeftPanel = () => {
                         <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
                         <MenuItem icon={<FaGlobeEurope />}><input type="text" placeholder="City"/></MenuItem>
                     </SubMenu>
-                    <MenuItem icon={<FaHeart />}>Favourite comments</MenuItem>
+                    <MenuItem icon={<FaHeart />}><Link to="/forum/favourite_comments">Favourite comments</Link></MenuItem>
                     <MenuItem variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</MenuItem>
                     {NewModalOpen && <AddNewPost open={NewModalOpen}/>}
                 </Menu>
