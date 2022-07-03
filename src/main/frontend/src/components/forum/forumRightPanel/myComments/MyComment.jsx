@@ -1,33 +1,46 @@
 import React from 'react';
 import {Card, Image} from "react-bootstrap";
+import SingleComment from "../singleComment/SingleComment";
 
 const MyComment = (props) => {
     return (
-        <div>
-            <Card
-                key={"dark"}
-                text={'white'}
-                style={{maxWidth: '90%', margin: "10px", marginLeft: "2.5%"}}
-                className="mb-2 ">
-                <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex", backgroundColor: "rgb(35, 35, 35)"}}>
+        <Card
+            bg="dark"
+            key={"dark"}
+            text={'white'}
 
-                    <p style={{ marginBottom: -30 }}>
-                        <Image fluid="true" className="imgForPost" src={props.myComments.commentImage} alt="user photo"/>
-                        <p>{props.myComments.userName}</p></p>
-                    <p>{props.myComments.commentDateTime}</p>
-                    {/*<p>{props.user.role}</p>*/}
-                </Card.Header>
-                <Card.Body style={{ backgroundColor: "rgb(55, 55, 55)"}}>
-                    <Card.Text style={{color: "white"}}>
-                        {props.myComments.commentText}
+            style={{width: '80%', margin: "10px", marginLeft: "auto", marginRight: "auto"}}
+            className="mb-2"
+        >
+            <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
 
-                        <p><Image rounded="true" fluid="true" className="addImage" src="https://cdn.icon-icons.com/icons2/2184/PNG/512/healthy_strength_strong_health_heart_icon_133538.png" alt=""/></p>
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer style={{ backgroundColor: "rgb(45, 45, 45)"}}>
-                </Card.Footer>
-            </Card>
-        </div>
+                <p style={{ marginBottom: -20 }}>
+                    <img className="imgForForum" src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE" alt="user photo"/>
+                    <p> {props.myComments.userName} </p></p>
+                <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.myComments.topic}</h2>
+                <p>{props.myComments.postDateTime}</p>
+
+            </Card.Header>
+            <Card.Body>
+                <Card.Text>
+                    <h4>{props.myComments.postText}</h4>
+
+                </Card.Text>
+
+            </Card.Body>
+            <Card.Footer>
+
+                <p>Comments:</p>
+                <div>
+                    {props.myComments.comments.map((comment, index) => {
+
+                        return (
+                            <SingleComment key={index} comments={comment} />
+                        )
+                    })}
+                </div>
+            </Card.Footer>
+        </Card>
     );
 };
 

@@ -4,7 +4,6 @@ import SingleComment from "../singleComment/SingleComment";
 
 const FavouriteComment = (props) => {
 
-    console.log(props.comments)
     return (
         <Card
             bg="dark"
