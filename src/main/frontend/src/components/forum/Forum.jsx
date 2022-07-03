@@ -8,8 +8,6 @@ const Forum = () => {
 
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
-    // const [myComments, setMyComments] = useState([]);
-
 
     const fetchComment = () => {
         axios.get(`http://localhost:8080/comments`)
@@ -17,14 +15,6 @@ const Forum = () => {
                 console.log(res.data)})
         .catch(err => {console.log(err)});
     };
-
-
-    // const fetchMyComments = () => {
-    //     axios.get(`http://localhost:8080/myComments`)
-    //         .then(res =>{setMyComments(res.data);
-    //             console.log(res.data)})
-    //     .catch(err => {console.log(err)});
-    // };
 
     const fetchPost = () => {
         axios.get(`http://localhost:8080/posts`)

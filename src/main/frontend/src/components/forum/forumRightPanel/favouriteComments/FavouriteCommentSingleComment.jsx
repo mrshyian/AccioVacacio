@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Card, FormControl, Image, InputGroup} from "react-bootstrap";
 import axios from "axios";
-import Axios from "axios";
 
 const FavouriteCommentSingleComment = (props) => {
     let text = props.comments.commentText;
@@ -18,31 +17,6 @@ const FavouriteCommentSingleComment = (props) => {
         }).then(r => console.log(r.data))
     }
 
-    // useEffect(() => {
-    //     fetchNoteText();
-    // }, [])
-    //
-    // function fetchNoteText() {
-    //     axios.get(`http://localhost:8080/comments/edit`)
-    //         .then(res => {
-    //             setNoteText(res.data);
-    //             console.log(commentText);
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         });
-    // }
-
-    // function submit(e) {
-    //     e.preventDefault();
-    //     let url = `http://localhost:8080/comment_edit`;
-    //     Axios.post(url, {
-    //         commentText: commentText,
-    //         commentId: props.comments.id
-    //     }).then(r => {
-    //         console.log(r.data);
-    //     })
-    // }
 
     function editText(e) {
         e.preventDefault();

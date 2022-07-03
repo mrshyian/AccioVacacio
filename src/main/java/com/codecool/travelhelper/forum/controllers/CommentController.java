@@ -96,8 +96,6 @@ public class CommentController {
 
     @PutMapping("/comment_edit")
     public void getCommentToEdit(@RequestBody String commentDetails) {
-        System.out.println("działą");
-        System.out.println(commentDetails);
         comment.editComment(commentDetails);
     }
 }

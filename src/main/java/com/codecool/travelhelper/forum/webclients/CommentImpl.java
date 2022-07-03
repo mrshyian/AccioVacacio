@@ -1,6 +1,5 @@
 package com.codecool.travelhelper.forum.webclients;
 
-import com.amazonaws.services.dynamodbv2.xspec.S;
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
