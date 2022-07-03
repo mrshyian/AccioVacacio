@@ -2,9 +2,12 @@ package com.codecool.travelhelper.forum.controllers;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
+import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
+import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.services.CommentService;
+import com.codecool.travelhelper.forum.services.PostService;
 import com.codecool.travelhelper.forum.webclients.CommentImpl;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +29,12 @@ public class CommentController {
     private CommentService commentService;
 
     @Autowired
+    private PostService postService;
+
+    @Autowired
+    private PostRepository postRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -39,8 +48,6 @@ public class CommentController {
     // get comment from frontend
     @PostMapping("/comments")
     public void getNewComments(@RequestBody String commentsTable) {
-        System.out.println("POST method");
-
         comment.getAndSaveComments(commentsTable);
     }
 
@@ -58,7 +65,7 @@ public class CommentController {
     }
 
     @GetMapping("/favouriteComments")
-    public List<CommentsTable> getUserFavouriteComments(){
+    public List<PostTable> getUserFavouriteComments(){
         List<CommentsTable> likedComments= new ArrayList<>();
         List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
         for (CommentsTable comment: userComments) {
@@ -66,8 +73,20 @@ public class CommentController {
                 likedComments.add(comment);
             }
         }
-        return likedComments;
+        return postService.getUserPostsByComments(likedComments);
+
     }
+
+
+//    public List<PostTable> getUserPostsByComments(List<CommentsTable> likedComments){
+//        List<PostTable> posts= new ArrayList<>();
+//        for (CommentsTable comment: likedComments) {
+//            if(postRepository.findById(comment.getPost().getId()).isPresent()){
+//                posts.add(comment.getPost());
+//            }
+//        };
+//        return posts;
+//    }
 
     @PostMapping("/add_like_to_comment")
     public void getLikeComment(@RequestBody String likeComment) {

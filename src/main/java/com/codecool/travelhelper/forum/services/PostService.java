@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +23,21 @@ public class PostService {
 
 //    @Autowired
 //    private UserRepository userRepository;
+
+    public List<PostTable> getUserPostsByComments(List<CommentsTable> likedComments){
+        List<PostTable> posts= new ArrayList<>();
+//        System.out.println(likedComments);
+        for (CommentsTable comment: likedComments) {
+            if(postRepository.findById(comment.getPost().getId()).isPresent()){
+                if(!posts.contains(comment.getPost())){
+                    posts.add(comment.getPost());
+                }
+
+            }
+        }
+        System.out.println(posts);
+        return posts;
+    }
 
 
     @Transactional(readOnly = true)

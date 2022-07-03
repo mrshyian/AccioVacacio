@@ -25,10 +25,9 @@ const FavouriteComments = () => {
             <ForumLeftPanel/>
             {favouriteComments.map((favouriteComments, index) => {
                 return(
-                    <FavouriteComment favouriteComments={favouriteComments} key={index}/>
+                    <FavouriteComment Comments={favouriteComments.comments} favouriteComments={favouriteComments} key={index}/>
                 )
             })}
-
 
         </div>
     );
