@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
+import React from 'react';
+import {Card} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
-import axios from "axios";
-import FavouriteCommentSingleComment from "./FavouriteCommentSingleComment";
 
 
 const FavouriteComment = (props) => {
@@ -41,7 +39,7 @@ const FavouriteComment = (props) => {
                         {props.favouriteComments.comments.map((comment, index) => {
 
                             return (
-                                <FavouriteCommentSingleComment key={index} comments={comment}/>
+                                <SingleComment key={index} comments={comment}/>
                             )
                         })}
                     </div>

@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import FavouriteComment from "./FavouriteComment";
 import ForumLeftPanel from "../../forumleftpanel/ForumLeftPanel";
+import MyComment from "../myComments/MyComment";
 
 const FavouriteComments = () => {
 
@@ -24,10 +25,9 @@ const FavouriteComments = () => {
             <ForumLeftPanel/>
             {favouriteComments.map((favouriteComments, index) => {
                 return(
-                    <FavouriteComment Comments={favouriteComments.comments} favouriteComments={favouriteComments} key={index}/>
+                    <FavouriteComment favouriteComments={favouriteComments}  key={index}/>
                 )
             })}
-
         </div>
     );
 };
