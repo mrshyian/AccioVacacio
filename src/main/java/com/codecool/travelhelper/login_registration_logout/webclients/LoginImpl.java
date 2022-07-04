@@ -37,8 +37,6 @@ public class LoginImpl {
         }else {
             System.out.println("incorrect login");
         }
-
-
     }
 
     public boolean validationPassword(String password, String passwordFromDB ){

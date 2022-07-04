@@ -10,7 +10,6 @@ public class LogoutImpl {
 
     @Autowired
     HttpSession httpSession;
-
     public void logoutSession(){
         httpSession.removeAttribute("userId");
     }

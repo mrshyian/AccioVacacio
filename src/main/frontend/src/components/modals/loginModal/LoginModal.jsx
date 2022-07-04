@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import "./LoginModal.css"
+import "./LoginModal.css";
 import {Button, Card, Modal, Form} from "react-bootstrap";
 import axios from "axios";
+import React, {useState} from "react";
 
 
-const LoginModal = (props) => {
+const LoginModal = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -13,15 +13,8 @@ const LoginModal = (props) => {
     const handleCloseLoginModal = () => setShowLoginModal(false);
 
 
-    const getUserIdFromSession = () => {
-        if (localStorage.getItem("userId") !== null){
-            props.setsession(true)
-        }
-    }
-
 
     const sendDataToServer = () => {
-        window.location.reload();
             const url = "http://localhost:8080/login";
             axios.post(url,{
                 email: email,
@@ -29,6 +22,7 @@ const LoginModal = (props) => {
             })
                 .then(()=>{
                     fetchUserId();
+                    window.location.reload();
                 })
             handleCloseLoginModal()
     }
@@ -40,7 +34,6 @@ const LoginModal = (props) => {
                 sessionStorage.setItem("userId", res.data)
             })
         .catch(err => {console.log(err)});
-        getUserIdFromSession();
     }
 
     return (
@@ -78,7 +71,7 @@ const LoginModal = (props) => {
                     Close
                 </Button>
                 <Button variant="outline-warning" onClick={sendDataToServer}>
-                    Save Changes
+                    Login
                 </Button>
             </Modal.Footer>
         </Modal>
