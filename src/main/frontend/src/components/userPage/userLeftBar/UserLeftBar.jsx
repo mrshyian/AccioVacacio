@@ -13,7 +13,6 @@ const UserLeftBar = (props) => {
             <header>
                 <ProSidebar className="sidebar" style={{height: "100%"}}>
                     <Menu iconShape="square">
-
                         <MenuItem icon={<FaPencilAlt />}><Link to="/userpage/note"> Notes</Link></MenuItem>
                         <MenuItem icon={<FaMapMarked />}><Link to="/userpage/place_want_to_go"> Places i want to go </Link></MenuItem>
                         <MenuItem icon={<FaBuromobelexperte />}><Link to="/userpage/calculator"> Calculator </Link></MenuItem>
