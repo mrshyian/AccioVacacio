@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Card, Image} from "react-bootstrap";
 import axios from "axios";
 import MyComment from "./MyComment";
 import ForumLeftPanel from "../../forumleftpanel/ForumLeftPanel";

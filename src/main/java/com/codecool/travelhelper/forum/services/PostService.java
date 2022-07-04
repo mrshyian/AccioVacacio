@@ -32,7 +32,6 @@ public class PostService {
 
             }
         }
-        System.out.println(posts);
         return posts;
     }
 

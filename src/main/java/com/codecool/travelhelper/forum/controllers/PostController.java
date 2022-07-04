@@ -35,6 +35,16 @@ public class PostController {
         post.addLikeToPost(likePost);
     }
 
+    @PostMapping("/sort_by")
+    public void sortPost(@RequestBody String countryAndCity) {
+        sortPosts(countryAndCity);
+    }
+
+    @GetMapping("/sort_by")
+    public List<PostTable> sortPosts(String countryAndCity) {
+        return post.sortPost(countryAndCity);
+    }
+
     @PutMapping("/delete_post")
     public void deletePost(@RequestBody String postId) {
         post.deletePost(postId);

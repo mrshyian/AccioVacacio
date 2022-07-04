@@ -15,9 +15,9 @@ const SingleComment = (props) => {
     let like=0;
 
     const AddLike = () =>{
-        console.log("dupaaaa")
         like = like + 1
         like <= 1 ? sendLikeData() : console.log("już dodałeś like")
+        reload();
     }
 
     const sendLikeData = () =>{
@@ -28,7 +28,6 @@ const SingleComment = (props) => {
             .then((r => console.log(r.data)
 
             ));
-        console.log(sessionStorage.getItem("userId"))
     }
 
     const DeleteComment = () =>{
@@ -46,12 +45,17 @@ const SingleComment = (props) => {
             commentText: commentText,
             commentId: props.comments.id
         }).then(r => console.log(r.data))
+        reload();
+    }
+
+    function reload(){
         window.location.reload()
     }
 
     function editText(e) {
         e.preventDefault();
         setEditable(true);
+        reload();
     }
 
     return (

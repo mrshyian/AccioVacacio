@@ -1,17 +1,22 @@
 package com.codecool.travelhelper.forum.webclients;
 
 
+import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
+import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
+import com.codecool.travelhelper.forum.controllers.PostController;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -20,6 +25,12 @@ public class PostImpl {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
+
+    @Autowired
+    PostController postController;
 
     @Autowired
     LoginImpl loginImpl;
@@ -79,6 +90,32 @@ public class PostImpl {
         postRepository.deleteById(Long.parseLong(idPost));
 
     }
+
+    public List<PostTable> sortPost(String countryAndCity){
+        List<PostTable> posts = new ArrayList<>();
+
+        JsonParser jsonParser = new JsonParser();
+        JsonObject postToDeleteId = (JsonObject)jsonParser.parse(countryAndCity);
+
+        String country = postToDeleteId.get("country").getAsString();
+        String city = postToDeleteId.get("city").getAsString();
+        String time = postToDeleteId.get("time").getAsString();
+        System.out.println("To jest to  "+country + " " +city + " " + time);
+        List<CommentsTable> comments;
+        if(time.equals("Latest")){
+            comments = commentRepository.findAllByCountryOrderByCommentDateTimeAsc(country);
+        }else{
+            comments = commentRepository.findAllByCountryOrderByCommentDateTimeDesc(country);
+        }
+
+        for (CommentsTable comm: comments) {
+            posts.add(comm.getPost());
+        }
+        return posts;
+
+    }
+
+
 
 
 }
