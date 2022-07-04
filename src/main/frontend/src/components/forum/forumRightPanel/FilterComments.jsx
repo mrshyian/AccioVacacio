@@ -10,7 +10,7 @@ const FilterComments = () => {
     const fetchSorting = () => {
         axios.get(`http://localhost:8080/sort_by`)
             .then(res =>{setSort(res.data);
-                console.log(res.data)})
+                console.log("data "+ res.data)})
             .catch(err => {console.log(err)});
     };
 
@@ -23,7 +23,6 @@ const FilterComments = () => {
             {sort.map((post, index)=>
                 <SinglePost post={post} key={index}/>
             )}
-
         </div>
     );
 };

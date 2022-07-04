@@ -55,7 +55,6 @@ const SingleComment = (props) => {
     function editText(e) {
         e.preventDefault();
         setEditable(true);
-        reload();
     }
 
     return (

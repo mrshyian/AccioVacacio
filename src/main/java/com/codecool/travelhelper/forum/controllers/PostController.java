@@ -37,12 +37,14 @@ public class PostController {
 
     @PostMapping("/sort_by")
     public void sortPost(@RequestBody String countryAndCity) {
-        sortPosts(countryAndCity);
+        System.out.println(countryAndCity);
+        System.out.println("wchodzi na route");
+        post.sortPost(countryAndCity);
     }
 
     @GetMapping("/sort_by")
-    public List<PostTable> sortPosts(String countryAndCity) {
-        return post.sortPost(countryAndCity);
+    public List<PostTable> sortPosts() {
+        return post.getSortedPosts();
     }
 
     @PutMapping("/delete_post")

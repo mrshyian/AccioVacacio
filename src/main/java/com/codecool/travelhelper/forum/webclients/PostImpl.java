@@ -22,6 +22,7 @@ import java.util.Optional;
 
 @Component
 public class PostImpl {
+    List<PostTable> posts = new ArrayList<>();
 
     @Autowired
     UserRepository userRepository;
@@ -91,8 +92,9 @@ public class PostImpl {
 
     }
 
-    public List<PostTable> sortPost(String countryAndCity){
-        List<PostTable> posts = new ArrayList<>();
+    public void sortPost(String countryAndCity){
+
+//        List<PostTable> posts = new ArrayList<>();
 
         JsonParser jsonParser = new JsonParser();
         JsonObject postToDeleteId = (JsonObject)jsonParser.parse(countryAndCity);
@@ -104,17 +106,21 @@ public class PostImpl {
         List<CommentsTable> comments;
         if(time.equals("Latest")){
             comments = commentRepository.findAllByCountryOrderByCommentDateTimeAsc(country);
+            System.out.println("if jest");
         }else{
             comments = commentRepository.findAllByCountryOrderByCommentDateTimeDesc(country);
+            System.out.println("else jest");
         }
 
         for (CommentsTable comm: comments) {
             posts.add(comm.getPost());
+            System.out.println(posts);
         }
-        return posts;
-
     }
 
+    public List<PostTable> getSortedPosts(){
+        return posts;
+    }
 
 
 

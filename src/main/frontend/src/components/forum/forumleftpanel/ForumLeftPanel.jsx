@@ -14,6 +14,7 @@ import {Link} from "react-router-dom";
 import {BiFileFind} from "react-icons/bi";
 import Axios from "axios";
 import {Form, FormSelect} from "react-bootstrap";
+import axios from "axios";
 
 const ForumLeftPanel = () => {
 
@@ -46,14 +47,14 @@ const ForumLeftPanel = () => {
 
     function submit(e){
         e.preventDefault();
-        console.log(date)
+        console.log("dupa")
         console.log(data.time)
-        Axios.post(url, {
+        axios.post(url, {
             country: data.country,
             city: data.city,
             time : date
         }).then(r => console.log(r.data))
-        refreshPage()
+        // refreshPage()
     }
 
     function refreshPage(){
@@ -68,23 +69,23 @@ const ForumLeftPanel = () => {
                 <Menu iconShape="square">
                     <MenuItem icon={<FaComment />}> <Link to="/forum/my_comments"> My comments </Link></MenuItem>
                     <SubMenu title="Filter" icon={<FaFilter />}>
-                        <Form onSubmit={(e) => submit(e)}>
+                        <Form>
                             <Form.Select as="select"
                                          value={data.time}
-
+                                         id="submit"
                                          size="sm"
                                          onChange={(e) => handleSelect(e.target.value)}
                                          style={{ marginLeft: "15%", width: "72%", height: "30px"}}
                                          icon={<FaHourglassHalf />}
                             >
-                                <option  value={"Latest"}>Select</option>
-                                <option  value={"Oldest"}>Oldest</option>
-                                <option  value={"Latest"}>Latest</option>
+                                <option id="latest" value={"Latest"}>Select</option>
+                                <option id="oldest" value={"Oldest"}>Oldest</option>
+                                <option id="latest" value={"Latest"}>Latest</option>
                             </Form.Select >
 
                             <MenuItem icon={<FaGlobeAmericas />}><input onChange={(e) => handle(e)} id="country" value={data.country} type="text" placeholder="Country"/></MenuItem>
                             <MenuItem icon={<FaGlobeEurope />}><input onChange={(e) => handle(e)} id="city" value={data.city} type="text" placeholder="City"/></MenuItem>
-                            <MenuItem icon={<BiFileFind />}><button><Link to="/sort_by"> Submit </Link></button></MenuItem>
+                            <MenuItem icon={<BiFileFind />}><button onClick={(e)=> submit(e)} type="submit"><Link to="/sort_by"> Submit </Link></button></MenuItem>
                         </Form>
                     </SubMenu>
                     <MenuItem icon={<FaHeart />}><Link to="/forum/favourite_comments">Favourite comments</Link></MenuItem>
