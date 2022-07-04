@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString
 @Setter
 public class AlbumFromTripsTable {
 
@@ -51,5 +50,17 @@ public class AlbumFromTripsTable {
         this.albumName = albumName;
         this.aboutAlbum = aboutAlbum;
         this.myUserTable=myUserTable;
+    }
+
+    @Override
+    public String toString() {
+        return "AlbumFromTripsTable{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", tripDate='" + tripDate + '\'' +
+                ", albumName='" + albumName + '\'' +
+                ", aboutAlbum='" + aboutAlbum + '\'' +
+                '}';
     }
 }

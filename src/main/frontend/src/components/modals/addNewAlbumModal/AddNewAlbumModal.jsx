@@ -3,9 +3,11 @@ import {Button, Form, Modal} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 
 const AddNewAlbumModal = (props) => {
+
     useEffect(()=>{
         setShowNewAlbumModal(props.visible)
     }, [])
+
     const [country, setCountry] = useState("")
     const [city, setCity] = useState("")
     const [tripDate, setTripDate] = useState("")

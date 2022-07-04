@@ -1,6 +1,6 @@
 package com.codecool.travelhelper.userPage.controllers;
 
-import com.codecool.travelhelper.aws.database.models.AlbumFromTripsTable;
+import com.codecool.travelhelper.userPage.models.AlbumsFromTripsModel;
 import com.codecool.travelhelper.userPage.webclients.AlbumsFromTripsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,12 @@ public class AlbumsFromTripsController {
     }
 
     @GetMapping("/albumsfromtrips")
-    public List<AlbumFromTripsTable> getAlbums(){
+    public List<AlbumsFromTripsModel> getAlbums(){
         return albumsFromTrips.getAlbums();
+    }
+
+    @PutMapping ("/albumsfromtrips")
+    public void deleteAlbum(@RequestBody String albumData ) {
+        albumsFromTrips.deleteAlbum(albumData);
     }
 }

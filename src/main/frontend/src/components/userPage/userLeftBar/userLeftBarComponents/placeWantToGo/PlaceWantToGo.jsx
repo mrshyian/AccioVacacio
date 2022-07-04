@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
-import PlaceWantToGoModal from "../../../../modals/placeWantToGo/PlaceWantToGoModal";
+import PlaceWantToGoModal from "../../../../modals/placeWantToGoModal/PlaceWantToGoModal";
 import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
 import SinglePlace from "./SinglePlace";
 import "./PlaceWantToGo.css"
 
 
-const PlaceWantToGo = (props) => {
+const PlaceWantToGo = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [places, setPlaces] = useState([]);
