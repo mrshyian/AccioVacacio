@@ -12,15 +12,20 @@ const Header = () => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
-    const [userIdInSession, setUserIdInSession] = useState(false);
 
     const sendLogoutRequest = () => {
         const url = "http://localhost:8080/logout";
-        axios.post(url,{
-        })
-            .then(res=>{
-                console.log(res);
+        axios.post(url, {})
+            .then(()=> {
+                deletionOfSessions()
             })
+    }
+
+    const deletionOfSessions =()=>{
+        console.log("Elo")
+        localStorage.removeItem("userId")
+        sessionStorage.removeItem("userId")
+        window.location.reload();
     }
 
 
@@ -64,7 +69,7 @@ const Header = () => {
                             </Link>
                         </Nav>
 
-                        {userIdInSession === true ? (
+                        {localStorage.getItem("userId") !== null ? (
                             <Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button>
                         ) : (
                             <span>
@@ -90,7 +95,7 @@ const Header = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {loginModalOpen && <LoginModal setsession={setUserIdInSession} open={loginModalOpen}/>}
+            {loginModalOpen && <LoginModal open={loginModalOpen}/>}
             {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
             {errorModalOpen && <ErrorModal error={'tekst pomylki'}/>}
 

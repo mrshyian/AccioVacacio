@@ -23,7 +23,6 @@ public class LoginController {
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(data);
         String email = commentJsonObject.get("email").getAsString();
         String password = commentJsonObject.get("password").getAsString();
-
         loginImpl.findUser(email, password);
     }
 
