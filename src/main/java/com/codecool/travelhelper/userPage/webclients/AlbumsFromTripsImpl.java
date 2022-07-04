@@ -52,6 +52,16 @@ public class AlbumsFromTripsImpl {
     }
 
     public List<AlbumFromTripsTable> getAlbums(){
-        return new ArrayList<>();
+        List<AlbumFromTripsTable> albums = new ArrayList<>();
+
+        Long userId = loginImpl.getCurrentUserId();
+
+        List<Optional<AlbumFromTripsTable>> optionalAlbumsList = albumsFromTripsRepository.findAllByMyUserTableId(userId);
+        for (Optional<AlbumFromTripsTable> optional : optionalAlbumsList){
+            if (optional.isPresent()){
+                albums.add(optional.get());
+            }
+        }
+        return albums;
     }
 }
