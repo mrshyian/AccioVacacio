@@ -13,10 +13,4 @@ public interface CommentRepository extends JpaRepository<CommentsTable, Long> {
     List<CommentsTable> findAllByCountryOrderByCommentDateTimeDesc(String country);
 
 
-//    @Override
-//    List<CommentsTable> findAll();
-
-    //    CommentsTable updateComment(Long id, CommentsTable comment);
-//    CommentsTable deleteCommentsTablesById(Long id);
-
 }

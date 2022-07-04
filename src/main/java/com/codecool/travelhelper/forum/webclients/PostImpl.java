@@ -42,9 +42,10 @@ public class PostImpl {
     @Autowired
     PostRepository postRepository;
 
-    public void getComments(String post) {
+    public void saveNewPost(String post) {
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(post);
+
         String topic = commentJsonObject.get("topic").getAsString();
         String postText = commentJsonObject.get("postText").getAsString();
 
@@ -95,13 +96,13 @@ public class PostImpl {
 
     }
 
-    public void sortPost(String countryAndCity){
+    public void sortPosts(String countryAndCity){
 
         JsonParser jsonParser = new JsonParser();
         JsonObject postToDeleteId = (JsonObject)jsonParser.parse(countryAndCity);
 
         String country = postToDeleteId.get("country").getAsString();
-        String city = postToDeleteId.get("city").getAsString();
+//        String city = postToDeleteId.get("city").getAsString();
         String time = postToDeleteId.get("time").getAsString();
 
         List<CommentsTable> comments;
@@ -124,6 +125,7 @@ public class PostImpl {
     public List<PostTable> getSortedPosts(){
         return posts;
     }
+
 
     public void editPosts(String postDetails){
         JsonParser jsonParser = new JsonParser();

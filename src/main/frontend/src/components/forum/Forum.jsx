@@ -24,7 +24,6 @@ const Forum = () => {
     };
 
     useEffect(() => {
-            // fetchMyComments();
             fetchComment();
             fetchPost();
         }, [])

@@ -7,7 +7,6 @@ import {FaHeart, FaTrash} from "react-icons/fa";
 import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 
-
 const SinglePost = (props) => {
     let text = props.post.postText;
     const [postText, setPostText] = useState(text)

@@ -24,7 +24,7 @@ public class PostController {
     // get new posts from frontend
     @PostMapping("/posts")
     public void getNewPost(@RequestBody String postTable ) {
-        post.getComments(postTable);
+        post.saveNewPost(postTable);
     }
 
     // send posts to frontend
@@ -43,7 +43,7 @@ public class PostController {
     @PostMapping("/sort_by")
     public void sortPost(@RequestBody String countryAndCity) {
         post.setPosts(new ArrayList<>());
-        post.sortPost(countryAndCity);
+        post.sortPosts(countryAndCity);
     }
 
     // send sorted posts to frontend
@@ -58,6 +58,7 @@ public class PostController {
         post.deletePost(postId);
     }
 
+    // edit selected post
     @PutMapping("/post_edit")
     public void editPost(@RequestBody String postDetails){
         post.editPosts(postDetails);

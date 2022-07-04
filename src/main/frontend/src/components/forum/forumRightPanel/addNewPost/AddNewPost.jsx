@@ -19,23 +19,21 @@ function AddNewPost() {
         const newData = {...data}
         newData[e.target.id] = e.target.value
         setData(newData)
-        console.log(newData)
     }
 
     function refreshPage(){
-        console.log("działa")
         window.location.reload();
     }
 
     function submit(e){
         handleClose();
-        refreshPage();
+
         e.preventDefault();
-        console.log("submit działa")
         Axios.post(url, {
             topic: data.topic,
             postText: data.postText
         }).then(r => console.log(r.data))
+        refreshPage();
     }
 
     return (
@@ -68,7 +66,6 @@ function AddNewPost() {
                                           autoFocus
                                           value={data.postText}
                                           onChange={(e) => handle(e)}
-
                             />
                         </Form.Group>
                     </Form>

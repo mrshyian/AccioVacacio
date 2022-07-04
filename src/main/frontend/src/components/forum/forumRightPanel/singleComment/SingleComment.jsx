@@ -11,7 +11,9 @@ const SingleComment = (props) => {
     const url = "http://localhost:8080/comment_edit"
     let text = props.comments.commentText;
     const [commentText, setCommentText] = useState(text)
+
     const [editable, setEditable] = useState(false)
+
     let like=0;
 
     const AddLike = () =>{
