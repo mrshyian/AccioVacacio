@@ -125,6 +125,21 @@ public class PostImpl {
         return posts;
     }
 
+    public void editPosts(String postDetails){
+        JsonParser jsonParser = new JsonParser();
+        JsonObject postToEdit = (JsonObject)jsonParser.parse(postDetails);
+
+        String postText = postToEdit.get("postText").getAsString();
+        String postId = postToEdit.get("postId").getAsString();
+
+        Optional<PostTable> postTable = postRepository.findById(Long.valueOf(postId));
+
+        if(postTable.isPresent()){
+            postTable.get().setPostText(postText);
+            postRepository.save(postTable.get());
+        }
+    }
+
 
 
 }

@@ -58,4 +58,9 @@ public class PostController {
         post.deletePost(postId);
     }
 
+    @PutMapping("/post_edit")
+    public void editPost(@RequestBody String postDetails){
+        post.editPosts(postDetails);
+    }
+
 }
