@@ -11,6 +11,7 @@ import com.codecool.travelhelper.forum.controllers.PostController;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,9 +20,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-
+@Setter
 @Component
 public class PostImpl {
+
+
     List<PostTable> posts = new ArrayList<>();
 
     @Autowired
@@ -93,8 +96,8 @@ public class PostImpl {
     }
 
     public void sortPost(String countryAndCity){
+        System.out.println(posts);
 
-//        List<PostTable> posts = new ArrayList<>();
 
         JsonParser jsonParser = new JsonParser();
         JsonObject postToDeleteId = (JsonObject)jsonParser.parse(countryAndCity);
@@ -102,23 +105,24 @@ public class PostImpl {
         String country = postToDeleteId.get("country").getAsString();
         String city = postToDeleteId.get("city").getAsString();
         String time = postToDeleteId.get("time").getAsString();
-        System.out.println("To jest to  "+country + " " +city + " " + time);
         List<CommentsTable> comments;
         if(time.equals("Latest")){
             comments = commentRepository.findAllByCountryOrderByCommentDateTimeAsc(country);
-            System.out.println("if jest");
         }else{
             comments = commentRepository.findAllByCountryOrderByCommentDateTimeDesc(country);
-            System.out.println("else jest");
         }
-
+        System.out.println("comments " + comments);
         for (CommentsTable comm: comments) {
-            posts.add(comm.getPost());
-            System.out.println(posts);
+            if(!posts.contains(comm.getPost())){
+                posts.add(comm.getPost());
+            }
         }
+        System.out.println("posts " + posts);
+
     }
 
     public List<PostTable> getSortedPosts(){
+        System.out.println("get"+ posts);
         return posts;
     }
 

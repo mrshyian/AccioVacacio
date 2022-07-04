@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SinglePost from "./singlePost/SinglePost";
 import axios from "axios";
+import ForumLeftPanel from "../forumleftpanel/ForumLeftPanel";
 
 
 const FilterComments = () => {
@@ -20,6 +21,7 @@ const FilterComments = () => {
 
     return (
         <div>
+            <ForumLeftPanel/>
             {sort.map((post, index)=>
                 <SinglePost post={post} key={index}/>
             )}

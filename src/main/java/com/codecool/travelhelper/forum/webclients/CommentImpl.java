@@ -43,12 +43,11 @@ public class CommentImpl {
         String postId = commentJsonObject.get("postId").getAsString();
 
         Optional<PostTable> postTable = postRepository.findById(Long.parseLong(postId));
-        String commentImg = "https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE";
         String country = "Poland";
         String city = "Poznan";
         postTable.ifPresent(table -> commentRepository.save(new CommentsTable(
                         comment,
-                        commentImg,
+                        myUserTable.getAvatar(),
                         country,
                         city,
                         myUserTable,

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,13 +38,13 @@ public class PostController {
 
     @PostMapping("/sort_by")
     public void sortPost(@RequestBody String countryAndCity) {
-        System.out.println(countryAndCity);
-        System.out.println("wchodzi na route");
+        post.setPosts(new ArrayList<>());
         post.sortPost(countryAndCity);
     }
 
     @GetMapping("/sort_by")
     public List<PostTable> sortPosts() {
+        System.out.println("sort by");
         return post.getSortedPosts();
     }
 
