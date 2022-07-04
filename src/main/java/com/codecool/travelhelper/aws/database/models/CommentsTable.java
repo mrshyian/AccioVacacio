@@ -49,7 +49,7 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // comments to post
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name="post_id")
     private PostTable post;
@@ -76,9 +76,7 @@ public class CommentsTable {
     }
 
     public Set<MyUserTable> AddUserToLikedByUser(MyUserTable myUserTable){
-        System.out.println("dodanie się wywołało");
         this.likedByUsers.add(myUserTable);
-        System.out.println(this.getLikedByUsers());
         return this.getLikedByUsers();
 
     }

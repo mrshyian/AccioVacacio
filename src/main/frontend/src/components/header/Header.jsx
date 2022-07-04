@@ -23,7 +23,7 @@ const Header = () => {
             .then(()=> {
                 deletionOfSessions()
             })
-    }
+    })}
 
     const deletionOfSessions =()=>{
         console.log("Elo")
@@ -106,5 +106,4 @@ const Header = () => {
         </div>
     );
 };
-
 export default Header;

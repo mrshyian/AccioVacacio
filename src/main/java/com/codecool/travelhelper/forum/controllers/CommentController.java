@@ -49,28 +49,19 @@ public class CommentController {
     // send list of comments to frontend
     @GetMapping("/comments")
     public List<CommentsTable> getComments() {
-        Long userId = loginImpl.getCurrentUserId();
-        return commentService.findAll(userId);
+        return commentRepository.findAll();
     }
 
     // send list of user comments to frontend
     @GetMapping("/myComments")
-    public List<PostTable> getUserComments(){
-        List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
-        List<PostTable> posts= new ArrayList<>();
-        for (CommentsTable comment: userComments) {
-            if(postRepository.findById(comment.getPost().getId()).isPresent()){
-                if(!posts.contains(comment.getPost())){
-                    posts.add(comment.getPost());
-                }
-
-            }
-        }
-        return posts;
+    public List<CommentsTable> getUserComments(){
+        return commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
     }
-    // send list of favourite comments to frontend
+
+
+
     @GetMapping("/favouriteComments")
-    public List<PostTable> getUserFavouriteComments(){
+    public List<CommentsTable> getUserFavouriteComments(){
         List<CommentsTable> likedComments= new ArrayList<>();
         List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
         for (CommentsTable comment: userComments) {
@@ -78,9 +69,12 @@ public class CommentController {
                 likedComments.add(comment);
             }
         }
-        return postService.getUserPostsByComments(likedComments);
+//        System.out.println(likedComments);
+        return likedComments;
 
     }
+
+
 
     // add like to selected comment
     @PostMapping("/add_like_to_comment")

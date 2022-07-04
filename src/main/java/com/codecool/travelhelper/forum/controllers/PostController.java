@@ -1,13 +1,18 @@
 package com.codecool.travelhelper.forum.controllers;
 
+import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
+import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
+import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.forum.services.PostService;
 import com.codecool.travelhelper.forum.webclients.PostImpl;
+import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -20,6 +25,15 @@ public class PostController {
 
     @Autowired
     private PostImpl post;
+
+    @Autowired
+    private LoginImpl loginImpl;
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     // get new posts from frontend
     @PostMapping("/posts")
@@ -45,6 +59,42 @@ public class PostController {
         post.setPosts(new ArrayList<>());
         post.sortPosts(countryAndCity);
     }
+
+    // send list of favourite comments to frontend
+    @GetMapping("/favouriteCommentsPosts")
+    public List<PostTable> getUserFavouritePostsByComments(){
+        List<CommentsTable> likedComments= new ArrayList<>();
+        List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+        for (CommentsTable comment: userComments) {
+            if(comment.getLikedByUsers().size() > 0){
+                likedComments.add(comment);
+            }
+        }
+        return postService.getUserPostsByComments(likedComments);
+
+    }
+
+    // send list of user posts selected by comments to frontend
+    @GetMapping("/myCommentsPosts")
+    public List<PostTable> getUserComments(){
+        List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+        List<PostTable> posts= new ArrayList<>();
+        for (CommentsTable comment: userComments) {
+            if(postRepository.findById(comment.getPost().getId()).isPresent()){
+                if(!posts.contains(comment.getPost())){
+                    posts.add(comment.getPost());
+                }
+            }
+        }
+        System.out.println(posts);
+        return posts;
+    }
+
+//
+//    @GetMapping("/myCommentsPosts")
+//    public List<PostTable> getUserComments(){
+//        return postRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+//    }
 
     // send sorted posts to frontend
     @GetMapping("/sort_by")

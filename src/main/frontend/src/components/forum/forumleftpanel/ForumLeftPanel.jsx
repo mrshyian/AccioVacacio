@@ -14,6 +14,7 @@ import {Link} from "react-router-dom";
 import {BiFileFind} from "react-icons/bi";
 import axios from "axios";
 import {Form} from "react-bootstrap";
+import Axios from "axios";
 
 const ForumLeftPanel = () => {
 
@@ -43,12 +44,12 @@ const ForumLeftPanel = () => {
 
     function submit(e){
         e.preventDefault();
-        axios.post(url, {
+        Axios.post(url, {
             country: data.country,
             city: data.city,
             time : date
         }).then(r => console.log(r.data))
-        // refreshPage()
+        refreshPage()
     }
 
     function refreshPage(){

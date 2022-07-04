@@ -3,10 +3,12 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import FavouriteComment from "./FavouriteComment";
 import ForumLeftPanel from "../../forumleftpanel/ForumLeftPanel";
+import SinglePost from "../singlePost/SinglePost";
 
 const FavouriteComments = () => {
 
     const [favouriteComments, setFavouriteComments] = useState([]);
+    const [favouriteCommentsPosts, setFavouriteCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
         axios.get(`http://localhost:8080/favouriteComments`)
@@ -15,16 +17,25 @@ const FavouriteComments = () => {
             .catch(err => {console.log(err)});
     };
 
+    const fetchMyPosts = () => {
+        axios.get(`http://localhost:8080/favouriteCommentsPosts`)
+            .then(res =>{setFavouriteCommentsPosts(res.data);
+                console.log(res.data)})
+            .catch(err => {console.log(err)});
+    };
+
     useEffect(() => {
         fetchMyComments();
+        fetchMyPosts();
     }, [])
 
     return (
         <div>
             <ForumLeftPanel/>
-            {favouriteComments.map((favouriteComments, index) => {
-                return(
-                    <FavouriteComment favouriteComments={favouriteComments}  key={index}/>
+            {favouriteCommentsPosts.map((singlePost, index) => {
+
+                return (
+                    <SinglePost post={singlePost} comments={favouriteComments} key={index}/>
                 )
             })}
         </div>

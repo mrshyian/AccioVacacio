@@ -15,6 +15,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -86,13 +87,14 @@ public class PostImpl {
         }
 
     }
-
+    @Transactional
     public void deletePost(String postId){
         JsonParser jsonParser = new JsonParser();
         JsonObject postToDeleteId = (JsonObject)jsonParser.parse(postId);
 
         String idPost = postToDeleteId.get("postId").getAsString();
-        postRepository.deleteById(Long.parseLong(idPost));
+//        commentRepository.deleteAllByPostId(Long.valueOf(idPost));
+        postRepository.deleteAllById(Long.parseLong(idPost));
 
     }
 

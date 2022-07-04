@@ -8,6 +8,8 @@ import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 
 const SinglePost = (props) => {
+    console.log(props.comments)
+    console.log(props.post.postText)
     let text = props.post.postText;
     const [postText, setPostText] = useState(text)
     const [editable, setEditable] = useState(false)
@@ -25,7 +27,7 @@ const SinglePost = (props) => {
             "http://localhost:8080/add_like_to_post", {
                 postId: props.post.id
             })
-            .then((r => console.log(r.data)
+            .then((() => reload()
             ));
     }
 
@@ -34,7 +36,7 @@ const SinglePost = (props) => {
             "http://localhost:8080/delete_post", {
                 postId: props.post.id
             })
-            .then((r => console.log(r.data)
+            .then((() => reload()
             ));
     }
 
@@ -43,8 +45,8 @@ const SinglePost = (props) => {
         axios.put(url, {
             postText: postText,
             postId: props.post.id
-        }).then(r => console.log(r.data))
-        reload();
+        }).then(() => reload())
+
     }
 
     function reload() {
@@ -97,10 +99,12 @@ const SinglePost = (props) => {
                         <Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{
                             <FaHeart/>}</Button>
                         <p>Comments:</p>
-                        {props.post.comments.map((comment, index) => {
-                            return (
-                                <SingleComment key={index} comments={comment}/>
-                            )
+                        {props.comments.map((comment, post, index) => {
+                            if(comment.post.id === props.post.id){
+                                return (
+                                    <SingleComment key={index} comments={comment}/>
+                                )
+                            }
                         })}
                         <AddNewComment postId={props.post.id}/>
                     </Card.Footer>
@@ -134,10 +138,12 @@ const SinglePost = (props) => {
                         <Button style={{marginLeft: "93%"}} variant="outline-warning" className="save-note-button"
                                 onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
                         <p>Comments:</p>
-                        {props.post.comments.map((comment, index) => {
-                            return (
-                                <SingleComment key={index} comments={comment}/>
-                            )
+                        {props.comments.map((comment, post, index) => {
+                            if(comment.post.id === props.post.id){
+                                return (
+                                    <SingleComment key={index} comments={comment}/>
+                                )
+                            }
                         })}
                         <AddNewComment postId={props.post.id}/>
                     </Card.Footer>

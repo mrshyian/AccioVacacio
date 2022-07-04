@@ -44,7 +44,8 @@ public class PostTable {
 //---------------------------------------------------
 
     // comments to post
-    @OneToMany(mappedBy = "post")
+    @JsonIgnore
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CommentsTable> comments;
 
 //----------------------------------------------------------------------

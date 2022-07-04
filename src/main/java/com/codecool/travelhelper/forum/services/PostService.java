@@ -3,23 +3,31 @@ package com.codecool.travelhelper.forum.services;
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
+import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.exceptions.ResourceNotFoundException;
+import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
 public class PostService {
 
     @Autowired
     private  PostRepository postRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    LoginImpl loginImpl;
 
 
     public List<PostTable> getUserPostsByComments(List<CommentsTable> likedComments){
@@ -36,7 +44,8 @@ public class PostService {
     }
 
 
-    @Transactional(readOnly = true)
+
+
     public List<PostTable> findAll(){
         return this.postRepository.findAll();
     }

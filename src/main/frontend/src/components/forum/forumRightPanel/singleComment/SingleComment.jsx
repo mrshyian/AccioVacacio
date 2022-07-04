@@ -27,7 +27,7 @@ const SingleComment = (props) => {
             "http://localhost:8080/add_like_to_comment",{
                 commentId: props.comments.id
             })
-            .then((r => console.log(r.data)
+            .then((() => reload()
 
             ));
     }
@@ -37,7 +37,8 @@ const SingleComment = (props) => {
             "http://localhost:8080/delete_comment",{
                 commentId: props.comments.id
             })
-            .then((r => console.log(r.data)
+            .then((() => reload()
+
             ));
     }
 
@@ -46,8 +47,8 @@ const SingleComment = (props) => {
         axios.put(url, {
             commentText: commentText,
             commentId: props.comments.id
-        }).then(r => console.log(r.data))
-        reload();
+        }).then(() => reload())
+
     }
 
     function reload(){

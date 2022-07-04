@@ -2,10 +2,13 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import MyComment from "./MyComment";
 import ForumLeftPanel from "../../forumleftpanel/ForumLeftPanel";
+import SingleComment from "../singleComment/SingleComment";
+import SinglePost from "../singlePost/SinglePost";
 
 
 const MyComments = () => {
     const [myComments, setMyComments] = useState([]);
+    const [myCommentsPosts, setMyCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
         axios.get(`http://localhost:8080/myComments`)
@@ -14,7 +17,16 @@ const MyComments = () => {
             .catch(err => {console.log(err)});
     };
 
+
+    const fetchMyCommentsPosts = () => {
+        axios.get(`http://localhost:8080/myCommentsPosts`)
+            .then(res =>{setMyCommentsPosts(res.data);
+                console.log(res.data)})
+            .catch(err => {console.log(err)});
+    };
+
     useEffect(() => {
+        fetchMyCommentsPosts();
         fetchMyComments();
     }, [])
 
@@ -22,9 +34,9 @@ const MyComments = () => {
     return (
         <div>
             <ForumLeftPanel/>
-            {myComments.map((comment, index) => {
+            {myCommentsPosts.map((posts,  index) => {
                 return(
-                <MyComment myComments={comment} key={index}/>
+                <SinglePost post={posts} comments={myComments} key={index}/>
                 )
             })}
 
