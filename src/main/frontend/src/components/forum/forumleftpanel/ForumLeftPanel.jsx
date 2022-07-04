@@ -12,9 +12,8 @@ import {
 import AddNewPost from "../forumRightPanel/addNewPost/AddNewPost";
 import {Link} from "react-router-dom";
 import {BiFileFind} from "react-icons/bi";
-import Axios from "axios";
-import {Form, FormSelect} from "react-bootstrap";
 import axios from "axios";
+import {Form} from "react-bootstrap";
 
 const ForumLeftPanel = () => {
 
@@ -33,22 +32,17 @@ const ForumLeftPanel = () => {
     }
 
     function handleSelect(e){
-        console.log(e)
         setDate(e)
     }
 
     function handle(e){
-
         const newData = {...data}
         newData[e.target.id] = e.target.value
         setData(newData)
-        console.log(newData)
     }
 
     function submit(e){
         e.preventDefault();
-        console.log("dupa")
-        console.log(data.time)
         axios.post(url, {
             country: data.country,
             city: data.city,

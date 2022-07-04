@@ -96,8 +96,6 @@ public class PostImpl {
     }
 
     public void sortPost(String countryAndCity){
-        System.out.println(posts);
-
 
         JsonParser jsonParser = new JsonParser();
         JsonObject postToDeleteId = (JsonObject)jsonParser.parse(countryAndCity);
@@ -105,24 +103,25 @@ public class PostImpl {
         String country = postToDeleteId.get("country").getAsString();
         String city = postToDeleteId.get("city").getAsString();
         String time = postToDeleteId.get("time").getAsString();
+
         List<CommentsTable> comments;
+
         if(time.equals("Latest")){
             comments = commentRepository.findAllByCountryOrderByCommentDateTimeAsc(country);
         }else{
             comments = commentRepository.findAllByCountryOrderByCommentDateTimeDesc(country);
         }
-        System.out.println("comments " + comments);
+
         for (CommentsTable comm: comments) {
             if(!posts.contains(comm.getPost())){
                 posts.add(comm.getPost());
             }
         }
-        System.out.println("posts " + posts);
+
 
     }
 
     public List<PostTable> getSortedPosts(){
-        System.out.println("get"+ posts);
         return posts;
     }
 

@@ -50,10 +50,10 @@ public class CommentController {
     @GetMapping("/comments")
     public List<CommentsTable> getComments() {
         Long userId = loginImpl.getCurrentUserId();
-        System.out.println("Get method");
         return commentService.findAll(userId);
     }
 
+    // send list of user comments to frontend
     @GetMapping("/myComments")
     public List<PostTable> getUserComments(){
         List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
@@ -68,7 +68,7 @@ public class CommentController {
         }
         return posts;
     }
-
+    // send list of favourite comments to frontend
     @GetMapping("/favouriteComments")
     public List<PostTable> getUserFavouriteComments(){
         List<CommentsTable> likedComments= new ArrayList<>();
@@ -82,18 +82,19 @@ public class CommentController {
 
     }
 
+    // add like to selected comment
     @PostMapping("/add_like_to_comment")
     public void getLikeComment(@RequestBody String likeComment) {
         comment.addLikeToComment(likeComment);
     }
 
-
+    // delete selected comment
     @PutMapping("/delete_comment")
     public void deleteComment(@RequestBody String commentId) {
         comment.deleteComment(commentId);
     }
 
-
+    // edit selected comment
     @PutMapping("/comment_edit")
     public void getCommentToEdit(@RequestBody String commentDetails) {
         comment.editComment(commentDetails);

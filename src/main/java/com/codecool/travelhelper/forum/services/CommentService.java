@@ -28,13 +28,6 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepo;
 
-    @Autowired
-    private PostRepository postRepository;
-
-//    @Autowired
-//    private UserRepository userRepository;
-
-
     @Transactional(readOnly = true)
     public List<CommentsTable> findAll(Long userId) {
         return this.commentRepo.findAllById(Collections.singleton(userId));
