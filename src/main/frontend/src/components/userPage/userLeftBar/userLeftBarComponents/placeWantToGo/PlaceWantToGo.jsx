@@ -23,9 +23,7 @@ const PlaceWantToGo = (props) => {
     };
 
     function randomNumberInRange() {
-        const number = Math.floor(Math.random() * (2 + 1))
-        console.log(number)
-        return number;
+        return Math.floor(Math.random() * (2 + 1));
     }
 
     useEffect(() => {
