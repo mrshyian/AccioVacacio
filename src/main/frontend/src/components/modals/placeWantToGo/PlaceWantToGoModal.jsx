@@ -1,7 +1,6 @@
 import {Button, Modal, Form} from "react-bootstrap";
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 
 
 const PlaceWantToGoModal = (props) => {
@@ -12,7 +11,7 @@ const PlaceWantToGoModal = (props) => {
     const [selectedState, setSelectedState] = useState();
     const [cities, setCities] = useState([]);
     const [selectedCity, setSelectedCity] = useState();
-    const navigate = useNavigate();
+
     useEffect(() => {
         axios.get("https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json")
             .then(res => setData(res.data))
@@ -37,7 +36,6 @@ const PlaceWantToGoModal = (props) => {
     const handleCity = (e) => {
         setSelectedCity(e.target.value)
     }
-
 
 
     useEffect(()=>{

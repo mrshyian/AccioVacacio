@@ -25,8 +25,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                 email: email,
                 password: password,
             })
-                .then(res=>{
-                    console.log(res)})
+                .then(() => window.location.reload())
             handleCloseRegistrationModal()
         }else {
             alert("The passwords are not the same")

@@ -18,7 +18,6 @@ const AddNewAlbumModal = (props) => {
 
 
     const sendDataToServer = () => {
-        window.location.reload();
         const url = "http://localhost:8080/albumsfromtrips";
         axios.post(url,{
             country: country,
@@ -29,6 +28,7 @@ const AddNewAlbumModal = (props) => {
         })
             .then(res=>{
                 console.log(res);
+                window.location.reload();
             })
         handleCloseLoginModal()
 
@@ -80,7 +80,7 @@ const AddNewAlbumModal = (props) => {
                         <Form.Control
                             value={tripDate}
                             onChange={e=> setTripDate(e.target.value)}
-                            type="text"
+                            type="date"
                         />
                     </Form.Group>
                     {/*-------------------------------------*/}

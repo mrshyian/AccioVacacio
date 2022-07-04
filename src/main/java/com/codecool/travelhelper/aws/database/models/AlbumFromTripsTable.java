@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.aws.database.models;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @ToString
+@Setter
 public class AlbumFromTripsTable {
 
     @Id
@@ -41,12 +43,13 @@ public class AlbumFromTripsTable {
     public AlbumFromTripsTable() {
     }
 
-    public AlbumFromTripsTable(String country, String city, String tripDate, String albumName, String aboutAlbum) {
+    public AlbumFromTripsTable(String country, String city, String tripDate, String albumName, String aboutAlbum, MyUserTable myUserTable) {
 
         this.country = country;
         this.city = city;
         this.tripDate = tripDate;
         this.albumName = albumName;
         this.aboutAlbum = aboutAlbum;
+        this.myUserTable=myUserTable;
     }
 }
