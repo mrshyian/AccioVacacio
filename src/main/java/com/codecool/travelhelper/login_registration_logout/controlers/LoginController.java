@@ -19,11 +19,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public void login(@RequestBody String data){
-        JsonParser jsonParser = new JsonParser();
-        JsonObject commentJsonObject = (JsonObject)jsonParser.parse(data);
-        String email = commentJsonObject.get("email").getAsString();
-        String password = commentJsonObject.get("password").getAsString();
-        loginImpl.findUser(email, password);
+        loginImpl.findUser(data);
     }
 
     @GetMapping("/login")

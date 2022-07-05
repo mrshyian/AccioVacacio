@@ -21,15 +21,6 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public void registration(@RequestBody String data){
-        JsonParser jsonParser = new JsonParser();
-        JsonObject commentJsonObject = (JsonObject)jsonParser.parse(data);
-        String fullName = commentJsonObject.get("fullName").getAsString();
-        String nickName = commentJsonObject.get("nickName").getAsString();
-        String birthday = commentJsonObject.get("birthday").getAsString();
-        String email = commentJsonObject.get("email").getAsString();
-        String password = commentJsonObject.get("password").getAsString();
-
-
-        registrationImpl.saveNewUserToDB(fullName, nickName, birthday, email, password);
+        registrationImpl.saveNewUserToDB(data);
     }
 }
