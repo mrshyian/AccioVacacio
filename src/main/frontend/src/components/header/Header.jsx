@@ -3,7 +3,6 @@ import './Header.css';
 import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
-import ErrorModal from '../modals/errorModals/ErrorModal';
 import axios from "axios";
 import {Link} from "react-router-dom";
 
@@ -22,7 +21,6 @@ const Header = () => {
     }
 
     const deletionOfSessions =()=>{
-        console.log("Elo")
         localStorage.removeItem("userId")
         sessionStorage.removeItem("userId")
         window.location.reload();
@@ -97,8 +95,6 @@ const Header = () => {
             </Navbar>
             {loginModalOpen && <LoginModal open={loginModalOpen}/>}
             {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
-            {errorModalOpen && <ErrorModal error={'tekst pomylki'}/>}
-
         </div>
     );
 };

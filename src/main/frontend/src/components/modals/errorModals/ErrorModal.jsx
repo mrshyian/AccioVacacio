@@ -1,23 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./ErrorModal.css"
+import {Button, Modal} from "react-bootstrap";
 
-const ErrorModal = ({ error, setErrorModalOpen }) => {
+const ErrorModal = (props) => {
+
+    useEffect(()=>{
+        setShowNewAlbumModal(props.visible)
+    }, [])
+
+    const [showNewAlbumModal, setShowNewAlbumModal] = useState(false);
+    const handleCloseLoginModal = () => setShowNewAlbumModal(false);
+
     return (
-        <div className="errorModalBackground">
-            <div className="errorModalContainer">
-                <div className="errorTitle">
-                    <h1>ERROR</h1>
-                </div>
-                <div className="errorBody">
-                    <h4>
-                        {error}
-                    </h4>
-                </div>
-                <div className="errorFooter">
-                    <button onClick={() => {setErrorModalOpen(false);}}>OK</button>
-                </div>
-            </div>
-        </div>
+        <Modal show={showNewAlbumModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
+            <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
+                <Modal.Title>{props.errorText}</Modal.Title>
+            </Modal.Header>
+            <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
+                <Button variant="warning" onClick={handleCloseLoginModal}>
+                    Close
+                </Button>
+            </Modal.Footer>
+        </Modal>
     );
 };
 
