@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "./RegistrationModal.css"
 import {Button, Form, Modal} from "react-bootstrap";
 import axios from "axios";
+import ErrorModal from "../errorModals/ErrorModal";
 
 const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
@@ -15,6 +16,13 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
     const [showRegistrationModal, setShowRegistrationModal] = useState(true);
     const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
     const handleShowRegistrationModal = () => setShowRegistrationModal(true);
+    const [errorModalOpen, setErrorModalOpen] = useState(false);
+    const [errorText, setErrorText]= useState("");
+
+    function showErrorModal(data){
+        setErrorText(data);
+        setErrorModalOpen(true);
+    }
 
     const sendDataToServer = () => {
         if (password === repeatPassword){
@@ -27,12 +35,15 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                 password: password,
             })
                 .then(res=>{
-                    console.log(res)})
-            handleCloseRegistrationModal()
+                    if (res.data !== ""){
+                        showErrorModal(res.data)
+                    }else {
+                        handleCloseRegistrationModal()
+                    }
+                })
         }else {
             alert("The passwords are not the same")
         }
-
     }
 
 
@@ -122,6 +133,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                     Submit
                 </Button>
             </Modal.Footer>
+            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen}/>}
         </Modal>
     );
 };

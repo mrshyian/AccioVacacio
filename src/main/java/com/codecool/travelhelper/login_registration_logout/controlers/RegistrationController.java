@@ -5,10 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,7 +17,8 @@ public class RegistrationController {
 
 
     @PostMapping("/registration")
-    public void registration(@RequestBody String data){
-        registrationImpl.saveNewUserToDB(data);
+    public String registration(@RequestBody String data){
+
+        return registrationImpl.saveNewUserToDB(data);
     }
 }

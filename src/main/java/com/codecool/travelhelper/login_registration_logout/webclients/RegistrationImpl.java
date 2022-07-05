@@ -3,6 +3,7 @@ package com.codecool.travelhelper.login_registration_logout.webclients;
 
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
+import com.codecool.travelhelper.login_registration_logout.controlers.RegistrationController;
 import com.codecool.travelhelper.login_registration_logout.utils.sendMail.KindOfEmail;
 import com.codecool.travelhelper.login_registration_logout.utils.sendMail.SendMailToUser;
 import com.codecool.travelhelper.login_registration_logout.utils.Util;
@@ -22,9 +23,12 @@ public class RegistrationImpl {
     Util util;
 
     @Autowired
+    RegistrationController registrationController;
+
+    @Autowired
     UserRepository userRepository;
 
-    public void saveNewUserToDB(String data) {
+    public String saveNewUserToDB(String data) {
 
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject) jsonParser.parse(data);
@@ -37,6 +41,7 @@ public class RegistrationImpl {
         Optional<MyUserTable> userFromDB = userRepository.findAllByUserEMail(eMail);
         if (userFromDB.isPresent()) {
             System.out.println("this email is already taken");
+            return "This email is already taken";
         } else {
             userRepository.save(
                     new MyUserTable(
@@ -48,6 +53,7 @@ public class RegistrationImpl {
                     )
             );
             sendMailToUser.sendSimpleEmail(eMail, fullName, KindOfEmail.AFTER_REGISTRATION);
+            return null;
         }
     }
 }
