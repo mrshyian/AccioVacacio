@@ -42,7 +42,7 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                     }
                 })
         }else {
-            alert("The passwords are not the same")
+            showErrorModal("The passwords are not the same")
         }
     }
 

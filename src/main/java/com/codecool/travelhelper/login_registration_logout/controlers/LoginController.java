@@ -18,8 +18,8 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public void login(@RequestBody String data){
-        loginImpl.findUser(data);
+    public String login(@RequestBody String data){
+        return loginImpl.findUser(data);
     }
 
     @GetMapping("/login")

@@ -29,7 +29,7 @@ public class LoginImpl {
     @Autowired
     UserRepository userRepository;
 
-    public void findUser(String data) {
+    public String findUser(String data) {
 
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(data);
@@ -43,13 +43,15 @@ public class LoginImpl {
             String passwordFromDB = userObject.get().getPassword();
             if(validationPassword(util.hashPassword(password),passwordFromDB)){
                 session.setAttribute("userId", userObject.get().getId());
-                System.out.println("Successful log in");
                 this.setCurrentUserId(userObject.get().getId());
+                return null;
             }else {
                 System.out.println("incorrect log in ");
+                return "Mail or password is incorrect";
             }
         } else {
             System.out.println("mail or password is incorrect");
+            return "Mail or password is incorrect";
         }
     }
 

@@ -18,7 +18,6 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String registration(@RequestBody String data){
-
         return registrationImpl.saveNewUserToDB(data);
     }
 }

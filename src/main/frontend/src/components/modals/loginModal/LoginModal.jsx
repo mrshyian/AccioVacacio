@@ -2,6 +2,7 @@ import "./LoginModal.css";
 import {Button, Card, Modal, Form} from "react-bootstrap";
 import axios from "axios";
 import React, {useState} from "react";
+import ErrorModal from "../errorModals/ErrorModal";
 
 
 const LoginModal = () => {
@@ -11,6 +12,13 @@ const LoginModal = () => {
 
     const [showLoginModal, setShowLoginModal] = useState(true);
     const handleCloseLoginModal = () => setShowLoginModal(false);
+    const [errorModalOpen, setErrorModalOpen] = useState(false);
+    const [errorText, setErrorText]= useState("");
+
+    function showErrorModal(data){
+        setErrorText(data);
+        setErrorModalOpen(true);
+    }
 
 
 
@@ -20,11 +28,14 @@ const LoginModal = () => {
                 email: email,
                 password: password,
             })
-                .then(()=>{
-                    fetchUserId();
-                    window.location.reload();
+                .then(res=>{
+                    if (res.data ===""){
+                        fetchUserId();
+                        window.location.reload();
+                    }else {
+                        showErrorModal(res.data)
+                    }
                 })
-            handleCloseLoginModal()
     }
 
     const fetchUserId = () => {
@@ -76,6 +87,7 @@ const LoginModal = () => {
                     Login
                 </Button>
             </Modal.Footer>
+            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen}/>}
         </Modal>
     );
 };
