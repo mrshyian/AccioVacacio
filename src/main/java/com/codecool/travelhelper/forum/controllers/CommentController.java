@@ -39,8 +39,6 @@ public class CommentController {
     // get comment from frontend
     @PostMapping("/comments")
     public void getNewComments(@RequestBody String commentsTable) {
-        System.out.println("POST method");
-
         comment.getAndSaveComments(commentsTable);
     }
 
@@ -48,7 +46,6 @@ public class CommentController {
     @GetMapping("/comments")
     public List<CommentsTable> getComments() {
         Long userId = loginImpl.getCurrentUserId();
-        System.out.println("Get method");
         return commentService.findAll(userId);
     }
 

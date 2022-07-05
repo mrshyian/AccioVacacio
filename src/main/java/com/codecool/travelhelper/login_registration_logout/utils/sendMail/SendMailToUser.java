@@ -31,8 +31,6 @@ public class SendMailToUser {
 
         }
 
-        System.out.println(mailText);
-
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setFrom("kodzikul@gmail.com");

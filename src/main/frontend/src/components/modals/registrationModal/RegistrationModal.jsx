@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import "./RegistrationModal.css"
 import {Button, Form, Modal} from "react-bootstrap";
 import axios from "axios";
 import ErrorModal from "../errorModals/ErrorModal";
 
-const RegistrationModal = ({ setRegistrationOpenModal }) => {
+const RegistrationModal = () => {
 
     const [fullName, setFullName] = useState("")
     const [nickName, setNickName] = useState("")
@@ -15,7 +14,6 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
 
     const [showRegistrationModal, setShowRegistrationModal] = useState(true);
     const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
-    const handleShowRegistrationModal = () => setShowRegistrationModal(true);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [errorText, setErrorText]= useState("");
 

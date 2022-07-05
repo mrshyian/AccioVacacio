@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import "./ErrorModal.css"
 import {Button, Modal} from "react-bootstrap";
 
 const ErrorModal = (props) => {
