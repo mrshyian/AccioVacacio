@@ -10,6 +10,7 @@ import {Link} from "react-router-dom";
 const Header = () => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
+    const [errorModalOpen, setErrorModalOpen] = useState(false);
 
     const sendLogoutRequest = () => {
         const url = "http://localhost:8080/logout";
@@ -20,7 +21,6 @@ const Header = () => {
     }
 
     const deletionOfSessions =()=>{
-        console.log("Elo")
         localStorage.removeItem("userId")
         sessionStorage.removeItem("userId")
         window.location.reload();
@@ -95,7 +95,6 @@ const Header = () => {
             </Navbar>
             {loginModalOpen && <LoginModal open={loginModalOpen}/>}
             {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
-
         </div>
     );
 };
