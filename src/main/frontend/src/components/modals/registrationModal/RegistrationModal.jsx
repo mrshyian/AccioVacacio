@@ -85,7 +85,9 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                             type="date"
                             placeholder="Birthday"
                             value={birthday}
-                            onChange={e=> setBirthday(e.target.value)}/>
+                            onChange={e=> setBirthday(e.target.value)}
+                            min="1940-01-01" max="2010-01-01"
+                        />
                     </Form.Group>
 
                     <Form.Group
