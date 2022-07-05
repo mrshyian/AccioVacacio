@@ -22,7 +22,7 @@ public class PostTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
-    private Long Id;
+    private Long id;
 
     private String topic;
     private String postText;

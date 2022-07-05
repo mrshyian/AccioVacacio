@@ -87,6 +87,8 @@ public class PostImpl {
         }
 
     }
+
+
     @Transactional
     public void deletePost(String postId){
         JsonParser jsonParser = new JsonParser();
@@ -97,6 +99,9 @@ public class PostImpl {
         postRepository.deleteAllById(Long.parseLong(idPost));
 
     }
+
+
+
 
     public void sortPosts(String countryAndCity){
 
