@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Card, Image} from "react-bootstrap";
 import "./SingleComment.css"
 import {FaHeart} from "react-icons/fa";
+import AddNewComment from "../addNewPost/AddNewComment";
 
 const SingleComment = (props) => {
     return (
@@ -30,7 +31,11 @@ const SingleComment = (props) => {
             </Card.Body>
             <Card.Footer className="comment-footer">
                 <div style={{textAlign: "right"}}>
-                    <Button variant="outline-warning">{<FaHeart/>}</Button>
+                    {sessionStorage.getItem("userId") === null ? (
+                        <div/>
+                    ) : (
+                        <Button variant="outline-warning">{<FaHeart/>}</Button>
+                    )}
                 </div>
             </Card.Footer>
         </Card>

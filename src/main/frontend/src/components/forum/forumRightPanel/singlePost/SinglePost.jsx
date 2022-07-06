@@ -29,7 +29,11 @@ const SinglePost = (props) => {
                                alt=""/>
                         <h4 className="post-text">{props.post.postText}</h4>
                     </div>
-                    <AddNewComment postTopic={props.post.topic} postId={props.post.id}/>
+                    {sessionStorage.getItem("userId") === null ? (
+                        <div/>
+                    ) : (
+                        <AddNewComment postTopic={props.post.topic} postId={props.post.id}/>
+                    )}
                 </Card.Text>
             </Card.Body>
             <Card.Footer>
