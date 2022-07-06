@@ -1,0 +1,14 @@
+.flex-box-for-place-want-to-go {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.single-place-card {
+    width: 18rem;
+    margin-left: 5%;
+}
+
+.img-for-single-place-want-to-go {
+    height: 200px;
+    width: 100%;
+}

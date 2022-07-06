@@ -24,7 +24,7 @@ const TouristAttractionsBox = (props) => {
                                 className="mb-2"
                             >
                                 <Card.Header style={{textAlign: "center", color: "orange"}}>
-                                    <h3>{cardHeaders[index]}</h3>
+                                    <h3 className="h3">{cardHeaders[index]}</h3>
                                 </Card.Header>
                                 <Card.Body>
                                     <TouristSingleAttractionCard key={index} attractions={attractions}/>

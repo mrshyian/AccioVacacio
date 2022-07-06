@@ -100,7 +100,7 @@ const UserNotes = () => {
                                         onClick={(e) => submit(e)}>Save</Button>
                             </Card.Header>
                         </Card>
-                        <InputGroup style={{marginLeft: "-12.5%", width: "125%"}}>
+                        <InputGroup>
                             <FormControl
                                 id="note-input-id"
                                 className="note-input"

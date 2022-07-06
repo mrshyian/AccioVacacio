@@ -50,20 +50,11 @@
 }
 
 body {
-  /*background-image: url("https://media.self.com/photos/5f0885ffef7a10ffa6640daa/3:4/w_2945,h_3927,c_limit/travel_plane_corona.jpeg");*/
   background-image: url("https://images.unsplash.com/photo-1563223566-f731efbdbab0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-attachment: fixed;
   background-repeat: no-repeat;
-  /*background-color: #3c989b;*/
   background-size: 100%;
   display: block;
   padding: 0;
   margin: 0;
 }
-
-/*html {*/
-/*  background-color: #3c989b;*/
-/*}*/
-
-/*#root {*/
-/*  background-color: #3c989b;*/
-/*}*/

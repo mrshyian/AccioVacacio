@@ -13,6 +13,7 @@
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0",
     "react-dropzone": "^14.2.1",
+    "react-google-recaptcha": "^2.1.0",
     "react-icons": "^4.4.0",
     "react-photo-album": "^1.14.0",
     "react-pro-sidebar": "^0.7.1",

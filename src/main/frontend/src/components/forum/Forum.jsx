@@ -8,12 +8,21 @@ const Forum = () => {
 
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
+    const [user, setUser] = useState([]);
 
 
     const fetchComment = () => {
         axios.get(`http://localhost:8080/comments`)
             .then(res =>{setComment(res.data);
-            console.log(res.data)})
+                console.log(res.data)})
+        .catch(err => {console.log(err)});
+    };
+
+
+    const fetchUser = () => {
+        axios.get(`http://localhost:8080/comment_user`)
+            .then(res =>{setUser(res.data);
+                console.log(res.data)})
         .catch(err => {console.log(err)});
     };
 
@@ -25,6 +34,7 @@ const Forum = () => {
     };
 
     useEffect(() => {
+            fetchUser();
             fetchComment();
             fetchPost();
         }, [])
@@ -33,7 +43,8 @@ const Forum = () => {
         <div>
             <div style={{display: "flex"}}>
                 <ForumLeftPanel/>
-                <ForumRightPanel posts={post} comments={comment}/>
+                <ForumRightPanel user={user} posts={post} comments={comment}/>
+
             </div>
 
         </div>

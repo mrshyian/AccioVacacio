@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
-import PlaceWantToGoModal from "../../../../modals/placeWantToGo/PlaceWantToGoModal";
 import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
 import SinglePlace from "./SinglePlace";
+import "./PlaceWantToGo.css"
+import PlaceWantToGoModal from "../../../../modals/placeWantToGoModal/PlaceWantToGoModal";
 
 
-const PlaceWantToGo = (props) => {
+const PlaceWantToGo = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [places, setPlaces] = useState([]);
@@ -22,9 +23,7 @@ const PlaceWantToGo = (props) => {
     };
 
     function randomNumberInRange() {
-        const number = Math.floor(Math.random() * (2 + 1))
-        console.log(number)
-        return number;
+        return Math.floor(Math.random() * (2 + 1));
     }
 
     useEffect(() => {
@@ -44,7 +43,7 @@ const PlaceWantToGo = (props) => {
                     onClick={() => {setModalOpen(true);
                 }}>Add place</Button></Card.Header>
                 <Card.Body>
-                    <div style={{display: "flex", flexWrap: "wrap"}}>
+                    <div className="flex-box-for-place-want-to-go">
                         {places.map((place, index) => {
                             return (
                                 <SinglePlace country={place.country} city={place.city} imageUrl={place.imagesUrl[randomNumberInRange()]} key={index}/>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button, Card, Image} from "react-bootstrap";
 import "./SingleComment.css"
 import {FaHeart} from "react-icons/fa";
@@ -6,30 +6,32 @@ import {FaHeart} from "react-icons/fa";
 const SingleComment = (props) => {
     return (
         <Card
-              key={"dark"}
-              text={'white'}
-
-              style={{maxWidth: '90%', margin: "10px", marginLeft: "2.5%"}}
-              className="mb-2 ">
-            <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex", backgroundColor: "rgb(35, 35, 35)"}}>
-
-                <p style={{ marginBottom: -30 }}>
-                    <Image fluid="true" className="imgForPost" src={props.comments.commentImage} alt="user photo"/>
-                    <p>Sebastian Ryndak</p></p>
-                <p>{props.comments.commentDateTime}</p>
+            key={"dark"}
+            text={'white'}
+            className="mb-2 comment-card">
+            <Card.Header className="comment-card-header">
+                <div>
+                    <Image fluid="true" className="user-avatar-for-comment" src={props.comments.commentImage}
+                           alt="user photo"/>
+                    <div>Sebastian Ryndak</div>
+                </div>
+                <div>{props.comments.commentDateTime}</div>
             </Card.Header>
-            <Card.Body style={{ backgroundColor: "rgb(55, 55, 55)"}}>
-                <Card.Text style={{color: "white"}}>
-
-                    {props.comments.commentText}
-
-
-
-                    <p><Image rounded="true" fluid="true" className="addImage" src="https://cdn.icon-icons.com/icons2/2184/PNG/512/healthy_strength_strong_health_heart_icon_133538.png" alt=""/></p>
+            <Card.Body className="comment-card-body">
+                <Card.Text>
+                    <div className="comment-content-div">
+                        <Image rounded="true" fluid="true" className="addImage"
+                               src="https://cdn.icon-icons.com/icons2/2184/PNG/512/healthy_strength_strong_health_heart_icon_133538.png"
+                               alt=""
+                        />
+                        <div className="comment-text">{props.comments.commentText}</div>
+                    </div>
                 </Card.Text>
             </Card.Body>
-            <Card.Footer style={{ backgroundColor: "rgb(45, 45, 45)"}}>
-                <Button style={{marginLeft: "93%"}} variant="outline-warning">{<FaHeart />}</Button>
+            <Card.Footer className="comment-footer">
+                <div style={{textAlign: "right"}}>
+                    <Button variant="outline-warning">{<FaHeart/>}</Button>
+                </div>
             </Card.Footer>
         </Card>
     );

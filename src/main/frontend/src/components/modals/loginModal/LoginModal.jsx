@@ -3,9 +3,11 @@ import {Button, Card, Modal, Form} from "react-bootstrap";
 import axios from "axios";
 import React, {useState} from "react";
 import ErrorModal from "../errorModals/ErrorModal";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 const LoginModal = () => {
+    const [disabledBtn, setDisabledBtn] = useState(true)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -14,6 +16,7 @@ const LoginModal = () => {
     const handleCloseLoginModal = () => setShowLoginModal(false);
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [errorText, setErrorText]= useState("");
+
 
     function showErrorModal(data){
         setErrorText(data);
@@ -33,10 +36,12 @@ const LoginModal = () => {
                         fetchUserId();
                         window.location.reload();
                     }else {
-                        showErrorModal(res.data)
+                            showErrorModal(res.data);
                     }
                 })
     }
+
+
 
     const fetchUserId = () => {
         axios.get("http://localhost:8080/login")
@@ -79,11 +84,16 @@ const LoginModal = () => {
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
+            <Modal.Footer  style={{background: "rgb(40,40,40)"}} >
+                <ReCAPTCHA
+                    size="normal"
+                    sitekey="6Let98ogAAAAAH3niinH0n8_di4vhssvE5YL_AuF"
+                    onChange={() => setDisabledBtn(false)}
+                />
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>
-                <Button variant="outline-warning" onClick={sendDataToServer}>
+                <Button disabled={disabledBtn} variant="outline-warning" onClick={sendDataToServer}>
                     Login
                 </Button>
             </Modal.Footer>

@@ -4,9 +4,16 @@ import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CommentRepository extends JpaRepository<CommentsTable, Long> {
-//    CommentsTable updateComment(Long id, CommentsTable comment);
+//    List<CommentsTable> findAllByMyUserTableId(Long userId);
+
+//    @Override
+//    List<CommentsTable> findAll();
+
+    //    CommentsTable updateComment(Long id, CommentsTable comment);
 //    CommentsTable deleteCommentsTablesById(Long id);
 
 }

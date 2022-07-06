@@ -1,27 +1,29 @@
-textarea {
-    margin-left: 10%;
+.add-comment-textarea {
     border: 1px solid whitesmoke;
-    margin-right: 10%;
     border-radius: 7px ;
-
     background: transparent;
     color: whitesmoke;
-    /*resize: none;*/
-
     width: 100%;
-    font-size: 5em;
-    /*outline: none;*/
-    height: 100%;
-    position: relative;
+    font-size: 22px;
+    padding:5px;
 }
 
+.add-comments-at-right-side{
+    text-align: right;
+}
 
+.add-comment-card {
+    max-width: 50%;
+    margin: 10px 10px 10px 50%;
+}
 
-.text-container {
+.add-comment-card-header {
+    justify-content: space-between;
+    color: orange;
+    display: flex;
+    background-color: rgb(35, 35, 35);
+}
 
-    background: #4492E0;
-    padding: 20px;
-    height: 50%;
-    width: 50%;
-    position: relative;
+.add-comment-card-body {
+    background-color: rgb(55, 55, 55);
 }

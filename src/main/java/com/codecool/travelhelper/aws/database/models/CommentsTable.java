@@ -1,5 +1,7 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +16,6 @@ import java.util.Set;
 @Entity(name = "CommentsTable")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class CommentsTable {
 
@@ -32,22 +33,24 @@ public class CommentsTable {
 
 //---------------------------------------------------
 
-    // liked by user to user
-    @ManyToMany
-    @JoinTable(name = "liked_comments_by_user",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "comment_id"))
-    private Set<MyUserTable> likedByUsers = new HashSet<>();
+//    // liked by user to user
+//    @ManyToMany
+//    @JoinTable(name = "liked_comments_by_user",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "comment_id"))
+//    private Set<MyUserTable> likedByUsers = new HashSet<>();
 
 //---------------------------------------------------
 
     // comments to user
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
     private MyUserTable myUserTable;
 //---------------------------------------------------
 
     // comments to post
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="post_id")
     private PostTable post;
@@ -55,12 +58,14 @@ public class CommentsTable {
 //------------------------------------------------------
 
 
-    public CommentsTable(String commentTex, String commentImage, String country, String city) {
+    public CommentsTable(String commentTex, String commentImage, String country, String city, MyUserTable myUserTable, PostTable postTable) {
         this.commentText = commentTex;
         this.commentImage = commentImage;
         this.country = country;
         this.city = city;
         this.commentDateTime = getCurrentTime();
+        this.myUserTable = myUserTable;
+        this.post = postTable;
     }
 
     private String getCurrentTime(){
@@ -69,4 +74,15 @@ public class CommentsTable {
         return dateTime.format(myFormatObj);
     }
 
+    @Override
+    public String toString() {
+        return "CommentsTable{" +
+                "id=" + id +
+                ", commentText='" + commentText + '\'' +
+                ", commentImage='" + commentImage + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", commentDateTime='" + commentDateTime + '\'' +
+                '}';
+    }
 }

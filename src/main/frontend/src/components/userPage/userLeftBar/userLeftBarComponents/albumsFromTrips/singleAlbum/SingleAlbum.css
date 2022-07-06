@@ -18,3 +18,18 @@
 .album-card:hover .album-image {
     filter: none;
 }
+
+.delete-album-btn{
+
+}
+
+.btn-on-image {
+    position: relative;
+}
+
+.btn-on-image .delete-album-btn {
+    position: absolute;
+    top: 7%;
+    left: 91%;
+    transform: translate(-50%, -50%);
+}

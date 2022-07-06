@@ -1,18 +1,19 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
+import "./PlaceWantToGo.css"
 
 const SinglePlace = (props) => {
-    // console.log(props.placeUrl)
+
     return (
         <Card
-            style={{ width: '18rem', marginLeft: "5%" }}
+            className="single-place-card"
             bg="dark"
             key={"dark"}
             text={'white'}>
-            <Card.Img variant="top" src={props.imageUrl} />
+            <Card.Img className="img-for-single-place-want-to-go" variant="top" src={props.imageUrl} />
             <Card.Body>
                 <Card.Title>
-                    {props.country} {props.city}
+                    {props.country} / {props.city}
                 </Card.Title>
             </Card.Body>
         </Card>

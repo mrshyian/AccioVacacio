@@ -11,47 +11,42 @@ function AddNewComment(props) {
         name: ""
     })
 
-    function handle(e){
+    function handle(e) {
         const newName = {...name}
         newName[e.target.id] = e.target.value
         setName(newName)
-        console.log(newName)
     }
 
-    function submit(e){
+    function submit(e) {
         refreshPage();
         e.preventDefault();
         Axios.post(url, {
-            name: name.name
+            name: name.name,
+            postId: props.postId
         }).then(r => console.log(r.data))
     }
 
-    function refreshPage(){
-        console.log("działa")
+    function refreshPage() {
         window.location.reload();
     }
 
     return (
-        <div className="">
-            Add new comment:
+        <div>
             <form onSubmit={(e) => submit(e)}>
                 <Card
                     key={"dark"}
-                         text={'white'}
-
-                         style={{maxWidth: '90%', margin: "10px", marginLeft: "2.5%"}}
-                         className="mb-2 ">
-                    <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex", backgroundColor: "rgb(35, 35, 35)"}} as="h5">Featured</Card.Header>
-                    <Card.Body style={{ backgroundColor: "rgb(55, 55, 55)"}}>
-                        <Card.Title>Special title treatment</Card.Title>
+                    text={'white'}
+                    className="mb-2 add-comment-card">
+                    <Card.Body className="add-comment-card-body">
                         <Card.Text>
-                            <textarea  style={{width: "100%", height: "100%" }} onChange={(e) => handle(e)} id="name" value={name.name} placeholder="name" type="text"/>
+                            <textarea className="add-comment-textarea" onChange={(e) => handle(e)} id="name" value={name.name}
+                                      placeholder="Comment text" type="text"/>
                         </Card.Text>
-                        <Button style={{marginLeft: "93%"}} variant="outline-warning" type="submit">submit</Button>
+                        <div style={{textAlign: "right"}}>
+                            <Button variant="outline-warning" type="submit">Add comment</Button>
+                        </div>
                     </Card.Body>
                 </Card>
-                {/*<textarea  style={{width: "100%" }} onChange={(e) => handle(e)} id="name" value={name.name} placeholder="name" type="text"/>*/}
-                {/*<Button variant="outline-warning" type="submit">submit</Button>*/}
             </form>
         </div>
     );

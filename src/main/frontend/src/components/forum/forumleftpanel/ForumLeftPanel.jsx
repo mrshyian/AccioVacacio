@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {Menu, MenuItem, ProSidebar, SubMenu} from "react-pro-sidebar";
 import {
     FaComment,
@@ -9,12 +9,9 @@ import {
     FaHeart,
     FaHourglassHalf
 } from "react-icons/fa";
-import RegistrationModal from "../../modals/registrationModal/RegistrationModal";
-import {Button} from "react-bootstrap";
-// import NewPostModal from "../../modals/newPostModal/NewPostModal";
-// import {useState} from "@types/react";
+
 import AddNewPost from "../forumRightPanel/AddNewPost";
-// import {FiMessageCircle} from "react-icons/fi"
+
 
 const ForumLeftPanel = () => {
 
