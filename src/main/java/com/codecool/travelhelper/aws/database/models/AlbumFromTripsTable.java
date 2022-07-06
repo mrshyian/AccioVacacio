@@ -21,7 +21,7 @@ public class AlbumFromTripsTable {
 //---------------------------------------------------
 
     // photos to album
-    @OneToMany(mappedBy = "albumFromTripsTable")
+    @OneToMany(mappedBy = "albumFromTripsTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     List<PhotosFromTripsTable> photos;
 
 //---------------------------------------------------

@@ -50,25 +50,25 @@ public class MyUserTable {
 //---------------------------------------------------
 
     // albums to user
-    @OneToMany(mappedBy = "myUserTable")
+    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     List<AlbumFromTripsTable> albumsFromTripsTable;
 
 //---------------------------------------------------
 
     // placesWantToGo to user
-    @OneToMany(mappedBy = "myUserTable")
+    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     List<PlacesWantToGoTable> placesWantToGoTable;
 
 //---------------------------------------------------
 
     // visitedPlaces to user
-    @OneToMany(mappedBy = "myUserTable")
+    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     List<VisitedPlaceTable> visitedPlacesTable;
 
 //---------------------------------------------------
 
     // trips to user
-    @OneToMany(mappedBy = "myUserTable")
+    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     List<TripTable> tripsTable;
 
 //---------------------------------------------------
