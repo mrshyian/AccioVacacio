@@ -13,6 +13,8 @@ import Calculator from "./components/userPage/userLeftBar/userLeftBarComponents/
 import AlbumsFromTrips from "./components/userPage/userLeftBar/userLeftBarComponents/albumsFromTrips/AlbumsFromTrips";
 import FavouriteForumComments
     from "./components/userPage/userLeftBar/userLeftBarComponents/favouriteForumComments/FavouriteForumComments";
+import SingleAlbumView
+    from "./components/userPage/userLeftBar/userLeftBarComponents/albumsFromTrips/singleAlbum/SingleAlbumView";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -30,6 +32,7 @@ root.render(
                   <Route path="/userpage/calculator" element={<Calculator />}/>
                   <Route path="/userpage/albums_from_trips" element={<AlbumsFromTrips />}/>
                   <Route path="/userpage/favourite_forum_comments" element={<FavouriteForumComments />}/>
+                  <Route path="/userpage/albums_from_trips/album" element={<SingleAlbumView />}/>
                   <Route path="/" element={<AllCarousel />}/>
               </Route>
           </Routes>

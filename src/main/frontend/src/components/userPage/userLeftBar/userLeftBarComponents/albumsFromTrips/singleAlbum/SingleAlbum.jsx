@@ -3,10 +3,12 @@ import {Button, Card} from "react-bootstrap";
 import "./SingleAlbum.css"
 import {FaTimes} from "react-icons/fa";
 import DeleteAlbumModal from "../../../../../modals/deleteAlbumModal/DeleteAlbumModal";
+import {useNavigate} from "react-router-dom";
+
 
 
 const SingleAlbum = (props) => {
-
+    const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
 
 
@@ -28,7 +30,11 @@ const SingleAlbum = (props) => {
                         <Card.Text>
                             {props.album.aboutAlbum}
                         </Card.Text>
-                        <Button variant="outline-warning">Go to album</Button>
+                        <Button onClick={()=> navigate("/userpage/albums_from_trips/album", {state: {
+                                album: props.album
+                                }})}
+                                variant="outline-warning">Go to album
+                        </Button>
                     </Card.Body>
                 </div>
             </div>
