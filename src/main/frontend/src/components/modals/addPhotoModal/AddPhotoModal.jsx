@@ -45,7 +45,7 @@ const AddPhotoModal = (props) => {
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     return (
-        <Modal show={showAddPhotoModal} onHide={handleCloseErrorModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
+        <Modal show={showAddPhotoModal} onHide={handleCloseErrorModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}} size="xl">
             <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
                 <Modal.Title>Add photo</Modal.Title>
             </Modal.Header>
