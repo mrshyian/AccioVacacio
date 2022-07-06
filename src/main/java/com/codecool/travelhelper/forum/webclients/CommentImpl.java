@@ -93,10 +93,10 @@ public class CommentImpl {
 
     public void editComment(String commentDetails){
         JsonParser jsonParser = new JsonParser();
-        JsonObject commentToDeleteId = (JsonObject)jsonParser.parse(commentDetails);
+        JsonObject commentToEdit = (JsonObject)jsonParser.parse(commentDetails);
 
-        String commentText = commentToDeleteId.get("commentText").getAsString();
-        String idComment = commentToDeleteId.get("commentId").getAsString();
+        String commentText = commentToEdit.get("commentText").getAsString();
+        String idComment = commentToEdit.get("commentId").getAsString();
 
         Optional<CommentsTable> commentsTable = commentRepository.findById(Long.valueOf(idComment));
 

@@ -24,12 +24,6 @@ public class CommentController {
     LoginImpl loginImpl;
 
     @Autowired
-    private CommentService commentService;
-
-    @Autowired
-    private PostService postService;
-
-    @Autowired
     PostRepository postRepository;
 
     @Autowired
@@ -59,7 +53,7 @@ public class CommentController {
     }
 
 
-
+    // send favourite comments to frontend
     @GetMapping("/favouriteComments")
     public List<CommentsTable> getUserFavouriteComments(){
         List<CommentsTable> likedComments= new ArrayList<>();
@@ -69,12 +63,8 @@ public class CommentController {
                 likedComments.add(comment);
             }
         }
-//        System.out.println(likedComments);
         return likedComments;
-
     }
-
-
 
     // add like to selected comment
     @PostMapping("/add_like_to_comment")

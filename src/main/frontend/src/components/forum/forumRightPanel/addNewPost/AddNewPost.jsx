@@ -27,13 +27,11 @@ function AddNewPost() {
 
     function submit(e){
         handleClose();
-
         e.preventDefault();
         Axios.post(url, {
             topic: data.topic,
             postText: data.postText
-        }).then(r => console.log(r.data))
-        refreshPage();
+        }).then(() => refreshPage());
     }
 
     return (

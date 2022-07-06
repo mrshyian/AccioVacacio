@@ -95,7 +95,7 @@ public class PostImpl {
         JsonObject postToDeleteId = (JsonObject)jsonParser.parse(postId);
 
         String idPost = postToDeleteId.get("postId").getAsString();
-//        commentRepository.deleteAllByPostId(Long.valueOf(idPost));
+
         postRepository.deleteAllById(Long.parseLong(idPost));
 
     }
@@ -106,11 +106,10 @@ public class PostImpl {
     public void sortPosts(String countryAndCity){
 
         JsonParser jsonParser = new JsonParser();
-        JsonObject postToDeleteId = (JsonObject)jsonParser.parse(countryAndCity);
+        JsonObject sortDetails = (JsonObject)jsonParser.parse(countryAndCity);
 
-        String country = postToDeleteId.get("country").getAsString();
-//        String city = postToDeleteId.get("city").getAsString();
-        String time = postToDeleteId.get("time").getAsString();
+        String country = sortDetails.get("country").getAsString();
+        String time = sortDetails.get("time").getAsString();
 
         List<CommentsTable> comments;
 

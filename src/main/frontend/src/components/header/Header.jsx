@@ -26,7 +26,6 @@ const Header = () => {
     })}
 
     const deletionOfSessions =()=>{
-        console.log("Elo")
         localStorage.removeItem("userId")
         sessionStorage.removeItem("userId")
         window.location.reload();

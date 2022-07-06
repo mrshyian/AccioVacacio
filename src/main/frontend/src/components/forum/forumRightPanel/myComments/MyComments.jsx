@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import MyComment from "./MyComment";
 import ForumLeftPanel from "../../forumleftpanel/ForumLeftPanel";
-import SingleComment from "../singleComment/SingleComment";
 import SinglePost from "../singlePost/SinglePost";
 
 
