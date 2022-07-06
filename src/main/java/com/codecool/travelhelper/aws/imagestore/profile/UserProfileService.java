@@ -28,7 +28,7 @@ public class UserProfileService {
         return userProfileDataAccessService.getUserProfiles();
     }
 
-    void uploadUserProfileImage(UUID userProfileId, MultipartFile file) {
+    void uploadUserProfileImage(Long userProfileId, String albumName, MultipartFile file) {
         // 1. Check if image is not empty
         isFileEmpty(file);
         // 2. If file is an image
@@ -53,7 +53,7 @@ public class UserProfileService {
 
     }
 
-    byte[] downloadUserProfileImage(UUID userProfileId) {
+    byte[] downloadUserProfileImage(Long userProfileId) {
         UserProfile user = getUserProfileOrThrow(userProfileId);
 
         String path = String.format("%s/%s",
@@ -73,7 +73,7 @@ public class UserProfileService {
         return metadata;
     }
 
-    private UserProfile getUserProfileOrThrow(UUID userProfileId) {
+    private UserProfile getUserProfileOrThrow(Long userProfileId) {
         return userProfileDataAccessService
                 .getUserProfiles()
                 .stream()

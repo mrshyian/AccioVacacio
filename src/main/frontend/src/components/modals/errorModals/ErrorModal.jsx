@@ -4,19 +4,26 @@ import {Button, Modal} from "react-bootstrap";
 const ErrorModal = (props) => {
 
     useEffect(()=>{
-        setShowNewAlbumModal(props.visible)
+        setShowErrorModal(props.visible)
     }, [])
 
-    const [showNewAlbumModal, setShowNewAlbumModal] = useState(false);
-    const handleCloseLoginModal = () => setShowNewAlbumModal(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const handleCloseErrorModal = () => {
+        setToPropsModalClose();
+        setShowErrorModal(false);
+    };
+
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
 
     return (
-        <Modal show={showNewAlbumModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
+        <Modal show={showErrorModal} onHide={handleCloseErrorModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
             <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
                 <Modal.Title>{props.errorText}</Modal.Title>
             </Modal.Header>
             <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
-                <Button variant="warning" onClick={handleCloseLoginModal}>
+                <Button variant="warning" onClick={handleCloseErrorModal}>
                     Close
                 </Button>
             </Modal.Footer>

@@ -1,19 +1,22 @@
 import "./LoginModal.css";
-import {Button, Card, Modal, Form} from "react-bootstrap";
+import {Button, Modal, Form} from "react-bootstrap";
 import axios from "axios";
 import React, {useState} from "react";
 import ErrorModal from "../errorModals/ErrorModal";
 import ReCAPTCHA from "react-google-recaptcha";
 
 
-const LoginModal = () => {
+const LoginModal = (props) => {
     const [disabledBtn, setDisabledBtn] = useState(true)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const [showLoginModal, setShowLoginModal] = useState(true);
-    const handleCloseLoginModal = () => setShowLoginModal(false);
+    const handleCloseLoginModal = () =>{
+        setToPropsModalClose();
+        setShowLoginModal(false);
+    } ;
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [errorText, setErrorText]= useState("");
 
@@ -41,7 +44,9 @@ const LoginModal = () => {
                 })
     }
 
-
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
 
     const fetchUserId = () => {
         axios.get("http://localhost:8080/login")
@@ -97,7 +102,7 @@ const LoginModal = () => {
                     Login
                 </Button>
             </Modal.Footer>
-            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen}/>}
+            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen} close={setErrorModalOpen}/>}
         </Modal>
     );
 };

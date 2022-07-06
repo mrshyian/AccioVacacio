@@ -1,16 +1,19 @@
 package com.codecool.travelhelper.aws.imagestore.profile;
 
+import lombok.Setter;
+
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+@Setter
 public class UserProfile {
 
-    private final UUID userProfileId;
+    private final Long userProfileId;
     private final String username;
     private String userProfileImageLink; // S3 key
 
-    public UserProfile(UUID userProfileId,
+    public UserProfile(Long userProfileId,
                        String username,
                        String userProfileImageLink) {
         this.userProfileId = userProfileId;
@@ -18,7 +21,7 @@ public class UserProfile {
         this.userProfileImageLink = userProfileImageLink;
     }
 
-    public UUID getUserProfileId() {
+    public Long getUserProfileId() {
         return userProfileId;
     }
 

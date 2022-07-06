@@ -3,13 +3,21 @@ import axios from "axios";
 import {Button, Form, Modal} from "react-bootstrap";
 
 const DeleteAlbumModal = (props) => {
+
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
+
     useEffect(()=>{
         setShowNewAlbumModal(props.visible)
     }, [])
 
 
     const [showNewAlbumModal, setShowNewAlbumModal] = useState(false);
-    const handleCloseLoginModal = () => setShowNewAlbumModal(false);
+    const handleCloseLoginModal = () => {
+        setToPropsModalClose();
+        setShowNewAlbumModal(false);
+    };
 
 
     const sendDataToServer = () => {

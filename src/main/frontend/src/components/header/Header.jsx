@@ -93,8 +93,8 @@ const Header = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {loginModalOpen && <LoginModal open={loginModalOpen}/>}
-            {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
+            {loginModalOpen && <LoginModal close={setLoginModalOpen}/>}
+            {registrationModalOpen && <RegistrationModal close={setRegistrationModalOpen}/>}
         </div>
     );
 };
