@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import UserLeftBar from "../../../UserLeftBar";
 import {Button, Card} from "react-bootstrap";
 import {useLocation} from "react-router-dom";
 import "./SingleAlbumView.css"
+import AddPhotoModal from "../../../../../modals/addPhotoModal/AddPhotoModal";
 
 const SingleAlbumView = () => {
+    const [showAddPhotoModal, setShowAddPhotoModal] = useState(false);
 
     const location = useLocation()
     const album = location.state.album;
@@ -44,6 +46,7 @@ const SingleAlbumView = () => {
                                     <Button
                                         style={{marginLeft: "85%"}}
                                         variant={"warning"}
+                                        onClick={() => setShowAddPhotoModal(true)}
                                     >Add new photo
                                     </Button>
                                     <div className="view-images-box">
@@ -66,6 +69,7 @@ const SingleAlbumView = () => {
                     </Card.Text>
                 </Card.Body>
             </Card>
+            {showAddPhotoModal && <AddPhotoModal visible={showAddPhotoModal} albumName={album.albumName} close={setShowAddPhotoModal}/>}
         </div>
     );
 };

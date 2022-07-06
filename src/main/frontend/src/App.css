@@ -6,24 +6,29 @@
 }
 
 .for-drag {
+  cursor: pointer;
   display: flex;
   padding: 15px;
-  border: 5px solid teal;
+  border: 1px solid orange;
   margin-top: 15px;
   justify-content: space-between;
   align-items: center;
-  color: teal;
+  color: orange;
+}
+
+.for-drag:hover {
+  background-color: #3b3b3b;
 }
 
 .after-drag {
   display: flex;
   padding: 15px;
-  border: 5px solid rgb(114, 0, 0);
+  border: 3px solid orange;
   margin-top: 15px;
   justify-content: space-between;
   align-items: center;
-  color: brown;
-  background-color: darkgrey;
+  color: orange;
+  background-color: #3b3b3b;
 }
 
 

@@ -1,0 +1,27 @@
+.for-drag-photo {
+    justify-content: center;
+    height: 300px;
+    cursor: pointer;
+    display: flex;
+    padding: 15px;
+    border: 1px solid orange;
+    margin-top: 15px;
+    align-items: center;
+    color: orange;
+}
+
+.for-drag-photo:hover {
+    background-color: #3b3b3b;
+}
+
+.after-drag-photo {
+    height: 300px;
+    display: flex;
+    padding: 15px;
+    border: 3px solid orange;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    color: orange;
+    background-color: #3b3b3b;
+}
