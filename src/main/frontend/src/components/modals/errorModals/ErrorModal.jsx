@@ -8,7 +8,14 @@ const ErrorModal = (props) => {
     }, [])
 
     const [showNewAlbumModal, setShowNewAlbumModal] = useState(false);
-    const handleCloseLoginModal = () => setShowNewAlbumModal(false);
+    const handleCloseLoginModal = () => {
+        setToPropsModalClose();
+        setShowNewAlbumModal(false);
+    };
+
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
 
     return (
         <Modal show={showNewAlbumModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>

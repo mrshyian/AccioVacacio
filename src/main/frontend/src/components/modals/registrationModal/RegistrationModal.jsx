@@ -4,10 +4,9 @@ import axios from "axios";
 import ErrorModal from "../errorModals/ErrorModal";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const RegistrationModal = () => {
+const RegistrationModal = (props) => {
 
     const [disabledBtn, setDisabledBtn] = useState(true)
-
 
     const [fullName, setFullName] = useState("")
     const [nickName, setNickName] = useState("")
@@ -17,7 +16,10 @@ const RegistrationModal = () => {
     const [repeatPassword, setRepeatPassword] = useState("")
 
     const [showRegistrationModal, setShowRegistrationModal] = useState(true);
-    const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
+    const handleCloseRegistrationModal = () => {
+        setToPropsModalClose();
+        setShowRegistrationModal(false);
+    }
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [errorText, setErrorText]= useState("");
 
@@ -41,7 +43,7 @@ const RegistrationModal = () => {
                     if (res.data !== ""){
                         showErrorModal(res.data)
                     }else {
-                        handleCloseRegistrationModal()
+                        handleCloseRegistrationModal();
                     }
                 })
         }else {
@@ -49,6 +51,9 @@ const RegistrationModal = () => {
         }
     }
 
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
 
     return (
         <Modal show={showRegistrationModal} onHide={handleCloseRegistrationModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>

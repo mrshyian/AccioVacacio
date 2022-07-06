@@ -32,7 +32,7 @@ const SingleAlbum = (props) => {
                     </Card.Body>
                 </div>
             </div>
-            {modalOpen && <DeleteAlbumModal visible={modalOpen} albumId={props.album.albumId}/>}
+            {modalOpen && <DeleteAlbumModal visible={modalOpen} albumId={props.album.albumId} close={setModalOpen}/>}
         </Card>
     );
 };

@@ -4,6 +4,10 @@ import React, {useEffect, useState} from "react";
 
 const AddNewAlbumModal = (props) => {
 
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
+
     useEffect(()=>{
         setShowNewAlbumModal(props.visible)
     }, [])
@@ -16,7 +20,10 @@ const AddNewAlbumModal = (props) => {
 
 
     const [showNewAlbumModal, setShowNewAlbumModal] = useState(false);
-    const handleCloseLoginModal = () => setShowNewAlbumModal(false);
+    const handleCloseLoginModal = () => {
+        setToPropsModalClose();
+        setShowNewAlbumModal(false);
+    };
 
 
     const sendDataToServer = () => {

@@ -58,7 +58,7 @@ const AlbumsFromTrips = () => {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            {modalOpen && <AddNewAlbumModal visible={modalOpen}/>}
+            {modalOpen && <AddNewAlbumModal visible={modalOpen} close={setModalOpen}/>}
         </div>
     );
 };
