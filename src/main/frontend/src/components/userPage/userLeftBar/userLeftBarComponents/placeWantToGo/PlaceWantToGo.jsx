@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
-import PlaceWantToGoModal from "../../../../modals/placeWantToGoModal/PlaceWantToGoModal";
 import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
 import SinglePlace from "./SinglePlace";
 import "./PlaceWantToGo.css"
+import PlaceWantToGoModal from "../../../../modals/placeWantToGoModal/PlaceWantToGoModal";
 
 
 const PlaceWantToGo = () => {

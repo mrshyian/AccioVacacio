@@ -57,6 +57,8 @@ public class AlbumsFromTripsImpl {
 
         Long userId = loginImpl.getCurrentUserId();
 
+        
+
         List<Optional<AlbumFromTripsTable>> optionalAlbumsList = albumsFromTripsRepository.findAllByMyUserTableId(userId);
         for (Optional<AlbumFromTripsTable> optional : optionalAlbumsList) {
             if (optional.isPresent()) {

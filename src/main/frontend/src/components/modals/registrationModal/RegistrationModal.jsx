@@ -2,8 +2,12 @@ import React, {useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 import axios from "axios";
 import ErrorModal from "../errorModals/ErrorModal";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const RegistrationModal = () => {
+
+    const [disabledBtn, setDisabledBtn] = useState(true)
+
 
     const [fullName, setFullName] = useState("")
     const [nickName, setNickName] = useState("")
@@ -21,6 +25,7 @@ const RegistrationModal = () => {
         setErrorText(data);
         setErrorModalOpen(true);
     }
+
 
     const sendDataToServer = () => {
         if (password === repeatPassword){
@@ -126,10 +131,15 @@ const RegistrationModal = () => {
                 </Form>
             </Modal.Body>
             <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
+                <ReCAPTCHA
+                    size="normal"
+                    sitekey="6Let98ogAAAAAH3niinH0n8_di4vhssvE5YL_AuF"
+                    onChange={() => setDisabledBtn(false)}
+                />
                 <Button variant="outline-secondary" onClick={handleCloseRegistrationModal}>
                     Close
                 </Button>
-                <Button variant="outline-warning" onClick={sendDataToServer}>
+                <Button disabled={disabledBtn} variant="outline-warning" onClick={sendDataToServer}>
                     Submit
                 </Button>
             </Modal.Footer>
