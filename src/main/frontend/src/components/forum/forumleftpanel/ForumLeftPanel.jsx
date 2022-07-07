@@ -12,14 +12,11 @@ import {
 import AddNewPost from "../forumRightPanel/addNewPost/AddNewPost";
 import {Link} from "react-router-dom";
 import {BiFileFind} from "react-icons/bi";
-import axios from "axios";
 import {Form} from "react-bootstrap";
 import Axios from "axios";
 
-import AddNewPost from "../forumRightPanel/AddNewPost";
-import MustBeLogIn from "../../mustBeLogIn/MustBeLogIn";
-import UserLeftBar from "../../userPage/userLeftBar/UserLeftBar";
-import UserMainBar from "../../userPage/userMainBar/UserMainBar";
+
+
 
 
 const ForumLeftPanel = () => {
