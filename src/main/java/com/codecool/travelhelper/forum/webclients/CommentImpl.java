@@ -9,13 +9,19 @@ import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 @Component
+@Setter
+@Getter
 public class CommentImpl {
 
     @Autowired
@@ -30,7 +36,10 @@ public class CommentImpl {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PostImpl postImpl;
 
+    List<CommentsTable> comments = new ArrayList<>();
 
     public void getAndSaveComments(String comments) {
         JsonParser jsonParser = new JsonParser();
@@ -77,9 +86,32 @@ public class CommentImpl {
             commentsTable.get().setMyUserTable(myUserTable);
             commentsTable.get().AddUserToLikedByUser(myUserTable);
             commentRepository.save(commentsTable.get());
-
         }
     }
+
+
+    public void sortComments(String countryAndCity){
+        comments = new ArrayList<>();
+
+        JsonParser jsonParser = new JsonParser();
+        JsonObject sortDetails = (JsonObject)jsonParser.parse(countryAndCity);
+
+        String country = sortDetails.get("country").getAsString();
+        String time = sortDetails.get("time").getAsString();
+
+        if(time.equals("Latest")){
+            comments = commentRepository.findAllByCountryOrderByCommentDateTimeAsc(country);
+        }else{
+            comments = commentRepository.findAllByCountryOrderByCommentDateTimeDesc(country);
+        }
+        postImpl.sortPosts(comments);
+    }
+
+    public List<CommentsTable> getSortedComments(){
+        System.out.println("Comment get : "+comments);
+        return comments;
+    }
+
 
     public void deleteComment(String commentId){
         JsonParser jsonParser = new JsonParser();

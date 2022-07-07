@@ -53,10 +53,15 @@ public class PostController {
     }
 
     // sort posts by provided parameters
-    @PostMapping("/sort_by")
-    public void sortPost(@RequestBody String countryAndCity) {
-        post.setPosts(new ArrayList<>());
-        post.sortPosts(countryAndCity);
+//    @PostMapping("/sort_by")
+//    public void sortPost(@RequestBody String countryAndCity) {
+//        post.setPosts(new ArrayList<>());
+//        post.sortPosts(countryAndCity);
+//    }
+
+    @GetMapping("/get_sorted_posts")
+    public List<PostTable> getSortedComments(){
+        return post.getSortedPosts();
     }
 
     // send list of favourite comments to frontend

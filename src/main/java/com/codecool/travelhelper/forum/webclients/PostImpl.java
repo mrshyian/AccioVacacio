@@ -41,6 +41,9 @@ public class PostImpl {
     LoginImpl loginImpl;
 
     @Autowired
+    CommentImpl commentImpl;
+
+    @Autowired
     PostRepository postRepository;
 
     public void saveNewPost(String post) {
@@ -83,9 +86,7 @@ public class PostImpl {
             postTable.get().setMyUserTable(myUserTable);
             postTable.get().AddUserToLikedByUser(myUserTable);
             postRepository.save(postTable.get());
-
         }
-
     }
 
 
@@ -100,32 +101,13 @@ public class PostImpl {
 
     }
 
-
-
-
-    public void sortPosts(String countryAndCity){
-
-        JsonParser jsonParser = new JsonParser();
-        JsonObject sortDetails = (JsonObject)jsonParser.parse(countryAndCity);
-
-        String country = sortDetails.get("country").getAsString();
-        String time = sortDetails.get("time").getAsString();
-
-        List<CommentsTable> comments;
-
-        if(time.equals("Latest")){
-            comments = commentRepository.findAllByCountryOrderByCommentDateTimeAsc(country);
-        }else{
-            comments = commentRepository.findAllByCountryOrderByCommentDateTimeDesc(country);
-        }
-
+    public void sortPosts(List<CommentsTable> comments){
+        setPosts(new ArrayList<>());
         for (CommentsTable comm: comments) {
             if(!posts.contains(comm.getPost())){
                 posts.add(comm.getPost());
             }
         }
-
-
     }
 
     public List<PostTable> getSortedPosts(){

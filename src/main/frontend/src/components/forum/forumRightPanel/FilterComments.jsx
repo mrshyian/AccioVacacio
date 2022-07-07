@@ -6,25 +6,36 @@ import ForumLeftPanel from "../forumleftpanel/ForumLeftPanel";
 
 const FilterComments = () => {
 
-    const [sort, setSort] = useState([]);
+    const [sortedPosts, setSortedPosts] = useState([]);
+    const [sortedComments, setSortedComments] = useState([]);
 
-    const fetchSorting = () => {
-        axios.get(`http://localhost:8080/sort_by`)
-            .then(res =>{setSort(res.data);
+    const fetchSortedPosts = () => {
+        axios.get(`http://localhost:8080/get_sorted_posts`)
+            .then(res =>{setSortedPosts(res.data);
                 console.log("data "+ res.data)})
             .catch(err => {console.log(err)});
     };
 
-    useEffect(()=>
-        fetchSorting()
-    ,[])
+    const fetchSortedComments = () => {
+        axios.get(`http://localhost:8080/get_sorted_comments`)
+            .then(res =>{setSortedComments(res.data);
+                console.log("data "+ res.data)})
+            .catch(err => {console.log(err)});
+    };
+
+    useEffect(()=>{
+        fetchSortedPosts();
+        fetchSortedComments();
+        },[])
 
     return (
         <div>
             <ForumLeftPanel/>
-            {sort.map((post, index)=>
-                <SinglePost post={post} key={index}/>
-            )}
+            {sortedPosts.map((post, index) => {
+                return(
+                <SinglePost post={post} comments={sortedComments} key={index}/>
+                )
+            })}
         </div>
     );
 };

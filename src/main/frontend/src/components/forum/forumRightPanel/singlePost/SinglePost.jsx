@@ -19,10 +19,10 @@ const SinglePost = (props) => {
 
         like = like + 1
         like <= 1 ? sendLike() : console.log("już dodałeś like")
-
     }
 
     const sendLike = () => {
+        console.log(props.post.id)
         axios.post(
             "http://localhost:8080/add_like_to_post", {
                 postId: props.post.id
@@ -58,9 +58,6 @@ const SinglePost = (props) => {
         setEditable(true);
     }
 
-    useEffect(()=>{
-        GetComments();
-    },[])
 
     return (
         <div>

@@ -36,6 +36,7 @@ public class PostTable {
 
     // liked by user to user
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "liked_posts_by_user",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
@@ -49,6 +50,7 @@ public class PostTable {
 //---------------------------------------------------
 
     // comments to post
+    @JsonIgnore
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({ "likedByUsers", "post", "myUserTable", "commentText", "commentImage",
             "country", "city", "commentDateTime", "userName"})

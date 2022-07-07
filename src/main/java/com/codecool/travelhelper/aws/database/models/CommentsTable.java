@@ -34,7 +34,7 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // liked by user to user
-
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "liked_comments_by_user",
             joinColumns = @JoinColumn(name = "comment_id"),
@@ -48,6 +48,7 @@ public class CommentsTable {
 
     // comments to user
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="user_id")
     @JsonIgnoreProperties({ "comments", "posts", "noteTable", "albumsFromTripsTable",
             "placesWantToGoTable", "visitedPlacesTable", "tripsTable",
@@ -55,6 +56,7 @@ public class CommentsTable {
             "avatar", "instagram", "facebook", "aboutMe", "role",
             "privateAccount"})
     private MyUserTable myUserTable;
+
 //---------------------------------------------------
 
     @ManyToOne
