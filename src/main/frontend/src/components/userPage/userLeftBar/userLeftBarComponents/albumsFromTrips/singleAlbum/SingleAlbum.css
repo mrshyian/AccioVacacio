@@ -19,6 +19,10 @@
     filter: none;
 }
 
+.delete-album-btn:hover {
+    border: 3px solid orange;
+}
+
 .delete-album-btn{
 
 }
