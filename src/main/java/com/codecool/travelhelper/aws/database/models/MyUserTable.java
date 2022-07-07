@@ -2,8 +2,10 @@ package com.codecool.travelhelper.aws.database.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 @Entity(name = "MyUserTable")
 @Getter
 @NoArgsConstructor
+@Setter
 public class MyUserTable {
 
     @Id
