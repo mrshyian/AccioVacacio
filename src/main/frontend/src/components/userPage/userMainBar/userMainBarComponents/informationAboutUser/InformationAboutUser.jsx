@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import SocialMedia from "../socialMedia/SocialMedia";
 import "./ProfileImage.css"
 import "./InformationAboutUser.css"
 import nickname from "../../../../../images/name_user_3716.png"
+import CountryCounter from "../countryCounter/CountryCounter";
+import EditUserDataModal from "../../../../modals/editUserDataModal/EditUserDataModal";
 
 
 const InformationAboutUser = (props) => {
+
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
         <Card
             bg={"dark"}
@@ -33,11 +38,12 @@ const InformationAboutUser = (props) => {
                     </Card.Text>
                 </div>
                 <div>
-                    <Button className="user-info-edit-btn" variant={"outline-warning"}>Edit my details</Button>
+                    <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn" variant={"outline-warning"}>Edit my details</Button>
                     <SocialMedia myUser={props.myUser}/>
                 </div>
-
             </Card.Body>
+            <CountryCounter/>
+            {modalOpen && <EditUserDataModal visible={modalOpen} close={setModalOpen} myUser={props.myUser}/>}
         </Card>
     );
 };

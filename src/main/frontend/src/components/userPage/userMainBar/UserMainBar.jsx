@@ -33,7 +33,6 @@ const UserMainBar = () => {
             <Card.Body>
                 <Card.Text style={{paddingLeft: "60px", paddingRight: "60px"}}>
                     <InformationAboutUser myUser={myUser}/>
-                    <CountryCounter/>
                 </Card.Text>
             </Card.Body>
         </Card>
