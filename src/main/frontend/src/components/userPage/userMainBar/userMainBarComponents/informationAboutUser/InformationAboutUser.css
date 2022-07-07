@@ -1,0 +1,40 @@
+.user-info-body {
+    align-content: space-between;
+    display: flex;
+}
+
+.user-info-second-div {
+    margin-left: 5%;
+}
+
+.user-info-second-div-nickname {
+    display: flex;
+    margin-left: 30%;
+    padding: 2px;
+}
+
+.user-info-nickname-img {
+    height: 25px;
+}
+
+.user-info-nickname {
+    color: orange;
+    font-style: italic;
+}
+
+.user-info-aboutme-text {
+    width: 400px;
+    height: 200px;
+    border: 1px solid orange;
+}
+
+.user-info-aboutme-text-div {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.user-info-edit-btn {
+    height: 40px;
+    margin-left: auto;
+}
+

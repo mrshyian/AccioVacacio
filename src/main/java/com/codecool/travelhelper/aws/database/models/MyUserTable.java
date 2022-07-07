@@ -1,8 +1,12 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.lang.annotation.Repeatable;
 import java.util.List;
 
 @Entity(name = "MyUserTable")
@@ -32,43 +36,56 @@ public class MyUserTable {
 //----------------------------------------------------------------------
 
     // comments to user
+    @JsonIgnore
     @OneToMany(mappedBy = "myUserTable")
+    @JsonIgnoreProperties("myUserTable")
     private List<CommentsTable> comments;
 
 //---------------------------------------------------
 
     // post to user
+    @JsonIgnore
     @OneToMany(mappedBy = "myUserTable")
+    @JsonIgnoreProperties("myUserTable")
     private List<PostTable> posts;
 
 //---------------------------------------------------
 
     //note to user
-    @OneToOne(mappedBy = "myUserTable")
+    @OneToOne(mappedBy = "myUserTable", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("myUserTable")
     private NoteTable noteTable;
 
 //---------------------------------------------------
 
     // albums to user
+    @JsonIgnore
     @OneToMany(mappedBy = "myUserTable")
+    @JsonIgnoreProperties("myUserTable")
     List<AlbumFromTripsTable> albumsFromTripsTable;
 
 //---------------------------------------------------
 
     // placesWantToGo to user
+    @JsonIgnore
     @OneToMany(mappedBy = "myUserTable")
+    @JsonIgnoreProperties("myUserTable")
     List<PlacesWantToGoTable> placesWantToGoTable;
 
 //---------------------------------------------------
 
     // visitedPlaces to user
+    @JsonIgnore
     @OneToMany(mappedBy = "myUserTable")
+    @JsonIgnoreProperties("myUserTable")
     List<VisitedPlaceTable> visitedPlacesTable;
 
 //---------------------------------------------------
 
     // trips to user
+    @JsonIgnore
     @OneToMany(mappedBy = "myUserTable")
+    @JsonIgnoreProperties("myUserTable")
     List<TripTable> tripsTable;
 
 //---------------------------------------------------
