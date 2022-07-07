@@ -12,6 +12,7 @@ const MustBeLogIn = () => {
             className="mb-2 bg-opacity"
             style={{marginTop: "10%", padding: "30px"}}
         >
+
             <Card.Body >
                 <Card.Text style={{background: "#212121", height: "300px"}}>
                     <h1 style={{padding: "10%"}}>THIS OPTION ONLY FOR REGISTERED USERS</h1>
