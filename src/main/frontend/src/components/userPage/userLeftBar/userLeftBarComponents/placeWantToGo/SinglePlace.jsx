@@ -1,21 +1,38 @@
-import React from 'react';
-import {Card} from "react-bootstrap";
+import React, {useState} from 'react';
+import {Button, Card} from "react-bootstrap";
+import "./PlaceWantToGo.css"
+import {useNavigate} from "react-router-dom";
+import {FaTimes} from "react-icons/fa";
+import DeletePlaceWantToGo from "../../../../modals/deletePlaceWantToGo/DeletePlaceWantToGo";
 
 const SinglePlace = (props) => {
-    // console.log(props.placeUrl)
+    const navigate = useNavigate();
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
-        <Card
-            style={{ width: '18rem', marginLeft: "5%" }}
-            bg="dark"
-            key={"dark"}
-            text={'white'}>
-            <Card.Img variant="top" src={props.imageUrl} />
-            <Card.Body>
-                <Card.Title>
-                    {props.country} {props.city}
-                </Card.Title>
-            </Card.Body>
-        </Card>
+        <div className="btn-on-image single-place-card">
+            <Button onClick={() => {
+                setModalOpen(true)
+            }} variant="dark" className="delete-place-btn">{<FaTimes/>}</Button>
+            <Card
+                bg="dark"
+                key={"dark"}
+                text={'white'}
+                onClick={()=> navigate("/SearchCity", {state: {
+                        city: props.place.city,
+                        country: props.place.country
+                    }})}
+            >
+                <Card.Img className="img-for-single-place-want-to-go" variant="top" src={props.imageUrl} />
+                <Card.Body className="single-place-body">
+                    <Card.Title>
+                        {props.place.country} / {props.place.city}
+                    </Card.Title>
+                </Card.Body>
+            </Card>
+            {modalOpen && <DeletePlaceWantToGo place={props.place} visible={modalOpen} close={setModalOpen}/>}
+        </div>
+
     );
 };
 

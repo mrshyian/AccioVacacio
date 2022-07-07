@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import "./RegistrationModal.css"
 import {Button, Form, Modal} from "react-bootstrap";
 import axios from "axios";
+import ErrorModal from "../errorModals/ErrorModal";
+import ReCAPTCHA from "react-google-recaptcha";
 
-const RegistrationModal = ({ setRegistrationOpenModal }) => {
+const RegistrationModal = (props) => {
+
+    const [disabledBtn, setDisabledBtn] = useState(true)
 
     const [fullName, setFullName] = useState("")
     const [nickName, setNickName] = useState("")
@@ -13,8 +16,18 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
     const [repeatPassword, setRepeatPassword] = useState("")
 
     const [showRegistrationModal, setShowRegistrationModal] = useState(true);
-    const handleCloseRegistrationModal = () => setShowRegistrationModal(false);
-    const handleShowRegistrationModal = () => setShowRegistrationModal(true);
+    const handleCloseRegistrationModal = () => {
+        setToPropsModalClose();
+        setShowRegistrationModal(false);
+    }
+    const [errorModalOpen, setErrorModalOpen] = useState(false);
+    const [errorText, setErrorText]= useState("");
+
+    function showErrorModal(data){
+        setErrorText(data);
+        setErrorModalOpen(true);
+    }
+
 
     const sendDataToServer = () => {
         if (password === repeatPassword){
@@ -27,14 +40,20 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                 password: password,
             })
                 .then(res=>{
-                    console.log(res)})
-            handleCloseRegistrationModal()
+                    if (res.data !== ""){
+                        showErrorModal(res.data)
+                    }else {
+                        handleCloseRegistrationModal();
+                    }
+                })
         }else {
-            alert("The passwords are not the same")
+            showErrorModal("The passwords are not the same")
         }
-
     }
 
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
 
     return (
         <Modal show={showRegistrationModal} onHide={handleCloseRegistrationModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
@@ -74,7 +93,9 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                             type="date"
                             placeholder="Birthday"
                             value={birthday}
-                            onChange={e=> setBirthday(e.target.value)}/>
+                            onChange={e=> setBirthday(e.target.value)}
+                            min="1940-01-01" max="2010-01-01"
+                        />
                     </Form.Group>
 
                     <Form.Group
@@ -115,13 +136,19 @@ const RegistrationModal = ({ setRegistrationOpenModal }) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
+                <ReCAPTCHA
+                    size="normal"
+                    sitekey="6Let98ogAAAAAH3niinH0n8_di4vhssvE5YL_AuF"
+                    onChange={() => setDisabledBtn(false)}
+                />
                 <Button variant="outline-secondary" onClick={handleCloseRegistrationModal}>
                     Close
                 </Button>
-                <Button variant="outline-warning" onClick={sendDataToServer}>
+                <Button disabled={disabledBtn} variant="outline-warning" onClick={sendDataToServer}>
                     Submit
                 </Button>
             </Modal.Footer>
+            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen}/>}
         </Modal>
     );
 };

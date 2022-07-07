@@ -1,6 +1,6 @@
 import React from 'react';
-import "./EmergencyNumbers.css"
 import {Card} from "react-bootstrap";
+import "./EmergencyNumbers.css"
 
 const EmergencyNumbers = (props) => {
     if (props.emergencyNumber.dispatch !== ""){

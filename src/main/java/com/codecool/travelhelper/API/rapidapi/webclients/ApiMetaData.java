@@ -38,7 +38,7 @@ public enum ApiMetaData {
     }}),
     BING_IMAGE_SEARCH("https://bing-image-search1.p.rapidapi.com/images/search", new HashMap<>(){{
             put("X-RapidAPI-Host", "bing-image-search1.p.rapidapi.com");
-            put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
+            put("X-RapidAPI-Key", "b186afc8b1msh4bc0a73b4bf87bdp1d1bafjsn15bd5f30345d");
         }}),
 
     //todo: use it very carefully! Price is 200/month for free + US$0.001 each other

@@ -16,6 +16,12 @@ import axios from "axios";
 import {Form} from "react-bootstrap";
 import Axios from "axios";
 
+import AddNewPost from "../forumRightPanel/AddNewPost";
+import MustBeLogIn from "../../mustBeLogIn/MustBeLogIn";
+import UserLeftBar from "../../userPage/userLeftBar/UserLeftBar";
+import UserMainBar from "../../userPage/userMainBar/UserMainBar";
+
+
 const ForumLeftPanel = () => {
 
     const [NewModalOpen, setNewModalOpen] = useState(false);
@@ -56,40 +62,55 @@ const ForumLeftPanel = () => {
         window.location.reload();
     }
 
+    if (sessionStorage.getItem("userId") === null){
+        return (
+            <header>
+                <ProSidebar className="sidebar" style={{height: "1000px"}}>
+                    <Menu iconShape="square">
+                        <SubMenu title="Filter" icon={<FaFilter />}>
+                            <MenuItem icon={<FaHourglassHalf />}>Latest / Oldest</MenuItem>
+                            <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
+                            <MenuItem icon={<FaGlobeEurope />}><input type="text" placeholder="City"/></MenuItem>
+                        </SubMenu>
+                        {NewModalOpen && <AddNewPost open={NewModalOpen}/>}
+                    </Menu>
+                </ProSidebar>
+            </header>
+        );
+    } else {
+        return (
+            <header>
+                <ProSidebar className="sidebar" style={{height: "1000px"}}>
+                    <Menu iconShape="square">
+                        <MenuItem icon={<FaComment />}> <Link to="/forum/my_comments"> My comments </Link></MenuItem>
+                        <SubMenu title="Filter" icon={<FaFilter />}>
+                            <Form>
+                                <Form.Select as="select"
+                                             value={data.time}
+                                             id="submit"
+                                             size="sm"
+                                             onChange={(e) => handleSelect(e.target.value)}
+                                             style={{ marginLeft: "15%", width: "72%", height: "30px"}}
+                                             icon={<FaHourglassHalf />}
+                                >
+                                    <option id="latest" value={"Latest"}>Select</option>
+                                    <option id="oldest" value={"Oldest"}>Oldest</option>
+                                    <option id="latest" value={"Latest"}>Latest</option>
+                                </Form.Select >
 
-
-    return (
-        <header>
-            <ProSidebar className="sidebar" style={{height: "1000px"}}>
-                <Menu iconShape="square">
-                    <MenuItem icon={<FaComment />}> <Link to="/forum/my_comments"> My comments </Link></MenuItem>
-                    <SubMenu title="Filter" icon={<FaFilter />}>
-                        <Form>
-                            <Form.Select as="select"
-                                         value={data.time}
-                                         id="submit"
-                                         size="sm"
-                                         onChange={(e) => handleSelect(e.target.value)}
-                                         style={{ marginLeft: "15%", width: "72%", height: "30px"}}
-                                         icon={<FaHourglassHalf />}
-                            >
-                                <option id="latest" value={"Latest"}>Select</option>
-                                <option id="oldest" value={"Oldest"}>Oldest</option>
-                                <option id="latest" value={"Latest"}>Latest</option>
-                            </Form.Select >
-
-                            <MenuItem icon={<FaGlobeAmericas />}><input onChange={(e) => handle(e)} id="country" value={data.country} type="text" placeholder="Country"/></MenuItem>
-                            <MenuItem icon={<FaGlobeEurope />}><input onChange={(e) => handle(e)} id="city" value={data.city} type="text" placeholder="City"/></MenuItem>
-                            <MenuItem icon={<BiFileFind />}><button onClick={(e)=> submit(e)} type="submit"><Link to="/sort_by"> Submit </Link></button></MenuItem>
-                        </Form>
-                    </SubMenu>
-                    <MenuItem icon={<FaHeart />}><Link to="/forum/favourite_comments">Favourite comments</Link></MenuItem>
-                    <MenuItem variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</MenuItem>
-                    {NewModalOpen && <AddNewPost close={setNewModalOpen} open={NewModalOpen}/>}
-                </Menu>
-            </ProSidebar>
-        </header>
-    );
+                                <MenuItem icon={<FaGlobeAmericas />}><input onChange={(e) => handle(e)} id="country" value={data.country} type="text" placeholder="Country"/></MenuItem>
+                                <MenuItem icon={<FaGlobeEurope />}><input onChange={(e) => handle(e)} id="city" value={data.city} type="text" placeholder="City"/></MenuItem>
+                                <MenuItem icon={<BiFileFind />}><button onClick={(e)=> submit(e)} type="submit"><Link to="/sort_by"> Submit </Link></button></MenuItem>
+                            </Form>
+                        </SubMenu>
+                        <MenuItem icon={<FaHeart />}><Link to="/forum/favourite_comments">Favourite comments</Link></MenuItem>
+                        <MenuItem variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</MenuItem>
+                        {NewModalOpen && <AddNewPost close={setNewModalOpen} open={NewModalOpen}/>}
+                    </Menu>
+                </ProSidebar>
+            </header>
+        );
+    }
 };
 
 export default ForumLeftPanel;

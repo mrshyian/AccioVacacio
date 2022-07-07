@@ -3,12 +3,15 @@ package com.codecool.travelhelper.login_registration_logout.webclients;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.login_registration_logout.utils.Util;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Component
 @Getter
@@ -26,16 +29,29 @@ public class LoginImpl {
     @Autowired
     UserRepository userRepository;
 
-    public void findUser(String email, String password) {
-        MyUserTable userObject = userRepository.findAllByUserEMail(email);
-        String passwordFromDB = userObject.getPassword();
+    public String findUser(String data) {
 
-        if(validationPassword(util.hashPassword(password),passwordFromDB)){
-            session.setAttribute("userId", userObject.getId());
-            System.out.println("Successful login");
-            this.setCurrentUserId(Long.parseLong(session.getAttribute("userId").toString()));
-        }else {
-            System.out.println("incorrect login");
+        JsonParser jsonParser = new JsonParser();
+        JsonObject commentJsonObject = (JsonObject)jsonParser.parse(data);
+        String email = commentJsonObject.get("email").getAsString();
+        String password = commentJsonObject.get("password").getAsString();
+
+        Optional<MyUserTable> userObject = userRepository.findAllByUserEMail(email);
+        this.setCurrentUserId(null);
+
+        if (userObject.isPresent()){
+            String passwordFromDB = userObject.get().getPassword();
+            if(validationPassword(util.hashPassword(password),passwordFromDB)){
+                session.setAttribute("userId", userObject.get().getId());
+                this.setCurrentUserId(userObject.get().getId());
+                return null;
+            }else {
+                System.out.println("incorrect log in ");
+                return "Mail or password is incorrect";
+            }
+        } else {
+            System.out.println("mail or password is incorrect");
+            return "Mail or password is incorrect";
         }
     }
 

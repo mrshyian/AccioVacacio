@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 public class PlaceWantToGoModel {
-
+    private Long placeId;
     private List<String> imagesUrl;
     private String country;
     private String city;

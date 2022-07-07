@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
 import UserLeftBar from "../../UserLeftBar";
+import "./Calculator.css"
 
 const Calculator = () => {
     return (

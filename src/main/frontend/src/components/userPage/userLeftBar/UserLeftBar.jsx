@@ -7,10 +7,11 @@ import {FaBuromobelexperte, FaHeart, FaMapMarked, FaPencilAlt, FaPhotoVideo} fro
 import {Link} from "react-router-dom";
 
 
-const UserLeftBar = (props) => {
+const UserLeftBar = () => {
     return (
         <div className="App">
             <header>
+
                 <ProSidebar className="sidebar" style={{height: "100%"}}>
                     <Menu iconShape="square">
                         <MenuItem icon={<FaPencilAlt />}><Link to="/userpage/note"> Notes</Link></MenuItem>

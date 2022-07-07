@@ -23,8 +23,11 @@ public class PlacesWantToGoController {
 
     @GetMapping("/placewanttogo")
     public List<PlaceWantToGoModel> getPlace() {
-        List<PlaceWantToGoModel> places = placesWantToGoImpl.getPlacesFromDB();
-        System.out.println(places);
-        return places;
+        return placesWantToGoImpl.getPlacesFromDB();
+    }
+
+    @PutMapping ("/placewanttogo")
+    public void deletePlace(@RequestBody String placeData ) {
+        placesWantToGoImpl.deletePlace(placeData);
     }
 }

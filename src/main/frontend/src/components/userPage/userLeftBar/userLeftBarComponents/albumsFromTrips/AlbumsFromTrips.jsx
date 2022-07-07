@@ -1,14 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import UserLeftBar from "../../UserLeftBar";
-import SingleAlbum from "./singleAlbum/SingleAlbum";
 import "./AlbumsFromTrips.css"
-
 import AddNewAlbumModal from "../../../../modals/addNewAlbumModal/AddNewAlbumModal";
+import axios from "axios";
+import SingleAlbum from "./singleAlbum/SingleAlbum";
 
 const AlbumsFromTrips = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
+
+    const [albums, setAlbums] = useState([]);
+
+    const getAlbumsFromDB = () => {
+        axios.get(`http://localhost:8080/albumsfromtrips`)
+            .then(res => {
+                setAlbums(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    };
+
+    useEffect(() => {
+        getAlbumsFromDB();
+    }, [])
 
     return (
         <div>
@@ -23,46 +39,26 @@ const AlbumsFromTrips = () => {
                     <Button
                         style={{marginLeft: "80%"}}
                         variant={"warning"}
-                        onClick={() => {setModalOpen(true)}}>Add new album</Button>
+                        onClick={() => {
+                            setModalOpen(true)
+                        }}>Add new album</Button>
                 </Card.Header>
                 <Card.Body>
-                    <Card.Text className="albums-box">
-                        <SingleAlbum
-                            city="Rome"
-                            country="Italy"
-                            tripDate="11/06/2020"
-                            albumName="My trip to Rome"
-                            tripDescription="It's was an amazing trip"
-                            urlForImage="https://cdn.theculturetrip.com/wp-content/uploads/2015/11/eur_italy_rome.JPG"
-                        />
-                        <SingleAlbum
-                            city="Barcelona"
-                            country="Spain"
-                            tripDate="31/10/2019"
-                            albumName="My trip to Barcelona"
-                            tripDescription="Barcelona is beautiful!!"
-                            urlForImage="https://www.cunard.com/content/dam/cunard/inventory-assets/ports/BCN/BCN.jpg.1614954820779.image.750.563.low.jpg"
-                        />
-                        <SingleAlbum
-                            city="Warsaw"
-                            country="Poland"
-                            tripDate="21/11/2014"
-                            albumName="My trip to Warsaw"
-                            tripDescription="Unforgettable trip"
-                            urlForImage="https://www.polska.travel/images/pl-PL/glowne-miasta/warszawa/warszawa_plac_zamkowy_1170.jpg"
-                        />
-                        <SingleAlbum
-                            city="Paris"
-                            country="France"
-                            tripDate="3/02/2016"
-                            albumName="My trip to Paris"
-                            tripDescription="I want to live here now."
-                            urlForImage="https://cdn.sortiraparis.com/images/80/83517/753564-visuel-paris-tour-eiffel-rue.jpg"
-                        />
+                    <Card.Text >
+                        <div className="albums-box">
+                            {albums.map((album, index) => {
+                                return (
+                                    <SingleAlbum
+                                        album={album}
+                                        key={index}
+                                    />
+                                )
+                            })}
+                        </div>
                     </Card.Text>
                 </Card.Body>
             </Card>
-            {modalOpen && <AddNewAlbumModal visible={modalOpen}/>}
+            {modalOpen && <AddNewAlbumModal visible={modalOpen} close={setModalOpen}/>}
         </div>
     );
 };

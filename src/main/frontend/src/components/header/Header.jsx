@@ -3,7 +3,6 @@ import './Header.css';
 import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
-import ErrorModal from '../modals/errorModals/ErrorModal';
 import axios from "axios";
 import {Link} from "react-router-dom";
 
@@ -11,7 +10,6 @@ import {Link} from "react-router-dom";
 const Header = () => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
-    const [errorModalOpen, setErrorModalOpen] = useState(false);
 
     const sendLogoutRequest = () => {
         const url = "http://localhost:8080/logout";
@@ -71,8 +69,8 @@ const Header = () => {
                             </Link>
                         </Nav>
 
-                        {localStorage.getItem("userId") !== null ? (
-                            <Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button>
+                        {sessionStorage.getItem("userId") !== null ? (
+                            <Link to="/"><Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button></Link>
                         ) : (
                             <span>
 								<Button
@@ -97,10 +95,8 @@ const Header = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {loginModalOpen && <LoginModal open={loginModalOpen}/>}
-            {registrationModalOpen && <RegistrationModal open={registrationModalOpen}/>}
-            {errorModalOpen && <ErrorModal error={'tekst pomylki'}/>}
-
+            {loginModalOpen && <LoginModal close={setLoginModalOpen}/>}
+            {registrationModalOpen && <RegistrationModal close={setRegistrationModalOpen}/>}
         </div>
     );
 };

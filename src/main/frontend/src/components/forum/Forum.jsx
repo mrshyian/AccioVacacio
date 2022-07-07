@@ -28,6 +28,7 @@ const Forum = () => {
             fetchPost();
         }, [])
 
+
     return (
         <div>
             <div style={{display: "flex"}}>

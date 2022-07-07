@@ -1,16 +1,30 @@
 import "./LoginModal.css";
-import {Button, Card, Modal, Form} from "react-bootstrap";
+import {Button, Modal, Form} from "react-bootstrap";
 import axios from "axios";
 import React, {useState} from "react";
+import ErrorModal from "../errorModals/ErrorModal";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
-const LoginModal = () => {
+const LoginModal = (props) => {
+    const [disabledBtn, setDisabledBtn] = useState(true)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const [showLoginModal, setShowLoginModal] = useState(true);
-    const handleCloseLoginModal = () => setShowLoginModal(false);
+    const handleCloseLoginModal = () =>{
+        setToPropsModalClose();
+        setShowLoginModal(false);
+    } ;
+    const [errorModalOpen, setErrorModalOpen] = useState(false);
+    const [errorText, setErrorText]= useState("");
+
+
+    function showErrorModal(data){
+        setErrorText(data);
+        setErrorModalOpen(true);
+    }
 
 
 
@@ -20,18 +34,27 @@ const LoginModal = () => {
                 email: email,
                 password: password,
             })
-                .then(()=>{
-                    fetchUserId();
-                    window.location.reload();
+                .then(res=>{
+                    if (res.data ===""){
+                        fetchUserId();
+                    }else {
+                        showErrorModal(res.data);
+                    }
                 })
-            handleCloseLoginModal()
+    }
+
+    const setToPropsModalClose = () => {
+        props.close(false)
     }
 
     const fetchUserId = () => {
         axios.get("http://localhost:8080/login")
             .then(res=> {
-                localStorage.setItem('userId', res.data)
-                sessionStorage.setItem("userId", res.data)
+                if (res.data !== ""){
+                    localStorage.setItem('userId', res.data)
+                    sessionStorage.setItem("userId", res.data)
+                    window.location.reload();
+                }
             })
         .catch(err => {console.log(err)});
     }
@@ -66,14 +89,20 @@ const LoginModal = () => {
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
+            <Modal.Footer  style={{background: "rgb(40,40,40)"}} >
+                <ReCAPTCHA
+                    size="normal"
+                    sitekey="6Let98ogAAAAAH3niinH0n8_di4vhssvE5YL_AuF"
+                    onChange={() => setDisabledBtn(false)}
+                />
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>
-                <Button variant="outline-warning" onClick={sendDataToServer}>
+                <Button disabled={disabledBtn} variant="outline-warning" onClick={sendDataToServer}>
                     Login
                 </Button>
             </Modal.Footer>
+            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen} close={setErrorModalOpen}/>}
         </Modal>
     );
 };

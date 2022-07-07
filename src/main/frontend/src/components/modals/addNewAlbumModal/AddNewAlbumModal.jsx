@@ -1,13 +1,17 @@
-
-
 import axios from "axios";
 import {Button, Form, Modal} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 
 const AddNewAlbumModal = (props) => {
+
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
+
     useEffect(()=>{
         setShowNewAlbumModal(props.visible)
     }, [])
+
     const [country, setCountry] = useState("")
     const [city, setCity] = useState("")
     const [tripDate, setTripDate] = useState("")
@@ -16,11 +20,13 @@ const AddNewAlbumModal = (props) => {
 
 
     const [showNewAlbumModal, setShowNewAlbumModal] = useState(false);
-    const handleCloseLoginModal = () => setShowNewAlbumModal(false);
+    const handleCloseLoginModal = () => {
+        setToPropsModalClose();
+        setShowNewAlbumModal(false);
+    };
 
 
     const sendDataToServer = () => {
-        window.location.reload();
         const url = "http://localhost:8080/albumsfromtrips";
         axios.post(url,{
             country: country,
@@ -31,6 +37,7 @@ const AddNewAlbumModal = (props) => {
         })
             .then(res=>{
                 console.log(res);
+                window.location.reload();
             })
         handleCloseLoginModal()
 
@@ -82,7 +89,7 @@ const AddNewAlbumModal = (props) => {
                         <Form.Control
                             value={tripDate}
                             onChange={e=> setTripDate(e.target.value)}
-                            type="text"
+                            type="date"
                         />
                     </Form.Group>
                     {/*-------------------------------------*/}
