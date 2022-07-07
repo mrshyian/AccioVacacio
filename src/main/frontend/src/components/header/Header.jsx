@@ -67,7 +67,7 @@ const Header = () => {
                         </Nav>
 
                         {sessionStorage.getItem("userId") !== null ? (
-                            <Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button>
+                            <Link to="/"><Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button></Link>
                         ) : (
                             <span>
 								<Button

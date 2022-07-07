@@ -38,7 +38,6 @@ public class CommentService {
     @Transactional(readOnly = true)
     public List<CommentsTable> findAll(Long userId) {
         List<CommentsTable> list = this.commentRepo.findAllById(Collections.singleton(userId));
-        System.out.println(list);
         return list;
     }
 

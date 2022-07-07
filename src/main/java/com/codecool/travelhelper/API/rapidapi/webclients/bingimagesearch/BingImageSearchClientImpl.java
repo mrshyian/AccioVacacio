@@ -40,7 +40,6 @@ public class BingImageSearchClientImpl extends ApiWebClient implements BingImage
         String contentUrl;
 
         int responseSize = response.getAsJsonArray("value").size();
-        System.out.println(responseSize);
         int amountOfImages = Math.min(howMuchImages, responseSize);
 
         for (int i = 0; i <amountOfImages ; i++) {
@@ -59,11 +58,9 @@ public class BingImageSearchClientImpl extends ApiWebClient implements BingImage
             images.add(contentUrl);
         }
 
-        BingImageSearch bingImageSearch = BingImageSearch.builder()
+        return BingImageSearch.builder()
                 .imgUrls(images)
                 .build();
-
-        return bingImageSearch;
     }
 
 }

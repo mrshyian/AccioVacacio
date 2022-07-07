@@ -24,12 +24,8 @@ public class BookingClientImpl extends ApiWebClient {
         this.setParameters(parameters);
 
         JsonObject response = getApiResponse(this.getUrl(), this.getHeadersData(), this.getParameters());
-        System.out.println(response);
 
-        BookingApiModel bookingApiModel = getBookingDto(response);
-        System.out.println(bookingApiModel.toString());
-
-        return bookingApiModel;
+        return getBookingDto(response);
     }
 
     public BookingApiModel getBookingDto(JsonObject response) {
@@ -38,13 +34,11 @@ public class BookingClientImpl extends ApiWebClient {
         String rating = getValueByKeyFromJsonObject("rating", response);
 
 
-        BookingApiModel bookingDto = BookingApiModel.builder()
+        return BookingApiModel.builder()
                 .name(name)
                 .link(link)
                 .rating(rating)
                 .build();
-        System.out.println(bookingDto);
-        return bookingDto;
     }
 
 }

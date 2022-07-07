@@ -46,7 +46,7 @@ const PlaceWantToGo = () => {
                     <div className="flex-box-for-place-want-to-go">
                         {places.map((place, index) => {
                             return (
-                                <SinglePlace country={place.country} city={place.city} imageUrl={place.imagesUrl[randomNumberInRange()]} key={index}/>
+                                <SinglePlace place={place} imageUrl={place.imagesUrl[randomNumberInRange()]} key={index}/>
                             )
                         })}
                     </div>

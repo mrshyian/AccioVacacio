@@ -30,7 +30,6 @@ public class CommentImpl {
     UserRepository userRepository;
 
     public void getAndSaveComments(String comments) {
-        System.out.println("string");
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(comments);
         String comment = commentJsonObject.get("name").getAsString();
