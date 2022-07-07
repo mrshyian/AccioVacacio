@@ -37,7 +37,6 @@ const LoginModal = (props) => {
                 .then(res=>{
                     if (res.data ===""){
                         fetchUserId();
-                        window.location.reload();
                     }else {
                             showErrorModal(res.data);
                     }
