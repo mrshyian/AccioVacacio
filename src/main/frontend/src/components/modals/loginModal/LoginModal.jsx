@@ -38,7 +38,7 @@ const LoginModal = (props) => {
                     if (res.data ===""){
                         fetchUserId();
                     }else {
-                            showErrorModal(res.data);
+                        showErrorModal(res.data);
                     }
                 })
     }
@@ -53,6 +53,7 @@ const LoginModal = (props) => {
                 if (res.data !== ""){
                     localStorage.setItem('userId', res.data)
                     sessionStorage.setItem("userId", res.data)
+                    window.location.reload();
                 }
             })
         .catch(err => {console.log(err)});

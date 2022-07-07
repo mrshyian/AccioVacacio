@@ -89,9 +89,8 @@ public abstract class ApiWebClient {
                 request,
                 String.class
         );
-        JsonArray responseJson = new JsonParser().parse(response.getBody()).getAsJsonArray();
 
-        return responseJson;
+        return new JsonParser().parse(response.getBody()).getAsJsonArray();
     }
 
 
@@ -109,7 +108,6 @@ public abstract class ApiWebClient {
      * @return String with value for "base", where "base" is element of the first level of nesting.
      */
     public String getValueByKeyFromJsonObject (String key, JsonObject jsonObject) {
-        System.out.println(jsonObject.get(key).getAsString());
         return jsonObject.get(key).getAsString();
     }
 

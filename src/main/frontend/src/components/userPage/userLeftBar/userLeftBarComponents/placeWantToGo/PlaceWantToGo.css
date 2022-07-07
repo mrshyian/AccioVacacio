@@ -6,9 +6,23 @@
 .single-place-card {
     width: 18rem;
     margin-left: 5%;
+    cursor: pointer;
+    border: 2px solid transparent;
 }
 
 .img-for-single-place-want-to-go {
     height: 200px;
     width: 100%;
 }
+
+
+.single-place-card:hover .single-place-body{
+    background-color: #3b3b3b;
+    color: orange;
+}
+
+.single-place-card:hover {
+    border: 2px solid orange;
+}
+
+
