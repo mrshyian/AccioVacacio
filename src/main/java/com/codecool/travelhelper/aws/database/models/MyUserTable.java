@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,43 +33,50 @@ public class MyUserTable {
 //----------------------------------------------------------------------
 
     // comments to user
-    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"myUserTable", "likedByUsers", "post"})
+    @OneToMany(mappedBy = "myUserTable")
     private List<CommentsTable> comments;
 
 //---------------------------------------------------
 
     // post to user
-    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"myUserTable", "likedPostByUsers", "comments"})// everything except MyUserTable
+    @OneToMany(mappedBy = "myUserTable")
     private List<PostTable> posts;
 
 //---------------------------------------------------
 
     //note to user
-    @OneToOne(mappedBy = "myUserTable", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("myUserTable")
+    @OneToOne(mappedBy = "myUserTable")
     private NoteTable noteTable;
 
 //---------------------------------------------------
 
     // albums to user
-    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("myUserTable")
+    @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<AlbumFromTripsTable> albumsFromTripsTable;
 
 //---------------------------------------------------
 
     // placesWantToGo to user
-    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("myUserTable")
+    @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<PlacesWantToGoTable> placesWantToGoTable;
 
 //---------------------------------------------------
 
     // visitedPlaces to user
-    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("myUserTable")
+    @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<VisitedPlaceTable> visitedPlacesTable;
 
 //---------------------------------------------------
 
     // trips to user
-    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("myUserTable")
+    @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<TripTable> tripsTable;
 
 //---------------------------------------------------

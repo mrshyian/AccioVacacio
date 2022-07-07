@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.aws.database.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,25 +36,32 @@ public class PostTable {
 
     // liked by user to user
     @ManyToMany
-    @JsonIgnore
     @JoinTable(name = "liked_posts_by_user",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonIgnoreProperties({ "comments", "posts", "noteTable", "albumsFromTripsTable",
+            "placesWantToGoTable", "visitedPlacesTable", "tripsTable",
+            "fullName", "nickName", "birthday", "userEMail", "password",
+            "avatar", "instagram", "facebook", "aboutMe", "role",
+            "privateAccount"})
     private Set<MyUserTable> likedPostByUsers;
 
 //---------------------------------------------------
 
     // comments to post
-    @JsonIgnore
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({ "likedByUsers", "post", "myUserTable", "commentText", "commentImage",
+            "country", "city", "commentDateTime", "userName"})
     private List<CommentsTable> comments;
 
 //----------------------------------------------------------------------
 
     // post to user
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
+    @JsonIgnoreProperties({"posts", "comments", "noteTable", "albumsFromTripsTable", "placesWantToGoTable",
+            "visitedPlacesTable", "tripsTable", "fullName", "nickName", "birthday", "userEMail", "password",
+            "avatar", "instagram", "facebook", "aboutMe", "role", "privateAccount"})
     private MyUserTable myUserTable;
 
     //---------------------------------------------------

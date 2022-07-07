@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.aws.database.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,24 +34,33 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // liked by user to user
-    @ManyToMany(fetch = FetchType.LAZY)
+
+    @ManyToMany
     @JoinTable(name = "liked_comments_by_user",
             joinColumns = @JoinColumn(name = "comment_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonIgnoreProperties({ "comments", "posts", "noteTable", "albumsFromTripsTable", "placesWantToGoTable",
+            "visitedPlacesTable", "tripsTable", "fullName", "nickName", "birthday", "userEMail", "password",
+            "avatar", "instagram", "facebook", "aboutMe", "role", "privateAccount"})
     private Set<MyUserTable> likedByUsers;
 
 //---------------------------------------------------
 
     // comments to user
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="user_id")
+    @JsonIgnoreProperties({ "comments", "posts", "noteTable", "albumsFromTripsTable",
+            "placesWantToGoTable", "visitedPlacesTable", "tripsTable",
+            "fullName", "nickName", "birthday", "userEMail", "password",
+            "avatar", "instagram", "facebook", "aboutMe", "role",
+            "privateAccount"})
     private MyUserTable myUserTable;
 //---------------------------------------------------
 
-    // comments to post
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="post_id")
+    @JsonIgnoreProperties({ "likedPostByUsers", "comments", "myUserTable",
+            "topic", "postText", "postImage", "postDateTime", "userName"})
     private PostTable post;
 
 //------------------------------------------------------

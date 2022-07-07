@@ -1,9 +1,11 @@
 package com.codecool.travelhelper.forum.controllers;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
+import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
+import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.services.CommentService;
 import com.codecool.travelhelper.forum.services.PostService;
 import com.codecool.travelhelper.forum.webclients.CommentImpl;
@@ -28,6 +30,9 @@ public class CommentController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Autowired
@@ -64,6 +69,11 @@ public class CommentController {
             }
         }
         return likedComments;
+    }
+
+    @GetMapping("/user")
+    public List<MyUserTable> getUsers(){
+        return userRepository.findAll();
     }
 
     // add like to selected comment
