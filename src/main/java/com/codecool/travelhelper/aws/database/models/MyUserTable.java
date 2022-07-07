@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,20 +34,25 @@ public class MyUserTable {
 //----------------------------------------------------------------------
 
     // comments to user
-    @JsonIgnoreProperties({"myUserTable", "likedByUsers", "post"})
+    @JsonIgnore
+    @JsonIgnoreProperties({"myUserTable", "likedByUsers", "post", "commentText", "commentImage",
+            "country", "city", "commentDateTime", "userName"})
     @OneToMany(mappedBy = "myUserTable")
     private List<CommentsTable> comments;
 
 //---------------------------------------------------
 
     // post to user
-    @JsonIgnoreProperties({"myUserTable", "likedPostByUsers", "comments"})// everything except MyUserTable
+    @JsonIgnore
+    @JsonIgnoreProperties({"myUserTable", "likedPostByUsers", "comments" ,
+            "topic", "postText", "postImage", "postDateTime", "userName"})// everything except MyUserTable
     @OneToMany(mappedBy = "myUserTable")
     private List<PostTable> posts;
 
 //---------------------------------------------------
 
     //note to user
+    @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToOne(mappedBy = "myUserTable")
     private NoteTable noteTable;
@@ -54,6 +60,7 @@ public class MyUserTable {
 //---------------------------------------------------
 
     // albums to user
+    @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<AlbumFromTripsTable> albumsFromTripsTable;
@@ -61,6 +68,7 @@ public class MyUserTable {
 //---------------------------------------------------
 
     // placesWantToGo to user
+    @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<PlacesWantToGoTable> placesWantToGoTable;
@@ -68,6 +76,7 @@ public class MyUserTable {
 //---------------------------------------------------
 
     // visitedPlaces to user
+    @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<VisitedPlaceTable> visitedPlacesTable;
@@ -75,6 +84,7 @@ public class MyUserTable {
 //---------------------------------------------------
 
     // trips to user
+    @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<TripTable> tripsTable;
