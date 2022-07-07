@@ -10,7 +10,6 @@ import {Link} from "react-router-dom";
 const Header = () => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
-    const [errorModalOpen, setErrorModalOpen] = useState(false);
 
     const sendLogoutRequest = () => {
         const url = "http://localhost:8080/logout";
@@ -67,7 +66,7 @@ const Header = () => {
                             </Link>
                         </Nav>
 
-                        {localStorage.getItem("userId") !== null ? (
+                        {sessionStorage.getItem("userId") !== null ? (
                             <Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button>
                         ) : (
                             <span>
