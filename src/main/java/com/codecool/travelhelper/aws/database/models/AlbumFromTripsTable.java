@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,13 +22,14 @@ public class AlbumFromTripsTable {
 //---------------------------------------------------
 
     // photos to album
-    @OneToMany(mappedBy = "albumFromTripsTable")
+    @OneToMany(mappedBy = "albumFromTripsTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     List<PhotosFromTripsTable> photos;
 
 //---------------------------------------------------
 
     //albums to user
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
 

@@ -4,11 +4,15 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function AddNewPost() {
+function AddNewPost(props) {
     const [show, setShow] = useState(true);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setToPropsModalClose();
+        setShow(false);
+    };
     const handleShow = () => setShow(true);
+
     const url = "http://localhost:8080/posts"
     const [data, setData] = useState({
         topic: "",
@@ -19,23 +23,24 @@ function AddNewPost() {
         const newData = {...data}
         newData[e.target.id] = e.target.value
         setData(newData)
-        console.log(newData)
     }
 
     function refreshPage(){
-        console.log("działa")
         window.location.reload();
     }
 
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
+
+
     function submit(e){
         handleClose();
-        refreshPage();
         e.preventDefault();
-        console.log("submit działa")
         Axios.post(url, {
             topic: data.topic,
             postText: data.postText
-        }).then(r => console.log(r.data))
+        }).then(() => refreshPage());
     }
 
     return (
@@ -69,7 +74,6 @@ function AddNewPost() {
                                           style={{marginLeft: -4}}
                                           value={data.postText}
                                           onChange={(e) => handle(e)}
-
                             />
                         </Form.Group>
                     </Form>

@@ -1,17 +1,15 @@
 package com.codecool.travelhelper.aws.database.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.lang.annotation.Repeatable;
 import java.util.List;
 
 @Entity(name = "MyUserTable")
 @Getter
-@ToString
 @NoArgsConstructor
 public class MyUserTable {
 
@@ -37,55 +35,58 @@ public class MyUserTable {
 
     // comments to user
     @JsonIgnore
+    @JsonIgnoreProperties({"myUserTable", "likedByUsers", "post", "commentText", "commentImage",
+            "country", "city", "commentDateTime", "userName"})
     @OneToMany(mappedBy = "myUserTable")
-    @JsonIgnoreProperties("myUserTable")
     private List<CommentsTable> comments;
 
 //---------------------------------------------------
 
     // post to user
     @JsonIgnore
+    @JsonIgnoreProperties({"myUserTable", "likedPostByUsers", "comments" ,
+            "topic", "postText", "postImage", "postDateTime", "userName"})// everything except MyUserTable
     @OneToMany(mappedBy = "myUserTable")
-    @JsonIgnoreProperties("myUserTable")
     private List<PostTable> posts;
 
 //---------------------------------------------------
 
     //note to user
-    @OneToOne(mappedBy = "myUserTable", fetch = FetchType.LAZY)
+    @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
+    @OneToOne(mappedBy = "myUserTable")
     private NoteTable noteTable;
 
 //---------------------------------------------------
 
     // albums to user
     @JsonIgnore
-    @OneToMany(mappedBy = "myUserTable")
     @JsonIgnoreProperties("myUserTable")
+    @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<AlbumFromTripsTable> albumsFromTripsTable;
 
 //---------------------------------------------------
 
     // placesWantToGo to user
     @JsonIgnore
-    @OneToMany(mappedBy = "myUserTable")
     @JsonIgnoreProperties("myUserTable")
+    @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<PlacesWantToGoTable> placesWantToGoTable;
 
 //---------------------------------------------------
 
     // visitedPlaces to user
     @JsonIgnore
-    @OneToMany(mappedBy = "myUserTable")
     @JsonIgnoreProperties("myUserTable")
+    @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<VisitedPlaceTable> visitedPlacesTable;
 
 //---------------------------------------------------
 
     // trips to user
     @JsonIgnore
-    @OneToMany(mappedBy = "myUserTable")
     @JsonIgnoreProperties("myUserTable")
+    @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     List<TripTable> tripsTable;
 
 //---------------------------------------------------
@@ -102,5 +103,23 @@ public class MyUserTable {
         this.aboutMe = "";
         this.privateAccount = false;
         this.role = "User";
+    }
+
+    @Override
+    public String toString() {
+        return "MyUserTable{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", userEMail='" + userEMail + '\'' +
+                ", password='" + password + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", instagram='" + instagram + '\'' +
+                ", facebook='" + facebook + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", role='" + role + '\'' +
+                ", privateAccount=" + privateAccount +
+                '}';
     }
 }

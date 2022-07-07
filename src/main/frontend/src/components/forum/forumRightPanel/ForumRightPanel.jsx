@@ -1,10 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./ForumRightPanel.css"
 import SinglePost from "./singlePost/SinglePost";
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
+
 
 
 const ForumRightPanel = (props) => {
+
+    const [userIdInSession, setUserIdInSession] = useState(false);
+
+    useEffect(()=>{
+        IsUserInSession();
+    })
+
+    const IsUserInSession = () =>{
+        sessionStorage.getItem("userId") !== null ? setUserIdInSession(true) : console.log(sessionStorage.getItem("userId"))
+    }
 
     return (
         <Card

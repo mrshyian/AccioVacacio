@@ -23,7 +23,7 @@ function AddNewComment(props) {
         Axios.post(url, {
             name: name.name,
             postId: props.postId
-        }).then(r => console.log(r.data))
+        }).then(() => refreshPage())
     }
 
     function refreshPage() {

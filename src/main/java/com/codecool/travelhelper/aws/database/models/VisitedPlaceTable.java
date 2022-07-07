@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,6 +25,7 @@ public class VisitedPlaceTable {
 
     // visitedPlaces to user
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
 
