@@ -2,14 +2,17 @@ package com.codecool.travelhelper.forum.controllers;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
+import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
+import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
-import com.codecool.travelhelper.forum.services.CommentService;
 import com.codecool.travelhelper.forum.webclients.CommentImpl;
+import com.codecool.travelhelper.forum.webclients.PostImpl;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,56 +24,72 @@ public class CommentController {
     LoginImpl loginImpl;
 
     @Autowired
-    private CommentService commentService;
+    PostRepository postRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    //    @Autowired
-//    private CommentRepository commentRepository;
-//
-//    @Autowired
-//    private UserRepository userRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
-    private CommentImpl comment;
-
+    private CommentImpl commentImpl;
 
     // get comment from frontend
     @PostMapping("/comments")
     public void getNewComments(@RequestBody String commentsTable) {
-        comment.getAndSaveComments(commentsTable);
+        commentImpl.getAndSaveComments(commentsTable);
     }
 
     // send list of comments to frontend
     @GetMapping("/comments")
     public List<CommentsTable> getComments() {
-        Long userId = loginImpl.getCurrentUserId();
-        return commentService.findAll(userId);
+        return commentRepository.findAll();
     }
 
-    @GetMapping("/comment_user")
-    public List<MyUserTable> getUserForComments(){
-//        Long userId = loginImpl.getCurrentUserId();
-        return userRepository.findAll();
+    // send list of user comments to frontend
+    @GetMapping("/myComments")
+    public List<CommentsTable> getUserComments(){
+        return commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
     }
 
-//    // get user by id
-//    @GetMapping("/user/{id}")
-//    public ResponseEntity<MyUserTable> getUserById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-//        return commentService.findUserById(id);
-//    }
-//
-//    // update comment by id
-//    @PutMapping("/comment/{id}")
-//    public ResponseEntity<CommentsTable> updateCommentById(@PathVariable(value = "id") Long id, @RequestBody CommentsTable commentsTable)
-//            throws ResourceNotFoundException {
-//        return commentService.updateComment(id, commentsTable);
-//    }
-//    // delete comment by id
-//    @DeleteMapping("/comment/{id}")
-//    public ResponseEntity<CommentsTable> deleteCommentById(@PathVariable(value = "id") Long id, @RequestBody CommentsTable commentsTable)
-//            throws ResourceNotFoundException {
-//        return commentService.deleteComment(id, commentsTable);
-//    }
+    // send favourite comments to frontend
+    @GetMapping("/favouriteComments")
+    public List<CommentsTable> getUserFavouriteComments(){
+        List<CommentsTable> likedComments= new ArrayList<>();
+        List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+        for (CommentsTable comment: userComments) {
+            if(comment.getLikedByUsers().size() > 0){
+                likedComments.add(comment);
+            }
+        }
+        return likedComments;
+    }
+
+    // get sorted criteria
+    @PostMapping("/sort_by")
+    public void sortPost(@RequestBody String countryAndCity) {
+        commentImpl.sortComments(countryAndCity);
+    }
+
+    // send sorted comments to frontend
+    @GetMapping("/get_sorted_comments")
+    public List<CommentsTable> getSortedComments(){
+        return commentImpl.getSortedComments();
+    }
+
+    // add like to selected comment
+    @PostMapping("/add_like_to_comment")
+    public void getLikeComment(@RequestBody String likeComment) {
+        commentImpl.addLikeToComment(likeComment);
+    }
+
+    // delete selected comment
+    @PutMapping("/delete_comment")
+    public void deleteComment(@RequestBody String commentId) {
+        commentImpl.deleteComment(commentId);
+    }
+
+    // edit selected comment
+    @PutMapping("/comment_edit")
+    public void getCommentToEdit(@RequestBody String commentDetails) {
+        commentImpl.editComment(commentDetails);
+    }
 }

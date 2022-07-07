@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.aws.database.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,6 +25,7 @@ public class PhotosFromTripsTable {
 
     // photos to album
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "album_id")
     AlbumFromTripsTable albumFromTripsTable;
 //---------------------------------------------------

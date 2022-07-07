@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.joda.time.DateTime;
 
@@ -33,6 +34,7 @@ public class TripTable {
 
     // trips to user
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private MyUserTable myUserTable;
 

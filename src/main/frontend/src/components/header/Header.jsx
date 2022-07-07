@@ -13,11 +13,14 @@ const Header = () => {
 
     const sendLogoutRequest = () => {
         const url = "http://localhost:8080/logout";
+        axios.post(url,{})
+            .then(res=>{
+                console.log(res);
         axios.post(url, {})
             .then(()=> {
                 deletionOfSessions()
             })
-    }
+    })}
 
     const deletionOfSessions =()=>{
         localStorage.removeItem("userId")
@@ -97,5 +100,4 @@ const Header = () => {
         </div>
     );
 };
-
 export default Header;
