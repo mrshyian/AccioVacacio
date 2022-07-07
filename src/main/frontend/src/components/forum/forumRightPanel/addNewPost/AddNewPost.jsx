@@ -4,11 +4,15 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function AddNewPost() {
+function AddNewPost(props) {
     const [show, setShow] = useState(true);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setToPropsModalClose();
+        setShow(false);
+    };
     const handleShow = () => setShow(true);
+
     const url = "http://localhost:8080/posts"
     const [data, setData] = useState({
         topic: "",
@@ -24,6 +28,11 @@ function AddNewPost() {
     function refreshPage(){
         window.location.reload();
     }
+
+    const setToPropsModalClose = () => {
+        props.close(false)
+    }
+
 
     function submit(e){
         handleClose();

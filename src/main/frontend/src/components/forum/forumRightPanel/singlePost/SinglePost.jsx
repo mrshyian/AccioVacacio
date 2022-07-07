@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
 import SingleComment from "../singleComment/SingleComment";
 import "./SinglePost.css"
@@ -57,6 +57,10 @@ const SinglePost = (props) => {
         e.preventDefault();
         setEditable(true);
     }
+
+    useEffect(()=>{
+        GetComments();
+    },[])
 
     return (
         <div>

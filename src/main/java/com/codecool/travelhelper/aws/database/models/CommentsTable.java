@@ -14,6 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedEntityGraph(name = "likedByUser", attributeNodes = {@NamedAttributeNode("myUserTable")})
 public class CommentsTable {
 
     @Id
@@ -32,8 +33,7 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // liked by user to user
-    @ManyToMany
-    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "liked_comments_by_user",
             joinColumns = @JoinColumn(name = "comment_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
@@ -42,15 +42,14 @@ public class CommentsTable {
 //---------------------------------------------------
 
     // comments to user
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private MyUserTable myUserTable;
 //---------------------------------------------------
 
     // comments to post
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="post_id")
     private PostTable post;
 

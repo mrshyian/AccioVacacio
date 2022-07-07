@@ -85,7 +85,7 @@ const ForumLeftPanel = () => {
                     </SubMenu>
                     <MenuItem icon={<FaHeart />}><Link to="/forum/favourite_comments">Favourite comments</Link></MenuItem>
                     <MenuItem variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</MenuItem>
-                    {NewModalOpen && <AddNewPost open={NewModalOpen}/>}
+                    {NewModalOpen && <AddNewPost close={setNewModalOpen} open={NewModalOpen}/>}
                 </Menu>
             </ProSidebar>
         </header>

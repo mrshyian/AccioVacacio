@@ -32,19 +32,19 @@ public class MyUserTable {
 //----------------------------------------------------------------------
 
     // comments to user
-    @OneToMany(mappedBy = "myUserTable")
+    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY)
     private List<CommentsTable> comments;
 
 //---------------------------------------------------
 
     // post to user
-    @OneToMany(mappedBy = "myUserTable")
+    @OneToMany(mappedBy = "myUserTable", fetch = FetchType.LAZY)
     private List<PostTable> posts;
 
 //---------------------------------------------------
 
     //note to user
-    @OneToOne(mappedBy = "myUserTable")
+    @OneToOne(mappedBy = "myUserTable", fetch = FetchType.LAZY)
     private NoteTable noteTable;
 
 //---------------------------------------------------
