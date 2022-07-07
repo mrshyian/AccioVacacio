@@ -79,12 +79,22 @@ public class PlacesWantToGoImpl {
         );
 
         return PlaceWantToGoModel.builder()
+                .placeId(placeWantToGo.getId())
                 .imagesUrl(imagesUrl.getImgUrls())
                 .country(placeWantToGo.getCountry())
                 .city(placeWantToGo.getCity())
                 .build();
     }
 
+    public void deletePlace(String placeData) {
+        JsonParser jsonParser = new JsonParser();
 
+        JsonObject countryJsonObject = (JsonObject)jsonParser.parse(placeData);
+        Long placeId = Long.parseLong(countryJsonObject.get("placeId").getAsString());
+
+        System.out.println("placeId = " + placeId);
+
+        placesWantToGoRepository.deleteById(placeId);
+    }
 
 }

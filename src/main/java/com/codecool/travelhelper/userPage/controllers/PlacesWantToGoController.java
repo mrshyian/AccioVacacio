@@ -25,4 +25,9 @@ public class PlacesWantToGoController {
     public List<PlaceWantToGoModel> getPlace() {
         return placesWantToGoImpl.getPlacesFromDB();
     }
+
+    @PutMapping ("/placewanttogo")
+    public void deletePlace(@RequestBody String placeData ) {
+        placesWantToGoImpl.deletePlace(placeData);
+    }
 }
