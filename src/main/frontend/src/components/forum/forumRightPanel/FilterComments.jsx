@@ -11,15 +11,13 @@ const FilterComments = () => {
 
     const fetchSortedPosts = () => {
         axios.get(`http://localhost:8080/get_sorted_posts`)
-            .then(res =>{setSortedPosts(res.data);
-                console.log("data "+ res.data)})
+            .then(res =>{setSortedPosts(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchSortedComments = () => {
         axios.get(`http://localhost:8080/get_sorted_comments`)
-            .then(res =>{setSortedComments(res.data);
-                console.log("data "+ res.data)})
+            .then(res =>{setSortedComments(res.data);})
             .catch(err => {console.log(err)});
     };
 

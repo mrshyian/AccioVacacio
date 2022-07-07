@@ -15,8 +15,7 @@ const Header = () => {
 
     const sendLogoutRequest = () => {
         const url = "http://localhost:8080/logout";
-        axios.post(url,{
-        })
+        axios.post(url,{})
             .then(res=>{
                 console.log(res);
         axios.post(url, {})

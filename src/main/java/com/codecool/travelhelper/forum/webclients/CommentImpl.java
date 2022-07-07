@@ -108,7 +108,6 @@ public class CommentImpl {
     }
 
     public List<CommentsTable> getSortedComments(){
-        System.out.println("Comment get : "+comments);
         return comments;
     }
 
@@ -136,8 +135,6 @@ public class CommentImpl {
             commentsTable.get().setCommentText(commentText);
             commentRepository.save(commentsTable.get());
         }
-
-
     }
 
 }

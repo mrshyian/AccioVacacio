@@ -52,13 +52,7 @@ public class PostController {
         post.addLikeToPost(likePost);
     }
 
-    // sort posts by provided parameters
-//    @PostMapping("/sort_by")
-//    public void sortPost(@RequestBody String countryAndCity) {
-//        post.setPosts(new ArrayList<>());
-//        post.sortPosts(countryAndCity);
-//    }
-
+    // send sorted posts to frontend
     @GetMapping("/get_sorted_posts")
     public List<PostTable> getSortedComments(){
         return post.getSortedPosts();
@@ -90,7 +84,6 @@ public class PostController {
                 }
             }
         }
-        System.out.println(posts);
         return posts;
     }
 

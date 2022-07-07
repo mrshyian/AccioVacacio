@@ -8,8 +8,7 @@ import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 
 const SinglePost = (props) => {
-    console.log(props.comments)
-    console.log(props.post.postText)
+
     let text = props.post.postText;
     const [postText, setPostText] = useState(text)
     const [editable, setEditable] = useState(false)
@@ -22,7 +21,6 @@ const SinglePost = (props) => {
     }
 
     const sendLike = () => {
-        console.log(props.post.id)
         axios.post(
             "http://localhost:8080/add_like_to_post", {
                 postId: props.post.id

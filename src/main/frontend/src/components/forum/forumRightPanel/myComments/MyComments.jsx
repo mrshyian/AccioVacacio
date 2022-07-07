@@ -10,16 +10,14 @@ const MyComments = () => {
 
     const fetchMyComments = () => {
         axios.get(`http://localhost:8080/myComments`)
-            .then(res =>{setMyComments(res.data);
-                console.log(res.data)})
+            .then(res =>{setMyComments(res.data);})
             .catch(err => {console.log(err)});
     };
 
 
     const fetchMyCommentsPosts = () => {
         axios.get(`http://localhost:8080/myCommentsPosts`)
-            .then(res =>{setMyCommentsPosts(res.data);
-                console.log(res.data)})
+            .then(res =>{setMyCommentsPosts(res.data);})
             .catch(err => {console.log(err)});
     };
 

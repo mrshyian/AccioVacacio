@@ -30,15 +30,7 @@ public class CommentController {
     private CommentRepository commentRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-
-    @Autowired
     private CommentImpl commentImpl;
-
-    @Autowired
-    private PostImpl post;
-
 
     // get comment from frontend
     @PostMapping("/comments")
@@ -58,7 +50,6 @@ public class CommentController {
         return commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
     }
 
-
     // send favourite comments to frontend
     @GetMapping("/favouriteComments")
     public List<CommentsTable> getUserFavouriteComments(){
@@ -72,19 +63,16 @@ public class CommentController {
         return likedComments;
     }
 
+    // get sorted criteria
     @PostMapping("/sort_by")
     public void sortPost(@RequestBody String countryAndCity) {
         commentImpl.sortComments(countryAndCity);
     }
 
+    // send sorted comments to frontend
     @GetMapping("/get_sorted_comments")
     public List<CommentsTable> getSortedComments(){
         return commentImpl.getSortedComments();
-    }
-
-    @GetMapping("/user")
-    public List<MyUserTable> getUsers(){
-        return userRepository.findAll();
     }
 
     // add like to selected comment
