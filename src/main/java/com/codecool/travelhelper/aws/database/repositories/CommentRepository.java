@@ -12,6 +12,7 @@ public interface CommentRepository extends JpaRepository<CommentsTable, Long> {
     List<CommentsTable> findAllByMyUserTableId(Long userId);
     List<CommentsTable> findAllByCountryOrderByCommentDateTimeAsc(String country);
     List<CommentsTable> findAllByCountryOrderByCommentDateTimeDesc(String country);
+    List<CommentsTable> findAllByOrderByCommentDateTimeAsc(String country);
 
     @EntityGraph(value = "likedByUser")
     public CommentsTable getCommentsTableById(Long id);
