@@ -3,7 +3,6 @@ import {Button, Card} from "react-bootstrap";
 import SocialMedia from "../socialMedia/SocialMedia";
 import "./ProfileImage.css"
 import "./InformationAboutUser.css"
-import nickname from "../../../../../images/name_user_3716.png"
 import CountryCounter from "../countryCounter/CountryCounter";
 import EditUserDataModal from "../../../../modals/editUserDataModal/EditUserDataModal";
 import user from "../../../../../images/user.png"
@@ -27,7 +26,7 @@ const InformationAboutUser = (props) => {
                 <div className="user-info-second-div">
                     <h3>{props.myUser.fullName}</h3>
                     <div className="user-info-second-div-nickname">
-                        <img className="user-info-nickname-img" src={nickname} />
+                        <img className="user-info-nickname-img" src={user} />
                         <h4 className="user-info-nickname">{props.myUser.nickName}</h4>
                     </div>
                     <Card.Text className="user-info-aboutme-text">
