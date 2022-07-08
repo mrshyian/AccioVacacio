@@ -1,6 +1,12 @@
 import React from 'react';
 import "./WeaterBox.css"
 import {Card} from 'react-bootstrap';
+import temperature1 from "../../../images/temperature1.png"
+import temperature2 from "../../../images/temperature2.png"
+import pressure from "../../../images/pressure.png"
+import humidity from "../../../images/humiditypng.png"
+import wing from "../../../images/wind.png"
+import clouds from "../../../images/clouds.png"
 
 const WeatherBox = (props) => {
     return (
@@ -17,7 +23,7 @@ const WeatherBox = (props) => {
                     <table>
                         <tr>
                             <td>
-                                <img className="img" src="https://cdn.icon-icons.com/icons2/2745/PNG/512/temperature_icon_175973.png" alt="random image"/>
+                                <img className="img" src={temperature1} alt="random image"/>
                             </td>
                             <td>
                                 <h2>Temperature: {props.weather.temperature} C°</h2>
@@ -25,7 +31,7 @@ const WeatherBox = (props) => {
                         </tr>
                         <tr>
                             <td>
-                                <img className="img" src="https://cdn.icon-icons.com/icons2/2164/PNG/512/temperature_temperature_hot_forecast_weather_icon_133098.png" alt="random image"/>
+                                <img className="img" src={temperature2} alt="random image"/>
                             </td>
                             <td>
                                 <h2>Feels like: {props.weather.feelsLike} C°</h2>
@@ -33,7 +39,7 @@ const WeatherBox = (props) => {
                         </tr>
                         <tr>
                             <td>
-                                <img className="img" src="https://cdn.icon-icons.com/icons2/38/PNG/512/pressure_4667.png" alt="random image"/>
+                                <img className="img" src={pressure} alt="random image"/>
                             </td>
                             <td>
                                 <h2>Pressure: {props.weather.pressure} mBar</h2>
@@ -41,7 +47,7 @@ const WeatherBox = (props) => {
                         </tr>
                         <tr>
                             <td>
-                                <img className="img" src="https://cdn.icon-icons.com/icons2/94/PNG/512/humidity_wather_16790.png" alt="random image"/>
+                                <img className="img" src={humidity} alt="random image"/>
                             </td>
                             <td>
                                 <h2>Humidity: {props.weather.humidity} g/m³</h2>
@@ -49,7 +55,7 @@ const WeatherBox = (props) => {
                         </tr>
                         <tr>
                             <td>
-                                <img className="img" src="https://cdn.icon-icons.com/icons2/8/PNG/128/weather_wind_flag_storm_travel_1455.png" alt="random image"/>
+                                <img className="img" src={wing} alt="random image"/>
                             </td>
                             <td>
                                 <h2>Wind Speed: {props.weather.wingSpeed} km/h</h2>
@@ -57,7 +63,7 @@ const WeatherBox = (props) => {
                         </tr>
                         <tr>
                             <td>
-                                <img className="img" src="https://cdn.icon-icons.com/icons2/8/PNG/256/cloudyweather_cloud_inpart_day_wind_thunder_sunny_rain_darkness_nublad_1459.png" alt="random image"/>
+                                <img className="img" src={clouds}/>
                             </td>
                             <td>
                                 <h2> {props.weather.description}</h2>

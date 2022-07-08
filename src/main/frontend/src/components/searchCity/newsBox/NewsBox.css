@@ -53,6 +53,7 @@
     border: 2px solid #9b9b9b;
     margin: 16px;
     border-radius: 8px;
+    padding: 10px;
     box-shadow: inset 10px 13px 15px rgba(255,255,255,0.5), inset 0px 10px 101px rgba(0,0,0,0.15);
 }
 .container_copy {
