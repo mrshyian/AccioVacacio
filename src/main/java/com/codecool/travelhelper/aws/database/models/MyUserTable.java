@@ -1,12 +1,18 @@
 package com.codecool.travelhelper.aws.database.models;
 
+import com.codecool.travelhelper.user.UserRoleTable;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Entity(name = "MyUserTable")
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class MyUserTable {
@@ -25,9 +31,14 @@ public class MyUserTable {
     private String instagram;
     private String facebook;
     private String aboutMe;
-    private String role;
+    @ManyToMany(fetch = EAGER)
+    private Collection<UserRoleTable> role;
     private boolean privateAccount;
 
+    public MyUserTable(String userEMail, String password) {
+        this.userEMail = userEMail;
+        this.password = password;
+    }
 
 //----------------------------------------------------------------------
 
@@ -84,6 +95,6 @@ public class MyUserTable {
         this.facebook = "";
         this.aboutMe = "";
         this.privateAccount = false;
-        this.role = "User";
+        this.role = new ArrayList<>();
     }
 }

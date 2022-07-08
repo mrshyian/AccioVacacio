@@ -16,7 +16,6 @@ public class LoginController {
     @Autowired
     LoginImpl loginImpl;
 
-
     @PostMapping("/login")
     public String login(@RequestBody String data){
         return loginImpl.findUser(data);
