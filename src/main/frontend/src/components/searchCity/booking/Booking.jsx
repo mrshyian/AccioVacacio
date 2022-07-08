@@ -22,7 +22,7 @@ const Booking = (props) => {
     }, [])
     return (
         <div className="newsInline1" style={{width: "30%"}}>
-            <h1 style={{textAlign: "center", color: "orange"}}>AIRPORTS</h1>
+            <h1 style={{textAlign: "center", color: "orange"}}>Booking</h1>
             <div style={{display: "flex", marginLeft: "10%"}}>
                 <Card
                     bg={"dark"}

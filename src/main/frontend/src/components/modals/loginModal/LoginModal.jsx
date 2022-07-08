@@ -4,6 +4,7 @@ import axios from "axios";
 import React, {useState} from "react";
 import ErrorModal from "../errorModals/ErrorModal";
 import ReCAPTCHA from "react-google-recaptcha";
+import GoogleSignIn from "./Google.SignIn";
 
 
 const LoginModal = (props) => {
@@ -65,6 +66,10 @@ const LoginModal = (props) => {
                 <Modal.Title>Log In</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{background: "rgb(20,20,20)"}}>
+                <div style={{display: "block", textAlign: "center", justifyContent: "center"}}>
+                <GoogleSignIn/>
+                <h5 style={{margin: 10}}>Or type manually:</h5>
+                </div>
                 <Form style={{background: "rgb(20,20,20)"}}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label style={{color: "orange"}}>Email address</Form.Label>
