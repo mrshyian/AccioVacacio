@@ -28,14 +28,13 @@ const DeletePlaceWantToGo = (props) => {
         })
             .then(() => window.location.reload())
         handleCloseLoginModal()
-
     }
 
 
     return (
         <Modal show={showDeletePlaceModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
             <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
-                <Modal.Title>You want to delete this place ({props.place.country}/{props.place.city})?</Modal.Title>
+                <Modal.Title>You want to delete this place? <div style={{color: "wight"}}>({props.place.country}/{props.place.city})</div></Modal.Title>
             </Modal.Header>
             <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>

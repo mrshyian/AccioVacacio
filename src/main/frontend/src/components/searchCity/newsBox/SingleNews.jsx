@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Card} from "react-bootstrap";
+import news from "../../../images/news.png"
 
 const SingleNews = (props) => {
 
@@ -15,7 +16,7 @@ const SingleNews = (props) => {
                 <table>
                     <tr>
                         <td>
-                            <img  src="https://cdn.icon-icons.com/icons2/203/PNG/128/diagram-01_24516.png" alt="random image"/>
+                            <img  src={news} alt="random image"/>
                         </td>
                         <td>
                             <h2>{props.news.title}</h2>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageBingSearch from "../imagesAsApiResponse/ImageBingSearch";
+import location from "../../../images/location.png"
 
 const TouristSingleAttractionCard = (props) => {
 
@@ -12,7 +13,7 @@ const TouristSingleAttractionCard = (props) => {
         <div className="wrapper">
             <div className="blog_post">
                 <div className="img_pod">
-                    <img src="https://img.icons8.com/external-smashingstocks-glyph-smashing-stocks/344/external-map-pointer-medical-smashingstocks-glyph-smashing-stocks.png" alt="random image"
+                    <img src={location} alt="random image"
                     style={{maxWidth: "60px", maxHeight:"60px"}}/>
                 </div>
                 <div className="minus-margin" style={{width: "49%", flex: "50%"}}>

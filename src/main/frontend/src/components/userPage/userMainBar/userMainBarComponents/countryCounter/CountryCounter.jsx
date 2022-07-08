@@ -8,12 +8,14 @@ const CountryCounter = () => {
             key={"dark"}
             text={'white'}
             className="mb-2"
-            style={{width: "100%"}}
+            style={{width: "50%", marginLeft: "auto", marginRight: "auto", border: "1px solid orange"}}
         >
             <Card.Header style={{textAlign: "center", color: "orange"}}><h4>Country Counter</h4></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    Cos tam
+                    <a style={{color: "orange"}} href="/userpage"><p>Poland/Poznan</p></a>
+                    <a style={{color: "orange"}} href="/userpage"><p>Rome/Italy</p></a>
+                    <a style={{color: "orange"}} href="/userpage"><p>Barcelona/Spain</p></a>
                 </Card.Text>
             </Card.Body>
         </Card>

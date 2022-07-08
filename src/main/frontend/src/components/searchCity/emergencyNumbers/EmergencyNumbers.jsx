@@ -1,6 +1,10 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
 import "./EmergencyNumbers.css"
+import police from "../../../images/police.png"
+import aid from "../../../images/aid.png"
+import fireguard from "../../../images/fireguard.png"
+import dispatch from "../../../images/dispatch.png"
 
 const EmergencyNumbers = (props) => {
     if (props.emergencyNumber.dispatch !== ""){
@@ -19,7 +23,7 @@ const EmergencyNumbers = (props) => {
                             <tr>
                                 <td>
                                     <img className="img-for-emergency-number"
-                                         src="https://cdn.icon-icons.com/icons2/2276/PNG/512/covid_corona_protect_ambulance_hospital_emergency_call_medical_icon_140797.png"
+                                         src={dispatch}
                                          alt="random image"/>
                                 </td>
                                 <td>
@@ -42,12 +46,12 @@ const EmergencyNumbers = (props) => {
             >
                 <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Emergency Number</h2></Card.Header>
                 <Card.Body>
-                    <Card.Text>
+                    <Card.Text style={{marginLeft: "20%"}}>
                         <table>
                             <tr>
                                 <td>
                                     <img className="img-for-emergency-number"
-                                         src="https://cdn.icon-icons.com/icons2/577/PNG/256/FireTruck_Red_icon-icons.com_54899.png"
+                                         src={fireguard}
                                          alt="random image"/>
                                 </td>
                                 <td>
@@ -57,7 +61,7 @@ const EmergencyNumbers = (props) => {
                             <tr>
                                 <td>
                                     <img className="img-for-emergency-number"
-                                         src="https://cdn.icon-icons.com/icons2/1448/PNG/512/42548oncomingpolicecar_99125.png"
+                                         src={police}
                                          alt="random image"/>
                                 </td>
                                 <td>
@@ -67,7 +71,7 @@ const EmergencyNumbers = (props) => {
                             <tr>
                                 <td>
                                     <img className="img-for-emergency-number"
-                                         src="https://cdn.icon-icons.com/icons2/577/PNG/256/Ambulance_Red_icon-icons.com_54900.png"
+                                         src={aid}
                                          alt="random image"/>
                                 </td>
                                 <td>

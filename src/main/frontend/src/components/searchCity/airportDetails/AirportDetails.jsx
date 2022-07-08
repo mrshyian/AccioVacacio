@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Card} from "react-bootstrap";
+import plane from "../../../images/plane.png"
 
 const AirportDetails = (props) => {
 
@@ -38,7 +39,7 @@ const AirportDetails = (props) => {
                             <tr>
                                 <td>
                                     <img
-                                        src="https://cdn.icon-icons.com/icons2/187/PNG/256/Falcon_22858.png"
+                                        src={plane}
                                         alt="random image"/>
                                 </td>
                                 <td>
