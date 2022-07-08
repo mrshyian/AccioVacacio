@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import axios from "axios";
+import star from "../../../images/star.png"
 
 const Booking = (props) => {
 
@@ -34,7 +35,7 @@ const Booking = (props) => {
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <p>{bookingDetails.rating} / 10 <img style={{width: 20}} src="https://cdn.icon-icons.com/icons2/1324/PNG/512/star_86960.png"/></p>
+                            <p>{bookingDetails.rating} / 10 <img style={{width: 20}} src={star}/></p>
                             <Button variant="outline-warning" href={bookingDetails.link}>Book</Button>
                         </Card.Text>
                     </Card.Body>

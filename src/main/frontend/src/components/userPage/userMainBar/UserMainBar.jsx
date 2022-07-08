@@ -6,6 +6,7 @@ import "./UserMainBar.css"
 import axios from "axios";
 
 const UserMainBar = () => {
+
     const [myUser, setMyUser] = useState([])
 
     const getUserFromDB = () => {
