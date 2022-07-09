@@ -59,13 +59,11 @@ public class CommentController {
         List<CommentsTable> likedComments= new ArrayList<>();
         List<CommentsTable> userComments = commentRepository.findAll();
         MyUserTable myUserTable = userRepository.findMyUserTableById(loginImpl.getCurrentUserId());
-        System.out.println(userComments);
         for (CommentsTable comment: userComments) {
             if(comment.getLikedByUsers().contains(myUserTable)){
                 likedComments.add(comment);
             }
         }
-        System.out.println("Polubione: "+ likedComments);
         return likedComments;
     }
 
