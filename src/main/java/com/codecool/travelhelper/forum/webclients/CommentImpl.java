@@ -83,7 +83,6 @@ public class CommentImpl {
             commentsTable.get().setCommentImage(commentsTable.get().getCommentImage());
             commentsTable.get().setCountry(commentsTable.get().getCountry());
             commentsTable.get().setCity(commentsTable.get().getCity());
-            commentsTable.get().setMyUserTable(commentsTable.get().getMyUserTable());
             commentsTable.get().AddUserToLikedByUser(myUserTable);
             commentRepository.save(commentsTable.get());
         }

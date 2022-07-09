@@ -30,6 +30,9 @@ public class CommentController {
     private CommentRepository commentRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     private CommentImpl commentImpl;
 
     // get comment from frontend
@@ -54,12 +57,15 @@ public class CommentController {
     @GetMapping("/favouriteComments")
     public List<CommentsTable> getUserFavouriteComments(){
         List<CommentsTable> likedComments= new ArrayList<>();
-        List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+        List<CommentsTable> userComments = commentRepository.findAll();
+        MyUserTable myUserTable = userRepository.findMyUserTableById(loginImpl.getCurrentUserId());
+        System.out.println(userComments);
         for (CommentsTable comment: userComments) {
-            if(comment.getLikedByUsers().size() > 0){
+            if(comment.getLikedByUsers().contains(myUserTable)){
                 likedComments.add(comment);
             }
         }
+        System.out.println("Polubione: "+ likedComments);
         return likedComments;
     }
 

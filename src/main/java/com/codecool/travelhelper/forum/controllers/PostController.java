@@ -1,9 +1,11 @@
 package com.codecool.travelhelper.forum.controllers;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
+import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
+import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.services.PostService;
 import com.codecool.travelhelper.forum.webclients.PostImpl;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
@@ -30,6 +32,9 @@ public class PostController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     private PostRepository postRepository;
@@ -62,9 +67,11 @@ public class PostController {
     @GetMapping("/favouriteCommentsPosts")
     public List<PostTable> getUserFavouritePostsByComments(){
         List<CommentsTable> likedComments= new ArrayList<>();
-        List<CommentsTable> userComments = commentRepository.findAllByMyUserTableId(loginImpl.getCurrentUserId());
+        List<CommentsTable> userComments = commentRepository.findAll();
+        MyUserTable myUserTable = userRepository.findMyUserTableById(loginImpl.getCurrentUserId());
+        System.out.println(userComments);
         for (CommentsTable comment: userComments) {
-            if(comment.getLikedByUsers().size() > 0){
+            if(comment.getLikedByUsers().contains(myUserTable)){
                 likedComments.add(comment);
             }
         }

@@ -86,10 +86,9 @@ public class CommentsTable {
         return dateTime.format(myFormatObj);
     }
 
-    public Set<MyUserTable> AddUserToLikedByUser(MyUserTable myUserTable){
-        this.likedByUsers.add(myUserTable);
+    public Set<MyUserTable> AddUserToLikedByUser(MyUserTable userTable){
+        this.likedByUsers.add(userTable);
         return this.getLikedByUsers();
-
     }
 
     @Override
