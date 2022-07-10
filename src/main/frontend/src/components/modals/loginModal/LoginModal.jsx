@@ -4,6 +4,7 @@ import axios from "axios";
 import React, {useState} from "react";
 import ErrorModal from "../errorModals/ErrorModal";
 import ReCAPTCHA from "react-google-recaptcha";
+import data from "bootstrap/js/src/dom/data";
 
 
 const LoginModal = () => {
@@ -25,22 +26,39 @@ const LoginModal = () => {
 
 
 
-    const sendDataToServer = () => {
-            const url = "http://localhost:8080/login";
-            axios.post(url,{
-                email: email,
-                password: password,
-            })
-                .then(res=>{
-                    if (res.data ===""){
-                        fetchUserId();
-                        window.location.reload();
-                    }else {
-                            showErrorModal(res.data);
-                    }
-                })
-    }
+    // const sendDataToServer = () => {
+    //         const url = "http://localhost:8080/login";
+    //         axios.post(url,{
+    //             email: email,
+    //             password: password,
+    //         })
+    //             .then(res=>{
+    //                 if (res.data ===""){
+    //                     fetchUserId();
+    //                     window.location.reload();
+    //                 }else {
+    //                         showErrorModal(res.data);
+    //                 }
+    //             })
+    // }
 
+    const sendDataToServer = () => {
+        const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
+        fetch(url,{method:"POST"}).then(res=>res.json()).then(data=>{
+            console.log(data)}).catch(console.error)
+        // axios.post(url)
+        //     .then(res=>{
+        //         console.log("AAAAAAAAAAAAAA")
+        //         if (res.data !==""){
+        //
+        //             // fetchUserId();
+        //             window.location.reload();
+        //         }else {
+        //             showErrorModal(res.data);
+        //         }
+        //     })
+
+    }
 
 
     const fetchUserId = () => {

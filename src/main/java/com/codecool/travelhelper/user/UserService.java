@@ -30,7 +30,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        MyUserTable user = userRepository.findByEmail(email);
+        MyUserTable user = userRepository.findByUserEMail(email);
         if (user == null) {
             throw new UsernameNotFoundException("No user found with username: " + email);
         }
@@ -52,7 +52,7 @@ public class UserService implements UserDetailsService {
     }
 
     public MyUserTable getUser(String email){
-        return userRepository.findByEmail(email);
+        return userRepository.findByUserEMail(email);
     }
 
     public List<MyUserTable> getUsers(){
@@ -60,7 +60,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void setUserRole(String email, String roleName){
-        MyUserTable user= userRepository.findByEmail(email);
+        MyUserTable user= userRepository.findByUserEMail(email);
         UserRoleTable role = roleRepository.findByName(roleName);
         user.getRole().add(role);
     }
