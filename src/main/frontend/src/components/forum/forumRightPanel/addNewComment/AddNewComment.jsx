@@ -18,7 +18,6 @@ function AddNewComment(props) {
     }
 
     function submit(e) {
-        refreshPage();
         e.preventDefault();
         Axios.post(url, {
             name: name.name,

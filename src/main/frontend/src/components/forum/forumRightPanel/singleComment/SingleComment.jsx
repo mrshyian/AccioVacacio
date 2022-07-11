@@ -120,10 +120,12 @@ const SingleComment = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer style={{ backgroundColor: "rgb(45, 45, 45)"}}>
-                        <Button onClick={DeleteComment} style={{marginLeft: "92%"}} variant="outline-warning">{< FaTrash/>}</Button>
-                        <Button onClick={AddLike} style={{marginLeft: "92%"}} variant="outline-warning">{<FaHeart />}</Button>
-                        <Button style={{marginLeft: "92%"}} variant="outline-warning" className="save-note-button"
+                        <div style={{display: "flex", justifyContent:"right"}}>
+                        <Button onClick={DeleteComment} style={{marginLeft: "5px"}} variant="outline-warning">{< FaTrash/>}</Button>
+                        <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{<FaHeart />}</Button>
+                        <Button style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
                                 onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
+                        </div>
                     </Card.Footer>
                 </Card>}
         </div>
