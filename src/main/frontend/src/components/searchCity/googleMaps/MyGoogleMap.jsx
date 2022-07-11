@@ -16,19 +16,18 @@ function Map() {
     const center = useMemo(() => ({ lat: 52.409538, lng: 16.931992 }), []);
 
     return (
-        <div style={{width: 500}}>
+        <div style={{width: "100%"}}>
             <GoogleMap zoom={12} center={center} mapContainerClassName="map-container">
-                <div style={{height: "500px"}}>
-                {/*<Marker*/}
-                {/*    title={'The marker`s title will appear as a tooltip.'}*/}
-                {/*    name={'SOMA'}*/}
-                {/*    key={1}*/}
-                {/*    position={center}*/}
-                {/*/>*/}
+                <div style={{height: "839px"}}>
+                <Marker
+                    title={'The marker`s title will appear as a tooltip.'}
+                    name={'SOMA'}
+                    key={1}
+                    position={center}
+                />
                 </div>
             </GoogleMap>
         </div>
-
     );
 }
 
