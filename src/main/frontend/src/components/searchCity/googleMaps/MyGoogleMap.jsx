@@ -13,12 +13,22 @@ const MyGoogleMap = () => {
 
 
 function Map() {
-    const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+    const center = useMemo(() => ({ lat: 52.409538, lng: 16.931992 }), []);
 
     return (
-        <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
-            <Marker position={center} />
-        </GoogleMap>
+        <div style={{width: 500}}>
+            <GoogleMap zoom={12} center={center} mapContainerClassName="map-container">
+                <div style={{height: "500px"}}>
+                {/*<Marker*/}
+                {/*    title={'The marker`s title will appear as a tooltip.'}*/}
+                {/*    name={'SOMA'}*/}
+                {/*    key={1}*/}
+                {/*    position={center}*/}
+                {/*/>*/}
+                </div>
+            </GoogleMap>
+        </div>
+
     );
 }
 
