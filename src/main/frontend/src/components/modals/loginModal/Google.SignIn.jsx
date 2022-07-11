@@ -1,11 +1,25 @@
 import React, {useEffect} from 'react';
+import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 
 const GoogleSignIn = () => {
     const google = window.google
 
     function handleCallbackResponse(responce) {
-        console.log("Encoded JWT ID token: " + responce.credential);
+        console.log(jwt_decode(responce.credential));
+
+        const url = "http://localhost:8080/login_with_google";
+        axios.post(url,{
+            email: jwt_decode(responce.credential).email,
+            fullName: jwt_decode(responce.credential).given_name + " " + jwt_decode(responce.credential).family_name,
+            avatar: jwt_decode(responce.credential).picture
+        })
+            .then(res=>{
+                console.log(res.data);
+                sessionStorage.setItem("userId", res.data)
+                window.location.reload();
+            })
     }
 
     useEffect(() => {
@@ -18,7 +32,7 @@ const GoogleSignIn = () => {
             document.getElementById("signInDiv"),
             {
                 theme: "outline",
-                size: "large"
+                size: "lимпarge"
             }
         );
     }, [])
