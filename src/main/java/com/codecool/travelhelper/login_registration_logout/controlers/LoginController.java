@@ -26,4 +26,9 @@ public class LoginController {
     public Long sendingTheUserIDSessionToFront(){
        return loginImpl.getCurrentUserId();
     }
+
+    @PostMapping("/login_with_google")
+    public String signWithGoogle(@RequestBody String data) {
+        return loginImpl.signWithGoogle(data);
+    }
 }

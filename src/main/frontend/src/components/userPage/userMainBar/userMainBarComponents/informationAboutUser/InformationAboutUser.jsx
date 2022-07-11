@@ -11,6 +11,13 @@ const InformationAboutUser = (props) => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
+    let img = props.myUser.avatar;
+
+    if (props.myUser.avatar === "") {
+        img = user;
+    }
+
+
     return (
         <Card
             bg={"dark"}
@@ -21,7 +28,7 @@ const InformationAboutUser = (props) => {
         >
             <Card.Body className="user-info-body">
                 <div>
-                    <img className="profile-image" src={user} alt="some image" />
+                    <img className="profile-image" src={img} alt="some image" />
                 </div>
                 <div className="user-info-second-div">
                     <h3>{props.myUser.fullName}</h3>
