@@ -7,7 +7,6 @@ import pressure from "../../../images/pressure.png"
 import humidity from "../../../images/humiditypng.png"
 import wing from "../../../images/wind.png"
 import clouds from "../../../images/clouds.png"
-import MyGoogleMap from "../googleMaps/MyGoogleMap";
 
 const WeatherBox = (props) => {
     return (

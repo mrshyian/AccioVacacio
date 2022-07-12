@@ -21,7 +21,7 @@ const Booking = (props) => {
         fetchBookingDetails();
     }, [])
     return (
-        <div className="newsInline1" style={{width: "30%"}}>
+        <div className="newsInline1" style={{width: "30%", height: "100%"}}>
             <h1 style={{textAlign: "center", color: "orange"}}>Booking</h1>
             <div style={{display: "flex", marginLeft: "10%"}}>
                 <Card

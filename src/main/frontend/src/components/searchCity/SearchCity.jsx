@@ -12,6 +12,7 @@ import english from "i18n-iso-countries/langs/en.json";
 import TouristAttractionsBox from "./touristAttractions/TouristAttractionsBox";
 import {useLocation} from "react-router-dom";
 import Booking from "./booking/Booking";
+import MyGoogleMap from "./googleMaps/MyGoogleMap";
 
 
 const SearchCity = () => {
@@ -94,7 +95,11 @@ const SearchCity = () => {
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode} country={country} city={city}/>
             <LivingCoasts livingCosts={livingCosts} />
-            <Booking country={country} city={city}/>
+            <div style={{display: "flex"}}>
+                <Booking country={country} city={city}/>
+                <MyGoogleMap city={city}/>
+            </div>
+
         </div>
     );
 };

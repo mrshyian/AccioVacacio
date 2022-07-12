@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
-import MyGoogleMap from "../googleMaps/MyGoogleMap";
 
 const SearchBox = () => {
 
@@ -83,9 +82,6 @@ const SearchBox = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
-            <MyGoogleMap/>
-
         </div>
     );
 };
