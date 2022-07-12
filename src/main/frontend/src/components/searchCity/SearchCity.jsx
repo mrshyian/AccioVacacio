@@ -13,6 +13,7 @@ import TouristAttractionsBox from "./touristAttractions/TouristAttractionsBox";
 import {useLocation} from "react-router-dom";
 import Booking from "./booking/Booking";
 import MyGoogleMap from "./googleMaps/MyGoogleMap";
+import {Card} from "react-bootstrap";
 
 
 const SearchCity = () => {
@@ -131,7 +132,13 @@ const SearchCity = () => {
 
 
     return (
-        <div>
+        <div className="bubble-box">
+        <Card
+            bg={"dark"}
+            key={"dark"}
+            text={'white'}
+            className="mb-2"
+        >
             <SearchingPlaceBar country={country} city={city}/>
             <div className="weather-box">
                 <WeatherBox weather={weather}/>
@@ -147,6 +154,7 @@ const SearchCity = () => {
                 <MyGoogleMap longitude={longitude} latitude={latitude}/>
             </div>
 
+        </Card>
         </div>
     );
 };

@@ -30,7 +30,7 @@ const CrimeRating = (props) => {
                         bg={"dark"}
                         key={"dark"}
                         text={'white'}
-                        style={{ width: '20rem' }}
+                        style={{ width: '20rem', borderColor: "orange" }}
                         className="mb-2"
                     >
                         <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Crime Rating</h2></Card.Header>
@@ -59,7 +59,7 @@ const CrimeRating = (props) => {
                     bg={"dark"}
                     key={"dark"}
                     text={'white'}
-                    style={{ width: '20rem' }}
+                    style={{ width: '20rem', borderColor: "orange" }}
                     className="mb-2"
                 >
                     <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Crime Rating</h2></Card.Header>

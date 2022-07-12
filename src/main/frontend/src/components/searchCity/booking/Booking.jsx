@@ -21,14 +21,14 @@ const Booking = (props) => {
         fetchBookingDetails();
     }, [])
     return (
-        <div className="newsInline1" style={{width: "30%", height: "100%"}}>
+        <div className="newsInline1" style={{width: "30%", height: "50%"}}>
             <h1 style={{textAlign: "center", color: "orange"}}>Booking</h1>
             <div style={{display: "flex", marginLeft: "10%"}}>
                 <Card
                     bg={"dark"}
                     key={"dark"}
                     text={'white'}
-                    style={{width: '20rem'}}
+                    style={{width: '20rem', borderColor: "orange" }}
                     className="mb-2"
                 >
                     <Card.Header style={{textAlign: "center", color: "orange"}}><h2>{bookingDetails.name}</h2>

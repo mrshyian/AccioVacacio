@@ -13,7 +13,7 @@ const EmergencyNumbers = (props) => {
                 bg={"dark"}
                 key={"dark"}
                 text={'white'}
-                style={{ width: '35rem' }}
+                style={{ width: '35rem', borderColor: "orange" }}
                 className="mb-2"
             >
                 <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Emergency Number</h2></Card.Header>
@@ -41,7 +41,7 @@ const EmergencyNumbers = (props) => {
                 bg={"dark"}
                 key={"dark"}
                 text={'white'}
-                style={{ width: '35rem' }}
+                style={{ width: '35rem', borderColor: "orange" }}
                 className="mb-2"
             >
                 <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Emergency Number</h2></Card.Header>
