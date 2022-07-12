@@ -8,7 +8,7 @@ import data from "bootstrap/js/src/dom/data";
 
 
 const LoginModal = () => {
-    const [disabledBtn, setDisabledBtn] = useState(true)
+    const [disabledBtn, setDisabledBtn] = useState(false) // cofnij do true
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -103,11 +103,11 @@ const LoginModal = () => {
                 </Form>
             </Modal.Body>
             <Modal.Footer  style={{background: "rgb(40,40,40)"}} >
-                <ReCAPTCHA
-                    size="normal"
-                    sitekey="6Let98ogAAAAAH3niinH0n8_di4vhssvE5YL_AuF"
-                    onChange={() => setDisabledBtn(false)}
-                />
+                {/*<ReCAPTCHA*/}
+                {/*    size="normal"*/}
+                {/*    sitekey="6Let98ogAAAAAH3niinH0n8_di4vhssvE5YL_AuF"*/}
+                {/*    onChange={() => setDisabledBtn(false)}*/}
+                {/*/>*/}
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>
