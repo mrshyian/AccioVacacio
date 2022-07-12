@@ -23,57 +23,101 @@ const SearchCity = () => {
     const [livingCosts, setLivingCosts] = useState([]);
     const [crimeRating, setCrimeRating] = useState([]);
     const [attractions, setAttractions] = useState([]);
+
     const location = useLocation()
     const country = location.state.country;
     const city = location.state.city;
 
-    const fetchLivingCosts = () => {
+    const [longitude, setLongitude] = useState(21.0118);
+    const [latitude, setLatitude] = useState(52.2298);
 
+
+    const getCoordinates = () => {
+        axios.get(`http://localhost:8080/get_coordinates/${city}`)
+            .then(res => {
+                setLongitude(res.data.lon);
+                setLatitude(res.data.lat);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
+
+    const fetchLivingCosts = () => {
         axios.get(`http://localhost:8080/living-costs/${city}/${country}`)
-            .then(res =>{setLivingCosts(res.data);
-                console.log(res.data)})
-            .catch(err => {console.log(err)});
+            .then(res => {
+                setLivingCosts(res.data);
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
     const fetchNewsWorld = () => {
         axios.get(`http://localhost:8080/news/${city}/${country}`)
-            .then(res =>{setNews(res.data);
-                console.log(res.data)})
-            .catch(err => {console.log(err)});
+            .then(res => {
+                setNews(res.data);
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
     const fetchIATACode = () => {
         axios.get(`http://localhost:8080/airport/${city}/${country}`)
-            .then(res =>{setIATACode(res.data.airportCode);})
-            .catch(err => {console.log(err)});
+            .then(res => {
+                setIATACode(res.data.airportCode);
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
     const fetchWeather = () => {
         axios.get(`http://localhost:8080/weather/${city}/${country}`)
-            .then(res =>{setWeather(res.data);})
-            .catch(err => {console.log(err)});
+            .then(res => {
+                setWeather(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
     const fetchEmergencyNumbers = () => {
         axios.get(`http://localhost:8080/emergency_numbers/${city}/${country}`)
-            .then(res =>{setEmergencyNumber(res.data);})
-            .catch(err => {console.log(err)});
+            .then(res => {
+                setEmergencyNumber(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
     const fetchCrimeRating = () => {
         axios.get(`http://localhost:8080/crime_rating/${city}/${country}`)
-            .then(res =>{setCrimeRating(res.data);})
-            .catch(err => {console.log(err)});
+            .then(res => {
+                setCrimeRating(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
     const fetchAttractions = () => {
         const countryIsoCode = getCountryIsoCode(country);
         axios.get(`http://localhost:8080/attractions/${city}/${countryIsoCode}`)
-            .then(res =>{setAttractions(res.data);})
-            .catch(err => {console.log(err)});
+            .then(res => {
+                setAttractions(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
-    useEffect(()=>{
+
+    useEffect(() => {
         fetchNewsWorld();
         fetchIATACode();
         fetchWeather();
@@ -81,7 +125,10 @@ const SearchCity = () => {
         fetchEmergencyNumbers();
         fetchCrimeRating();
         fetchAttractions();
+        getCoordinates();
     }, [])
+
+
 
     return (
         <div>
@@ -94,10 +141,10 @@ const SearchCity = () => {
             <TouristAttractionsBox attractions={attractions}/>
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode} country={country} city={city}/>
-            <LivingCoasts livingCosts={livingCosts} />
+            <LivingCoasts livingCosts={livingCosts}/>
             <div style={{display: "flex"}}>
                 <Booking country={country} city={city}/>
-                <MyGoogleMap city={city}/>
+                <MyGoogleMap longitude={longitude} latitude={latitude}/>
             </div>
 
         </div>
@@ -106,7 +153,7 @@ const SearchCity = () => {
 
 export default SearchCity;
 
-function getCountryIsoCode(countryName){
+function getCountryIsoCode(countryName) {
     countries.registerLocale(english);
     return countries.getAlpha2Code(countryName, "en");
 }

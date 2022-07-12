@@ -1,37 +1,20 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import axios from "axios";
+import React, {useMemo} from 'react';
+import {GoogleMap, Marker, useLoadScript} from "@react-google-maps/api";
 
 const MyGoogleMap = (props) => {
 
-    const { isLoaded } = useLoadScript({
+    const {isLoaded} = useLoadScript({
         googleMapsApiKey: "AIzaSyB9QXIKAMjIG5jkZzmZdoWEJNtwuDL4Lsc",
     });
 
-    const [latitude, setLatitude] = useState(52.229)
-    const [longitude, setLongitude] = useState(21.0118)
-
-    useEffect(() => {
-        getCoordinates();
-    }, []);
-
-    const getCoordinates = () => {
-        axios.get(`http://localhost:8080/get_coordinates/${props.city}`)
-            .then(res =>{
-                setLatitude(res.data.lat);
-                setLongitude(res.data.lon);
-            })
-            .catch(err => {console.log(err)});
-    }
     if (!isLoaded) return <div>Loading...</div>;
-    return <Map city={props.city} lon={longitude} lat={latitude} />;
+    return <Map longitude={props.longitude} latitude={props.latitude}/>;
 
 };
 
 
-
 function Map(props) {
-    const center = useMemo(() => ({ lat: props.lat, lng: props.lon }), []);
+    const center = useMemo(() => ({lat: props.latitude, lng: props.longitude}), []);
 
     return (
         <div className="newsInline1" style={{width: 500}}>

@@ -9,6 +9,7 @@ import wing from "../../../images/wind.png"
 import clouds from "../../../images/clouds.png"
 
 const WeatherBox = (props) => {
+
     return (
         <Card
             bg={"dark"}
