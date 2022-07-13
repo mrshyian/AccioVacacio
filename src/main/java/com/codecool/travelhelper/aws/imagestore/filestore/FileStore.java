@@ -23,7 +23,7 @@ public class FileStore {
         this.s3 = s3;
     }
 
-    public void save(String path,
+    public void save(String path,// save data on S3 server/bucket
                      String fileName,
                      Optional<Map<String, String>> optionalMetadata,
                      InputStream inputStream) {
@@ -36,13 +36,13 @@ public class FileStore {
         });
 
         try {
-            s3.putObject(path, fileName, inputStream, metadata);
+            s3.putObject(path, fileName, inputStream, metadata);// save data on S3 server/bucket
         } catch (AmazonServiceException e) {
             throw new IllegalStateException("Failed to store file to s3", e);
         }
     }
 
-    public byte[] download(String path, String key) {
+    public byte[] download(String path, String key) {// get data from S3 bucket
         try {
             S3Object object = s3.getObject(path, key);
             return IOUtils.toByteArray(object.getObjectContent());

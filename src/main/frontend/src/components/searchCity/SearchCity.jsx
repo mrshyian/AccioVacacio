@@ -79,7 +79,7 @@ const SearchCity = () => {
         fetchLivingCosts();
         fetchEmergencyNumbers();
         fetchCrimeRating();
-        fetchAttractions();
+        // fetchAttractions();
     }, [])
 
     return (

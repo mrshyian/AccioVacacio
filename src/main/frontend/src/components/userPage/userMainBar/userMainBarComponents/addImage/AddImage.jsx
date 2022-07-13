@@ -44,7 +44,8 @@ function Dropzone({userProfileId}) {
         const formData = new FormData();
         formData.append("file", file);
 
-        axios.post(`http://localhost:8080/api/v1/user-profile/${userProfileId}/image/upload`,
+
+        axios.post(`http://localhost:8080/api/v1/user-profile/${userProfileId}/travel-helper-server707-v1/image/upload`,
             formData,
             {
                 headers: {

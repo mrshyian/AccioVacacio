@@ -82,7 +82,7 @@ const SearchBox = () => {
                 </Container>
             </Navbar>
 
-            <MyGoogleMap/>
+            {/*<MyGoogleMap/>*/}
 
         </div>
     );

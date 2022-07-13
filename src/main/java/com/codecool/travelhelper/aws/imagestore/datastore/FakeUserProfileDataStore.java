@@ -15,6 +15,7 @@ public class FakeUserProfileDataStore {
 
     static {
         USER_PROFILES.add(new UserProfile(16L, "Your name", null));
+        USER_PROFILES.add(new UserProfile(6L, "Tatiana's name", null));
         }
 
     public List<UserProfile> getUserProfiles() {

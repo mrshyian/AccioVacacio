@@ -25,9 +25,9 @@ public class UserProfileController {
     }
 
     @PostMapping(
-            path = "/{userProfileId}/{albumName}/image/upload",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
+            path = "/api/v1/user-profile/{userProfileId}/{albumName}/image/upload",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,// get data from path (our frontend)
+            produces = MediaType.APPLICATION_JSON_VALUE// produces json from given value in frontend
     )
     public void uploadUserProfileImage(@PathVariable("userProfileId") Long userProfileId,
                                        @RequestParam("file") MultipartFile file, @PathVariable String albumName) {
