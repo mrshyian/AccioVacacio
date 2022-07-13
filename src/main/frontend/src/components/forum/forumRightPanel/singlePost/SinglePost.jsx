@@ -69,7 +69,7 @@ const SinglePost = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
                         <p style={{marginBottom: -20}}>
                             <img className="imgForForum"
-                                 src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE"
+                                 src={'http://localhost:8080/image/download/post/profile'}
                                  alt="user photo"/>
                             <p> {props.post.userName} </p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
@@ -118,7 +118,7 @@ const SinglePost = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
                         <p style={{marginBottom: -20}}>
                             <img className="imgForForum"
-                                 src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE"
+                                 src={'http://localhost:8080/image/download/post/profile'}
                                  alt="user photo"/>
 
                             <p> {props.post.userName} </p></p>
@@ -130,6 +130,10 @@ const SinglePost = (props) => {
                         <Card.Text>
 
                             <h4>{props.post.postText}</h4>
+                            <img className="imgForForum"
+                                 src={`http://localhost:8080/image/download/post`}
+                                 alt="user photo"/>
+
                         </Card.Text>
 
                     </Card.Body>

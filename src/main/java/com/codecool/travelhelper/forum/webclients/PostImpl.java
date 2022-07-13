@@ -53,15 +53,14 @@ public class PostImpl {
         String topic = commentJsonObject.get("topic").getAsString();
         String postText = commentJsonObject.get("postText").getAsString();
 
+
         Long userId = loginImpl.getCurrentUserId();
         MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
-
-        String postImage = "https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE";
 
         postRepository.save(new PostTable(
                     topic,
                     postText,
-                    postImage,
+                    null,
                     myUserTable,
                     new HashSet<>()
                 )

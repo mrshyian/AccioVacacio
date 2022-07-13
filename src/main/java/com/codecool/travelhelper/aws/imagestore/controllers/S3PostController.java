@@ -1,0 +1,87 @@
+package com.codecool.travelhelper.aws.imagestore.controllers;
+
+import com.codecool.travelhelper.aws.database.models.MyUserTable;
+import com.codecool.travelhelper.aws.database.models.PostTable;
+import com.codecool.travelhelper.aws.database.repositories.PostRepository;
+import com.codecool.travelhelper.aws.database.repositories.UserRepository;
+import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
+import com.codecool.travelhelper.aws.imagestore.service.S3Service;
+import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.UUID;
+
+@RestController
+@CrossOrigin("*")
+public class S3PostController {
+    private final S3Service s3Service;
+
+    Long thisPostId = 0L;
+
+
+    @Autowired
+    LoginImpl loginImpl;
+
+    @Autowired
+    PostRepository postRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    public S3PostController(S3Service s3Service) {
+        this.s3Service = s3Service;
+    }
+
+    @PostMapping(
+            path = "/image/upload/post/{topic}/{postText}",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,// get data from path (our frontend)
+            produces = MediaType.APPLICATION_JSON_VALUE// produces json from given value in frontend
+    )
+    public void uploadPostProfileImage(@RequestParam("file") MultipartFile file, @PathVariable String topic,
+                                       @PathVariable String postText) {
+        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "Posts");
+        String filename = String.format("%s-%s", file.getOriginalFilename(), UUID.randomUUID());
+
+        Long userId = loginImpl.getCurrentUserId();
+        MyUserTable myUserTable = userRepository.findMyUserTableById(userId);
+        s3Service.uploadFileToStorage( path, filename, file);
+        PostTable postTable = new PostTable(
+                topic,
+                postText,
+                filename,
+                myUserTable,
+                new HashSet<>());
+        postRepository.save(postTable);
+        thisPostId = postTable.getId();
+
+    }
+
+    @GetMapping("/image/download/post/profile")
+    public byte[] downloadPostProfileImage() {
+        PostTable postTable = postRepository.findPostTableById(thisPostId);
+        MyUserTable myUserTable = postTable.getMyUserTable();
+        String filename = myUserTable.getAvatar();
+        System.out.println(filename);
+        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "album");
+        return s3Service.downloadFileFromStorage(path, filename);
+//        return new byte[0];
+    }
+
+    @GetMapping("/image/download/post")
+    public byte[] downloadPostImage() {
+        PostTable postTable = postRepository.findPostTableById(thisPostId);
+        String filename = postTable.getPostImage();
+        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "Posts");
+        return s3Service.downloadFileFromStorage(path, filename);
+//        return new byte[0];
+    }
+
+
+}
