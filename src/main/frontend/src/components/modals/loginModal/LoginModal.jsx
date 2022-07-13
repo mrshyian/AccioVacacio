@@ -97,7 +97,7 @@ const LoginModal = (props) => {
             <Modal.Footer  style={{background: "rgb(40,40,40)"}} >
                 <ReCAPTCHA
                     size="normal"
-                    sitekey="6Let98ogAAAAAH3niinH0n8_di4vhssvE5YL_AuF"
+                    sitekey={process.env.REACT_APP_RECAPTCHA_API_KEY}
                     onChange={() => setDisabledBtn(false)}
                 />
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>

@@ -24,7 +24,7 @@ const GoogleSignIn = () => {
 
     useEffect(() => {
         google.accounts.id.initialize({
-            client_id: "15327293556-19hqs1au1h2arpvjadru4cs6k9r5rdd2.apps.googleusercontent.com",
+            client_id: process.env.REACT_APP_CLIENT_ID_FOR_GOOGLE_SIGN_IN,
             callback: handleCallbackResponse
         });
 
@@ -32,7 +32,7 @@ const GoogleSignIn = () => {
             document.getElementById("signInDiv"),
             {
                 theme: "outline",
-                size: "lимпarge"
+                size: "large"
             }
         );
     }, [])

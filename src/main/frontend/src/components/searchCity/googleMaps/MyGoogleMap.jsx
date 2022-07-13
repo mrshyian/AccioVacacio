@@ -1,10 +1,10 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {GoogleMap, Marker, useLoadScript} from "@react-google-maps/api";
 
 const MyGoogleMap = (props) => {
 
     const {isLoaded} = useLoadScript({
-        googleMapsApiKey: "AIzaSyB9QXIKAMjIG5jkZzmZdoWEJNtwuDL4Lsc",
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     });
 
     if (!isLoaded) return <div>Loading...</div>;
@@ -14,7 +14,7 @@ const MyGoogleMap = (props) => {
 
 
 function Map(props) {
-    const center = useMemo(() => ({lat: props.latitude, lng: props.longitude}), []);
+    const center = {lat: props.latitude, lng: props.longitude};
 
     return (
         <div className="newsInline1" style={{width: 500}}>
