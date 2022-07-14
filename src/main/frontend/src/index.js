@@ -11,8 +11,6 @@ import UserNotes from "./components/userPage/userLeftBar/userLeftBarComponents/u
 import PlaceWantToGo from "./components/userPage/userLeftBar/userLeftBarComponents/placeWantToGo/PlaceWantToGo";
 import Calculator from "./components/userPage/userLeftBar/userLeftBarComponents/calculator/Calculator";
 import AlbumsFromTrips from "./components/userPage/userLeftBar/userLeftBarComponents/albumsFromTrips/AlbumsFromTrips";
-import FavouriteForumComments
-    from "./components/userPage/userLeftBar/userLeftBarComponents/favouriteForumComments/FavouriteForumComments";
 import MyComments from "./components/forum/forumRightPanel/myComments/MyComments";
 import FavouriteComments from "./components/forum/forumRightPanel/favouriteComments/FavouriteComments";
 import FilterComments from "./components/forum/forumRightPanel/FilterComments";
@@ -35,7 +33,6 @@ root.render(
                   <Route path="/userpage/place_want_to_go" element={<PlaceWantToGo />}/>
                   <Route path="/userpage/calculator" element={<Calculator />}/>
                   <Route path="/userpage/albums_from_trips" element={<AlbumsFromTrips />}/>
-                  <Route path="/userpage/favourite_forum_comments" element={<FavouriteForumComments />}/>
                   <Route path="/userpage/albums_from_trips/album" element={<SingleAlbumView />}/>
                   <Route path="/forum/my_comments" element={<MyComments />}/>
                   <Route path="/forum/favourite_comments" element={<FavouriteComments />}/>

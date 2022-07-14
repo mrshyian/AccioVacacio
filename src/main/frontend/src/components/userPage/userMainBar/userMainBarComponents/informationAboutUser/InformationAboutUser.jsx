@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import SocialMedia from "../socialMedia/SocialMedia";
 import "./ProfileImage.css"
@@ -6,6 +6,8 @@ import "./InformationAboutUser.css"
 import CountryCounter from "../countryCounter/CountryCounter";
 import EditUserDataModal from "../../../../modals/editUserDataModal/EditUserDataModal";
 import user from "../../../../../images/user.png"
+import axios from "axios";
+
 
 const InformationAboutUser = (props) => {
 

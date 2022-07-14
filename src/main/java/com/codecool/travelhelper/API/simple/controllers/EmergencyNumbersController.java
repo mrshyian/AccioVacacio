@@ -19,8 +19,7 @@ public class EmergencyNumbersController {
     private final EmergencyNumbersService emergencyNumbersService;
 
     @GetMapping("/emergency_numbers/{cityName}/{countryName}")
-    public EmergencyNumbersDto getWeather(Model model, @PathVariable String countryName, @PathVariable String cityName) {
-
+    public EmergencyNumbersDto getWeather(@PathVariable String countryName, @PathVariable String cityName) {
         return emergencyNumbersService.getEmergencyNumbers(countryName, cityName);
     }
 }

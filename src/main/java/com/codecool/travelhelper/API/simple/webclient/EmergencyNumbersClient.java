@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class EmergencyNumbersClient {
     private final RestTemplate restTemplate = new RestTemplate();
-    private final static String WEATHER_URL = "https://emergencynumberapi.com/api/country/";
+    private final static String EMERGENCY_NUMBER_URL = "https://emergencynumberapi.com/api/country/";
     @Autowired
     EmergencyNumbersRepositoryImpl emergencyNumbersRepository;
 
@@ -47,6 +47,6 @@ public class EmergencyNumbersClient {
     }
 
     public <T> T callGetMethode(String url, Class<T> responseType) {
-        return restTemplate.getForObject(WEATHER_URL + url, responseType);
+        return restTemplate.getForObject(EMERGENCY_NUMBER_URL + url, responseType);
     }
 }
