@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface PhotosFromTripsRepository extends JpaRepository<PhotosFromTripsTable, Long> {
     PhotosFromTripsTable findPhotosFromTripsTableById(Long id);
+    PhotosFromTripsTable findFirstByAlbumFromTripsTable_Id(Long id);
 //    Optional<List<PhotosFromTripsTable>> findAllByMyUserTableId(Long id);
 }

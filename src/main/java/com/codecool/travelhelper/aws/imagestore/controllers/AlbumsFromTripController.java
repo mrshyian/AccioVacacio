@@ -24,8 +24,6 @@ import java.util.UUID;
 public class AlbumsFromTripController {
     private final S3Service s3Service;
 
-    String albumName = "";
-
     @Autowired
     LoginImpl loginImpl;
 
@@ -54,12 +52,11 @@ public class AlbumsFromTripController {
     )
     public void uploadAlbumImage(@RequestParam("file") MultipartFile file, @PathVariable String albumId,
                                           @PathVariable String albumName) {
-//        MyUserTable myUserTable = userRepository.findMyUserTableById(loginImpl.getCurrentUserId());
-        this.albumName = albumName;
-        System.out.println(albumName);
+
+
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), albumName);
         String filename = String.format("%s-%s", file.getOriginalFilename(), UUID.randomUUID());
-//        Optional<PostTable> postTable = postRepository.findById(Long.parseLong(postId));
+
         AlbumFromTripsTable albumFromTripsTable = albumsFromTripsRepository.findAlbumFromTripsTableById(Long.valueOf(albumId));
         s3Service.uploadFileToStorage( path, filename, file);
         PhotosFromTripsTable photosFromTripsTable = new PhotosFromTripsTable(filename, albumFromTripsTable);
@@ -68,20 +65,18 @@ public class AlbumsFromTripController {
     }
 
 
-//    @GetMapping("/image/download/album/profile/{albumId}")
-//    public byte[] downloadCommentProfileImage(@PathVariable String albumId) {
-//        PhotosFromTripsTable photosFromTripsTable = photosFromTripsRepository.findPhotosFromTripsTableById(Long.valueOf(albumId));
-//        MyUserTable myUserTable = commentsTable.getMyUserTable();
-//        String filename = myUserTable.getAvatar();
-//        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "userAlbum", myUserTable.getId());
-//        return s3Service.downloadFileFromStorage(path, filename);
-//    }
+    @GetMapping("/image/download/photo/{albumId}")
+    public byte[] downloadCommentProfileImage(@PathVariable String albumId) {
+        PhotosFromTripsTable photosFromTripsTable = photosFromTripsRepository.findFirstByAlbumFromTripsTable_Id(Long.valueOf(albumId));
+        String filename = photosFromTripsTable.getLinkToPhoto();
+        AlbumFromTripsTable albumFromTripsTable = albumsFromTripsRepository.findAlbumFromTripsTableById(Long.valueOf(albumId));
+        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), albumFromTripsTable.getAlbumName());
+        return s3Service.downloadFileFromStorage(path, filename);
+    }
 
 
     @GetMapping("/image/download/photo/{photoId}/{albumId}")
     public byte[] downloadCommentImage(@PathVariable String photoId, @PathVariable String albumId) {
-        System.out.println(photoId);
-//        CommentsTable commentsTable = commentRepository.getCommentsTableById(Long.valueOf(commentId));
         PhotosFromTripsTable photosFromTripsTable = photosFromTripsRepository.findPhotosFromTripsTableById(Long.valueOf(photoId));
         String filename = photosFromTripsTable.getLinkToPhoto();
         AlbumFromTripsTable albumFromTripsTable = albumsFromTripsRepository.findAlbumFromTripsTableById(Long.valueOf(albumId));

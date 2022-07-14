@@ -9,7 +9,6 @@ import {useNavigate} from "react-router-dom";
 const SingleAlbum = (props) => {
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
-
     return (
         <Card
             bg="dark"
@@ -23,7 +22,7 @@ const SingleAlbum = (props) => {
                 }} variant="dark" className="delete-album-btn">{<FaTimes/>}</Button>
                 <div>
                     <Card.Img className="album-image" variant="top"
-                              src="https://neapol.pl/wp-content/uploads/2022/03/wybrzeze-sorrento-wlochy_shutterstock_519559345-1.jpg"/>
+                              src={`http://localhost:8080/image/download/photo/${props.album.albumId}`}/>
                     <Card.Body>
                         <Card.Title>
                             <div>{props.album.albumName}</div>
