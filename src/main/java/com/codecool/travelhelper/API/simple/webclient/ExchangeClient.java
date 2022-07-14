@@ -1,7 +1,6 @@
 package com.codecool.travelhelper.API.simple.webclient;
 
 import com.codecool.travelhelper.API.simple.models.ExchangeDto;
-import com.codecool.travelhelper.API.simple.webclient.dto.OpenEmergencyNumbersEmergencyNumbersDto;
 import com.codecool.travelhelper.API.simple.webclient.dto.OpenExchangeDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

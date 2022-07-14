@@ -51,6 +51,14 @@ const UserLeftBar = () => {
             });
     };
 
+    const validateAmount = (number) => {
+        if (number<1){
+            setAmount("1")
+        } else {
+            setAmount(number)
+        }
+    }
+
 
     return (
         <div className="App">
@@ -104,7 +112,7 @@ const UserLeftBar = () => {
                                 <Form.Control
                                     style={{width: "40%", marginLeft: "15%"}}
                                     value={amount}
-                                    onChange={e => setAmount(e.target.value)}
+                                    onChange={e => validateAmount(e.target.value)}
                                     type="number"
                                     placeholder="0.0"
                                 />
@@ -113,7 +121,6 @@ const UserLeftBar = () => {
                                 <Form.Control
                                     style={{width: "40%", marginLeft: "15%", cursor: "pointer"}}
                                     value={answer}
-                                    min={0}
                                     placeholder="0.0"
                                     readonly
                                 />
