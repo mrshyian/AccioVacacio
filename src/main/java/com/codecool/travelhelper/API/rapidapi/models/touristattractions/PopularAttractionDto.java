@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @Builder
 public class PopularAttractionDto {
+
     private String locationName;
     private String locationAddress;
     private int distanceToLocation;
