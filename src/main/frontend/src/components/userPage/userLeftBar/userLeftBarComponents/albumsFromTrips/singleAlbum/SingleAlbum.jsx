@@ -42,7 +42,7 @@ const SingleAlbum = (props) => {
 
                         <Button onClick={() => navigate("/userpage/albums_from_trips/album", {
                             state: {
-                                album: props.album
+                                album: props.album,
                             }
                         })}
                                 variant="outline-warning">Go to album

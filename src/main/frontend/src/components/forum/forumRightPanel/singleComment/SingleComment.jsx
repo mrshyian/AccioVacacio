@@ -11,7 +11,6 @@ const SingleComment = (props) => {
     const url = "http://localhost:8080/comment_edit"
     let text = props.comments.commentText;
     const userId = props.comments.myUserTable.id
-    // console.log(userId)
     const [commentText, setCommentText] = useState(text)
 
 

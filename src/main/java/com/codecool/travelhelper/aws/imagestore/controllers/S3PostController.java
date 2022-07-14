@@ -7,15 +7,12 @@ import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
 import com.codecool.travelhelper.aws.imagestore.service.S3Service;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController

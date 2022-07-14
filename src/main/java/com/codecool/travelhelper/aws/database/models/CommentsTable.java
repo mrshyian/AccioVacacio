@@ -48,7 +48,6 @@ public class CommentsTable {
 
     // comments to user
     @ManyToOne
-//    @JsonIgnore
     @JoinColumn(name="user_id")
     @JsonIgnoreProperties({ "comments", "posts", "noteTable", "albumsFromTripsTable",
             "placesWantToGoTable", "visitedPlacesTable", "tripsTable",

@@ -9,7 +9,6 @@ import {RiFileEditFill} from "react-icons/ri";
 
 const SinglePost = (props) => {
     const userId = props.post.myUserTable.id
-    // console.log("id"+ userId)
     let text = props.post.postText;
     const [postText, setPostText] = useState(text)
     const [editable, setEditable] = useState(false)
