@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Axios from "axios";
 import "./AddNewComment.css"
 import {Button, Card} from "react-bootstrap";
+import {useDropzone} from "react-dropzone";
+import axios from "axios";
 
 
 function AddNewComment(props) {
 
     const url = "http://localhost:8080/comments"
+    const [image, setImage] = useState(false);
+    const [dataa, setDataa] = useState(new FormData());
     const [name, setName] = useState({
         name: ""
     })
@@ -17,16 +21,60 @@ function AddNewComment(props) {
         setName(newName)
     }
 
-    function submit(e) {
-        e.preventDefault();
-        Axios.post(url, {
-            name: name.name,
-            postId: props.postId
-        }).then(() => refreshPage())
-    }
 
     function refreshPage() {
         window.location.reload();
+    }
+    function submit(e) {
+        e.preventDefault();
+        console.log(dataa)
+
+        {
+            !image ?
+                Axios.post(url, {
+                    name: name.name,
+                    postId: props.postId
+
+                }).then(() => refreshPage())
+                :
+                axios.post(`http://localhost:8080/image/upload/comment/${name.name}/${props.postId}`,
+                    dataa,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }).then(() => {
+                    console.log("file upload successfully");
+                }).catch(err => {
+                    console.log(err);
+                });
+        }
+    }
+
+    function Dropzone() {
+        const onDrop = useCallback(acceptedFiles => {
+            const file = acceptedFiles[0];
+            setImage(true);
+
+            console.log(acceptedFiles);
+
+            const formData = new FormData();
+            formData.append("file", file);
+            setDataa(formData);
+
+        }, []);
+        const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
+        return (
+            <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {
+                    isDragActive ?
+                        <p className='after-drag'>Drop the files here ...</p> :
+                        <p className='for-drag'>Drag 'n' drop some files here, or click to select files</p>
+                }
+            </div>
+        )
     }
 
     return (
@@ -42,6 +90,9 @@ function AddNewComment(props) {
                                       placeholder="Comment text" type="text"/>
                         </Card.Text>
                         <div style={{textAlign: "right"}}>
+                            <div>
+                                <Dropzone/>
+                            </div>
                             <Button variant="outline-warning" type="submit">Add comment</Button>
                         </div>
                     </Card.Body>

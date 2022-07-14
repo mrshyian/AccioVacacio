@@ -60,27 +60,23 @@ public class S3PostController {
                 new HashSet<>());
         postRepository.save(postTable);
         thisPostId = postTable.getId();
-
     }
 
-    @GetMapping("/image/download/post/profile")
-    public byte[] downloadPostProfileImage() {
-        PostTable postTable = postRepository.findPostTableById(thisPostId);
+    @GetMapping("/image/download/post/profile/{postId}")
+    public byte[] downloadPostProfileImage(@PathVariable String postId) {
+        PostTable postTable = postRepository.findPostTableById(Long.valueOf(postId));
         MyUserTable myUserTable = postTable.getMyUserTable();
         String filename = myUserTable.getAvatar();
-        System.out.println(filename);
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "album");
         return s3Service.downloadFileFromStorage(path, filename);
-//        return new byte[0];
     }
 
-    @GetMapping("/image/download/post")
-    public byte[] downloadPostImage() {
-        PostTable postTable = postRepository.findPostTableById(thisPostId);
+    @GetMapping("/image/download/post/{postId}")
+    public byte[] downloadPostImage(@PathVariable String postId) {
+        PostTable postTable = postRepository.findPostTableById(Long.valueOf(postId));
         String filename = postTable.getPostImage();
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "Posts");
         return s3Service.downloadFileFromStorage(path, filename);
-//        return new byte[0];
     }
 
 

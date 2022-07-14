@@ -118,7 +118,7 @@ const SinglePost = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
                         <p style={{marginBottom: -20}}>
                             <img className="imgForForum"
-                                 src={'http://localhost:8080/image/download/post/profile'}
+                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
                                  alt="user photo"/>
 
                             <p> {props.post.userName} </p></p>
@@ -131,7 +131,7 @@ const SinglePost = (props) => {
 
                             <h4>{props.post.postText}</h4>
                             <img className="imgForForum"
-                                 src={`http://localhost:8080/image/download/post`}
+                                 src={`http://localhost:8080/image/download/post/${props.post.id}`}
                                  alt="user photo"/>
 
                         </Card.Text>

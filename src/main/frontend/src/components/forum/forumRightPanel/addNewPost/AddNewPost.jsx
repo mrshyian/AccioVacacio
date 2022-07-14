@@ -130,8 +130,6 @@ function AddNewPost(props) {
                             />
                         </Form.Group>
                         <div>
-                            <img className="myimg" src={`http://localhost:8080/image/download/post`}
-                                 alt={"example"}/>
                             <Dropzone/>
                         </div>
                     </Form>

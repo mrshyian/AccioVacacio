@@ -50,6 +50,15 @@ public class UserProfileController {
         return s3Service.downloadFileFromStorage(path, filename);
     }
 
+
+    @GetMapping("/image/download/user/{userId}")
+    public byte[] downloadPostImage(@PathVariable String userId) {
+        MyUserTable myUserTable = userRepository.findMyUserTableById(Long.valueOf(userId));
+        String filename = myUserTable.getAvatar();
+        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "album");
+        return s3Service.downloadFileFromStorage(path, filename);
+    }
+
     @GetMapping("/user-profile")
     public MyUserTable getUser(){
         return userRepository.findMyUserTableById(loginImpl.getCurrentUserId());

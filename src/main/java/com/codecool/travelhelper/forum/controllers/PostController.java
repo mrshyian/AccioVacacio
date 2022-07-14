@@ -92,7 +92,6 @@ public class PostController {
         return posts;
     }
 
-
     // send sorted posts to frontend
     @GetMapping("/sort_by")
     public List<PostTable> sortPosts() {

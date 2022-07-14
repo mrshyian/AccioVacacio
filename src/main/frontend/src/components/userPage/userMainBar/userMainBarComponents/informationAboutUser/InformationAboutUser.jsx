@@ -13,6 +13,7 @@ const InformationAboutUser = (props) => {
 
     let img = props.myUser.avatar;
 
+
     if (props.myUser.avatar === "") {
         img = user;
     }
@@ -28,7 +29,7 @@ const InformationAboutUser = (props) => {
         >
             <Card.Body className="user-info-body">
                 <div>
-                    <img className="profile-image" src={img} alt="some image" />
+                    <img className="profile-image" src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
                 </div>
                 <div className="user-info-second-div">
                     <h3>{props.myUser.fullName}</h3>
