@@ -35,7 +35,7 @@ public class UserProfileController {
     )
     public void uploadUserProfileImage(@RequestParam("file") MultipartFile file) {
         MyUserTable myUserTable = userRepository.findMyUserTableById(loginImpl.getCurrentUserId());
-        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "album");
+        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "userAlbum", myUserTable.getId());
         String filename = String.format("%s-%s", file.getOriginalFilename(), UUID.randomUUID());
         myUserTable.setAvatar(filename);
         userRepository.save(myUserTable);
@@ -46,16 +46,15 @@ public class UserProfileController {
     public byte[] downloadUserProfileImage() {
         MyUserTable myUserTable = userRepository.findMyUserTableById(loginImpl.getCurrentUserId());
         String filename = myUserTable.getAvatar();
-        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "album");
+        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "userAlbum", myUserTable.getId());
         return s3Service.downloadFileFromStorage(path, filename);
     }
-
 
     @GetMapping("/image/download/user/{userId}")
     public byte[] downloadPostImage(@PathVariable String userId) {
         MyUserTable myUserTable = userRepository.findMyUserTableById(Long.valueOf(userId));
         String filename = myUserTable.getAvatar();
-        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "album");
+        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "userAlbum", myUserTable.getId());
         return s3Service.downloadFileFromStorage(path, filename);
     }
 

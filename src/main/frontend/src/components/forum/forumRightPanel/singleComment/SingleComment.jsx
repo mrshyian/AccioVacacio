@@ -48,7 +48,6 @@ const SingleComment = (props) => {
             commentText: commentText,
             commentId: props.comments.id
         }).then(() => reload())
-
     }
 
     function reload(){

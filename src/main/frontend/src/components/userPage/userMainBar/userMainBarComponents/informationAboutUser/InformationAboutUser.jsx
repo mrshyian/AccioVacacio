@@ -6,6 +6,7 @@ import "./InformationAboutUser.css"
 import CountryCounter from "../countryCounter/CountryCounter";
 import EditUserDataModal from "../../../../modals/editUserDataModal/EditUserDataModal";
 import user from "../../../../../images/user.png"
+import AddImage from "../addImage/AddImage";
 
 const InformationAboutUser = (props) => {
 
@@ -31,6 +32,7 @@ const InformationAboutUser = (props) => {
                 <div>
                     <img className="profile-image" src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
                 </div>
+
                 <div className="user-info-second-div">
                     <h3>{props.myUser.fullName}</h3>
                     <div className="user-info-second-div-nickname">

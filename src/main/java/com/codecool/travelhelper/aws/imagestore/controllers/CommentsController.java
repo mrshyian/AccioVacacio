@@ -73,7 +73,7 @@ public class CommentsController {
         CommentsTable commentsTable = commentRepository.findCommentsTableById(Long.valueOf(commentId));
         MyUserTable myUserTable = commentsTable.getMyUserTable();
         String filename = myUserTable.getAvatar();
-        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "album");
+        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "userAlbum", myUserTable.getId());
         return s3Service.downloadFileFromStorage(path, filename);
     }
 

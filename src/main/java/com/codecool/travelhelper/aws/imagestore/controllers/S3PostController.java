@@ -67,7 +67,7 @@ public class S3PostController {
         PostTable postTable = postRepository.findPostTableById(Long.valueOf(postId));
         MyUserTable myUserTable = postTable.getMyUserTable();
         String filename = myUserTable.getAvatar();
-        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "album");
+        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "userAlbum", myUserTable.getId());
         return s3Service.downloadFileFromStorage(path, filename);
     }
 

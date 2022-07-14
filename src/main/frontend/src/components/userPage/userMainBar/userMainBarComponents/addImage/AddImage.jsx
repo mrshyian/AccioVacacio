@@ -19,10 +19,6 @@ const UserProfiles = () => {
 
     return (
         <div className='post'>
-            {userProfiles.id ?
-                <img className="myimg" src={`http://localhost:8080/image/download`}
-                     alt={"example"}/>
-                : null}
             <Dropzone {...userProfiles}/>
             <h1>{userProfiles.username}</h1>
             <p>{userProfiles.id}</p>
@@ -62,7 +58,7 @@ function Dropzone({userProfileId}) {
             {
                 isDragActive ?
                     <p className='after-drag'>Drop the files here ...</p> :
-                    <p className='for-drag'>Drag 'n' drop some files here, or click to select files</p>
+                    <p className='for-drag'>Drag 'n' drop image here</p>
             }
         </div>
     )
