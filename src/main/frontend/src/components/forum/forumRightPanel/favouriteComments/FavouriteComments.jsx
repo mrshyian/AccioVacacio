@@ -11,13 +11,15 @@ const FavouriteComments = () => {
 
     const fetchMyComments = () => {
         axios.get(`http://localhost:8080/favouriteComments`)
-            .then(res =>{setFavouriteComments(res.data);})
+            .then(res =>{setFavouriteComments(res.data);
+                console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 
     const fetchMyPosts = () => {
         axios.get(`http://localhost:8080/favouriteCommentsPosts`)
-            .then(res =>{setFavouriteCommentsPosts(res.data);})
+            .then(res =>{setFavouriteCommentsPosts(res.data);
+                console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 

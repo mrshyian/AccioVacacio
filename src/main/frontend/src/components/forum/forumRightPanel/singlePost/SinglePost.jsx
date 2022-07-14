@@ -8,7 +8,7 @@ import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 
 const SinglePost = (props) => {
-
+    const userId = props.post.myUserTable.id
     let text = props.post.postText;
     const [postText, setPostText] = useState(text)
     const [editable, setEditable] = useState(false)
@@ -47,6 +47,19 @@ const SinglePost = (props) => {
 
     }
 
+    useEffect(()=>{
+        isSession()
+    }, [])
+
+    const [session, setSession] = useState(false)
+    const isSession = () => {
+        if(sessionStorage.getItem("userId") == userId ) {
+            setSession(true)
+        }else{
+            setSession(false)
+        }
+    }
+
     function reload() {
         window.location.reload()
     }
@@ -69,7 +82,7 @@ const SinglePost = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
                         <p style={{marginBottom: -20}}>
                             <img className="imgForForum"
-                                 src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE"
+                                 src={'http://localhost:8080/image/download/post/profile'}
                                  alt="user photo"/>
                             <p> {props.post.userName} </p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
@@ -118,25 +131,47 @@ const SinglePost = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
                         <p style={{marginBottom: -20}}>
                             <img className="imgForForum"
-                                 src="https://media-exp1.licdn.com/dms/image/C4D03AQGdyWRtTOqpUg/profile-displayphoto-shrink_200_200/0/1616239437610?e=1659571200&v=beta&t=pTuXFgcCY0aLZhgx3Q6zpsLhfS9fo69n__YaWFKOIEE"
+                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
                                  alt="user photo"/>
+
                             <p> {props.post.userName} </p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
                         <p>{props.post.postDateTime}</p>
                     </Card.Header>
                     <Card.Body>
+
                         <Card.Text>
+
                             <h4>{props.post.postText}</h4>
+                            <img className="post-image"
+                                 src={`http://localhost:8080/image/download/post/${props.post.id}`}
+                                 alt="user photo"/>
+
                         </Card.Text>
 
                     </Card.Body>
-                    <Card.Footer><Button onClick={DeletePost} style={{marginLeft: "93%"}} variant="outline-warning">{
-                        <FaTrash/>}</Button><p></p>
-                        <Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{
-                            <FaHeart/>}</Button>
-                        <Button style={{marginLeft: "93%"}} variant="outline-warning" className="save-note-button"
-                                onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
-                        <p>Comments:</p>
+                    <Card.Footer>
+                        <div style={{display: "flex", justifyContent:"right"}} >
+                            {session?
+                                <div>
+                                    <Button onClick={DeletePost} style={{marginLeft: "5px"}} variant="outline-warning">{<FaTrash/>}</Button>
+
+
+                                    <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{<FaHeart/>}</Button>
+
+
+                                    <Button style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                                            onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
+                                </div>
+                                :
+                                <div>
+                                    <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{<FaHeart/>}</Button>
+                                </div>
+                            }
+
+                        </div>
+                        <AddNewComment postId={props.post.id}/>
+                        <h5>Comments:</h5>
                         {props.comments.map((comment, post, index) => {
                             if(comment.post.id === props.post.id){
                                 return (
@@ -144,7 +179,6 @@ const SinglePost = (props) => {
                                 )
                             }
                         })}
-                        <AddNewComment postId={props.post.id}/>
                     </Card.Footer>
                 </Card>
             }

@@ -6,12 +6,14 @@ import "./InformationAboutUser.css"
 import CountryCounter from "../countryCounter/CountryCounter";
 import EditUserDataModal from "../../../../modals/editUserDataModal/EditUserDataModal";
 import user from "../../../../../images/user.png"
+import AddImage from "../addImage/AddImage";
 
 const InformationAboutUser = (props) => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
     let img = props.myUser.avatar;
+
 
     if (props.myUser.avatar === "") {
         img = user;
@@ -28,8 +30,9 @@ const InformationAboutUser = (props) => {
         >
             <Card.Body className="user-info-body">
                 <div>
-                    <img className="profile-image" src={img} alt="some image" />
+                    <img className="profile-image" src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
                 </div>
+
                 <div className="user-info-second-div">
                     <h3>{props.myUser.fullName}</h3>
                     <div className="user-info-second-div-nickname">

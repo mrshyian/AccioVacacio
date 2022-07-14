@@ -29,7 +29,7 @@ const AddPhotoModal = (props) => {
         const formData = new FormData();
         formData.append("file", file);
 
-        axios.post(`http://localhost:8080/${userId}/${props.albumName}/image/upload`,
+        axios.post(`http://localhost:8080/${props.albumId}/${props.albumName}/image/upload`,
             formData,
             {
                 headers: {

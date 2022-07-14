@@ -41,9 +41,7 @@ const SearchBox = () => {
 
     return (
         <div>
-
-
-            <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "15%"}}>
+            <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "0%"}}>
                 <Container fluid>
                     <Navbar.Brand href="#home">Select a city:</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbar-dark-example"/>
@@ -84,7 +82,7 @@ const SearchBox = () => {
                 </Container>
             </Navbar>
 
-            <MyGoogleMap/>
+            {/*<MyGoogleMap/>*/}
 
         </div>
     );

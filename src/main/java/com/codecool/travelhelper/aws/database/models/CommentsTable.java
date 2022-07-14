@@ -48,7 +48,6 @@ public class CommentsTable {
 
     // comments to user
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name="user_id")
     @JsonIgnoreProperties({ "comments", "posts", "noteTable", "albumsFromTripsTable",
             "placesWantToGoTable", "visitedPlacesTable", "tripsTable",
@@ -86,10 +85,9 @@ public class CommentsTable {
         return dateTime.format(myFormatObj);
     }
 
-    public Set<MyUserTable> AddUserToLikedByUser(MyUserTable myUserTable){
-        this.likedByUsers.add(myUserTable);
+    public Set<MyUserTable> AddUserToLikedByUser(MyUserTable userTable){
+        this.likedByUsers.add(userTable);
         return this.getLikedByUsers();
-
     }
 
     @Override

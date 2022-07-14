@@ -15,10 +15,6 @@ import {BiFileFind} from "react-icons/bi";
 import {Form} from "react-bootstrap";
 import Axios from "axios";
 
-
-
-
-
 const ForumLeftPanel = () => {
 
     const [NewModalOpen, setNewModalOpen] = useState(false);
