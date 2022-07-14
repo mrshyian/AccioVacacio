@@ -6,8 +6,7 @@ import "./InformationAboutUser.css"
 import CountryCounter from "../countryCounter/CountryCounter";
 import EditUserDataModal from "../../../../modals/editUserDataModal/EditUserDataModal";
 import user from "../../../../../images/user.png"
-import axios from "axios";
-
+import AddImage from "../addImage/AddImage";
 
 const InformationAboutUser = (props) => {
 
@@ -30,7 +29,7 @@ const InformationAboutUser = (props) => {
         >
             <Card.Body className="user-info-body">
                 <div>
-                    <img className="profile-image" src={img} alt="some image" />
+                    <img className="profile-image" src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
                 </div>
                 <div className="user-info-second-div">
                     <h3>{props.myUser.fullName}</h3>

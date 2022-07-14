@@ -8,32 +8,24 @@ const UserProfiles = () => {
     const [userProfiles, setUserProfile] = useState([]);
 
     const fetchUserProfiles = () => {
-        axios.get("http://localhost:8080/api/v1/user-profile").then(res =>{
+        axios.get("http://localhost:8080/user-profile").then(res =>{
             setUserProfile(res.data);
         });
     };
-
-
 
     useEffect(() => {
         fetchUserProfiles();
     }, []);
 
-    return userProfiles.map((userProfile, index) => {
-        return (
-            <div className='post' key={index}>
-                {userProfile.userProfileId ?
-                    <img className="myimg" src={`http://localhost:8080/api/v1/user-profile/${userProfile.userProfileId}/image/download`}
-                         alt={"example"}/>
-                    : null}
-                <Dropzone {...userProfile}/>
-                <h1>{userProfile.username}</h1>
-                <p>{userProfile.userProfileId}</p>
-            </div>
-        )
-    })
-};
+    return (
+        <div className='post'>
+            <Dropzone {...userProfiles}/>
+            <h1>{userProfiles.username}</h1>
+            <p>{userProfiles.id}</p>
+        </div>
+    )
 
+};
 
 function Dropzone({userProfileId}) {
     const onDrop = useCallback(acceptedFiles => {
@@ -44,7 +36,8 @@ function Dropzone({userProfileId}) {
         const formData = new FormData();
         formData.append("file", file);
 
-        axios.post(`http://localhost:8080/api/v1/user-profile/${userProfileId}/image/upload`,
+
+        axios.post(`http://localhost:8080/image/upload`,
             formData,
             {
                 headers: {
@@ -57,15 +50,17 @@ function Dropzone({userProfileId}) {
         });
 
     }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    const {getRootProps, getInputProps} = useDropzone({onDrop})
 
     return (
         <div {...getRootProps()}>
             <input {...getInputProps()} />
             {
-                isDragActive ?
-                    <p className='after-drag'>Drop the files here ...</p> :
-                    <p className='for-drag'>Drag 'n' drop some files here, or click to select files</p>
+                <div>
+                <p>
+                    Drag n drop image here
+                </p>
+                </div>
             }
         </div>
     )

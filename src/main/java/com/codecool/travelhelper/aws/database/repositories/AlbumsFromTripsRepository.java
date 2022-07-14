@@ -10,5 +10,6 @@ public interface AlbumsFromTripsRepository extends JpaRepository<AlbumFromTripsT
     Optional<AlbumFromTripsTable> findAllByMyUserTableIdAndAlbumName(Long userId, String albumName);
 
     List<Optional<AlbumFromTripsTable>> findAllByMyUserTableId(Long userId);
+    AlbumFromTripsTable findAlbumFromTripsTableById(Long id);
 
 }

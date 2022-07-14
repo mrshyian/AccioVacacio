@@ -17,6 +17,7 @@ import FilterComments from "./components/forum/forumRightPanel/FilterComments";
 
 import SingleAlbumView
     from "./components/userPage/userLeftBar/userLeftBarComponents/albumsFromTrips/singleAlbum/SingleAlbumView";
+import AddImage from "./components/userPage/userMainBar/userMainBarComponents/addImage/AddImage";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -37,6 +38,7 @@ root.render(
                   <Route path="/forum/my_comments" element={<MyComments />}/>
                   <Route path="/forum/favourite_comments" element={<FavouriteComments />}/>
                   <Route path="/sort_by" element={<FilterComments />}/>
+                  <Route path="/users" element={<AddImage />}/>
                   <Route path="/" element={<AllCarousel />}/>
               </Route>
           </Routes>

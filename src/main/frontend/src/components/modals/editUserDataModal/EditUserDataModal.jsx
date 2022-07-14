@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Form, Modal} from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
+import AddImage from "../../userPage/userMainBar/userMainBarComponents/addImage/AddImage";
 
 const EditUserDataModal = (props) => {
 
@@ -116,6 +117,7 @@ const EditUserDataModal = (props) => {
                         />
                     </Form.Group>
                     {/*-------------------------------------*/}
+                    <AddImage />
                     <Form.Group
                         className="mb-3"
                     >
