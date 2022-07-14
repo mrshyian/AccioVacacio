@@ -41,14 +41,27 @@ const UserLeftBar = () => {
     }, [])
 
     const getResult = () => {
-        axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/${amount}`)
-            .then(res => {
-                console.log(res.data)
-                setAnswer(res.data.howMuchAfterConvert);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        if (amount===""){
+            setAmount("1")
+            axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/1`)
+                .then(res => {
+                    console.log(res.data)
+                    setAnswer(res.data.howMuchAfterConvert);
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+        } else {
+            axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/${amount}`)
+                .then(res => {
+                    console.log(res.data)
+                    setAnswer(res.data.howMuchAfterConvert);
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+        }
+
     };
 
     const validateAmount = (number) => {
