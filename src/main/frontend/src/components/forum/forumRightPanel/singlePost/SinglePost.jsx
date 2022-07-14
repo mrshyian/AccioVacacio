@@ -8,7 +8,8 @@ import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 
 const SinglePost = (props) => {
-
+    const userId = props.post.myUserTable.id
+    // console.log("id"+ userId)
     let text = props.post.postText;
     const [postText, setPostText] = useState(text)
     const [editable, setEditable] = useState(false)
@@ -45,6 +46,19 @@ const SinglePost = (props) => {
             postId: props.post.id
         }).then(() => reload())
 
+    }
+
+    useEffect(()=>{
+        isSession()
+    }, [])
+
+    const [session, setSession] = useState(false)
+    const isSession = () => {
+        if(sessionStorage.getItem("userId") == userId ) {
+            setSession(true)
+        }else{
+            setSession(false)
+        }
     }
 
     function reload() {
@@ -130,7 +144,7 @@ const SinglePost = (props) => {
                         <Card.Text>
 
                             <h4>{props.post.postText}</h4>
-                            <img className="imgForForum"
+                            <img className="post-image"
                                  src={`http://localhost:8080/image/download/post/${props.post.id}`}
                                  alt="user photo"/>
 
@@ -139,14 +153,23 @@ const SinglePost = (props) => {
                     </Card.Body>
                     <Card.Footer>
                         <div style={{display: "flex", justifyContent:"right"}} >
-                        <Button onClick={DeletePost} style={{marginLeft: "5px"}} variant="outline-warning">{<FaTrash/>}</Button>
+                            {session?
+                                <div>
+                                    <Button onClick={DeletePost} style={{marginLeft: "5px"}} variant="outline-warning">{<FaTrash/>}</Button>
 
 
-                        <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{<FaHeart/>}</Button>
+                                    <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{<FaHeart/>}</Button>
 
 
-                        <Button style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
-                                onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
+                                    <Button style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                                            onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
+                                </div>
+                                :
+                                <div>
+                                    <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{<FaHeart/>}</Button>
+                                </div>
+                            }
+
                         </div>
                         <AddNewComment postId={props.post.id}/>
                         <h5>Comments:</h5>

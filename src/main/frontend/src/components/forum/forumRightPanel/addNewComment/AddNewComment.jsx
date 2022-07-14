@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import Axios from "axios";
 import "./AddNewComment.css"
-import {Button, Card} from "react-bootstrap";
+import {Button, Card, Image} from "react-bootstrap";
 import {useDropzone} from "react-dropzone";
 import axios from "axios";
 
@@ -64,15 +64,33 @@ function AddNewComment(props) {
 
         }, []);
         const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
-
         return (
             <div {...getRootProps()}>
-                <input {...getInputProps()} />
                 {
-                    isDragActive ?
-                        <p className='after-drag'>Drop the files here ...</p> :
-                        <p className='for-drag'>Drag 'n' drop some files here, or click to select files</p>
+                    !image?
+                        <div>
+                        <input {...getInputProps()} />
+                        {
+                            isDragActive ?
+                                <p style={{width: "600px ", height: "200px"}} className='after-drag'>Drop the files here ...</p> :
+
+                                <p style={{maxWidth: "45% "}} className='for-drag'>Drag 'n' drop some files here, or click to select files</p>
+                        }
+                    </div>
+                        :
+                        <div>
+                            <Card bg="success"
+                                  key={"dark"}
+                                  text={'warning'}
+                                  style={{marginRight: "90%"}}
+                                 >
+                                <Card.Text>
+                                    Photo added
+                                </Card.Text>
+                            </Card>
+                        </div>
                 }
+
             </div>
         )
     }

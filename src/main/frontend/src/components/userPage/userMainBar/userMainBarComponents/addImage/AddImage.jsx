@@ -50,15 +50,17 @@ function Dropzone({userProfileId}) {
         });
 
     }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    const {getRootProps, getInputProps} = useDropzone({onDrop})
 
     return (
         <div {...getRootProps()}>
             <input {...getInputProps()} />
             {
-                isDragActive ?
-                    <p className='after-drag'>Drop the files here ...</p> :
-                    <p className='for-drag'>Drag 'n' drop image here</p>
+                <div>
+                <p>
+                    Drag n drop image here
+                </p>
+                </div>
             }
         </div>
     )
