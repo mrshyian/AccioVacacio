@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class RegistrationController {
 
     @Autowired
-    RegistrationImpl registrationImpl;
+    private RegistrationImpl registrationImpl;
 
 
     @PostMapping("/registration")

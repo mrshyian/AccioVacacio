@@ -15,7 +15,7 @@ import java.util.Optional;
 public class LivingCostsRepositoryImpl {
 
     @Autowired
-    LivingCostsRepository livingCostsRepository;
+    private LivingCostsRepository livingCostsRepository;
 
 
     public void setLivingCostsDataByCityAndCountryNameAndItemName(LivingCostsTable livingCostsTable) {

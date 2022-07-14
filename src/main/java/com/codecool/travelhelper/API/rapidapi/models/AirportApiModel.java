@@ -6,10 +6,10 @@ import lombok.Getter;
 @Getter
 @Builder
 public class AirportApiModel {
-    String AirportName;
-    String AirportCode;
-    String cityName;
-    String countryName;
+    private String AirportName;
+    private String AirportCode;
+    private String cityName;
+    private String countryName;
 
     @Override
     public String toString() {

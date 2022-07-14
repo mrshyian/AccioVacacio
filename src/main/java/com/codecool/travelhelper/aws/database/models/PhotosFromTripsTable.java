@@ -27,7 +27,7 @@ public class PhotosFromTripsTable {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "album_id")
-    AlbumFromTripsTable albumFromTripsTable;
+    private AlbumFromTripsTable albumFromTripsTable;
 //---------------------------------------------------
 
 

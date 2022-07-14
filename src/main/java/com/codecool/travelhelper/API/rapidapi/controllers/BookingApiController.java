@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookingApiController {
 
     @Autowired
-    BookingService bookingService;
+    private BookingService bookingService;
 
     @GetMapping("/booking/{cityName}/{countryName}")
     public BookingApiModel getBooking(@PathVariable String cityName, @PathVariable String countryName){

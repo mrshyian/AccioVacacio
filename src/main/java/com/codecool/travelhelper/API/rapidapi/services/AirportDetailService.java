@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class AirportDetailService {
 
     @Autowired
-    AirportDetailClientImpl airportDetailClientImpl;
+    private AirportDetailClientImpl airportDetailClientImpl;
 
     public AirportDetailApiModel getAirportDetail(String cityCode, String cityName, String countryName){
         AirportDetailApiModel response = airportDetailClientImpl.getCityAirportByIata(cityCode, cityName, countryName);

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GetCoordinatesController{
 
     @Autowired
-    GetCoordinatesService getCoordinatesService;
+    private GetCoordinatesService getCoordinatesService;
 
     @GetMapping("/get_coordinates/{cityName}")
     public GetCoordinatesModel getWeather(@PathVariable String cityName){

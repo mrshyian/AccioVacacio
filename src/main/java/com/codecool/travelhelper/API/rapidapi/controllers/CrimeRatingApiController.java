@@ -18,7 +18,7 @@ import java.util.List;
 public class CrimeRatingApiController {
 
     @Autowired
-    CrimeRatingService crimeRatingService;
+    private CrimeRatingService crimeRatingService;
 
     @GetMapping("/crime_rating/{cityName}/{countryName}")
     public List<CrimeRatingApiModel> getAirport(@PathVariable String cityName, @PathVariable String countryName){

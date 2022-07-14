@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class ExchangeService {
 
     @Autowired
-    ExchangeClient exchangeClient;
+    private ExchangeClient exchangeClient;
 
     public ExchangeDto getExchangeData(String countryFrom, String countryTo, String howMuchToConvert){
         return exchangeClient.getExchangeData(countryFrom, countryTo, howMuchToConvert);

@@ -14,7 +14,7 @@ public class EmergencyNumbersClient {
     private final RestTemplate restTemplate = new RestTemplate();
     private final static String EMERGENCY_NUMBER_URL = "https://emergencynumberapi.com/api/country/";
     @Autowired
-    EmergencyNumbersRepositoryImpl emergencyNumbersRepository;
+    private EmergencyNumbersRepositoryImpl emergencyNumbersRepository;
 
     public EmergencyNumbersDto getEmergencyNumbers(String countryCode, String countryName, String cityName) {
         OpenEmergencyNumbersEmergencyNumbersDto openEmergencyNumbersEmergencyNumbersDto =  callGetMethode(countryCode,

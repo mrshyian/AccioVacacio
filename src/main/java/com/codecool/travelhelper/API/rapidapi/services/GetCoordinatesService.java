@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class GetCoordinatesService {
 
     @Autowired
-    GetCoordinatesClientImpl getCoordinatesClient;
+    private GetCoordinatesClientImpl getCoordinatesClient;
 
     public GetCoordinatesModel getCoordinates(String cityName){
         return getCoordinatesClient.getCityCoordinates(cityName);

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExchangeApiController {
 
     @Autowired
-    ExchangeService exchangeService;
+    private ExchangeService exchangeService;
 
 
     @GetMapping("/exchange/{countryFrom}/{countryTo}/{howMuchToConvert}")

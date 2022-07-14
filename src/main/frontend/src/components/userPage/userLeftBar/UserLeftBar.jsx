@@ -5,16 +5,16 @@ import {Menu, MenuItem, ProSidebar, SubMenu} from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import {
     FaBuromobelexperte,
-    FaFilter,
     FaHeart,
     FaHourglassHalf,
-    FaMapMarked, FaMoneyBillAlt,
+    FaMapMarked,
+    FaMoneyBillAlt,
     FaPencilAlt,
     FaPhotoVideo
 } from 'react-icons/fa';
 import {Link} from "react-router-dom";
 import axios from "axios";
-import {Button, Form, InputGroup} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 
 
 const UserLeftBar = () => {
@@ -28,11 +28,10 @@ const UserLeftBar = () => {
     const getAllCurrency = () => {
         axios.get(`https://openexchangerates.org/api/currencies.json`)
             .then(res => {
-                // console.log(res.data)
-                setFrom(res.data)
+                setFrom(res.data);
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
             });
     };
 
@@ -42,23 +41,23 @@ const UserLeftBar = () => {
 
     const getResult = () => {
         if (amount===""){
-            setAmount("1")
+            setAmount("1");
             axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/1`)
                 .then(res => {
-                    console.log(res.data)
+                    console.log(res.data);
                     setAnswer(res.data.howMuchAfterConvert);
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log(err);
                 });
         } else {
             axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/${amount}`)
                 .then(res => {
-                    console.log(res.data)
+                    console.log(res.data);
                     setAnswer(res.data.howMuchAfterConvert);
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log(err);
                 });
         }
 
@@ -66,9 +65,9 @@ const UserLeftBar = () => {
 
     const validateAmount = (number) => {
         if (number<1){
-            setAmount("1")
+            setAmount("1");
         } else {
-            setAmount(number)
+            setAmount(number);
         }
     }
 
@@ -76,7 +75,6 @@ const UserLeftBar = () => {
     return (
         <div className="App">
             <header>
-
                 <ProSidebar className="sidebar" style={{height: "100%"}}>
                     <Menu iconShape="square">
                         <MenuItem icon={<FaPencilAlt/>}><Link to="/userpage/note"> Notes</Link></MenuItem>

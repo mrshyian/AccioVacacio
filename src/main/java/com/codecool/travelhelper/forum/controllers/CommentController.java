@@ -21,10 +21,10 @@ import java.util.List;
 public class CommentController {
 
     @Autowired
-    LoginImpl loginImpl;
+    private LoginImpl loginImpl;
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Autowired
     private CommentRepository commentRepository;

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AirportDetailClientImpl extends ApiWebClient {
     @Autowired
-    AirportDetailsRepositoryImpl airportDetailsRepositoryImpl;
+    private AirportDetailsRepositoryImpl airportDetailsRepositoryImpl;
 
     public AirportDetailClientImpl() {
         super(ApiMetaData.AIRPORT_DETAIL);
