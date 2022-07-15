@@ -3,6 +3,8 @@ import UserLeftBar from "../../UserLeftBar";
 import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
 import SingleFriend from "./SingleFriend";
 import axios from "axios";
+import SingleSearchedFriend from "./SingleSearchedFriend";
+import {FaReply, FaUserPlus} from "react-icons/fa";
 
 const MyFriends = () => {
 
@@ -11,14 +13,14 @@ const MyFriends = () => {
     const [allFriends, setAllFriends] = useState([])
 
     const searchFriendByName = () => {
-        axios.get(`http://localhost:8080/search_friend/${nameForSearch}`)
-            .then(res => {
-                console.log(res.data)
-                setSearchedFriend(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+            axios.get(`http://localhost:8080/search_friend/${nameForSearch}`)
+                .then(res => {
+                    console.log(res.data)
+                    setSearchedFriend(res.data);
+                })
+                .catch(err => {
+                    console.log(err)
+                });
     };
 
     return (
@@ -57,25 +59,27 @@ const MyFriends = () => {
                             style={{marginTop: 10, height: "100%"}}>
                             <Card.Body id="friends-list">
                                 {searchedFriend.length ?
-                                <div>
-                                    {
-                                        searchedFriend.map((friend, index) => {
-                                            if(friend.id.toString() !== sessionStorage.getItem("userId")){
-                                                return <SingleFriend myUser={friend} key={index}/>
-                                            }
-                                        })
-                                    }
-                                </div> : <div></div>}
-                                {/*<div>*/}
-                                {/*    <SingleFriend/>*/}
-                                {/*    <SingleFriend/>*/}
-                                {/*    <SingleFriend/>*/}
-                                {/*    <SingleFriend/>*/}
-                                {/*    <SingleFriend/>*/}
-                                {/*    <SingleFriend/>*/}
-                                {/*    <SingleFriend/>*/}
-                                {/*    <SingleFriend/>*/}
-                                {/*</div>*/}
+                                    <div>
+                                        <Button variant="outline-warning" style={{float: "left"}} onClick={() => window.location.reload()}>{<FaReply/>}</Button>
+                                        {
+                                            searchedFriend.map((friend, index) => {
+                                                if (friend.id.toString() !== sessionStorage.getItem("userId")) {
+                                                    return <SingleSearchedFriend myUser={friend} key={index}/>
+                                                }
+                                            })
+                                        }
+                                    </div> :
+                                    <div>
+                                        <SingleFriend/>
+                                        <SingleFriend/>
+                                        <SingleFriend/>
+                                        <SingleFriend/>
+                                        <SingleFriend/>
+                                        <SingleFriend/>
+                                        <SingleFriend/>
+                                        <SingleFriend/>
+                                    </div>
+                                }
                             </Card.Body>
                         </Card>
                     </Card.Text>
