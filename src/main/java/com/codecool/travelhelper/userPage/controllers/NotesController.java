@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class NotesController {
+
     @Autowired
     private NoteImpl noteImpl;
 
