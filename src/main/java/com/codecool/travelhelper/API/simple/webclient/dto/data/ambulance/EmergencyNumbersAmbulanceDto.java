@@ -6,5 +6,5 @@ import java.util.List;
 
 @Getter
 public class EmergencyNumbersAmbulanceDto {
-    List<String> all;
+    private List<String> all;
 }

@@ -16,13 +16,13 @@ import java.util.Optional;
 public class NoteImpl {
 
     @Autowired
-    NoteRepository noteRepository;
+    private NoteRepository noteRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    LoginImpl loginImpl;
+    private LoginImpl loginImpl;
 
     public void setNoteTextByUserId(String noteText) {
         NoteTable updatedResponseObject;

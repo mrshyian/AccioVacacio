@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class BookingService {
 
     @Autowired
-    BookingClientImpl bookingClientImpl;
+    private BookingClientImpl bookingClientImpl;
 
     public BookingApiModel getBooking(String cityName, String countryName){
         BookingApiModel response = bookingClientImpl.getBookingByCity(cityName, countryName);

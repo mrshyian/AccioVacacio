@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import SocialMedia from "../socialMedia/SocialMedia";
 import "./ProfileImage.css"
@@ -13,7 +13,6 @@ const InformationAboutUser = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
 
     let img = props.myUser.avatar;
-
 
     if (props.myUser.avatar === "") {
         img = user;
@@ -32,7 +31,6 @@ const InformationAboutUser = (props) => {
                 <div>
                     <img className="profile-image" src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
                 </div>
-
                 <div className="user-info-second-div">
                     <h3>{props.myUser.fullName}</h3>
                     <div className="user-info-second-div-nickname">

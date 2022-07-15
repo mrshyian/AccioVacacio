@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserPageController {
 
     @Autowired
-    UserPageImpl userPageImpl;
+    private UserPageImpl userPageImpl;
 
     @GetMapping("/usermainbar")
     public MyUserTable getUser() {

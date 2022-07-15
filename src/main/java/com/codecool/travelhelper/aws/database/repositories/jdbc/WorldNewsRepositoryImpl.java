@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class WorldNewsRepositoryImpl {
 
     @Autowired
-    WorldNewsRepository worldNewsRepository;
+    private WorldNewsRepository worldNewsRepository;
 
 
 }

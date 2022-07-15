@@ -1,32 +1,36 @@
-import React, {useMemo} from 'react';
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import React from 'react';
+import {GoogleMap, Marker, useLoadScript} from "@react-google-maps/api";
 
-const MyGoogleMap = () => {
-    const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "AIzaSyB9QXIKAMjIG5jkZzmZdoWEJNtwuDL4Lsc",
+const MyGoogleMap = (props) => {
+
+    const {isLoaded} = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     });
 
     if (!isLoaded) return <div>Loading...</div>;
-    return <Map />;
+    return <Map longitude={props.longitude} latitude={props.latitude}/>;
+
 };
 
 
-
-function Map() {
-    const center = useMemo(() => ({ lat: 52.409538, lng: 16.931992 }), []);
+function Map(props) {
+    const center = {lat: props.latitude, lng: props.longitude};
 
     return (
-        <div style={{width: "100%"}}>
-            <GoogleMap zoom={12} center={center} mapContainerClassName="map-container">
-                <div style={{height: "839px"}}>
-                <Marker
-                    title={'The marker`s title will appear as a tooltip.'}
-                    name={'SOMA'}
-                    key={1}
-                    position={center}
-                />
+        <div className="newsInline1" style={{width: 500}}>
+            <div style={{display: "flex"}}>
+                <div style={{width: 500}}>
+                    <GoogleMap zoom={12} center={center} mapContainerClassName="map-container">
+                        <div style={{height: "500px"}}>
+                            <Marker
+                                title={'The city center'}
+                                key={1}
+                                position={center}
+                            />
+                        </div>
+                    </GoogleMap>
                 </div>
-            </GoogleMap>
+            </div>
         </div>
     );
 }

@@ -9,7 +9,8 @@ import javax.servlet.http.HttpSession;
 public class LogoutImpl {
 
     @Autowired
-    HttpSession httpSession;
+    private HttpSession httpSession;
+
     public void logoutSession(){
         httpSession.removeAttribute("userId");
     }

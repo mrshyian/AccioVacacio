@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
-import MyGoogleMap from "../googleMaps/MyGoogleMap";
 
 const SearchBox = () => {
 
@@ -14,7 +13,7 @@ const SearchBox = () => {
     const [selectedCity, setSelectedCity] = useState();
     const navigate = useNavigate();
     useEffect(() => {
-        axios.get("https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json")
+        axios.get("https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/" + process.env.REACT_APP_ALL_CITIES_AND_COUNTRIES_API_KEY + "/world-cities_json.json")
             .then(res => setData(res.data))
             .catch(err => console.log(err))
     }, [])
@@ -41,7 +40,7 @@ const SearchBox = () => {
 
     return (
         <div>
-            <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "0%"}}>
+            <Navbar variant="dark" bg="dark" expand="lg" style={{marginTop: "15%"}}>
                 <Container fluid>
                     <Navbar.Brand href="#home">Select a city:</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbar-dark-example"/>
@@ -81,9 +80,6 @@ const SearchBox = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
-            {/*<MyGoogleMap/>*/}
-
         </div>
     );
 };

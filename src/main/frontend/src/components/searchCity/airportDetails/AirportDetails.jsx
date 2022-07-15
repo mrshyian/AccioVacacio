@@ -31,7 +31,7 @@ const AirportDetails = (props) => {
                     bg={"dark"}
                     key={"dark"}
                     text={'white'}
-                    style={{width: '35rem'}}
+                    style={{width: '35rem', borderColor: "orange" }}
                     className="mb-2"
                 >
                     <Card.Header style={{textAlign: "center", color: "orange"}}>

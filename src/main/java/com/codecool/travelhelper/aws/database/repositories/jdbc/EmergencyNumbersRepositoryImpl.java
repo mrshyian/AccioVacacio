@@ -15,7 +15,7 @@ import java.util.Optional;
 public class EmergencyNumbersRepositoryImpl {
 
     @Autowired
-    EmergencyNumbersRepository emergencyNumbersRepository;
+    private EmergencyNumbersRepository emergencyNumbersRepository;
 
     public void setEmergencyNumbersDataByCityAndCountryName(EmergencyNumbersTable emergencyNumbersTable) {
         EmergencyNumbersTable updatedResponseObject;

@@ -7,14 +7,14 @@ import lombok.Getter;
 @Getter
 @Builder
 public class AirportDetailApiModel {
-    String name;
-    String location;
-    String streetNumber;
-    String street;
-    String city;
-    String state;
-    String phone;
-    String website;
+    private String name;
+    private String location;
+    private String streetNumber;
+    private String street;
+    private String city;
+    private String state;
+    private String phone;
+    private String website;
 
     @Override
     public String toString() {

@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 @Builder
 public class BookingApiModel {
-    String name;
-    String link;
-    String rating;
+    private String name;
+    private String link;
+    private String rating;
 
     @Override
     public String toString() {

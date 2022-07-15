@@ -17,10 +17,6 @@ public class PostService {
     private  PostRepository postRepository;
 
 
-    @Autowired
-    LoginImpl loginImpl;
-
-
     public List<PostTable> getUserPostsByComments(List<CommentsTable> likedComments){
         List<PostTable> posts= new ArrayList<>();
         for (CommentsTable comment: likedComments) {

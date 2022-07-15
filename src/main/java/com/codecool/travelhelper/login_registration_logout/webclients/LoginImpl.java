@@ -26,16 +26,16 @@ public class LoginImpl {
     private Long currentUserId;
 
     @Autowired
-    SendMailToUser sendMailToUser;
+    private SendMailToUser sendMailToUser;
 
     @Autowired
-    Util util;
+    private Util util;
 
     @Autowired
-    HttpSession session;
+    private HttpSession session;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public String findUser(String data) {
 

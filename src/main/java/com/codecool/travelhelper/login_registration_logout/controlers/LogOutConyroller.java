@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogOutConyroller {
 
     @Autowired
-    LogoutImpl logoutimpl;
+    private LogoutImpl logoutimpl;
 
 
     @PostMapping("/logout")

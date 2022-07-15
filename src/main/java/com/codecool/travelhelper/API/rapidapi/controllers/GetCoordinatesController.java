@@ -1,7 +1,7 @@
 package com.codecool.travelhelper.API.rapidapi.controllers;
 
-import com.codecool.travelhelper.API.rapidapi.models.BookingApiModel;
-import com.codecool.travelhelper.API.rapidapi.services.BookingService;
+import com.codecool.travelhelper.API.rapidapi.models.GetCoordinatesModel;
+import com.codecool.travelhelper.API.rapidapi.services.GetCoordinatesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class BookingApiController {
+public class GetCoordinatesController{
 
     @Autowired
-    private BookingService bookingService;
+    private GetCoordinatesService getCoordinatesService;
 
-    @GetMapping("/booking/{cityName}/{countryName}")
-    public BookingApiModel getBooking(@PathVariable String cityName, @PathVariable String countryName){
-        return bookingService.getBooking(cityName, countryName);
+    @GetMapping("/get_coordinates/{cityName}")
+    public GetCoordinatesModel getWeather(@PathVariable String cityName){
+        return getCoordinatesService.getCoordinates(cityName);
     }
 }

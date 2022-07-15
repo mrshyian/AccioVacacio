@@ -14,7 +14,7 @@ import java.util.List;
 public class PlacesWantToGoController {
 
     @Autowired
-    PlacesWantToGoImpl placesWantToGoImpl;
+    private PlacesWantToGoImpl placesWantToGoImpl;
 
     @PostMapping("/placewanttogo")
     public void setPlace(@RequestBody String countryAndCity) {

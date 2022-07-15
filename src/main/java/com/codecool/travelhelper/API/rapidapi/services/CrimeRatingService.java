@@ -14,7 +14,7 @@ import java.util.List;
 public class CrimeRatingService {
 
     @Autowired
-    CrimeRatingClientImpl crimeRatingClient;
+    private CrimeRatingClientImpl crimeRatingClient;
 
     public List<CrimeRatingApiModel> getCrimeRating(String cityName, String countryName){
         return crimeRatingClient.getCrimeRating(cityName, countryName);

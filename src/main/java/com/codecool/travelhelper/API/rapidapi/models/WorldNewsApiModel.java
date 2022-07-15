@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 public class WorldNewsApiModel {
 
-    String title;
-    String summary;
-    String link;
+    private String title;
+    private String summary;
+    private String link;
 
     @Override
     public String toString() {

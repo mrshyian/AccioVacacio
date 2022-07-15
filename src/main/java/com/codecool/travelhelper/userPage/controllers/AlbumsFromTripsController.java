@@ -14,7 +14,7 @@ import java.util.List;
 public class AlbumsFromTripsController {
 
     @Autowired
-    AlbumsFromTripsImpl albumsFromTrips;
+    private AlbumsFromTripsImpl albumsFromTrips;
 
     @PostMapping("/albumsfromtrips")
     public void setNewAlbum(@RequestBody String albumData ) {

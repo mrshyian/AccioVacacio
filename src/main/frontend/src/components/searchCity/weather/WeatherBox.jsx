@@ -7,15 +7,15 @@ import pressure from "../../../images/pressure.png"
 import humidity from "../../../images/humiditypng.png"
 import wing from "../../../images/wind.png"
 import clouds from "../../../images/clouds.png"
-import MyGoogleMap from "../googleMaps/MyGoogleMap";
 
 const WeatherBox = (props) => {
+
     return (
         <Card
             bg={"dark"}
             key={"dark"}
             text={'white'}
-            style={{ width: '35rem' }}
+            style={{ width: '35rem', borderColor: "orange" }}
             className="mb-2"
         >
             <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Weather</h2></Card.Header>

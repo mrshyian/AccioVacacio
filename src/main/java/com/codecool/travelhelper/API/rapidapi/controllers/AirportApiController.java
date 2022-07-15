@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AirportApiController {
 
     @Autowired
-    AirportService airportService;
+    private AirportService airportService;
 
 //    @GetMapping("/airport/{cityName}/{countryName}")
 //    public AirportApiModel getAirport(@PathVariable String cityName, @PathVariable String countryName){

@@ -15,7 +15,7 @@ import java.util.Optional;
 public class CrimeRatingRepositoryImpl {
 
     @Autowired
-    CrimeRatingRepository crimeRatingRepository;
+    private CrimeRatingRepository crimeRatingRepository;
 
     public void setCrimeRatingDataByCityAndCountryName(CrimeRatingTable crimeRatingTable) {
         CrimeRatingTable updatedResponseObject;

@@ -41,6 +41,7 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
         int pressure = Integer.parseInt(getValueByKeyFromJsonObjectInsideJsonObject("pressure", "main", response));
         int humidity = Integer.parseInt(getValueByKeyFromJsonObjectInsideJsonObject("humidity", "main", response));
 
+
         float wingSpeed = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("speed", "wind", response));
 
         //----------------------------saving weather to database----------------------------

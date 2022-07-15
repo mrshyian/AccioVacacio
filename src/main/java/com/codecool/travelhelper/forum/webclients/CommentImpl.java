@@ -25,21 +25,21 @@ import java.util.Optional;
 public class CommentImpl {
 
     @Autowired
-    LoginImpl loginImpl;
+    private LoginImpl loginImpl;
 
     @Autowired
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PostImpl postImpl;
+    private PostImpl postImpl;
 
-    List<CommentsTable> comments = new ArrayList<>();
+    private List<CommentsTable> comments = new ArrayList<>();
 
     public void getAndSaveComments(String comments) {
         JsonParser jsonParser = new JsonParser();

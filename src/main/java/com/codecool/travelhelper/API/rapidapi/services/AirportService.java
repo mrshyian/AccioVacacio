@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class AirportService {
 
     @Autowired
-    AirportClientImpl airportClientImpl;
+    private AirportClientImpl airportClientImpl;
 
     public AirportApiModel getAirport(String cityName, String countryName){
         AirportApiModel response = airportClientImpl.getCityAirport(cityName, countryName);

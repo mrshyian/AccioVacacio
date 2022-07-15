@@ -15,7 +15,7 @@ import java.util.Optional;
 public class WeatherRepositoryImpl{
 
     @Autowired
-    WeatherRepository weatherRepository;
+    private WeatherRepository weatherRepository;
 
 
     public void setWeatherDataByCityAndCountryName(WeatherTable weatherTable) {

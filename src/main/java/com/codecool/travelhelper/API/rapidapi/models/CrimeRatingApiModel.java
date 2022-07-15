@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 @Builder
 public class CrimeRatingApiModel {
-    String index;
-    String city;
+    private String index;
+    private String city;
 
     @Override
     public String toString() {
