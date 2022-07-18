@@ -47,8 +47,8 @@ const ForumLeftPanel = () => {
             country: data.country,
             city: data.city,
             time : date
-        }).then(r => console.log(r.data))
-        refreshPage()
+        }).then(()=> refreshPage())
+
     }
 
     function refreshPage(){

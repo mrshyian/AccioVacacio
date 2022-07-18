@@ -71,7 +71,7 @@ const SinglePost = (props) => {
 
 
     return (
-        <div>
+        <div style={{marginBottom: "100px"}}>
             {editable ?
                 <Card
                     bg="dark"
