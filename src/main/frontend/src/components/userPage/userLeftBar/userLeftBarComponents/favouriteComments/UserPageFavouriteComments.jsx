@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
-
-import axios from "axios";
-import ForumLeftPanel from "../../forumleftpanel/ForumLeftPanel";
-import SinglePost from "../singlePost/SinglePost";
+import React from 'react';
+import ForumLeftPanel from "../../../../forum/forumleftpanel/ForumLeftPanel";
 import {Card} from "react-bootstrap";
+import SinglePost from "../../../../forum/forumRightPanel/singlePost/SinglePost";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import UserLeftBar from "../../UserLeftBar";
 
-const FavouriteComments = () => {
+const UserPageFavouriteComments = () => {
 
     const [favouriteComments, setFavouriteComments] = useState([]);
     const [favouriteCommentsPosts, setFavouriteCommentsPosts] = useState([]);
@@ -31,9 +32,8 @@ const FavouriteComments = () => {
 
 
     return (
-
         <div>
-            <ForumLeftPanel/>
+            <UserLeftBar/>
             <Card
                 bg={"dark"}
                 key={"dark"}
@@ -44,12 +44,12 @@ const FavouriteComments = () => {
                 <Card.Body>
                     <Card.Text style={{paddingLeft: "60px", paddingRight: "60px"}}>
                         <div>
-                        {favouriteCommentsPosts.map((singlePost, index) => {
+                            {favouriteCommentsPosts.map((singlePost, index) => {
 
-                            return (
-                                <SinglePost post={singlePost} comments={favouriteComments} key={index}/>
-                            )
-                        })}
+                                return (
+                                    <SinglePost post={singlePost} comments={favouriteComments} key={index}/>
+                                )
+                            })}
                         </div>
                     </Card.Text>
                 </Card.Body>
@@ -59,4 +59,4 @@ const FavouriteComments = () => {
     );
 };
 
-export default FavouriteComments;
+export default UserPageFavouriteComments;

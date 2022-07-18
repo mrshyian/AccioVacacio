@@ -35,7 +35,7 @@ function AddNewComment(props) {
                     name: name.name,
                     postId: props.postId
 
-                }).then(() => refreshPage())
+                }).then(() => console.log("file upload successfully"))
                 :
                 axios.post(`http://localhost:8080/image/upload/comment/${name.name}/${props.postId}`,
                     dataa,
@@ -111,7 +111,7 @@ function AddNewComment(props) {
                             <div>
                                 <Dropzone/>
                             </div>
-                            <Button onClick={refreshPage} variant="outline-warning" type="submit">Add comment</Button>
+                            <Button variant="outline-warning" type="submit">Add comment</Button>
                         </div>
                     </Card.Body>
                 </Card>
