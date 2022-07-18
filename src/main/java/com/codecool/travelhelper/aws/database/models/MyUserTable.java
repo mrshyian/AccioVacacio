@@ -66,7 +66,7 @@ public class MyUserTable {
     @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
-    List<AlbumFromTripsTable> albumsFromTripsTable;
+    private List<AlbumFromTripsTable> albumsFromTripsTable;
 
 //---------------------------------------------------
 
@@ -74,7 +74,7 @@ public class MyUserTable {
     @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
-    List<PlacesWantToGoTable> placesWantToGoTable;
+    private List<PlacesWantToGoTable> placesWantToGoTable;
 
 //---------------------------------------------------
 
@@ -82,7 +82,7 @@ public class MyUserTable {
     @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
-    List<VisitedPlaceTable> visitedPlacesTable;
+    private List<VisitedPlaceTable> visitedPlacesTable;
 
 //---------------------------------------------------
 
@@ -90,7 +90,7 @@ public class MyUserTable {
     @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
-    List<TripTable> tripsTable;
+    private List<TripTable> tripsTable;
 
 //---------------------------------------------------
 

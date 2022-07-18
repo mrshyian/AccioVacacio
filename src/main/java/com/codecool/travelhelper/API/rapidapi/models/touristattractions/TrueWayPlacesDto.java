@@ -6,10 +6,10 @@ import lombok.Getter;
 @Getter
 @Builder
 public class TrueWayPlacesDto {
-    String locationName;
-    String locationAddress;
-    int distanceToLocation;
-    String website;
+    private String locationName;
+    private String locationAddress;
+    private int distanceToLocation;
+    private String website;
 
 
     @Override

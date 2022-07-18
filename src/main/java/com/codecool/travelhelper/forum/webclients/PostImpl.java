@@ -26,25 +26,25 @@ import java.util.Optional;
 public class PostImpl {
 
 
-    List<PostTable> posts = new ArrayList<>();
+    private List<PostTable> posts = new ArrayList<>();
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
-    PostController postController;
+    private PostController postController;
 
     @Autowired
-    LoginImpl loginImpl;
+    private LoginImpl loginImpl;
 
     @Autowired
-    CommentImpl commentImpl;
+    private CommentImpl commentImpl;
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     public void saveNewPost(String post) {
         JsonParser jsonParser = new JsonParser();

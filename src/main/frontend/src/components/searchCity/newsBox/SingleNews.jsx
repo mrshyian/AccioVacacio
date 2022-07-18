@@ -9,7 +9,7 @@ const SingleNews = (props) => {
             bg={"dark"}
             key={"dark"}
             text={'white'}
-            style={{ width: '100%' }}
+            style={{ width: '100%', borderColor: "orange" }}
             className="mb-2"
         >
             <Card.Header style={{textAlign: "center", color: "orange"}}>

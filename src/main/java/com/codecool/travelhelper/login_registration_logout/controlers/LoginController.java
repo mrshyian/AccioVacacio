@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @Autowired
-    LoginImpl loginImpl;
+    private LoginImpl loginImpl;
 
 
     @PostMapping("/login")

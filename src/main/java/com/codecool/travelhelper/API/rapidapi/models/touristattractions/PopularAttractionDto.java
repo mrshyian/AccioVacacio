@@ -9,9 +9,10 @@ import java.util.List;
 @Getter
 @Builder
 public class PopularAttractionDto {
-    String locationName;
-    String locationAddress;
-    int distanceToLocation;
-    String website;
-    BingImageSearch imageUrl;
+
+    private String locationName;
+    private String locationAddress;
+    private int distanceToLocation;
+    private String website;
+    private BingImageSearch imageUrl;
 }

@@ -17,16 +17,16 @@ import java.util.Optional;
 @Component
 public class RegistrationImpl {
     @Autowired
-    SendMailToUser sendMailToUser;
+    private SendMailToUser sendMailToUser;
 
     @Autowired
-    Util util;
+    private Util util;
 
     @Autowired
-    RegistrationController registrationController;
+    private RegistrationController registrationController;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public String saveNewUserToDB(String data) {
 

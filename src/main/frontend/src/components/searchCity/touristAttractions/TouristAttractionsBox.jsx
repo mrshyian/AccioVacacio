@@ -20,7 +20,7 @@ const TouristAttractionsBox = (props) => {
                                 bg={"dark"}
                                 key={"dark"}
                                 text={'white'}
-                                style={{width: "49%", flex: "50%"}}
+                                style={{width: "49%", flex: "50%", borderColor: "orange"}}
                                 className="mb-2"
                             >
                                 <Card.Header style={{textAlign: "center", color: "orange"}}>

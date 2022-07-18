@@ -15,7 +15,7 @@ import java.util.Optional;
 public class AirportDetailsRepositoryImpl {
 
     @Autowired
-    AirportDetailsRepository airportDetailsRepository;
+    private AirportDetailsRepository airportDetailsRepository;
 
     public void setAirportDetailsDataByCityAndCountryName(AirportDetailsTable airportDetailsTable) {
         AirportDetailsTable updatedResponseObject;

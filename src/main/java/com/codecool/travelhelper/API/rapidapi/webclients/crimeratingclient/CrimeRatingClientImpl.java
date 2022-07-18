@@ -16,7 +16,7 @@ import java.util.List;
 public class CrimeRatingClientImpl extends ApiWebClient {
 
     @Autowired
-    CrimeRatingRepositoryImpl crimeRatingRepositoryImpl;
+    private CrimeRatingRepositoryImpl crimeRatingRepositoryImpl;
 
     public CrimeRatingClientImpl()  {
         super(ApiMetaData.CRIME_RATING);

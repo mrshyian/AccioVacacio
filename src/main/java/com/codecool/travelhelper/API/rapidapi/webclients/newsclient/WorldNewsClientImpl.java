@@ -18,7 +18,7 @@ import java.util.Map;
 public class WorldNewsClientImpl extends ApiWebClient implements WorldNewsClient {
 
     @Autowired
-    WorldNewsRepository worldNewsRepository;
+    private WorldNewsRepository worldNewsRepository;
 
     public WorldNewsClientImpl() {
         super(ApiMetaData.NEWSWORLD);

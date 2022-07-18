@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AirportDetailApiController {
 
     @Autowired
-    AirportDetailService airportDetailService;
+    private AirportDetailService airportDetailService;
 
     @GetMapping("/airport-details/{airportCode}/{cityName}/{countryName}")
     public AirportDetailApiModel getAirportDetail(@PathVariable String airportCode, @PathVariable String cityName, @PathVariable String countryName){

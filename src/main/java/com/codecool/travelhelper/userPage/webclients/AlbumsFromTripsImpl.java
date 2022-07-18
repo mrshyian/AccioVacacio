@@ -20,14 +20,14 @@ import java.util.Optional;
 public class AlbumsFromTripsImpl {
 
     @Autowired
-    AlbumsFromTripsRepository albumsFromTripsRepository;
+    private AlbumsFromTripsRepository albumsFromTripsRepository;
 
     @Autowired
-    LoginImpl loginImpl;
+    private LoginImpl loginImpl;
 
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public void setNewAlbum(String albumData) {
 

@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 @Builder
 public class LivingCostsApiModel {
-    String itemName;
-    String averagePrice;
-    String cost;
+    private String itemName;
+    private String averagePrice;
+    private String cost;
 
     @Override
     public String toString() {

@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class GoogleAutocompletePlusDto {
-    float latitude;
-    float longitude;
+    private float latitude;
+    private float longitude;
 }

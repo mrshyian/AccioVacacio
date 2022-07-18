@@ -14,13 +14,13 @@ import org.springframework.stereotype.Component;
 public class UserPageImpl {
 
     @Autowired
-    SendMailToUser sendMailToUser;
+    private SendMailToUser sendMailToUser;
 
     @Autowired
-    LoginImpl loginImpl;
+    private LoginImpl loginImpl;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public MyUserTable getUserFromDB(){
         Long userId = loginImpl.getCurrentUserId();

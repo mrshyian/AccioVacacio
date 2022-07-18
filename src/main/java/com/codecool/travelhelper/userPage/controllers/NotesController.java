@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class NotesController {
     @Autowired
-    NoteImpl noteImpl;
+    private NoteImpl noteImpl;
 
     @PostMapping("/notes")
     public void setNote(@RequestBody String noteText ) {

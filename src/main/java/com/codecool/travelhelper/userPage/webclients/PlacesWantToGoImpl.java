@@ -21,13 +21,13 @@ import java.util.Optional;
 public class PlacesWantToGoImpl {
 
     @Autowired
-    PlacesWantToGoRepository placesWantToGoRepository;
+    private PlacesWantToGoRepository placesWantToGoRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    LoginImpl loginImpl;
+    private LoginImpl loginImpl;
 
     public void addNewPlace(String countryAndCity){
 

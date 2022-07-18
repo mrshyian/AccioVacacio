@@ -15,7 +15,7 @@ import java.util.*;
 public class LivingCostsClientImpl extends ApiWebClient {
 
     @Autowired
-    LivingCostsRepositoryImpl livingCostsRepositoryImpl;
+    private LivingCostsRepositoryImpl livingCostsRepositoryImpl;
 
     public LivingCostsClientImpl() {
         super(ApiMetaData.LIVING_COSTS);
