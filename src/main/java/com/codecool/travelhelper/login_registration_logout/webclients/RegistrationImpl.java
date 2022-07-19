@@ -52,7 +52,7 @@ public class RegistrationImpl {
                             util.hashPassword(password)
                     )
             );
-            sendMailToUser.sendSimpleEmail(eMail, fullName, KindOfEmail.AFTER_REGISTRATION);
+            sendMailToUser.sendSimpleEmail(eMail, fullName, KindOfEmail.AFTER_REGISTRATION, null);
             return null;
         }
     }

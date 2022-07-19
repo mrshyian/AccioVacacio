@@ -20,7 +20,22 @@ public class MyFriendsController {
     private MyFriendsImpl myFriendsImpl;
 
     @GetMapping("/search_friend/{nameForSearch}")
-    public List<MyUserTable> getAlbums(@PathVariable String nameForSearch){
+    public List<MyUserTable> getAllUsersByName(@PathVariable String nameForSearch){
         return myFriendsImpl.getAllUsersByName(nameForSearch);
+    }
+
+    @GetMapping("/search_friend/id/{myUserId}")
+    public List<MyUserTable> getAllFriendsByMyUserId(@PathVariable String myUserId){
+        return myFriendsImpl.getAllFriendsByMyUserId(myUserId);
+    }
+
+    @GetMapping("/add_friend/{myUserId}")
+    public void addFriend(@PathVariable String myUserId){
+        myFriendsImpl.addFriend(myUserId);
+    }
+
+    @GetMapping("/remove_friend/{myUserId}")
+    public void removeFriend(@PathVariable String myUserId){
+        myFriendsImpl.removeFriend(myUserId);
     }
 }
