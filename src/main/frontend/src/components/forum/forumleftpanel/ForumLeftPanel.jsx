@@ -14,6 +14,7 @@ import {Link} from "react-router-dom";
 import {BiFileFind} from "react-icons/bi";
 import {Form} from "react-bootstrap";
 import Axios from "axios";
+import {AiOutlineFire} from "react-icons/ai";
 
 const ForumLeftPanel = () => {
 
@@ -65,6 +66,11 @@ const ForumLeftPanel = () => {
                             <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
                             <MenuItem icon={<FaGlobeEurope />}><input type="text" placeholder="City"/></MenuItem>
                         </SubMenu>
+                        <SubMenu title="Filter" icon={<FaFilter />}>
+                            <MenuItem icon={<FaHourglassHalf />}>Latest / Oldest</MenuItem>
+                            <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
+                            <MenuItem icon={<FaGlobeEurope />}><input type="text" placeholder="City"/></MenuItem>
+                        </SubMenu>
                         {NewModalOpen && <AddNewPost open={NewModalOpen}/>}
                     </Menu>
                 </ProSidebar>
@@ -96,9 +102,15 @@ const ForumLeftPanel = () => {
                                 <MenuItem icon={<BiFileFind />}><button onClick={(e)=> submit(e)} type="submit"><Link to="/sort_by"> Submit </Link></button></MenuItem>
                             </Form>
                         </SubMenu>
+
                         <MenuItem icon={<FaHeart />}><Link to="/forum/favourite_comments">Favourite comments</Link></MenuItem>
                         <MenuItem variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</MenuItem>
                         {NewModalOpen && <AddNewPost close={setNewModalOpen} open={NewModalOpen}/>}
+                        <SubMenu title="Most Popular" icon={<AiOutlineFire />}>
+                            <MenuItem><p>Poznan/Poland:</p></MenuItem>
+                            <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
+                            <MenuItem icon={<AiOutlineFire />}><input type="text" placeholder="City"/></MenuItem>
+                        </SubMenu>
                     </Menu>
                 </ProSidebar>
             </header>

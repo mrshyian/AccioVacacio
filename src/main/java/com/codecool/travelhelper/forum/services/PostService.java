@@ -31,7 +31,7 @@ public class PostService {
     }
 
     public List<PostTable> findAll(){
-        return this.postRepository.findAll();
+        return this.postRepository.findAllByOrderByPostDateTimeDesc();
     }
 
 }

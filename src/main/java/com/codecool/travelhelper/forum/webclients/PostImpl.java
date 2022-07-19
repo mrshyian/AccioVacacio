@@ -16,10 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Setter
 @Component
@@ -130,5 +127,7 @@ public class PostImpl {
     }
 
 
-
+    public Set<PostTable> getMostPopularPosts() {
+        return postRepository.findAllByOrderByCommentsDesc();
+    }
 }

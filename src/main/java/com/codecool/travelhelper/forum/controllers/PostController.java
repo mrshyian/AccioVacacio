@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -90,6 +91,11 @@ public class PostController {
             }
         }
         return posts;
+    }
+
+    @GetMapping("/most_popular")
+    public Set<PostTable> getMostPopularPosts(){
+        return post.getMostPopularPosts();
     }
 
     // send sorted posts to frontend

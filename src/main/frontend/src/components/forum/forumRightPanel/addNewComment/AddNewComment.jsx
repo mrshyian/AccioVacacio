@@ -35,7 +35,7 @@ function AddNewComment(props) {
                     name: name.name,
                     postId: props.postId
 
-                }).then(() => console.log("file upload successfully"))
+                }).then(() => refreshPage())
                 :
                 axios.post(`http://localhost:8080/image/upload/comment/${name.name}/${props.postId}`,
                     dataa,
@@ -90,7 +90,6 @@ function AddNewComment(props) {
                             </Card>
                         </div>
                 }
-
             </div>
         )
     }
