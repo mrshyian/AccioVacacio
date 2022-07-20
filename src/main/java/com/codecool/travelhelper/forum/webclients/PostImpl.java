@@ -128,6 +128,6 @@ public class PostImpl {
 
 
     public Set<PostTable> getMostPopularPosts() {
-        return postRepository.findAllByOrderByCommentsDesc();
+        return postRepository.findAllByOrderByCommentsAsc();
     }
 }

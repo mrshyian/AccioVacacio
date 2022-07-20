@@ -6,6 +6,7 @@ import AddNewComment from "../addNewComment/AddNewComment";
 import {FaHeart, FaTrash} from "react-icons/fa";
 import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
+import { BsFillArrowUpSquareFill} from "react-icons/bs";
 
 const SinglePost = (props) => {
     const userId = props.post.myUserTable.id
@@ -71,7 +72,7 @@ const SinglePost = (props) => {
 
 
     return (
-        <div style={{marginBottom: "100px"}}>
+        <div id={props.post.id} style={{marginBottom: "100px"}}>
             {editable ?
                 <Card
                     bg="dark"
@@ -110,6 +111,9 @@ const SinglePost = (props) => {
                         <FaTrash/>}</Button><p></p>
                         <Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{
                             <FaHeart/>}</Button>
+                        <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                        >{<BsFillArrowUpSquareFill/>}</Button>
+
                         <p>Comments:</p>
                         {props.comments.map((comment, post, index) => {
                             if(comment.post.id === props.post.id){
@@ -162,10 +166,16 @@ const SinglePost = (props) => {
 
                                     <Button style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
                                             onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
+
+
+                                    <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                                    >{<BsFillArrowUpSquareFill/>}</Button>
                                 </div>
                                 :
                                 <div>
                                     <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{<FaHeart/>}</Button>
+                                    <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                                    >{<BsFillArrowUpSquareFill/>}</Button>
                                 </div>
                             }
 

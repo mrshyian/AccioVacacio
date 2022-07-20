@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Menu, MenuItem, ProSidebar, SubMenu} from "react-pro-sidebar";
 import {
     FaComment,
@@ -15,18 +15,22 @@ import {BiFileFind} from "react-icons/bi";
 import {Form} from "react-bootstrap";
 import Axios from "axios";
 import {AiOutlineFire} from "react-icons/ai";
+import SinglePost from "../forumRightPanel/singlePost/SinglePost";
+import axios from "axios";
 
-const ForumLeftPanel = () => {
+const ForumLeftPanel = (props) => {
 
     const [NewModalOpen, setNewModalOpen] = useState(false);
+    const [popularPosts, setPopularPosts] = useState([]);
     const url = `http://localhost:8080/sort_by`;
     const [date, setDate] = useState("");
     const [data, setData] = useState({
         country: "",
         city: "",
         time: date
-
     })
+
+
 
     const openModal = () =>{
         setNewModalOpen(true)
@@ -52,9 +56,22 @@ const ForumLeftPanel = () => {
 
     }
 
+    const fetchMostPopularPosts = () => {
+        axios.get(`http://localhost:8080/get_most_popular_posts`)
+            .then(res =>{setPopularPosts(res.data);
+                console.log(res.data)})
+            .catch(err => {console.log(err)});
+    };
+
+
+    ///get_most_popular_posts
     function refreshPage(){
         window.location.reload();
     }
+
+    useEffect(()=>{
+        fetchMostPopularPosts();
+    }, [])
 
     if (sessionStorage.getItem("userId") === null){
         return (
@@ -107,9 +124,14 @@ const ForumLeftPanel = () => {
                         <MenuItem variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</MenuItem>
                         {NewModalOpen && <AddNewPost close={setNewModalOpen} open={NewModalOpen}/>}
                         <SubMenu title="Most Popular" icon={<AiOutlineFire />}>
-                            <MenuItem><p>Poznan/Poland:</p></MenuItem>
-                            <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
-                            <MenuItem icon={<AiOutlineFire />}><input type="text" placeholder="City"/></MenuItem>
+                            <div>
+                            {popularPosts.map((post, index) => {
+                                return (
+                                    <MenuItem><a href={`#${post.id}`}>Poznan/Poland:{post.id}</a></MenuItem>
+                                    // <SinglePost post={singlePost} comments={props.comments} key={index}/>
+                                )
+                            })}
+                        </div>
                         </SubMenu>
                     </Menu>
                 </ProSidebar>
