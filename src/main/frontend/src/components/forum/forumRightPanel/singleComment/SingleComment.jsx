@@ -85,7 +85,7 @@ const SingleComment = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex", backgroundColor: "rgb(35, 35, 35)"}}>
 
                         <p style={{ marginBottom: -30 }}>
-                            <Image fluid="true" className="imgForPost" src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`} alt="user photo"/>
+                            <Image fluid="true" className="imgForForum" src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`} alt=""/>
                             <p>{props.comments.userName}</p></p>
                         <p>{props.comments.commentDateTime}</p>
 
@@ -121,7 +121,7 @@ const SingleComment = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex", backgroundColor: "rgb(35, 35, 35)"}}>
 
                         <p style={{ marginBottom: -30 }}>
-                           <Image className="imgForForum" src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`} alt="user photo"/>
+                           <Image className="imgForForum" src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`} alt=""/>
                             <p>{props.comments.userName}{userId}</p></p>
                         <p>{props.comments.commentDateTime}</p>
 

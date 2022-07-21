@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class CommentModel {
     private Long id;
-    private int size;
+    private String topic;
 
-    public CommentModel(Long id, int size) {
+    public CommentModel(Long id, String topic) {
         this.id = id;
-        this.size = size;
+        this.topic = topic;
     }
 }

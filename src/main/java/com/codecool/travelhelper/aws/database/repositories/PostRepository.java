@@ -16,8 +16,7 @@ public interface PostRepository extends JpaRepository<PostTable, Long> {
     List<PostTable> findAllByOrderByPostDateTimeDesc();
     Set<PostTable> findAllByOrderByCommentsAsc();
 
-    @Query("SELECT new com.codecool.travelhelper.forum.models.CommentModel(c.id, size(c.comments))FROM PostTable AS c GROUP BY c.id ORDER BY size(c.comments) ASC")
+    @Query("SELECT new com.codecool.travelhelper.forum.models.CommentModel(c.id, c.topic)FROM PostTable AS c GROUP BY c.id ORDER BY size(c.comments) ASC")
     List<CommentModel> getListOfPostId(Pageable pageable);
 
 }
-

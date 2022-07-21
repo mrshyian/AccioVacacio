@@ -121,9 +121,9 @@ const ForumLeftPanel = (props) => {
                         {NewModalOpen && <AddNewPost close={setNewModalOpen} open={NewModalOpen}/>}
                         <SubMenu title="Most Popular" icon={<AiOutlineFire />}>
                             <div>
-                            {popularPosts.map((post) => {
+                            {popularPosts.map((post, index) => {
                                 return (
-                                    <MenuItem><a href={`#${post.id}`}>Poznan/Poland:{post.id}</a></MenuItem>
+                                    <MenuItem key={index}><a href={`#${post.id}`}>{post.topic}</a></MenuItem>
                                 )
                             })}
                         </div>
