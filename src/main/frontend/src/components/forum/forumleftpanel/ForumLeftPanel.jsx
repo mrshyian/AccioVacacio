@@ -30,8 +30,6 @@ const ForumLeftPanel = (props) => {
         time: date
     })
 
-
-
     const openModal = () =>{
         setNewModalOpen(true)
     }
@@ -63,8 +61,6 @@ const ForumLeftPanel = (props) => {
             .catch(err => {console.log(err)});
     };
 
-
-    ///get_most_popular_posts
     function refreshPage(){
         window.location.reload();
     }
@@ -125,10 +121,9 @@ const ForumLeftPanel = (props) => {
                         {NewModalOpen && <AddNewPost close={setNewModalOpen} open={NewModalOpen}/>}
                         <SubMenu title="Most Popular" icon={<AiOutlineFire />}>
                             <div>
-                            {popularPosts.map((post, index) => {
+                            {popularPosts.map((post) => {
                                 return (
                                     <MenuItem><a href={`#${post.id}`}>Poznan/Poland:{post.id}</a></MenuItem>
-                                    // <SinglePost post={singlePost} comments={props.comments} key={index}/>
                                 )
                             })}
                         </div>

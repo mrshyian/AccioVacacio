@@ -96,11 +96,6 @@ public class PostController {
         return posts;
     }
 
-    @GetMapping("/most_popular")
-    public Set<PostTable> getMostPopularPosts(){
-        return post.getMostPopularPosts();
-    }
-
     // send sorted posts to frontend
     @GetMapping("/sort_by")
     public List<PostTable> sortPosts() {
@@ -119,18 +114,11 @@ public class PostController {
         post.editPosts(postDetails);
     }
 
-
+    // send most popular posts based on comments quantity
     @GetMapping("/get_most_popular_posts")
     public List<CommentModel> getPostsIds(){
-        List<CommentModel> comments = new ArrayList<>();
-//        Pageable pageable = PageRequest.of(0, 20);
-        List<CommentModel> list = postRepository.getListOfPostId();
-//        List<Long> list = postRepository.getListOfPostId(pageable);
-//        System.out.println(list);
-//        for (Long ob : list) {
-//            comments.add(new CommentModel(ob, ob.));
-//        }
-        return list;
+        Pageable pageable = PageRequest.of(0, 20);
+        return postRepository.getListOfPostId(pageable);
     }
 
 }

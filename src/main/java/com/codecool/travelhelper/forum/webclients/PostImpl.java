@@ -126,8 +126,4 @@ public class PostImpl {
         }
     }
 
-
-    public Set<PostTable> getMostPopularPosts() {
-        return postRepository.findAllByOrderByCommentsAsc();
-    }
 }
