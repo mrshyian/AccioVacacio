@@ -123,13 +123,14 @@ public class PostController {
     @GetMapping("/get_most_popular_posts")
     public List<CommentModel> getPostsIds(){
         List<CommentModel> comments = new ArrayList<>();
-        Pageable pageable = PageRequest.of(0, 20);
-        List<Long> list = postRepository.getListOfPostId(pageable);
-        System.out.println(list);
-        for (Long ob : list) {
-            comments.add(new CommentModel(ob));
-        }
-        return comments;
+//        Pageable pageable = PageRequest.of(0, 20);
+        List<CommentModel> list = postRepository.getListOfPostId();
+//        List<Long> list = postRepository.getListOfPostId(pageable);
+//        System.out.println(list);
+//        for (Long ob : list) {
+//            comments.add(new CommentModel(ob, ob.));
+//        }
+        return list;
     }
 
 }
