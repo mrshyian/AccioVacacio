@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface MessageRepository extends JpaRepository<MessageTable, Long> {
+    List<MessageTable> findAllByFromUserOrToUser(MyUserTable fromUser, MyUserTable toUser);
     List<MessageTable> findAllByFromUserAndToUser(MyUserTable fromUser, MyUserTable toUser);
 }

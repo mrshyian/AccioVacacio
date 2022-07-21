@@ -19,7 +19,6 @@ import SingleAlbumView
     from "./components/userPage/userLeftBar/userLeftBarComponents/albumsFromTrips/singleAlbum/SingleAlbumView";
 import AddImage from "./components/userPage/userMainBar/userMainBarComponents/addImage/AddImage";
 import MyFriends from "./components/userPage/userLeftBar/userLeftBarComponents/myFriends/MyFriends";
-import NewMailToFriend from "./components/userPage/userLeftBar/userLeftBarComponents/mailToFriend/NewMailToFriend";
 import MailBox from "./components/userPage/userLeftBar/userLeftBarComponents/mailToFriend/MailBox";
 
 
@@ -39,7 +38,6 @@ root.render(
                   <Route path="/userpage/albums_from_trips" element={<AlbumsFromTrips />}/>
                   <Route path="/userpage/albums_from_trips/album" element={<SingleAlbumView />}/>
                   <Route path="/userpage/friends" element={<MyFriends />}/>
-                  <Route path="/userpage/friends/new_mail" element={<NewMailToFriend/>}/>
                   <Route path="/userpage/friends/mail_box" element={<MailBox/>}/>
                   <Route path="/forum/my_comments" element={<MyComments />}/>
                   <Route path="/forum/favourite_comments" element={<FavouriteComments />}/>

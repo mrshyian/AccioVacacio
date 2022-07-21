@@ -1,9 +1,9 @@
 package com.codecool.travelhelper.aws.database.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,15 +12,14 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Setter
-public class MessageTable {
+@ToString
+public class MessageTable implements Comparable<MessageTable>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String messageTitle;
     private String messageText;
     private String dateTimeOfSending;
-    private boolean wasSeen;
 
 
     @ManyToOne
@@ -33,12 +32,18 @@ public class MessageTable {
     @JoinColumn(name = "toUserId")
     private MyUserTable toUser;
 
-    public MessageTable(String messageTitle, String messageText, MyUserTable fromUser, MyUserTable toUser) {
-        this.messageTitle = messageTitle;
+    public MessageTable(String messageText, MyUserTable fromUser, MyUserTable toUser) {
         this.messageText = messageText;
         this.dateTimeOfSending = LocalDate.now().toString();
-        this.wasSeen = false;
         this.fromUser = fromUser;
         this.toUser = toUser;
+    }
+
+    @Override
+    public int compareTo(MessageTable o) {
+        if (getDateTimeOfSending() == null || o.getDateTimeOfSending() == null) {
+            return 0;
+        }
+        return getDateTimeOfSending().compareTo(o.getDateTimeOfSending());
     }
 }

@@ -15,6 +15,13 @@ const SingleFriend = (props) => {
             });
     };
 
+    const sayHello = () => {
+        axios.get(`http://localhost:8080/mail_to_friend/${props.myUser.id}`)
+            .then(() => navigate("/userpage/friends/mail_box"))
+            .catch(err => {
+                console.log(err)
+            });
+    }
 
 
     return (
@@ -27,11 +34,7 @@ const SingleFriend = (props) => {
                 <h4 style={{marginTop: "5%"}}>{props.myUser.fullName}</h4>
                 <Button style={{float: "right", margin: "3px"}} variant="outline-warning" onClick={() => removeFriend()}>{<FaTrashAlt/>}</Button>
                 <Button style={{float: "right", margin: "3px"}} variant="outline-warning"
-                        onClick={() => navigate("/userpage/friends/new_mail", {
-                            state: {
-                                friend: props.myUser,
-                            }
-                        })}>{<FaComments/>}</Button>
+                        onClick={() => sayHello()}>{<FaComments/>}</Button>
             </Card.Body>
         </Card>
     );

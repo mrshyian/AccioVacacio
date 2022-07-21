@@ -5,12 +5,10 @@ import axios from "axios";
 import Chat from "./Chat";
 
 const MailBox = () => {
-
-    const openChat = () => {
-      document.getElementById("chat").innerHTML = "<div dangerouslySetInnerHTML={{__html: Chat}}/>";
-    }
-
     const [penFriends, setPenFriends] = useState([]);
+
+    const [showChat, setShowChat] = useState({});
+
 
     const getAllPenFriends = () => {
         axios.get(`http://localhost:8080/mail_to_friend/all_chats`)
@@ -23,8 +21,8 @@ const MailBox = () => {
             });
     };
 
-    useEffect(() => {
-        getAllPenFriends();
+    useEffect(async () => {
+        await getAllPenFriends();
     }, [])
 
     return (
@@ -36,7 +34,7 @@ const MailBox = () => {
                 text={'white'}
                 className="mb-2 right">
                 <Card.Header style={{textAlign: "center", color: "orange"}}>
-                    My chats
+                    <h3>CHAT</h3>
                 </Card.Header>
                 <Card
                     bg="dark"
@@ -45,25 +43,20 @@ const MailBox = () => {
                     <Card.Body style={{display: "flex", justifyContent: "space-between"}} id="friends-list">
                         <div>
                             {penFriends.map((friend, index) => {
-                                return <h5>
-                                    <Button style={{width: 200}} variant={"warning"} key={index}>
-                                        {friend.nickName}
-                                    </Button>
-                                </h5>
-                            })}
-                            <h5>
-                                <Button style={{width: 200}} variant={"warning"} onClick={() => {openChat()}}>
-                                    Kuba
-                                </Button>
-                            </h5>
-                            <h5>
-                                <Button style={{width: 200}} variant={"warning"}>
-                                    Seba
-                                </Button>
-                            </h5>
+                                if (friend.id.toString() !== sessionStorage.getItem("userId")){
+                                    return <h5>
+                                        <Button style={{width: 200}} variant={"warning"} key={index} onClick={() => {setShowChat(friend)}}>
+                                            {friend.nickName}
+                                        </Button>
+                                    </h5>
+                                }})}
                         </div>
                         <Card.Text id="chat" style={{textAlign: "center", width: "100%"}}>
-                            chat with friends
+                            {!showChat.nickName ?
+                                <div>chat with friends</div>
+                                :
+                                <Chat friend={showChat}/>
+                            }
                         </Card.Text>
                     </Card.Body>
                 </Card>
