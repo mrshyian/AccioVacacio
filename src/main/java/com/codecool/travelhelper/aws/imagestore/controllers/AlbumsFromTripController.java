@@ -1,8 +1,11 @@
 package com.codecool.travelhelper.aws.imagestore.controllers;
 
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.codecool.travelhelper.aws.database.models.AlbumFromTripsTable;
-import com.codecool.travelhelper.aws.database.models.CommentsTable;
-import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PhotosFromTripsTable;
 import com.codecool.travelhelper.aws.database.repositories.AlbumsFromTripsRepository;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
@@ -16,7 +19,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashSet;
 import java.util.UUID;
 
 @RestController
@@ -82,5 +84,19 @@ public class AlbumsFromTripController {
         AlbumFromTripsTable albumFromTripsTable = albumsFromTripsRepository.findAlbumFromTripsTableById(Long.valueOf(albumId));
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), albumFromTripsTable.getAlbumName());
         return s3Service.downloadFileFromStorage(path, filename);
+    }
+
+    public void deleteAlbumImage(String filename){
+        AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+
+        ObjectListing objectListing = s3.listObjects(BucketName.PROFILE_IMAGE.getBucketName(), filename);
+        for (S3ObjectSummary s3ObjectSummary: objectListing.getObjectSummaries()) {
+            try {
+                s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), s3ObjectSummary.getKey());
+            } catch(AmazonServiceException e){
+                System.err.println(e.getErrorMessage());
+            }
+        }
+
     }
 }
