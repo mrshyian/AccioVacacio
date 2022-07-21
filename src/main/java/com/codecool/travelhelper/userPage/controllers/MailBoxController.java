@@ -17,15 +17,16 @@ public class MailBoxController {
     @Autowired
     MailBoxImpl mailBoxImpl;
 
-    @PostMapping("/mail_to_friend")
-    public void newMail(@RequestBody String mailData ) {
-        mailBoxImpl.addNewMail(mailData);
+    @PostMapping("/mail_to_friend/new_message_in_chat")
+    public void newMessageInChat(@RequestBody String messageData ) {
+        mailBoxImpl.addNewMessage(messageData);
     }
 
     @GetMapping("/mail_to_friend/all_chats")
     public List<MyUserTable> getAllPenFriends(){
         return mailBoxImpl.getAllPenFriends();
     }
+
     @GetMapping("/mail_to_friend/{toUser}")
     public void newChat(@PathVariable String toUser){
         mailBoxImpl.newChat(toUser);

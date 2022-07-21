@@ -23,12 +23,10 @@ public class MessageTable implements Comparable<MessageTable>{
 
 
     @ManyToOne
-    @MapsId("id")
     @JoinColumn(name = "fromUserId")
     private MyUserTable fromUser;
 
     @ManyToOne
-    @MapsId("id")
     @JoinColumn(name = "toUserId")
     private MyUserTable toUser;
 

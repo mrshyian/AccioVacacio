@@ -27,6 +27,15 @@ const Chat = (props) => {
 
     const [messageText, setMessageText] = useState("")
 
+    const sendMessageInChat = () => {
+        axios.post(
+            "http://localhost:8080/mail_to_friend/new_message_in_chat", {
+                messageText: messageText,
+                toUserId: props.friend.id
+            })
+            .then((() => window.location.reload()));
+    }
+
 
     return (
         <div>
@@ -35,14 +44,20 @@ const Chat = (props) => {
                     console.log(message)
                     if (message.toUser.id.toString() === sessionStorage.getItem("userId")) {
                         return <div className="left-side-message" key={index}>
-                            <div className="left-side-nickname">{props.friend.nickName}</div>
-                            <div className="message-in-chat">{message.messageText}</div>
-                        </div>
+                                    <div className="date-position-box">
+                                        <div className="left-side-nickname">{props.friend.nickName}</div>
+                                        <div className="left-message-in-chat">{message.messageText}</div>
+                                    </div>
+                                    <div className="date-position-left">{message.dateTimeOfSending}</div>
+                                </div>
                     } else if (message.fromUser.id.toString() === sessionStorage.getItem("userId")){
                         return <div className="right-side-message" key={index}>
-                            <div className="message-in-chat">{message.messageText}</div>
-                            <div className="right-side-nickname">Me</div>
-                        </div>
+                                    <div className="date-position-box">
+                                        <div className="right-message-in-chat">{message.messageText}</div>
+                                        <div className="right-side-nickname">Me</div>
+                                    </div>
+                                    <div className="date-position-right">{message.dateTimeOfSending}</div>
+                                </div>
                     }
                 })
                 }
@@ -55,9 +70,8 @@ const Chat = (props) => {
                             onChange={(e) => setMessageText(e.target.value)}
                         />
                     </InputGroup>
-                    <Button variant={"warning"}>Send</Button>
+                    <Button variant={"warning"} onClick={() => sendMessageInChat()}>Send</Button>
                 </div>
-
             </div>
         </div>
     );

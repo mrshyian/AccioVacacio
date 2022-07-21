@@ -9,7 +9,6 @@ const MailBox = () => {
 
     const [showChat, setShowChat] = useState({});
 
-
     const getAllPenFriends = () => {
         axios.get(`http://localhost:8080/mail_to_friend/all_chats`)
             .then(res => {

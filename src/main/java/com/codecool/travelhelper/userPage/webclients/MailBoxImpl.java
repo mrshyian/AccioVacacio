@@ -27,22 +27,23 @@ public class MailBoxImpl {
     @Autowired
     private LoginImpl loginImpl;
 
-    public void addNewMail(String mailData){
+    public void addNewMessage(String messageData){
         Long userId = loginImpl.getCurrentUserId();
         MyUserTable fromUser = userRepository.findAllById(userId);
 
         JsonParser jsonParser = new JsonParser();
-        JsonObject commentJsonObject = (JsonObject)jsonParser.parse(mailData);
+        JsonObject commentJsonObject = (JsonObject)jsonParser.parse(messageData);
 
-        String mailText = commentJsonObject.get("mailText").getAsString();
-        Long friendId = Long.parseLong(commentJsonObject.get("friendId").getAsString());
+        String messageText = commentJsonObject.get("messageText").getAsString();
+        Long toUserId = Long.parseLong(commentJsonObject.get("toUserId").getAsString());
 
-        MyUserTable toUser = userRepository.findAllById(friendId);
+        MyUserTable toUser = userRepository.findAllById(toUserId);
 
         System.out.println("from user id: " + fromUser.getId());
         System.out.println("to user id: " + toUser.getId());
+        System.out.println("message text: " + messageText);
 
-        messageRepository.save(new MessageTable(mailText, fromUser, toUser));
+        messageRepository.save(new MessageTable(messageText, fromUser, toUser));
     }
 
     public List<MyUserTable> getAllPenFriends(){
@@ -77,6 +78,7 @@ public class MailBoxImpl {
         Long userId = loginImpl.getCurrentUserId();
         MyUserTable fromUser = userRepository.findAllById(userId);
         MyUserTable toUser = userRepository.findAllById(Long.parseLong(toUserId));
+
         List<MessageTable> messagesToMe = messageRepository.findAllByFromUserAndToUser(fromUser, toUser);
         List<MessageTable> messagesFromMe = messageRepository.findAllByFromUserAndToUser(toUser, fromUser);
 

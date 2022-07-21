@@ -103,6 +103,11 @@ public class MyUserTable {
     @OneToMany(mappedBy = "fromUser",  cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MessageTable> messagesList;
 
+    @JsonIgnore
+    @JsonIgnoreProperties("toUser")
+    @OneToMany(mappedBy = "toUser",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MessageTable> messagesList2;
+
 //---------------------------------------------------
 
     public MyUserTable(String fullName, String nickName, String birthday, String userEMail, String password) {
