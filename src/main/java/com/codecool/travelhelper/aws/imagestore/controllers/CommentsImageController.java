@@ -1,7 +1,11 @@
 package com.codecool.travelhelper.aws.imagestore.controllers;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
@@ -10,6 +14,8 @@ import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
+import com.codecool.travelhelper.aws.imagestore.config.AmazonConfig;
+import com.codecool.travelhelper.aws.imagestore.filestore.FileStore;
 import com.codecool.travelhelper.aws.imagestore.service.S3Service;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +29,11 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin("*")
-public class CommentsController {
+public class CommentsImageController {
     private final S3Service s3Service;
+
+    @Autowired
+    private FileStore fileStore;
 
     @Autowired
     LoginImpl loginImpl;
@@ -38,7 +47,7 @@ public class CommentsController {
     @Autowired
     PostRepository postRepository;
 
-    public CommentsController(S3Service s3Service) {
+    public CommentsImageController(S3Service s3Service) {
         this.s3Service = s3Service;
     }
 
@@ -89,9 +98,10 @@ public class CommentsController {
     }
 
     public void deleteCommentsImage(String filename){
-        AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
         try {
-            s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), filename);
+            String path = String.format("%s/%s", "Comments", filename);
+            fileStore.deleteFile(path);
+//            amazonS3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), filename);
         } catch(AmazonServiceException e){
             System.err.println(e.getErrorMessage());
         }

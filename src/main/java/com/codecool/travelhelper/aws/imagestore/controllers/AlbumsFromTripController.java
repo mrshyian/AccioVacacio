@@ -97,6 +97,5 @@ public class AlbumsFromTripController {
                 System.err.println(e.getErrorMessage());
             }
         }
-
     }
 }

@@ -7,6 +7,7 @@ import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
+import com.codecool.travelhelper.aws.imagestore.controllers.S3PostController;
 import com.codecool.travelhelper.forum.controllers.PostController;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.google.gson.JsonObject;
@@ -23,13 +24,14 @@ import java.util.*;
 public class PostImpl {
 
 
+
     private List<PostTable> posts = new ArrayList<>();
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    private CommentRepository commentRepository;
+    private S3PostController s3PostController;
 
     @Autowired
     private PostController postController;
@@ -93,6 +95,7 @@ public class PostImpl {
 
         String idPost = postToDeleteId.get("postId").getAsString();
 
+        s3PostController.deletePostImage(postRepository.findPostTableById(Long.valueOf(idPost)).getPostImage());
         postRepository.deleteAllById(Long.parseLong(idPost));
 
     }

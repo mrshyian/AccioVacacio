@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.util.IOUtils;
+import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,4 +51,9 @@ public class FileStore {
             throw new IllegalStateException("Failed to download file to s3", e);
         }
     }
+
+    public void deleteFile(String filename){
+        s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), filename);
+    }
+
 }

@@ -110,7 +110,7 @@ function AddNewComment(props) {
                             <div>
                                 <Dropzone/>
                             </div>
-                            <Button variant="outline-warning" type="submit">Add comment</Button>
+                            <Button onClick={refreshPage} variant="outline-warning" type="submit">Add comment</Button>
                         </div>
                     </Card.Body>
                 </Card>

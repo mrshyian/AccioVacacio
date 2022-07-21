@@ -79,10 +79,6 @@ public class CommentController {
         return commentImpl.getSortedComments();
     }
 
-//    @GetMapping("/get_posts_ids")
-//    public List<Object[]> getPostsIds(){
-//        return commentRepository.getListOfPostId();
-//    }
 
     // add like to selected comment
     @PostMapping("/add_like_to_comment")
