@@ -6,11 +6,14 @@ import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
+import com.codecool.travelhelper.forum.models.CommentModel;
 import com.codecool.travelhelper.forum.services.PostService;
 import com.codecool.travelhelper.forum.webclients.PostImpl;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -108,6 +111,13 @@ public class PostController {
     @PutMapping("/post_edit")
     public void editPost(@RequestBody String postDetails){
         post.editPosts(postDetails);
+    }
+
+    // send most popular posts based on comments quantity
+    @GetMapping("/get_most_popular_posts")
+    public List<CommentModel> getPostsIds(){
+        Pageable pageable = PageRequest.of(0, 20);
+        return postRepository.getListOfPostId(pageable);
     }
 
 }

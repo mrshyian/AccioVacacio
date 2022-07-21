@@ -2,9 +2,12 @@ package com.codecool.travelhelper.aws.imagestore.filestore;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.util.IOUtils;
+import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,4 +53,22 @@ public class FileStore {
             throw new IllegalStateException("Failed to download file to s3", e);
         }
     }
+
+    public void deleteFile(String filename){
+        s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), filename);
+    }
+
+    public void deleteAlbum(String filename){
+        ObjectListing objectListing = s3.listObjects(BucketName.PROFILE_IMAGE.getBucketName(), filename);
+        for (S3ObjectSummary s3ObjectSummary: objectListing.getObjectSummaries()) {
+            try {
+                s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), s3ObjectSummary.getKey());
+            } catch(AmazonServiceException e){
+                System.err.println(e.getErrorMessage());
+            }
+        }
+    }
+
+
+
 }

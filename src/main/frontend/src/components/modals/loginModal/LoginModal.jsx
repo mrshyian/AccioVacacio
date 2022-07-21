@@ -8,7 +8,7 @@ import GoogleSignIn from "./Google.SignIn";
 
 
 const LoginModal = (props) => {
-    const [disabledBtn, setDisabledBtn] = useState(true)
+    const [disabledBtn, setDisabledBtn] = useState(false)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -95,11 +95,11 @@ const LoginModal = (props) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer  style={{background: "rgb(40,40,40)"}} >
-                <ReCAPTCHA
-                    size="normal"
-                    sitekey={process.env.REACT_APP_RECAPTCHA_API_KEY}
-                    onChange={() => setDisabledBtn(false)}
-                />
+                {/*<ReCAPTCHA*/}
+                {/*    size="normal"*/}
+                {/*    sitekey={process.env.REACT_APP_RECAPTCHA_API_KEY}*/}
+                {/*    onChange={() => setDisabledBtn(false)}*/}
+                {/*/>*/}
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>

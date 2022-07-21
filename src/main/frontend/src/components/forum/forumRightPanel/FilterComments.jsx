@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SinglePost from "./singlePost/SinglePost";
 import axios from "axios";
 import ForumLeftPanel from "../forumleftpanel/ForumLeftPanel";
+import {Card} from "react-bootstrap";
 
 
 const FilterComments = () => {
@@ -29,11 +30,25 @@ const FilterComments = () => {
     return (
         <div>
             <ForumLeftPanel/>
-            {sortedPosts.map((post, index) => {
-                return(
-                <SinglePost post={post} comments={sortedComments} key={index}/>
-                )
-            })}
+            <Card
+                bg={"dark"}
+                key={"dark"}
+                text={'white'}
+                className="mb-2 bg-opacity"
+            >
+                <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Sorted posts</h2></Card.Header>
+                <Card.Body>
+                    <Card.Text style={{paddingLeft: "60px", paddingRight: "60px"}}>
+                        <div>
+                            {sortedPosts.map((post, index) => {
+                                return(
+                                    <SinglePost post={post} comments={sortedComments} key={index}/>
+                                )
+                            })}
+                        </div>
+                    </Card.Text>
+                </Card.Body>
+            </Card>
         </div>
     );
 };

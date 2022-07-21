@@ -79,6 +79,7 @@ public class CommentController {
         return commentImpl.getSortedComments();
     }
 
+
     // add like to selected comment
     @PostMapping("/add_like_to_comment")
     public void getLikeComment(@RequestBody String likeComment) {

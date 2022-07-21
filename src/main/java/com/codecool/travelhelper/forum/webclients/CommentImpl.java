@@ -6,6 +6,7 @@ import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
+import com.codecool.travelhelper.aws.imagestore.controllers.CommentsImageController;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -26,6 +27,9 @@ public class CommentImpl {
 
     @Autowired
     private LoginImpl loginImpl;
+
+    @Autowired
+    private CommentsImageController commentsImageController;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -56,7 +60,7 @@ public class CommentImpl {
         String city = "Poznan";
         postTable.ifPresent(table -> commentRepository.save(new CommentsTable(
                         comment,
-                        myUserTable.getAvatar(),
+                        null,
                         country,
                         city,
                         myUserTable,
@@ -116,9 +120,8 @@ public class CommentImpl {
         JsonObject commentToDeleteId = (JsonObject)jsonParser.parse(commentId);
 
         String idComment = commentToDeleteId.get("commentId").getAsString();
-
+        commentsImageController.deleteCommentsImage(commentRepository.findCommentsTableById(Long.valueOf(idComment)).getCommentImage());
         commentRepository.deleteById(Long.parseLong(idComment));
-
     }
 
     public void editComment(String commentDetails){

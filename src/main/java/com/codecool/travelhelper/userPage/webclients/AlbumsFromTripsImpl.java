@@ -2,9 +2,9 @@ package com.codecool.travelhelper.userPage.webclients;
 
 import com.codecool.travelhelper.aws.database.models.AlbumFromTripsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
-import com.codecool.travelhelper.aws.database.models.NoteTable;
 import com.codecool.travelhelper.aws.database.repositories.AlbumsFromTripsRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
+import com.codecool.travelhelper.aws.imagestore.controllers.AlbumsFromTripImageController;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.codecool.travelhelper.userPage.models.AlbumsFromTripsModel;
 import com.google.gson.JsonObject;
@@ -25,6 +25,8 @@ public class AlbumsFromTripsImpl {
     @Autowired
     private LoginImpl loginImpl;
 
+    @Autowired
+    AlbumsFromTripImageController albumsFromTripImageController;
 
     @Autowired
     private UserRepository userRepository;
@@ -83,6 +85,7 @@ public class AlbumsFromTripsImpl {
         JsonObject commentJsonObject = (JsonObject) jsonParser.parse(albumData);
         Long  albumId = Long.parseLong(commentJsonObject.get("albumId").getAsString());
 
+        albumsFromTripImageController.deleteAlbumImage(albumsFromTripsRepository.findAlbumFromTripsTableById(albumId).getAlbumName());
         albumsFromTripsRepository.deleteById(albumId);
     }
 }

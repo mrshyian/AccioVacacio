@@ -1,14 +1,13 @@
 package com.codecool.travelhelper.aws.imagestore.controllers;
 
 import com.codecool.travelhelper.aws.database.models.AlbumFromTripsTable;
-import com.codecool.travelhelper.aws.database.models.CommentsTable;
-import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PhotosFromTripsTable;
 import com.codecool.travelhelper.aws.database.repositories.AlbumsFromTripsRepository;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PhotosFromTripsRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
+import com.codecool.travelhelper.aws.imagestore.filestore.FileStore;
 import com.codecool.travelhelper.aws.imagestore.service.S3Service;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +15,18 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashSet;
 import java.util.UUID;
 
 @RestController
 @CrossOrigin("*")
-public class AlbumsFromTripController {
+public class AlbumsFromTripImageController {
     private final S3Service s3Service;
 
     @Autowired
     LoginImpl loginImpl;
+
+    @Autowired
+    FileStore fileStore;
 
     @Autowired
     UserRepository userRepository;
@@ -41,7 +42,7 @@ public class AlbumsFromTripController {
 
 
 
-    public AlbumsFromTripController(S3Service s3Service) {
+    public AlbumsFromTripImageController(S3Service s3Service) {
         this.s3Service = s3Service;
     }
 
@@ -83,4 +84,9 @@ public class AlbumsFromTripController {
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), albumFromTripsTable.getAlbumName());
         return s3Service.downloadFileFromStorage(path, filename);
     }
+
+    public void deleteAlbumImage(String filename){
+        fileStore.deleteAlbum(filename);
+    }
+
 }
