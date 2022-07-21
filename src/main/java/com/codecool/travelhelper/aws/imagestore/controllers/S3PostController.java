@@ -79,5 +79,14 @@ public class S3PostController {
         return s3Service.downloadFileFromStorage(path, filename);
     }
 
+    public void deletePostImage(String filename){
+        AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        try {
+            s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), filename);
+        } catch(AmazonServiceException e){
+            System.err.println(e.getErrorMessage());
+        }
+    }
+
 
 }
