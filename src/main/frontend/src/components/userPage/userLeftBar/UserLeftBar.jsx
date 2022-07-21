@@ -84,7 +84,7 @@ const UserLeftBar = () => {
                             to="/userpage/calculator"> Calculator </Link></MenuItem>
                         <MenuItem icon={<FaPhotoVideo/>}><Link to="/userpage/albums_from_trips"> Albums from
                             trips </Link></MenuItem>
-                        <MenuItem icon={<FaHeart/>}><Link to="/forum/favourite_comments">Favourite
+                        <MenuItem icon={<FaHeart/>}><Link to="/userpage/favourite_comments">Favourite
                             comments</Link></MenuItem>
                         <SubMenu title="Money converter" icon={<FaMoneyBillAlt/>}>
                             <Form>
