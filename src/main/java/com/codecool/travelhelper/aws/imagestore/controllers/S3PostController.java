@@ -84,7 +84,6 @@ public class S3PostController {
     }
 
     public void deletePostImage(String filename){
-
         try {
             String path = String.format("%s/%s", "Posts", filename);
             fileStore.deleteFile(path);

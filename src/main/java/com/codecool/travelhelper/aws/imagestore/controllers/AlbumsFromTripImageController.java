@@ -12,6 +12,7 @@ import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PhotosFromTripsRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
+import com.codecool.travelhelper.aws.imagestore.filestore.FileStore;
 import com.codecool.travelhelper.aws.imagestore.service.S3Service;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,14 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin("*")
-public class AlbumsFromTripController {
+public class AlbumsFromTripImageController {
     private final S3Service s3Service;
 
     @Autowired
     LoginImpl loginImpl;
+
+    @Autowired
+    FileStore fileStore;
 
     @Autowired
     UserRepository userRepository;
@@ -43,7 +47,7 @@ public class AlbumsFromTripController {
 
 
 
-    public AlbumsFromTripController(S3Service s3Service) {
+    public AlbumsFromTripImageController(S3Service s3Service) {
         this.s3Service = s3Service;
     }
 
@@ -87,15 +91,7 @@ public class AlbumsFromTripController {
     }
 
     public void deleteAlbumImage(String filename){
-        AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
-
-        ObjectListing objectListing = s3.listObjects(BucketName.PROFILE_IMAGE.getBucketName(), filename);
-        for (S3ObjectSummary s3ObjectSummary: objectListing.getObjectSummaries()) {
-            try {
-                s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), s3ObjectSummary.getKey());
-            } catch(AmazonServiceException e){
-                System.err.println(e.getErrorMessage());
-            }
-        }
+        fileStore.deleteAlbum(filename);
     }
+
 }
