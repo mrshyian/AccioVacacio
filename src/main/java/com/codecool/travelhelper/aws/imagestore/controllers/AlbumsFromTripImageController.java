@@ -1,10 +1,5 @@
 package com.codecool.travelhelper.aws.imagestore.controllers;
 
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.codecool.travelhelper.aws.database.models.AlbumFromTripsTable;
 import com.codecool.travelhelper.aws.database.models.PhotosFromTripsTable;
 import com.codecool.travelhelper.aws.database.repositories.AlbumsFromTripsRepository;

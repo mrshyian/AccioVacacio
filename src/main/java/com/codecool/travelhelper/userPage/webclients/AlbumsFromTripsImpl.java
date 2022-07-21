@@ -2,12 +2,10 @@ package com.codecool.travelhelper.userPage.webclients;
 
 import com.codecool.travelhelper.aws.database.models.AlbumFromTripsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
-import com.codecool.travelhelper.aws.database.models.NoteTable;
 import com.codecool.travelhelper.aws.database.repositories.AlbumsFromTripsRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.aws.imagestore.controllers.AlbumsFromTripImageController;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
-import com.codecool.travelhelper.userPage.controllers.AlbumsFromTripsController;
 import com.codecool.travelhelper.userPage.models.AlbumsFromTripsModel;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

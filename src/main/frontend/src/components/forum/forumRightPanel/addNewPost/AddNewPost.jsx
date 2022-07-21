@@ -58,8 +58,7 @@ function AddNewPost(props) {
                     headers: {
                         "Content-Type": "multipart/form-data"
                     }
-                }).then(() => {
-                console.log("file upload successfully");
+                }).then(() => {refreshPage();
             }).catch(err => {
                 console.log(err);
             });

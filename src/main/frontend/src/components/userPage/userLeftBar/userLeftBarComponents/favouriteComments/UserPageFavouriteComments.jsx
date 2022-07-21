@@ -1,8 +1,6 @@
-import React from 'react';
-import ForumLeftPanel from "../../../../forum/forumleftpanel/ForumLeftPanel";
+import React, {useEffect, useState} from 'react';
 import {Card} from "react-bootstrap";
 import SinglePost from "../../../../forum/forumRightPanel/singlePost/SinglePost";
-import {useEffect, useState} from "react";
 import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
 

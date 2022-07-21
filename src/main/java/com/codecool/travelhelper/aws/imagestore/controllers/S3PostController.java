@@ -1,8 +1,6 @@
 package com.codecool.travelhelper.aws.imagestore.controllers;
 
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
