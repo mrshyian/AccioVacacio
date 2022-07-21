@@ -2,9 +2,10 @@ import React from 'react';
 import {Button, Card} from "react-bootstrap";
 import {FaComments, FaTrashAlt} from "react-icons/fa";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const SingleFriend = (props) => {
-
+    const navigate = useNavigate();
 
     const removeFriend = () => {
         axios.get(`http://localhost:8080/remove_friend/${props.myUser.id}`)
@@ -13,6 +14,7 @@ const SingleFriend = (props) => {
                 console.log(err)
             });
     };
+
 
 
     return (
@@ -24,7 +26,12 @@ const SingleFriend = (props) => {
                 <img style={{width: 100, height: 100, float: "left"}} src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
                 <h4 style={{marginTop: "5%"}}>{props.myUser.fullName}</h4>
                 <Button style={{float: "right", margin: "3px"}} variant="outline-warning" onClick={() => removeFriend()}>{<FaTrashAlt/>}</Button>
-                <Button style={{float: "right", margin: "3px"}} variant="outline-warning">{<FaComments/>}</Button>
+                <Button style={{float: "right", margin: "3px"}} variant="outline-warning"
+                        onClick={() => navigate("/userpage/friends/new_mail", {
+                            state: {
+                                friend: props.myUser,
+                            }
+                        })}>{<FaComments/>}</Button>
             </Card.Body>
         </Card>
     );

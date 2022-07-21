@@ -5,6 +5,7 @@ import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {FaEnvelope} from "react-icons/fa";
 
 
 const Header = () => {
@@ -70,7 +71,10 @@ const Header = () => {
                         </Nav>
 
                         {sessionStorage.getItem("userId") !== null ? (
-                            <Link to="/"><Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button></Link>
+                            <span>
+                                <Link to="/userpage/friends/mail_box"><Button variant={"warning"}>{<FaEnvelope/>}</Button></Link>
+                                <Link style={{marginLeft: 20}} to="/"><Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button></Link>
+                            </span>
                         ) : (
                             <span>
 								<Button

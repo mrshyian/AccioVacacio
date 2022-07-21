@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Setter
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class MyUserTable {
 
     @Id
@@ -96,6 +95,13 @@ public class MyUserTable {
     @JsonIgnore
     @ManyToMany
     private List<MyUserTable> friends;
+
+//---------------------------------------------------
+
+    @JsonIgnore
+    @JsonIgnoreProperties("fromUser")
+    @OneToMany(mappedBy = "fromUser",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MessageTable> messagesList;
 
 //---------------------------------------------------
 

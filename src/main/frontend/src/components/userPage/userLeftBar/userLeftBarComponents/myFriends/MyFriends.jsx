@@ -4,7 +4,7 @@ import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
 import SingleFriend from "./SingleFriend";
 import axios from "axios";
 import SingleSearchedFriend from "./SingleSearchedFriend";
-import {FaReply, FaUserPlus} from "react-icons/fa";
+import {FaReply} from "react-icons/fa";
 
 const MyFriends = () => {
 
