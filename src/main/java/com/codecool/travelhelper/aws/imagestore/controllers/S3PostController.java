@@ -8,6 +8,7 @@ import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
+import com.codecool.travelhelper.aws.imagestore.filestore.FileStore;
 import com.codecool.travelhelper.aws.imagestore.service.S3Service;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class S3PostController {
 
     @Autowired
     LoginImpl loginImpl;
+
+    @Autowired
+    FileStore fileStore;
 
     @Autowired
     PostRepository postRepository;
@@ -80,13 +84,12 @@ public class S3PostController {
     }
 
     public void deletePostImage(String filename){
-        AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+
         try {
-            s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), filename);
+            String path = String.format("%s/%s", "Posts", filename);
+            fileStore.deleteFile(path);
         } catch(AmazonServiceException e){
             System.err.println(e.getErrorMessage());
         }
     }
-
-
 }
