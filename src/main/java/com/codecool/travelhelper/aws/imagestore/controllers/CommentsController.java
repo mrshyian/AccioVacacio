@@ -1,5 +1,8 @@
 package com.codecool.travelhelper.aws.imagestore.controllers;
 
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
@@ -83,6 +86,15 @@ public class CommentsController {
         String filename = commentsTable.getCommentImage();
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "Comments");
         return s3Service.downloadFileFromStorage(path, filename);
+    }
+
+    public void deleteCommentsImage(String filename){
+        AmazonS3 s3 = AmazonS3ClientBuilder.defaultClient();
+        try {
+            s3.deleteObject(BucketName.PROFILE_IMAGE.getBucketName(), filename);
+        } catch(AmazonServiceException e){
+            System.err.println(e.getErrorMessage());
+        }
     }
 
 }
