@@ -72,8 +72,7 @@ const Chat = (props) => {
                             <div className="date-position-right">{message.dateTimeOfSending}</div>
                         </div>
                     }
-                })
-                }
+                })}
                 <div style={{
                     display: "flex",
                     justifyContent: "space-between",
