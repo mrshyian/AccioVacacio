@@ -66,6 +66,7 @@
 }
 
 .date-position-right {
+    float: right;
     font-size: 10px;
     color: #656767;
     margin-right: 3px;

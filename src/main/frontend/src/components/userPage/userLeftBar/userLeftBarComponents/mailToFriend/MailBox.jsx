@@ -4,30 +4,8 @@ import {Button, Card} from "react-bootstrap";
 import axios from "axios";
 import Chat from "./Chat";
 import {useLocation} from "react-router-dom";
-import {forEach} from "react-bootstrap/ElementChildren";
 
 const MailBox = () => {
-    let friend={};
-    try{
-        const location = useLocation()
-        friend = location.state.friend;
-    } catch(e) { console.error(e); }
-
-
-    const [penFriends, setPenFriends] = useState([]);
-
-    const [showChat, setShowChat] = useState({});
-
-    const getAllPenFriends = () => {
-        axios.get(`http://localhost:8080/mail_to_friend/all_chats`)
-            .then(res => {
-                console.log(res.data)
-                setPenFriends(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
-    };
 
     const changeCSSButton = (index) => {
         penFriends.forEach((fr, i) => {
@@ -40,6 +18,30 @@ const MailBox = () => {
             }
         })
     }
+
+    let friend={};
+
+    try{
+        const location = useLocation()
+        friend = location.state.friend;
+    } catch(e) { console.error(e); }
+
+
+    const [penFriends, setPenFriends] = useState([]);
+
+    const [showChat, setShowChat] = useState({});
+
+    const getAllPenFriends =  () => {
+         axios.get(`http://localhost:8080/mail_to_friend/all_chats`)
+            .then(res => {
+                console.log(res.data)
+                setPenFriends(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    };
+
 
     useEffect( () => {
         (async () => {

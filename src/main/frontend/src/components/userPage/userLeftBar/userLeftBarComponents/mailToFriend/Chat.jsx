@@ -53,7 +53,7 @@ const Chat = (props) => {
 
     return (
         <div>
-            <div style={{border: "4px solid orange", height: "500px", marginLeft: "20px", display: "block", position: "unset"}}>
+            <div style={{border: "4px solid orange", height: "500px", marginLeft: "20px", display: "block", position: "unset", overflowY: "auto", paddingBottom: "6%"}}>
                 {messages.map((message, index) => {
                     if (message.toUser.id.toString() === sessionStorage.getItem("userId")) {
                         return <div className="left-side-message" key={index}>
@@ -64,7 +64,7 @@ const Chat = (props) => {
                             <div className="date-position-left">{message.dateTimeOfSending}</div>
                         </div>
                     } else if (message.fromUser.id.toString() === sessionStorage.getItem("userId")) {
-                        return <div className="right-side-message" key={index}>
+                        return <div className="right-side-message" key={index} id={index.toString()+"scroll"}>
                             <div className="date-position-box">
                                 <div className="right-message-in-chat">{message.messageText}</div>
                                 <div className="right-side-nickname">Me</div>
