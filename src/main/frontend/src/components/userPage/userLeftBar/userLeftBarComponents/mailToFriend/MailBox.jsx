@@ -3,8 +3,16 @@ import UserLeftBar from "../../UserLeftBar";
 import {Button, Card} from "react-bootstrap";
 import axios from "axios";
 import Chat from "./Chat";
+import {useLocation} from "react-router-dom";
 
 const MailBox = () => {
+    let friend={};
+    try{
+        const location = useLocation()
+        friend = location.state.friend;
+    } catch(e) { console.error(e); }
+
+
     const [penFriends, setPenFriends] = useState([]);
 
     const [showChat, setShowChat] = useState({});
@@ -21,7 +29,10 @@ const MailBox = () => {
     };
 
     useEffect( () => {
-        (async () => getAllPenFriends())()
+        (async () => {
+            getAllPenFriends();
+            setShowChat(friend);
+        })()
     }, [])
 
     return (

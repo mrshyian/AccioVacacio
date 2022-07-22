@@ -17,7 +17,11 @@ const SingleFriend = (props) => {
 
     const sayHello = () => {
         axios.get(`http://localhost:8080/mail_to_friend/${props.myUser.id}`)
-            .then(() => navigate("/userpage/friends/mail_box"))
+            .then(() => {
+                navigate("/userpage/friends/mail_box", {
+                    state: {
+                        friend: props.myUser
+                    }})})
             .catch(err => {
                 console.log(err)
             });
