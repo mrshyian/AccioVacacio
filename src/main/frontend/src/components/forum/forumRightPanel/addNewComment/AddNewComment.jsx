@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
 import Axios from "axios";
-import "./AddNewComment.css"
-import {Button, Card, Image} from "react-bootstrap";
-import {useDropzone} from "react-dropzone";
 import axios from "axios";
+import "./AddNewComment.css"
+import {Button, Card} from "react-bootstrap";
+import {useDropzone} from "react-dropzone";
 
 
 function AddNewComment(props) {
@@ -43,8 +43,7 @@ function AddNewComment(props) {
                         headers: {
                             "Content-Type": "multipart/form-data"
                         }
-                    }).then(() => {
-                    console.log("file upload successfully");
+                    }).then(() => {refreshPage();
                 }).catch(err => {
                     console.log(err);
                 });
@@ -90,7 +89,6 @@ function AddNewComment(props) {
                             </Card>
                         </div>
                 }
-
             </div>
         )
     }

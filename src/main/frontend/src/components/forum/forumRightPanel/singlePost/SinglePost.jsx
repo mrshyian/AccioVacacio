@@ -6,6 +6,7 @@ import AddNewComment from "../addNewComment/AddNewComment";
 import {FaHeart, FaTrash} from "react-icons/fa";
 import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
+import { BsFillArrowUpSquareFill} from "react-icons/bs";
 
 const SinglePost = (props) => {
     const userId = props.post.myUserTable.id
@@ -71,7 +72,7 @@ const SinglePost = (props) => {
 
 
     return (
-        <div>
+        <div id={props.post.id} style={{marginBottom: "100px"}}>
             {editable ?
                 <Card
                     bg="dark"
@@ -82,8 +83,8 @@ const SinglePost = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
                         <p style={{marginBottom: -20}}>
                             <img className="imgForForum"
-                                 src={'http://localhost:8080/image/download/post/profile'}
-                                 alt="user photo"/>
+                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
+                                 alt=""/>
                             <p> {props.post.userName} </p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
                         <p>{props.post.postDateTime}</p>
@@ -110,6 +111,9 @@ const SinglePost = (props) => {
                         <FaTrash/>}</Button><p></p>
                         <Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{
                             <FaHeart/>}</Button>
+                        <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                        >{<BsFillArrowUpSquareFill/>}</Button>
+
                         <p>Comments:</p>
                         {props.comments.map((comment, post, index) => {
                             if(comment.post.id === props.post.id){
@@ -132,7 +136,7 @@ const SinglePost = (props) => {
                         <p style={{marginBottom: -20}}>
                             <img className="imgForForum"
                                  src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
-                                 alt="user photo"/>
+                                 alt=""/>
 
                             <p> {props.post.userName} </p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
@@ -145,7 +149,7 @@ const SinglePost = (props) => {
                             <h4>{props.post.postText}</h4>
                             <img className="post-image"
                                  src={`http://localhost:8080/image/download/post/${props.post.id}`}
-                                 alt="user photo"/>
+                                 alt=""/>
 
                         </Card.Text>
 
@@ -162,10 +166,16 @@ const SinglePost = (props) => {
 
                                     <Button style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
                                             onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
+
+
+                                    <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                                    >{<BsFillArrowUpSquareFill/>}</Button>
                                 </div>
                                 :
                                 <div>
                                     <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{<FaHeart/>}</Button>
+                                    <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                                    >{<BsFillArrowUpSquareFill/>}</Button>
                                 </div>
                             }
 

@@ -1,10 +1,12 @@
 package com.codecool.travelhelper.aws.imagestore.controllers;
 
+import com.amazonaws.AmazonServiceException;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
+import com.codecool.travelhelper.aws.imagestore.filestore.FileStore;
 import com.codecool.travelhelper.aws.imagestore.service.S3Service;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class S3PostController {
 
     @Autowired
     LoginImpl loginImpl;
+
+    @Autowired
+    FileStore fileStore;
 
     @Autowired
     PostRepository postRepository;
@@ -76,5 +81,12 @@ public class S3PostController {
         return s3Service.downloadFileFromStorage(path, filename);
     }
 
-
+    public void deletePostImage(String filename){
+        try {
+            String path = String.format("%s/%s", "Posts", filename);
+            fileStore.deleteFile(path);
+        } catch(AmazonServiceException e){
+            System.err.println(e.getErrorMessage());
+        }
+    }
 }

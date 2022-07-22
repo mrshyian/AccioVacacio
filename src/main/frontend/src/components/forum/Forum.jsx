@@ -32,7 +32,7 @@ const Forum = () => {
     return (
         <div>
             <div style={{display: "flex"}}>
-                <ForumLeftPanel/>
+                <ForumLeftPanel posts={post} comments={comment}/>
                 <ForumRightPanel posts={post} comments={comment}/>
 
             </div>

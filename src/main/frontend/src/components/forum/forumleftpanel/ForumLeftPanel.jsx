@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Menu, MenuItem, ProSidebar, SubMenu} from "react-pro-sidebar";
 import {
     FaComment,
@@ -14,17 +14,20 @@ import {Link} from "react-router-dom";
 import {BiFileFind} from "react-icons/bi";
 import {Form} from "react-bootstrap";
 import Axios from "axios";
+import {AiOutlineFire} from "react-icons/ai";
+import SinglePost from "../forumRightPanel/singlePost/SinglePost";
+import axios from "axios";
 
-const ForumLeftPanel = () => {
+const ForumLeftPanel = (props) => {
 
     const [NewModalOpen, setNewModalOpen] = useState(false);
+    const [popularPosts, setPopularPosts] = useState([]);
     const url = `http://localhost:8080/sort_by`;
     const [date, setDate] = useState("");
     const [data, setData] = useState({
         country: "",
         city: "",
         time: date
-
     })
 
     const openModal = () =>{
@@ -47,19 +50,35 @@ const ForumLeftPanel = () => {
             country: data.country,
             city: data.city,
             time : date
-        }).then(r => console.log(r.data))
-        refreshPage()
+        }).then(()=> refreshPage())
+
     }
+
+    const fetchMostPopularPosts = () => {
+        axios.get(`http://localhost:8080/get_most_popular_posts`)
+            .then(res =>{setPopularPosts(res.data);
+                console.log(res.data)})
+            .catch(err => {console.log(err)});
+    };
 
     function refreshPage(){
         window.location.reload();
     }
+
+    useEffect(()=>{
+        fetchMostPopularPosts();
+    }, [])
 
     if (sessionStorage.getItem("userId") === null){
         return (
             <header>
                 <ProSidebar className="sidebar" style={{height: "1000px"}}>
                     <Menu iconShape="square">
+                        <SubMenu title="Filter" icon={<FaFilter />}>
+                            <MenuItem icon={<FaHourglassHalf />}>Latest / Oldest</MenuItem>
+                            <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
+                            <MenuItem icon={<FaGlobeEurope />}><input type="text" placeholder="City"/></MenuItem>
+                        </SubMenu>
                         <SubMenu title="Filter" icon={<FaFilter />}>
                             <MenuItem icon={<FaHourglassHalf />}>Latest / Oldest</MenuItem>
                             <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
@@ -96,9 +115,19 @@ const ForumLeftPanel = () => {
                                 <MenuItem icon={<BiFileFind />}><button onClick={(e)=> submit(e)} type="submit"><Link to="/sort_by"> Submit </Link></button></MenuItem>
                             </Form>
                         </SubMenu>
+
                         <MenuItem icon={<FaHeart />}><Link to="/forum/favourite_comments">Favourite comments</Link></MenuItem>
                         <MenuItem variant="outline-warning" onClick={() => openModal()} icon={<FaCommentDots />}>Add Post</MenuItem>
                         {NewModalOpen && <AddNewPost close={setNewModalOpen} open={NewModalOpen}/>}
+                        <SubMenu title="Most Popular" icon={<AiOutlineFire />}>
+                            <div>
+                            {popularPosts.map((post, index) => {
+                                return (
+                                    <MenuItem key={index}><a href={`#${post.id}`}>{post.topic}</a></MenuItem>
+                                )
+                            })}
+                        </div>
+                        </SubMenu>
                     </Menu>
                 </ProSidebar>
             </header>
