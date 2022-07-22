@@ -20,8 +20,8 @@ const MailBox = () => {
             });
     };
 
-    useEffect(async () => {
-        await getAllPenFriends();
+    useEffect( () => {
+        (async () => getAllPenFriends())()
     }, [])
 
     return (
@@ -29,7 +29,6 @@ const MailBox = () => {
             <UserLeftBar/>
             <Card
                 bg="dark"
-                key={"dark"}
                 text={'white'}
                 className="mb-2 right">
                 <Card.Header style={{textAlign: "center", color: "orange"}}>
@@ -37,14 +36,13 @@ const MailBox = () => {
                 </Card.Header>
                 <Card
                     bg="dark"
-                    key={"dark"}
                     style={{marginTop: 10, height: "100%"}}>
                     <Card.Body style={{display: "flex", justifyContent: "space-between"}} id="friends-list">
                         <div>
                             {penFriends.map((friend, index) => {
                                 if (friend.id.toString() !== sessionStorage.getItem("userId")){
-                                    return <h5>
-                                        <Button style={{width: 200}} variant={"warning"} key={index} onClick={() => {setShowChat(friend)}}>
+                                    return <h5 key={index}>
+                                        <Button style={{width: 200}} variant={"warning"} onClick={() => {setShowChat(friend)}}>
                                             {friend.nickName}
                                         </Button>
                                     </h5>

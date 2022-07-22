@@ -16,7 +16,6 @@ const SinglePlace = (props) => {
             }} variant="dark" className="delete-place-btn">{<FaTimes/>}</Button>
             <Card
                 bg="dark"
-                key={"dark"}
                 text={'white'}
                 onClick={()=> navigate("/SearchCity", {state: {
                         city: props.place.city,

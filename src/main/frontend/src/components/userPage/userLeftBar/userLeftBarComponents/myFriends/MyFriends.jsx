@@ -45,15 +45,13 @@ const MyFriends = () => {
             <UserLeftBar/>
             <Card
                 bg="dark"
-                key={"dark"}
                 text={'white'}
                 className="mb-2 right">
                 <Card.Header style={{textAlign: "center", color: "orange"}}><h2>My friends</h2></Card.Header>
                 <Card.Body>
                     <Card.Text>
                         <Card
-                            bg="dark"
-                            key={"dark"}>
+                            bg="dark">
                             <Card.Header style={{display: "flex"}}>
                                 <div className="container h-100" style={{margin: 20}}>
                                     <div className="row h-100 justify-content-center align-items-center"/>
@@ -72,7 +70,6 @@ const MyFriends = () => {
                         </Card>
                         <Card
                             bg="dark"
-                            key={"dark"}
                             style={{marginTop: 10, height: "100%"}}>
                             <Card.Body id="friends-list">
                                 {searchedFriend.length ?

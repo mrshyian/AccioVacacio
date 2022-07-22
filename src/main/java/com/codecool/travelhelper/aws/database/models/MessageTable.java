@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -32,7 +34,7 @@ public class MessageTable implements Comparable<MessageTable>{
 
     public MessageTable(String messageText, MyUserTable fromUser, MyUserTable toUser) {
         this.messageText = messageText;
-        this.dateTimeOfSending = LocalDate.now().toString();
+        this.dateTimeOfSending = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
         this.fromUser = fromUser;
         this.toUser = toUser;
     }

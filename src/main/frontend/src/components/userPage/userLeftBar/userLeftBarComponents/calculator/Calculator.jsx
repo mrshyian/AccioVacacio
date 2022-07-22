@@ -11,7 +11,6 @@ const Calculator = () => {
                 <UserLeftBar/>
                 <Card
                     bg="dark"
-                    key={"dark"}
                     text={'white'}
                     className="mb-2 right">
                     <Card.Header style={{textAlign: "center", color: "orange"}}><h2>CALCULATOR</h2></Card.Header>

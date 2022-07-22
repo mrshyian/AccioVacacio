@@ -27,7 +27,6 @@ const SingleFriend = (props) => {
     return (
         <Card
             bg="dark"
-            key={"dark"}
             style={{border: "1px solid orange", float: "left", width: "46%", margin: 10}}>
             <Card.Body>
                 <img style={{width: 100, height: 100, float: "left"}} src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />

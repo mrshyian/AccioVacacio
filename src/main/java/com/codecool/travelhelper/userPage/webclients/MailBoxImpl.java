@@ -39,9 +39,6 @@ public class MailBoxImpl {
 
         MyUserTable toUser = userRepository.findAllById(toUserId);
 
-        System.out.println("from user id: " + fromUser.getId());
-        System.out.println("to user id: " + toUser.getId());
-        System.out.println("message text: " + messageText);
 
         messageRepository.save(new MessageTable(messageText, fromUser, toUser));
     }
@@ -53,13 +50,16 @@ public class MailBoxImpl {
 
         List<MessageTable> allMyMails = messageRepository.findAllByFromUserOrToUser(me, me);
 
+
         for (MessageTable mail : allMyMails){
             if (!allPenFriends.contains(mail.getToUser())){
                 allPenFriends.add(mail.getToUser());
-            } else if (!allPenFriends.contains(mail.getFromUser())){
+            }
+            if (!allPenFriends.contains(mail.getFromUser())){
                 allPenFriends.add(mail.getFromUser());
             }
         }
+
         return allPenFriends;
     }
 

@@ -18,11 +18,11 @@ const Chat = (props) => {
     };
 
     useEffect(() => {
-        getMessages();
+        (async () => getMessages())()
     }, [])
 
     useEffect(() => {
-        getMessages();
+        (async () => getMessages())()
     }, [props])
 
     const [messageText, setMessageText] = useState("")
@@ -33,7 +33,22 @@ const Chat = (props) => {
                 messageText: messageText,
                 toUserId: props.friend.id
             })
-            .then((() => window.location.reload()));
+            .then((() => refreshMessage()));
+        // .then((() => window.location.reload()));
+    }
+
+    const refreshMessage = async () => {
+        setMessageText("");
+        const result = await fetch(`http://localhost:8080/mail_to_friend/messages/${props.friend.id}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+
+        const newMessage = await result.json();
+        setMessages(newMessage)
     }
 
 
@@ -41,27 +56,32 @@ const Chat = (props) => {
         <div>
             <div style={{border: "4px solid orange", height: "500px", marginLeft: "20px", display: "block"}}>
                 {messages.map((message, index) => {
-                    console.log(message)
                     if (message.toUser.id.toString() === sessionStorage.getItem("userId")) {
                         return <div className="left-side-message" key={index}>
-                                    <div className="date-position-box">
-                                        <div className="left-side-nickname">{props.friend.nickName}</div>
-                                        <div className="left-message-in-chat">{message.messageText}</div>
-                                    </div>
-                                    <div className="date-position-left">{message.dateTimeOfSending}</div>
-                                </div>
-                    } else if (message.fromUser.id.toString() === sessionStorage.getItem("userId")){
+                            <div className="date-position-box">
+                                <div className="left-side-nickname">{props.friend.nickName}</div>
+                                <div className="left-message-in-chat">{message.messageText}</div>
+                            </div>
+                            <div className="date-position-left">{message.dateTimeOfSending}</div>
+                        </div>
+                    } else if (message.fromUser.id.toString() === sessionStorage.getItem("userId")) {
                         return <div className="right-side-message" key={index}>
-                                    <div className="date-position-box">
-                                        <div className="right-message-in-chat">{message.messageText}</div>
-                                        <div className="right-side-nickname">Me</div>
-                                    </div>
-                                    <div className="date-position-right">{message.dateTimeOfSending}</div>
-                                </div>
+                            <div className="date-position-box">
+                                <div className="right-message-in-chat">{message.messageText}</div>
+                                <div className="right-side-nickname">Me</div>
+                            </div>
+                            <div className="date-position-right">{message.dateTimeOfSending}</div>
+                        </div>
                     }
                 })
                 }
-                <div style={{display: "flex", justifyContent: "space-between", bottom: 5, position: "absolute", width: "70%"}}>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    bottom: 5,
+                    position: "absolute",
+                    width: "70%"
+                }}>
                     <InputGroup style={{width: "100%", marginLeft: "5%"}}>
                         <FormControl
                             className="message-input"
