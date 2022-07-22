@@ -4,6 +4,7 @@ import {Button, Card} from "react-bootstrap";
 import axios from "axios";
 import Chat from "./Chat";
 import {useLocation} from "react-router-dom";
+import {forEach} from "react-bootstrap/ElementChildren";
 
 const MailBox = () => {
     let friend={};
@@ -27,6 +28,18 @@ const MailBox = () => {
                 console.log(err)
             });
     };
+
+    const changeCSSButton = (index) => {
+        penFriends.forEach((fr, i) => {
+            if (fr.id.toString() !== sessionStorage.getItem("userId")){
+                if (i.toString()+"friend"===index){
+                    document.getElementById(index).style.backgroundColor = "rgb(122,0,225)"
+                } else {
+                    document.getElementById(i+"friend").style.backgroundColor = "rgb(255, 195, 0)"
+                }
+            }
+        })
+    }
 
     useEffect( () => {
         (async () => {
@@ -53,7 +66,15 @@ const MailBox = () => {
                             {penFriends.map((friend, index) => {
                                 if (friend.id.toString() !== sessionStorage.getItem("userId")){
                                     return <h5 key={index}>
-                                        <Button style={{width: 200}} variant={"warning"} onClick={() => {setShowChat(friend)}}>
+                                        <Button
+                                            style={{width: 200}}
+                                            id={index.toString() + "friend"}
+                                            variant={"warning"}
+                                            onClick={() => {
+                                                setShowChat(friend);
+                                                changeCSSButton(index.toString() + "friend");
+                                            }}
+                                        >
                                             {friend.nickName}
                                         </Button>
                                     </h5>

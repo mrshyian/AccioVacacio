@@ -34,7 +34,6 @@ const Chat = (props) => {
                 toUserId: props.friend.id
             })
             .then((() => refreshMessage()));
-        // .then((() => window.location.reload()));
     }
 
     const refreshMessage = async () => {
@@ -54,7 +53,7 @@ const Chat = (props) => {
 
     return (
         <div>
-            <div style={{border: "4px solid orange", height: "500px", marginLeft: "20px", display: "block"}}>
+            <div style={{border: "4px solid orange", height: "500px", marginLeft: "20px", display: "block", position: "unset"}}>
                 {messages.map((message, index) => {
                     if (message.toUser.id.toString() === sessionStorage.getItem("userId")) {
                         return <div className="left-side-message" key={index}>

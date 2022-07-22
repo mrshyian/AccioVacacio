@@ -1,6 +1,7 @@
 .left-side-message{
     display: block;
-    margin-top: 5%;
+    float: left;
+    clear: both;
 }
 
 .left-side-nickname {
@@ -15,7 +16,7 @@
 .right-side-message{
     display: block;
     float: right;
-    margin-bottom: 5%;
+    clear: both;
 }
 
 
@@ -67,7 +68,6 @@
 .date-position-right {
     font-size: 10px;
     color: #656767;
-    float: right;
     margin-right: 3px;
 }
 
@@ -75,5 +75,6 @@
     font-size: 10px;
     color: #656767;
     float: left;
+    clear: both;
     margin-left: 3px;
 }
