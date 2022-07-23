@@ -1,8 +1,6 @@
 package com.codecool.travelhelper.aws.database.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -87,10 +85,28 @@ public class MyUserTable {
 //---------------------------------------------------
 
     // trips to user
-    @JsonIgnore
     @JsonIgnoreProperties("myUserTable")
     @OneToMany(mappedBy = "myUserTable",  cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TripTable> tripsTable;
+
+//---------------------------------------------------
+
+    // friends
+    @JsonIgnore
+    @ManyToMany
+    private List<MyUserTable> friends;
+
+//---------------------------------------------------
+
+    @JsonIgnore
+    @JsonIgnoreProperties("fromUser")
+    @OneToMany(mappedBy = "fromUser",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MessageTable> messagesList;
+
+    @JsonIgnore
+    @JsonIgnoreProperties("toUser")
+    @OneToMany(mappedBy = "toUser",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MessageTable> messagesList2;
 
 //---------------------------------------------------
 
@@ -106,6 +122,10 @@ public class MyUserTable {
         this.aboutMe = "";
         this.privateAccount = false;
         this.role = "User";
+    }
+
+    public void addFriend(MyUserTable newFriend){
+        this.friends.add(newFriend);
     }
 
     @Override

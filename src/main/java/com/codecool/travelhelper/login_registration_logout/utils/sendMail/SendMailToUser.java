@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.login_registration_logout.utils.sendMail;
 
 
+import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,7 +14,7 @@ public class SendMailToUser {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendSimpleEmail(String toEmail,  String userName, KindOfEmail kindOfEmail){
+    public void sendSimpleEmail(String toEmail,  String userName, KindOfEmail kindOfEmail, String friend){
         String mailText =  "";
         String mailTitle = "";
 
@@ -28,6 +29,14 @@ public class SendMailToUser {
                         "kodzikul@gmail.com. Greetings, Travel Helper administration. ";
                 mailTitle = "Attention! You have some changes in your account.";
                 break;
+
+            case WAS_ADDED_TO_FRIENDS:
+                mailText= "Hello " + userName + "! " + friend + " just added you to his friend list. Find him on the search tool and add him to your list of friends, too.";
+                mailTitle = "You have a new friend :)";
+
+            case WAS_REMOVED_FROM_FRIENDS:
+                mailText= "Hello " + userName + "! " + friend + " just removed you from his friend list.";
+                mailTitle = "You lost friend :(";
 
         }
 

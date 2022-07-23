@@ -12,7 +12,6 @@ const SingleAlbum = (props) => {
     return (
         <Card
             bg="dark"
-            key={"dark"}
             text={'white'}
             className="album-card"
         >

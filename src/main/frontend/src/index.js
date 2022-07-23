@@ -18,6 +18,8 @@ import FilterComments from "./components/forum/forumRightPanel/FilterComments";
 import SingleAlbumView
     from "./components/userPage/userLeftBar/userLeftBarComponents/albumsFromTrips/singleAlbum/SingleAlbumView";
 import AddImage from "./components/userPage/userMainBar/userMainBarComponents/addImage/AddImage";
+import MyFriends from "./components/userPage/userLeftBar/userLeftBarComponents/myFriends/MyFriends";
+import MailBox from "./components/userPage/userLeftBar/userLeftBarComponents/mailToFriend/MailBox";
 import UserPageFavouriteComments
     from "./components/userPage/userLeftBar/userLeftBarComponents/favouriteComments/UserPageFavouriteComments.jsx";
 
@@ -37,6 +39,8 @@ root.render(
                   <Route path="/userpage/calculator" element={<Calculator />}/>
                   <Route path="/userpage/albums_from_trips" element={<AlbumsFromTrips />}/>
                   <Route path="/userpage/albums_from_trips/album" element={<SingleAlbumView />}/>
+                  <Route path="/userpage/friends" element={<MyFriends />}/>
+                  <Route path="/userpage/friends/mail_box" element={<MailBox/>}/>
                   <Route path="/userpage/favourite_comments" element={<UserPageFavouriteComments />}/>
                   <Route path="/forum/my_comments" element={<MyComments />}/>
                   <Route path="/forum/favourite_comments" element={<FavouriteComments />}/>

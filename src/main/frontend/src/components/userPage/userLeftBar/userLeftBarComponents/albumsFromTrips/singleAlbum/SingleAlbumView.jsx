@@ -5,7 +5,6 @@ import {useLocation} from "react-router-dom";
 import "./SingleAlbumView.css"
 import AddPhotoModal from "../../../../../modals/addPhotoModal/AddPhotoModal";
 import axios from "axios";
-import SingleComment from "../../../../../forum/forumRightPanel/singleComment/SingleComment";
 
 const SingleAlbumView = () => {
     const [showAddPhotoModal, setShowAddPhotoModal] = useState(false);
@@ -14,7 +13,6 @@ const SingleAlbumView = () => {
 
 
     const [photo, setPhoto] = useState([]);
-    // console.log(photo)
     const getPhotosFromDB = () => {
         axios.get(`http://localhost:8080/photos`)
             .then(res => {
@@ -34,7 +32,6 @@ const SingleAlbumView = () => {
             <UserLeftBar/>
             <Card
                 bg="dark"
-                key={"dark"}
                 text={'white'}
                 className="mb-2 right">
                 <Card.Header style={{textAlign: "center", color: "orange"}}>
@@ -44,7 +41,6 @@ const SingleAlbumView = () => {
                     <Card.Text>
                         <Card
                             bg="dark"
-                            key={"dark"}
                             text={'white'}
                         >
                             <Card.Body>

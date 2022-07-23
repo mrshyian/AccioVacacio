@@ -10,7 +10,7 @@ import {
     FaMapMarked,
     FaMoneyBillAlt,
     FaPencilAlt,
-    FaPhotoVideo
+    FaPhotoVideo, FaUserFriends, FaUsers
 } from 'react-icons/fa';
 import {Link} from "react-router-dom";
 import axios from "axios";
@@ -77,6 +77,7 @@ const UserLeftBar = () => {
             <header>
                 <ProSidebar className="sidebar" style={{height: "100%"}}>
                     <Menu iconShape="square">
+                        <MenuItem icon={<FaUsers/>}><Link to="/userpage/friends"> My friends</Link></MenuItem>
                         <MenuItem icon={<FaPencilAlt/>}><Link to="/userpage/note"> Notes</Link></MenuItem>
                         <MenuItem icon={<FaMapMarked/>}><Link to="/userpage/place_want_to_go"> Places i want to
                             go </Link></MenuItem>

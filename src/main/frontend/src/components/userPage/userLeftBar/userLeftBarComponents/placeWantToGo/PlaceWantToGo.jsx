@@ -40,7 +40,6 @@ const PlaceWantToGo = () => {
                 <UserLeftBar/>
                 <Card
                     bg="dark"
-                    key={"dark"}
                     text={'white'}
                     className="mb-2">
                     <Card.Header style={{textAlign: "center", color: "orange"}}><h2>Places want to go</h2><Button

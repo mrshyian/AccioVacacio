@@ -49,7 +49,7 @@ public class UserPageImpl {
 
         userRepository.save(userFromDB);
 
-        sendMailToUser.sendSimpleEmail(eMail, fullName, KindOfEmail.AFTER_USER_DETAILS_CHANGED);
+        sendMailToUser.sendSimpleEmail(eMail, fullName, KindOfEmail.AFTER_USER_DETAILS_CHANGED, null);
 
     }
 }

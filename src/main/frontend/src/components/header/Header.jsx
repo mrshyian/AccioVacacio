@@ -4,10 +4,12 @@ import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {FaEnvelope} from "react-icons/fa";
 
 
 const Header = () => {
+    const navigate = useNavigate();
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
 
@@ -70,7 +72,10 @@ const Header = () => {
                         </Nav>
 
                         {sessionStorage.getItem("userId") !== null ? (
-                            <Link to="/"><Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button></Link>
+                            <span>
+                                <Button onClick={() => {navigate("/userpage/friends/mail_box")}} variant={"warning"}>{<FaEnvelope/>}</Button>
+                                <Link style={{marginLeft: 20}} to="/"><Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button></Link>
+                            </span>
                         ) : (
                             <span>
 								<Button

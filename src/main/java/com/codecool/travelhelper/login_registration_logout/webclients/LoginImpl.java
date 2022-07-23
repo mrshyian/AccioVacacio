@@ -98,7 +98,7 @@ public class LoginImpl {
             );
             newUser.setAvatar(avatar);
             userRepository.save(newUser);
-            sendMailToUser.sendSimpleEmail(email, fullName, KindOfEmail.AFTER_REGISTRATION);
+            sendMailToUser.sendSimpleEmail(email, fullName, KindOfEmail.AFTER_REGISTRATION, null);
 
             session.setAttribute("userId", newUser.getId());
             this.setCurrentUserId(newUser.getId());
