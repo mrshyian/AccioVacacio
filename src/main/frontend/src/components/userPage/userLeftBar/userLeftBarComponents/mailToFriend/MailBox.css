@@ -1,0 +1,17 @@
+.searched-friend{
+    text-align: center;
+    color: orange;
+    border: 1px solid orange;
+}
+
+.searched-friend:hover{
+    background-color: orange;
+    color: black;
+    border: 1px solid black;
+}
+
+.searched-friend:active{
+    background-color: #ff9100;
+    color: black;
+    border: 1px solid black;
+}
