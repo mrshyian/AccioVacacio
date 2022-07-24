@@ -1,11 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import UserLeftBar from "../../UserLeftBar";
-import {Button, Card} from "react-bootstrap";
+import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
 import axios from "axios";
 import Chat from "./Chat";
 import {useLocation} from "react-router-dom";
+import {FaComments} from "react-icons/fa";
+import "./MailBox.css"
 
 const MailBox = () => {
+
+    const sayHello = (friend) => {
+        axios.get(`http://localhost:8080/mail_to_friend/${friend.id}`)
+            .then(() => {window.location.reload()})
+            .catch(err => {
+                console.log(err)
+            });
+    }
+
+    const [searchedFriend, setSearchedFriend] = useState([])
+
+    const searchFriendByName = (nameForSearch) => {
+        setSearchedFriend("")
+        axios.get(`http://localhost:8080/search_friend/${nameForSearch}`)
+            .then(res => {
+                console.log(res.data)
+                setSearchedFriend(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    };
 
     const changeCSSButton = (index) => {
         penFriends.forEach((fr, i) => {
@@ -62,8 +86,48 @@ const MailBox = () => {
                 </Card.Header>
                 <Card
                     bg="dark"
+                    text={'white'}
+                    className="mb-2"
+                    style={{width: "40%", marginLeft: "30%"}}>
+                    <Card.Header style={{textAlign: "center"}}>
+                        <InputGroup className="col-6">
+                            <FormControl
+                                placeholder="Search friend"
+                                aria-label="Search friend"
+                                aria-describedby="basic-addon2"
+                                onChange={(e) => searchFriendByName(e.target.value)}
+                            />
+                        </InputGroup>
+                        <div style={{position: "absolute", zIndex: 999999, background: "black", width: "90%", marginTop: 4}}>
+                            {searchedFriend.length ?
+                                searchedFriend.map((friend, index) => {
+                                    if (friend.id.toString()!==sessionStorage.getItem("userId")){
+                                        return <div key={index}>
+                                            <Card
+                                                bg="dark"
+                                                text={'white'}
+                                                className="mb-2">
+                                                <Card.Header
+                                                    className="searched-friend"
+                                                    onClick={() => sayHello(friend)}
+                                                >
+                                                    {friend.nickName} {<FaComments/>}
+                                                </Card.Header>
+                                            </Card>
+                                        </div>
+                                    }
+                                }) :
+                                <div/>
+                            }
+                        </div>
+
+                    </Card.Header>
+                </Card>
+                <Card
+                    bg="dark"
                     style={{marginTop: 10, height: "100%"}}>
                     <Card.Body style={{display: "flex", justifyContent: "space-between"}} id="friends-list">
+
                         <div>
                             {penFriends.map((friend, index) => {
                                 if (friend.id.toString() !== sessionStorage.getItem("userId")){
