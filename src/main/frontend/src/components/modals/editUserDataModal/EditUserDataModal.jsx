@@ -18,7 +18,8 @@ const EditUserDataModal = (props) => {
         setInstagram(props.myUser.instagram);
         setFacebook(props.myUser.facebook);
         setEMail(props.myUser.userEMail);
-        setShowEditUserDataModal(props.visible)
+        setShowEditUserDataModal(props.visible);
+        setBirthday(props.myUser.birthday)
     }, [])
 
     const [nickName, setNickName] = useState("")
@@ -27,6 +28,7 @@ const EditUserDataModal = (props) => {
     const [instagram, setInstagram] = useState("")
     const [facebook, setFacebook] = useState("")
     const [eMail, setEMail] = useState("")
+    const [birthday, setBirthday] = useState("")
 
     const [disabledBtn, setDisabledBtn] = useState(true)
 
@@ -45,7 +47,8 @@ const EditUserDataModal = (props) => {
             aboutMe: aboutMe,
             instagram: instagram,
             facebook: facebook,
-            eMail: eMail
+            eMail: eMail,
+            birthday: birthday
         })
             .then(res => {
                 console.log(res);
@@ -60,7 +63,7 @@ const EditUserDataModal = (props) => {
         <Modal show={showEditUserDataModal} onHide={handleCloseLoginModal}
                style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
             <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
-                <Modal.Title>Add new album</Modal.Title>
+                <Modal.Title>Edit my information</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{background: "rgb(20,20,20)"}}>
                 <Form style={{background: "rgb(20,20,20)"}}>
@@ -117,7 +120,6 @@ const EditUserDataModal = (props) => {
                         />
                     </Form.Group>
                     {/*-------------------------------------*/}
-                    <AddImage />
                     <Form.Group
                         className="mb-3"
                     >
@@ -128,6 +130,22 @@ const EditUserDataModal = (props) => {
                             type="text"
                         />
                     </Form.Group>
+                    {/*-------------------------------------*/}
+                    <Form.Group
+                        className="mb-3"
+                        controlId="textarea-2"
+                    >
+                        <Form.Label style={{color: "orange"}}>Birthday</Form.Label>
+                        <Form.Control
+                            type="date"
+                            placeholder="Birthday"
+                            value={birthday}
+                            onChange={e=> setBirthday(e.target.value)}
+                            min="1940-01-01" max="2010-01-01"
+                        />
+                    </Form.Group>
+                    {/*-------------------------------------*/}
+                    <AddImage/>
                 </Form>
             </Modal.Body>
             <Modal.Footer style={{background: "rgb(40,40,40)"}}>

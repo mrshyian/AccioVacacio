@@ -1,16 +1,17 @@
 .user-info-body {
-    float: left;
     display: flex;
 }
 
 .user-info-second-div {
-    margin-right: 20%;
+    /*margin-right: 10%;*/
+    margin-left: 10%;
 }
 
 .user-info-second-div-nickname {
     display: flex;
-    margin-left: 30%;
+    /*margin-left: 30%;*/
     padding: 2px;
+    justify-content: center;
 }
 
 .user-info-nickname-img {
@@ -35,11 +36,26 @@
 .user-info-edit-btn {
     height: 40px;
     width: 150px;
-    margin-left: 10px;
+    float: right;
+    margin-left: auto;
 }
 
 .friends {
     color: orange;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.friends-of-friend {
+    color: orange;
+}
+
+.friends:hover{
+    color: #ff6a00;
+}
+
+.birthday {
+    color: orange;
+    font-size: 12px;
+    margin-top: 5%;
 }

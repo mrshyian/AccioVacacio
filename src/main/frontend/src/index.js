@@ -22,6 +22,7 @@ import MyFriends from "./components/userPage/userLeftBar/userLeftBarComponents/m
 import MailBox from "./components/userPage/userLeftBar/userLeftBarComponents/mailToFriend/MailBox";
 import UserPageFavouriteComments
     from "./components/userPage/userLeftBar/userLeftBarComponents/favouriteComments/UserPageFavouriteComments.jsx";
+import FriendPage from "./components/userPage/userLeftBar/userLeftBarComponents/myFriends/FriendPage";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -40,6 +41,7 @@ root.render(
                   <Route path="/userpage/albums_from_trips" element={<AlbumsFromTrips />}/>
                   <Route path="/userpage/albums_from_trips/album" element={<SingleAlbumView />}/>
                   <Route path="/userpage/friends" element={<MyFriends />}/>
+                  <Route path="/userpage/friend" element={<FriendPage />}/>
                   <Route path="/userpage/friends/mail_box" element={<MailBox/>}/>
                   <Route path="/userpage/favourite_comments" element={<UserPageFavouriteComments />}/>
                   <Route path="/forum/my_comments" element={<MyComments />}/>

@@ -13,18 +13,18 @@ const InformationAboutUser = (props) => {
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
     const [allFriends, setAllFriends] = useState([])
+    const [myId, setMyId] = useState("")
 
     useEffect(() => {
         searchAllFriends();
-    }, [])
+    }, [props])
 
-    const myId = sessionStorage.getItem("userId").toString();
 
     const searchAllFriends = () => {
-        axios.get(`http://localhost:8080/search_friend/id/${myId}`)
+        axios.get(`http://localhost:8080/search_friend/id/${props.myUser.id}`)
             .then(res => {
-                console.log(res.data)
                 setAllFriends(res.data);
+                setMyId(props.myUser.id.toString());
             })
             .catch(err => {
                 console.log(err)
@@ -39,10 +39,11 @@ const InformationAboutUser = (props) => {
             className="mb-2"
         >
             <Card.Body className="user-info-body">
-                <div style={{border: "1px solid orange", display: "flex", padding: 30}}>
+                <div style={{border: "1px solid orange", display: "flex", padding: 30, width: "100%"}}>
                     <div>
                         <img className="profile-image" src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
                         <SocialMedia myUser={props.myUser}/>
+                        <div className="birthday">Birthday: {props.myUser.birthday}</div>
                     </div>
                     <div className="user-info-second-div">
                         <h3>{props.myUser.fullName}</h3>
@@ -59,12 +60,15 @@ const InformationAboutUser = (props) => {
                             <br/>
 
                             <div style={{marginTop: "2%", display: "flex"}}>
-                                <h5
-                                    className="friends"
-                                    onClick={() => navigate("/userpage/friends")}
-                                >
+                                {myId === sessionStorage.getItem("userId") ?
+                                <h5 className="friends" onClick={() => navigate("/userpage/friends")}>
                                     Friends ({allFriends.length}):
                                 </h5>
+                                    :
+                                    <h5 className="friends-of-friend">
+                                        Friends ({allFriends.length}):
+                                    </h5>
+                                        }
                                 &nbsp;
                                 {allFriends.map((friend, index) => {
                                     if (index < 2 && index !== allFriends.length-1){
@@ -81,10 +85,11 @@ const InformationAboutUser = (props) => {
                             </div>
                         </Card.Text>
                     </div>
-                </div>
-
-                <div>
-                    <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn" variant={"outline-warning"}>Edit my details</Button>
+                    {myId === sessionStorage.getItem("userId") ?
+                        <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn" variant={"outline-warning"}>Edit my details</Button>
+                        :
+                        <div/>
+                    }
                 </div>
             </Card.Body>
             {/*<CountryCounter/>*/}

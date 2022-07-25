@@ -1,0 +1,8 @@
+.link-to-friend-page {
+    margin-top: 5%;
+}
+
+.link-to-friend-page:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
