@@ -38,6 +38,7 @@ public class UserPageImpl {
         String instagram = countryJsonObject.get("instagram").getAsString();
         String facebook = countryJsonObject.get("facebook").getAsString();
         String eMail = countryJsonObject.get("eMail").getAsString();
+        String birthday = countryJsonObject.get("birthday").getAsString();
 
         MyUserTable userFromDB = userRepository.findAllByUserEMail(eMail).get();
 
@@ -46,6 +47,7 @@ public class UserPageImpl {
         userFromDB.setInstagram(instagram);
         userFromDB.setNickName(nickName);
         userFromDB.setFullName(fullName);
+        userFromDB.setBirthday(birthday);
 
         userRepository.save(userFromDB);
 

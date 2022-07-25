@@ -32,8 +32,6 @@ function Dropzone({userProfileId}) {
     const onDrop = useCallback(acceptedFiles => {
         const file = acceptedFiles[0];
 
-        console.log(acceptedFiles);
-
         const formData = new FormData();
         formData.append("file", file);
 
