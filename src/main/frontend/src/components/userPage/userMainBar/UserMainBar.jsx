@@ -32,7 +32,7 @@ const UserMainBar = () => {
             className="mb-2 bg-opacity"
         >
             <Card.Body>
-                <Card.Text style={{paddingLeft: "60px", paddingRight: "60px"}}>
+                <Card.Text style={{paddingLeft: "5%", paddingRight: "5%"}}>
                     <InformationAboutUser myUser={myUser}/>
                 </Card.Text>
             </Card.Body>

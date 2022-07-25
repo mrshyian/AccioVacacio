@@ -4,7 +4,7 @@ import "./SocialMedia.css"
 const SocialMedia = (props) => {
 
     return (
-        <div style={{marginTop: "80%"}}>
+        <div>
             <a href={props.myUser.facebook}>
                 <img className="social-media-image" src="https://cdn.icon-icons.com/icons2/1099/PNG/512/1485482214-facebook_78681.png" alt="facebook"/>
             </a>

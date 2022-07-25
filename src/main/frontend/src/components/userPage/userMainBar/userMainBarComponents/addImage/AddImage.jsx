@@ -8,7 +8,8 @@ const UserProfiles = () => {
     const [userProfiles, setUserProfile] = useState([]);
 
     const fetchUserProfiles = () => {
-        axios.get("http://localhost:8080/user-profile").then(res =>{
+        axios.get("http://localhost:8080/user-profile")
+            .then(res =>{
             setUserProfile(res.data);
         });
     };

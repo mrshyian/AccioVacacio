@@ -1,10 +1,10 @@
 .user-info-body {
-    align-content: space-between;
+    float: left;
     display: flex;
 }
 
 .user-info-second-div {
-    margin-left: 5%;
+    margin-right: 20%;
 }
 
 .user-info-second-div-nickname {
@@ -25,16 +25,21 @@
 .user-info-aboutme-text {
     width: 400px;
     height: 200px;
-    border: 1px solid orange;
 }
 
 .user-info-aboutme-text-div {
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 5%;
+    /*margin-bottom: 10%;*/
 }
 
 .user-info-edit-btn {
     height: 40px;
-    margin-left: auto;
+    width: 150px;
+    margin-left: 10px;
 }
 
+.friends {
+    color: orange;
+    text-decoration: underline;
+    cursor: pointer;
+}
