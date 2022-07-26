@@ -29,15 +29,21 @@ const MyFriends = () => {
             });
     };
 
-    const searchFriendByName = () => {
-        axios.get(`http://localhost:8080/search_friend/${nameForSearch}`)
-            .then(res => {
-                console.log(res.data)
-                setSearchedFriend(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+    const searchFriendByName = (name) => {
+        setNameForSearch(name)
+        if (name!==""){
+            setNameForSearch(name)
+            axios.get(`http://localhost:8080/search_friend/${name}`)
+                .then(res => {
+                    setSearchedFriend(res.data);
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+        } else {
+            setSearchedFriend({})
+        }
+
     };
 
     return (
@@ -61,9 +67,9 @@ const MyFriends = () => {
                                             aria-label="Search friend"
                                             aria-describedby="basic-addon2"
                                             value={nameForSearch}
-                                            onChange={(e) => setNameForSearch(e.target.value)}
+                                            onChange={(e) => searchFriendByName(e.target.value)}
                                         />
-                                        <Button variant="warning" onClick={() => searchFriendByName()}>Search</Button>
+                                        {/*<Button variant="warning" onClick={() => searchFriendByName()}>Search</Button>*/}
                                     </InputGroup>
                                 </div>
                             </Card.Header>
@@ -74,8 +80,6 @@ const MyFriends = () => {
                             <Card.Body id="friends-list">
                                 {searchedFriend.length ?
                                     <div>
-                                        <Button variant="outline-warning" style={{float: "left"}}
-                                                onClick={() => window.location.reload()}>{<FaReply/>}</Button>
                                         {
                                             searchedFriend.map((friend, index) => {
                                                 if (friend.id.toString() !== sessionStorage.getItem("userId")) {
