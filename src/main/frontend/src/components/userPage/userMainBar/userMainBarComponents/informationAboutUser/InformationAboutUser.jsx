@@ -8,6 +8,7 @@ import user from "../../../../../images/user.png"
 import CountryCounter from "../countryCounter/CountryCounter";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import userImage from "../../../../../images/user.png"
 
 const InformationAboutUser = (props) => {
     const navigate = useNavigate();
@@ -41,7 +42,14 @@ const InformationAboutUser = (props) => {
             <Card.Body className="user-info-body">
                 <div style={{border: "1px solid orange", display: "flex", padding: 30, width: "100%"}}>
                     <div>
-                        <img className="profile-image" src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
+                        <img
+                            className="profile-image"
+                            src={`http://localhost:8080/image/download/user/${props.myUser.id}`}
+                            onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src=userImage;
+                            }}
+                        />
                         <SocialMedia myUser={props.myUser}/>
                         <div className="birthday">Birthday: {props.myUser.birthday}</div>
                     </div>
@@ -61,7 +69,10 @@ const InformationAboutUser = (props) => {
 
                             <div style={{marginTop: "2%", display: "flex"}}>
                                 {myId === sessionStorage.getItem("userId") ?
-                                <h5 className="friends" onClick={() => navigate("/userpage/friends")}>
+                                <h5 className="friends" onClick={() => {
+
+                                    navigate("/userpage/friends");
+                                }}>
                                     Friends ({allFriends.length}):
                                 </h5>
                                     :
