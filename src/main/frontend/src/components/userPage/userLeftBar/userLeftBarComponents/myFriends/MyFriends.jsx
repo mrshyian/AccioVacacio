@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import UserLeftBar from "../../UserLeftBar";
-import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
+import {Card, FormControl, InputGroup} from "react-bootstrap";
 import SingleFriend from "./SingleFriend";
 import axios from "axios";
 import SingleSearchedFriend from "./SingleSearchedFriend";
-import {FaReply} from "react-icons/fa";
 
 const MyFriends = () => {
 
@@ -31,7 +30,7 @@ const MyFriends = () => {
 
     const searchFriendByName = (name) => {
         setNameForSearch(name)
-        if (name!==""){
+        if (name !== "") {
             setNameForSearch(name)
             axios.get(`http://localhost:8080/search_friend/${name}`)
                 .then(res => {
@@ -69,7 +68,6 @@ const MyFriends = () => {
                                             value={nameForSearch}
                                             onChange={(e) => searchFriendByName(e.target.value)}
                                         />
-                                        {/*<Button variant="warning" onClick={() => searchFriendByName()}>Search</Button>*/}
                                     </InputGroup>
                                 </div>
                             </Card.Header>

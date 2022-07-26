@@ -44,10 +44,7 @@ const SingleFriend = (props) => {
                     }}
                 />
                 <h4 className="link-to-friend-page" onClick={() => {
-                    navigate("/userpage/friend", {
-                        state: {
-                            friend: props.myUser
-                        }})
+                    navigate(`/userpage/friend/${props.myUser.nickName}`)
                 }}>{props.myUser.fullName}</h4>
                 <Button style={{float: "right", margin: "3px"}} variant="outline-warning" onClick={() => removeFriend()}>{<FaTrashAlt/>}</Button>
                 <Button style={{float: "right", margin: "3px"}} variant="outline-warning"

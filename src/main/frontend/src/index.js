@@ -26,6 +26,7 @@ import FriendPage from "./components/userPage/userLeftBar/userLeftBarComponents/
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const friend = "dupa";
 root.render(
       <BrowserRouter>
           <Routes>
@@ -40,7 +41,11 @@ root.render(
                   <Route path="/userpage/albums_from_trips" element={<AlbumsFromTrips />}/>
                   <Route path="/userpage/albums_from_trips/album" element={<SingleAlbumView />}/>
                   <Route path="/userpage/friends" element={<MyFriends />}/>
-                  <Route path="/userpage/friend" element={<FriendPage />}/>
+
+
+                  <Route exact path="/userpage/friend/:date" element={<FriendPage />}/>
+
+                  {/*<Route path={`/userpage/friend/${friend}`} element={<FriendPage />}/>*/}
                   <Route path="/userpage/friends/mail_box" element={<MailBox/>}/>
                   <Route path="/userpage/favourite_comments" element={<UserPageFavouriteComments />}/>
                   <Route path="/forum/my_comments" element={<MyComments />}/>
@@ -51,6 +56,4 @@ root.render(
               </Route>
           </Routes>
       </BrowserRouter>
-
-
 );

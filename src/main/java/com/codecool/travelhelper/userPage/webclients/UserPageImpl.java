@@ -10,6 +10,8 @@ import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class UserPageImpl {
 
@@ -53,5 +55,13 @@ public class UserPageImpl {
 
         sendMailToUser.sendSimpleEmail(eMail, fullName, KindOfEmail.AFTER_USER_DETAILS_CHANGED, null);
 
+    }
+
+    public MyUserTable getFriendByNickName(String userNickName){
+        Optional<MyUserTable> optionalMyUserTable =  userRepository.findMyUserTableByNickName(userNickName);
+         if (optionalMyUserTable.isPresent()){
+             return optionalMyUserTable.get();
+         }
+         return null;
     }
 }

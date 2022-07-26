@@ -23,4 +23,9 @@ public class UserPageController {
     public void updateUser(@RequestBody String userData) {
         userPageImpl.updateUser(userData);
     }
+
+    @GetMapping("/get_friend_by_nick/{userNickName}")
+    public MyUserTable getFriendByNickName(@PathVariable String userNickName){
+        return userPageImpl.getFriendByNickName(userNickName);
+    }
 }

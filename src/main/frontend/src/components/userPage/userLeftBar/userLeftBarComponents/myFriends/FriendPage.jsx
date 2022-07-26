@@ -1,14 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Card} from "react-bootstrap";
 import InformationAboutUser from "../../../userMainBar/userMainBarComponents/informationAboutUser/InformationAboutUser";
 import {useLocation} from "react-router-dom";
 import UserLeftBar from "../../UserLeftBar";
+import axios from "axios";
 
 const FriendPage = () => {
+    const [myFriend, setMyFriend] = useState({})
 
-    const location = useLocation()
-    const friend = location.state.friend;
-    window.history.pushState(null, '', `/userpage/friend/${friend.nickName}`);
+        const userNickName = (window.location.href.toString().split("/")[window.location.href.toString().split("/").length-1]);
+        axios.get(`http://localhost:8080/get_friend_by_nick/${userNickName}`)
+            .then(res => {
+                console.log(res.data)
+                setMyFriend(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            });
+
+
     return (
         <div>
             <UserLeftBar/>
@@ -20,7 +30,7 @@ const FriendPage = () => {
             >
                 <Card.Body>
                     <Card.Text style={{paddingLeft: "5%", paddingRight: "5%"}}>
-                        <InformationAboutUser myUser={friend}/>
+                        <InformationAboutUser myUser={myFriend}/>
                     </Card.Text>
                 </Card.Body>
             </Card>

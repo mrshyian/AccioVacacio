@@ -101,11 +101,7 @@ const InformationAboutUser = (props) => {
                                                 key={index}
                                                 className="navigate-to-friend-page"
                                                 onClick={() => {
-                                                    navigate("/userpage/friend", {
-                                                        state: {
-                                                            friend: friend
-                                                        }
-                                                    })
+                                                    navigate(`/userpage/friend/${friend.nickName}`)
                                                 }}
                                             > {friend.nickName}</div>
                                             <div className="normal-coma">,&nbsp;</div>
@@ -115,11 +111,7 @@ const InformationAboutUser = (props) => {
                                             key={index}
                                             className="navigate-to-friend-page"
                                             onClick={() => {
-                                                navigate("/userpage/friend", {
-                                                    state: {
-                                                        friend: friend
-                                                    }
-                                                })
+                                                navigate(`/userpage/friend/${friend.nickName}`)
                                             }}
                                         > {friend.nickName} </div>
                                     } else if (index === 3) {
@@ -129,11 +121,7 @@ const InformationAboutUser = (props) => {
                                             key={index}
                                             className="navigate-to-friend-page"
                                             onClick={() => {
-                                                navigate("/userpage/friend", {
-                                                    state: {
-                                                        friend: friend
-                                                    }
-                                                })
+                                                navigate(`/userpage/friend/${friend.nickName}`)
                                             }}
                                         > {friend.nickName} </div>
                                     }
