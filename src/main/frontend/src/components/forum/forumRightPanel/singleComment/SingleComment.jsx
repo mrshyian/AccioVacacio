@@ -5,6 +5,7 @@ import {FaHeart, FaTrash} from "react-icons/fa";
 
 import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
+import userImage from "../../../../images/user.png";
 
 
 const SingleComment = (props) => {
@@ -85,7 +86,15 @@ const SingleComment = (props) => {
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex", backgroundColor: "rgb(35, 35, 35)"}}>
 
                         <p style={{ marginBottom: -30 }}>
-                            <Image fluid="true" className="imgForForum" src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`} alt=""/>
+                            <Image
+                                fluid="true"
+                                className="imgForForum"
+                                src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`}
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src=userImage;
+                                }}
+                            />
                             <p>{props.comments.userName}</p></p>
                         <p>{props.comments.commentDateTime}</p>
 

@@ -7,6 +7,7 @@ import {FaHeart, FaTrash} from "react-icons/fa";
 import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 import { BsFillArrowUpSquareFill} from "react-icons/bs";
+import userImage from "../../../../images/user.png";
 
 const SinglePost = (props) => {
     const userId = props.post.myUserTable.id
@@ -82,9 +83,14 @@ const SinglePost = (props) => {
                     className="mb-2">
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
                         <p style={{marginBottom: -20}}>
-                            <img className="imgForForum"
-                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
-                                 alt=""/>
+                            <img
+                                className="imgForForum"
+                                src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src=userImage;
+                                }}
+                            />
                             <p> {props.post.userName} </p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
                         <p>{props.post.postDateTime}</p>
@@ -134,10 +140,14 @@ const SinglePost = (props) => {
                     className="mb-2">
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
                         <p style={{marginBottom: -20}}>
-                            <img className="imgForForum"
-                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
-                                 alt=""/>
-
+                            <img
+                                className="imgForForum"
+                                src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src=userImage;
+                                }}
+                            />
                             <p> {props.post.userName} </p></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
                         <p>{props.post.postDateTime}</p>
@@ -150,7 +160,6 @@ const SinglePost = (props) => {
                             <img className="post-image"
                                  src={`http://localhost:8080/image/download/post/${props.post.id}`}
                                  alt=""/>
-
                         </Card.Text>
 
                     </Card.Body>

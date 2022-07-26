@@ -8,6 +8,8 @@ import user from "../../../../../images/user.png"
 import CountryCounter from "../countryCounter/CountryCounter";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import userImage from "../../../../../images/user.png"
+import {FaComments} from "react-icons/fa";
 
 const InformationAboutUser = (props) => {
     const navigate = useNavigate();
@@ -31,6 +33,18 @@ const InformationAboutUser = (props) => {
             });
     };
 
+    const sayHello = () => {
+        axios.get(`http://localhost:8080/mail_to_friend/${props.myUser.id}`)
+            .then(() => {
+                navigate("/userpage/friends/mail_box", {
+                    state: {
+                        friend: props.myUser
+                    }})})
+            .catch(err => {
+                console.log(err)
+            });
+    }
+
     return (
         <Card
             bg={"dark"}
@@ -41,14 +55,21 @@ const InformationAboutUser = (props) => {
             <Card.Body className="user-info-body">
                 <div style={{border: "1px solid orange", display: "flex", padding: 30, width: "100%"}}>
                     <div>
-                        <img className="profile-image" src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />
+                        <img
+                            className="profile-image"
+                            src={`http://localhost:8080/image/download/user/${props.myUser.id}`}
+                            onError={({currentTarget}) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = userImage;
+                            }}
+                        />
                         <SocialMedia myUser={props.myUser}/>
                         <div className="birthday">Birthday: {props.myUser.birthday}</div>
                     </div>
                     <div className="user-info-second-div">
                         <h3>{props.myUser.fullName}</h3>
                         <div className="user-info-second-div-nickname">
-                            (<img className="user-info-nickname-img" src={user} />
+                            (<img className="user-info-nickname-img" src={user}/>
                             <h4 className="user-info-nickname">{props.myUser.nickName}</h4>)
                         </div>
                         <Card.Text className="user-info-aboutme-text">
@@ -61,24 +82,48 @@ const InformationAboutUser = (props) => {
 
                             <div style={{marginTop: "2%", display: "flex"}}>
                                 {myId === sessionStorage.getItem("userId") ?
-                                <h5 className="friends" onClick={() => navigate("/userpage/friends")}>
-                                    Friends ({allFriends.length}):
-                                </h5>
+                                    <h5 className="friends" onClick={() => {
+
+                                        navigate("/userpage/friends");
+                                    }}>
+                                        Friends ({allFriends.length}):
+                                    </h5>
                                     :
                                     <h5 className="friends-of-friend">
                                         Friends ({allFriends.length}):
                                     </h5>
-                                        }
+                                }
                                 &nbsp;
                                 {allFriends.map((friend, index) => {
-                                    if (index < 2 && index !== allFriends.length-1){
-                                        return <div key={index}> {friend.nickName},&nbsp; </div>
-                                    } else if (index===3) {
-                                        return <div key={index}> {friend.nickName} </div>
-                                    } else if (index===4){
+                                    if (index < 2 && index !== allFriends.length - 1) {
+                                        return <div style={{display: "flex"}}>
+                                            <div
+                                                key={index}
+                                                className="navigate-to-friend-page"
+                                                onClick={() => {
+                                                    navigate(`/userpage/friend/${friend.nickName}`)
+                                                }}
+                                            > {friend.nickName}</div>
+                                            <div className="normal-coma">,&nbsp;</div>
+                                        </div>
+                                    } else if (index === 2) {
+                                        return <div
+                                            key={index}
+                                            className="navigate-to-friend-page"
+                                            onClick={() => {
+                                                navigate(`/userpage/friend/${friend.nickName}`)
+                                            }}
+                                        > {friend.nickName} </div>
+                                    } else if (index === 3) {
                                         return <div>...</div>
                                     } else {
-                                        return <div key={index}> {friend.nickName} </div>
+                                        return <div
+                                            key={index}
+                                            className="navigate-to-friend-page"
+                                            onClick={() => {
+                                                navigate(`/userpage/friend/${friend.nickName}`)
+                                            }}
+                                        > {friend.nickName} </div>
                                     }
 
                                 })}
@@ -86,9 +131,11 @@ const InformationAboutUser = (props) => {
                         </Card.Text>
                     </div>
                     {myId === sessionStorage.getItem("userId") ?
-                        <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn" variant={"outline-warning"}>Edit my details</Button>
+                        <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn"
+                                variant={"outline-warning"}>Edit my details</Button>
                         :
-                        <div/>
+                        <Button className="user-start-chat-btn" variant="warning"
+                                onClick={() => sayHello()}>Say Hello {<FaComments/>}</Button>
                     }
                 </div>
             </Card.Body>

@@ -40,6 +40,12 @@
     margin-left: auto;
 }
 
+.user-start-chat-btn {
+    height: 40px;
+    margin-top: auto;
+    margin-left: auto;
+}
+
 .friends {
     color: orange;
     text-decoration: underline;
@@ -58,4 +64,18 @@
     color: orange;
     font-size: 12px;
     margin-top: 5%;
+}
+
+.navigate-to-friend-page {
+    cursor: pointer;
+}
+
+.navigate-to-friend-page:hover {
+    color: orange;
+    text-decoration: underline;
+}
+
+.navigate-to-friend-page:hover .normal-coma {
+    color: white;
+    text-decoration: none;
 }

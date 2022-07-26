@@ -6,10 +6,11 @@ import axios from "axios";
 import Axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
 import MustBeLogIn from "../../../../mustBeLogIn/MustBeLogIn";
+import userImage from "../../../../../images/user.png"
 
 
 const UserNotes = () => {
-    const [noteText, setNoteText] = useState("")
+    const [noteText, setNoteText] = useState([])
 
     useEffect(() => {
         if (sessionStorage.getItem("userId") !== null){
@@ -17,10 +18,11 @@ const UserNotes = () => {
         }
     }, [])
 
+
     function fetchNoteText() {
         axios.get(`http://localhost:8080/notes`)
             .then(res => {
-                setNoteText(res.data);
+                setNoteText(res.data)
             })
             .catch(err => {
                 console.log(err)
