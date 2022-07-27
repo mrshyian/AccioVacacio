@@ -10,6 +10,7 @@ import com.codecool.travelhelper.login_registration_logout.utils.Util;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -28,7 +29,10 @@ public class RegistrationImpl {
     @Autowired
     private UserRepository userRepository;
 
+    PasswordEncoder passwordEncoder;
+
     public String saveNewUserToDB(String data) {
+
 
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject) jsonParser.parse(data);
@@ -49,7 +53,7 @@ public class RegistrationImpl {
                             nickName,
                             birthday,
                             eMail,
-                            util.hashPassword(password)
+                            passwordEncoder.encode(password)
                     )
             );
             sendMailToUser.sendSimpleEmail(eMail, fullName, KindOfEmail.AFTER_REGISTRATION, null);

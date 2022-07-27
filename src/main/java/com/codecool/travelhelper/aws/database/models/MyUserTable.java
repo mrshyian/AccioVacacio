@@ -31,6 +31,10 @@ public class MyUserTable {
     private String role;
     private boolean privateAccount;
 
+    public MyUserTable(String userEMail, String password) {
+        this.userEMail = userEMail;
+        this.password = password;
+    }
 
 //----------------------------------------------------------------------
 

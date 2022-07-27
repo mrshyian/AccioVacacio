@@ -26,21 +26,35 @@ const AddNewAlbumModal = (props) => {
     };
 
 
+    // const sendDataToServer = () => {
+    //     const url = "http://localhost:8080/albumsfromtrips";
+    //     axios.post(url,{
+    //         country: country,
+    //         city: city,
+    //         tripDate: tripDate,
+    //         albumName: albumName,
+    //         tripDescription: tripDescription
+    //     })
+    //         .then(res=>{
+    //             console.log(res);
+    //             window.location.reload();
+    //         })
+    //     handleCloseLoginModal()
+    // }
+
     const sendDataToServer = () => {
+        console.log(sessionStorage.getItem('token'))
         const url = "http://localhost:8080/albumsfromtrips";
-        axios.post(url,{
-            country: country,
-            city: city,
-            tripDate: tripDate,
-            albumName: albumName,
-            tripDescription: tripDescription
+        axios.get(url,{
+            headers: {
+                AUTHORIZATION: 'Bearer ' + sessionStorage.getItem('token')
+            }
         })
             .then(res=>{
                 console.log(res);
                 window.location.reload();
             })
         handleCloseLoginModal()
-
     }
 
 

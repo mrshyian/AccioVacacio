@@ -5,6 +5,8 @@ import React, {useState} from "react";
 import ErrorModal from "../errorModals/ErrorModal";
 import ReCAPTCHA from "react-google-recaptcha";
 import GoogleSignIn from "./Google.SignIn";
+import data from "bootstrap/js/src/dom/data";
+
 
 
 const LoginModal = (props) => {
@@ -42,6 +44,14 @@ const LoginModal = (props) => {
                         showErrorModal(res.data);
                     }
                 })
+        // const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
+        // fetch(url,{method:"GET"})
+        //     .then(res=>res.json())
+        //     .then(data=>{
+        //     sessionStorage.setItem("token", data['tokenDostempowy']);
+        //         console.log(data)
+        // }).catch(console.error)
+
     }
 
     const setToPropsModalClose = () => {
@@ -107,7 +117,7 @@ const LoginModal = (props) => {
                     Login
                 </Button>
             </Modal.Footer>
-            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen} close={setErrorModalOpen}/>}
+            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen}/>}
         </Modal>
     );
 };

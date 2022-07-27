@@ -13,6 +13,7 @@ public interface UserRepository extends JpaRepository<MyUserTable, Long> {
     Optional<MyUserTable> findAllByUserEMail(String email);
     MyUserTable findMyUserTableById(Long id);
     MyUserTable findAllById(Long userId);
+    MyUserTable findByUserEMail(String email);
 
     Optional<List<MyUserTable>> findAllByFullNameContaining(String nameForSearch);
 //    Optional<List<MyUserTable>> findAllById(Long userId);
