@@ -28,12 +28,17 @@ public class ThAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        System.out.println("doFilterInternal");
         if (request.getServletPath().equals("/login") || request.getServletPath().equals("/registration") || request.getServletPath().equals("/refreshToken")){
+            System.out.println("jesteśmy w if 1");
             filterChain.doFilter(request,response);
         }else {
+            System.out.println("jesteśmy w else 1");
             String authorizationHeader = request.getHeader(AUTHORIZATION);
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
+                System.out.println("jesteśmy w if 2");
                 try {
+                    System.out.println("jesteśmy w try ");
                     String token = authorizationHeader.replace("Bearer ","");
                     Algorithm algorithm = Algorithm.HMAC256("naszsupertajnykluczszyfrujacy".getBytes());
                     JWTVerifier verifier = JWT.require(algorithm).build();
@@ -58,6 +63,7 @@ public class ThAuthorizationFilter extends OncePerRequestFilter {
                     new ObjectMapper().writeValue(response.getOutputStream(),error);
                 }
             }else {
+                System.out.println("jesteśmy w else 2");
                 filterChain.doFilter(request,response);
             }
         }

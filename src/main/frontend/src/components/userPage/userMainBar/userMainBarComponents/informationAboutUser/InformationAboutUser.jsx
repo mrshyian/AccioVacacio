@@ -14,6 +14,7 @@ const InformationAboutUser = () => {
             style={{width: "100%"}}
         >
             <Card.Header>
+
                 <ProfileImage/>
                 <h3>User Name</h3>
             </Card.Header>

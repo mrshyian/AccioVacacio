@@ -7,6 +7,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import data from "bootstrap/js/src/dom/data";
 
 
+
 const LoginModal = () => {
     const [disabledBtn, setDisabledBtn] = useState(false) // cofnij do true
 
@@ -41,11 +42,27 @@ const LoginModal = () => {
     //                 }
     //             })
     // }
+    // const sendDataToServer = () => {
+    //     const response =  fetch  (uri, {
+    //         method: 'GET',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify()
+    //     }).then(response => response.json())
+    //         .then(data => displayResidents(data))
+    //
+    // }
 
     const sendDataToServer = () => {
         const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
-        fetch(url,{method:"POST"}).then(res=>res.json()).then(data=>{
-            console.log(data)}).catch(console.error)
+        fetch(url,{method:"GET"})
+            .then(res=>res.json())
+            .then(data=>{
+            sessionStorage.setItem("token", data['tokenDostempowy']);
+                console.log(data)
+        }).catch(console.error)
         // axios.post(url)
         //     .then(res=>{
         //         console.log("AAAAAAAAAAAAAA")

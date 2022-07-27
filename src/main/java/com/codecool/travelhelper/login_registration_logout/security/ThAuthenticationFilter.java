@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,13 +29,16 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
 
     public ThAuthenticationFilter(AuthenticationManager authenticationManager) {
+        System.out.println("ThAuthenticationFilter");
         this.authenticationManager = authenticationManager;
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        System.out.println("attemptAuthentication");
         String userEmail = request.getParameter("userEmail");
         String password = request.getParameter("password");
+
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userEmail, password);
         return authenticationManager.authenticate(token);
@@ -42,26 +46,28 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+        System.out.println("successfulAuthentication");
         User user =(User) authentication.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256("naszsupertajnykluczszyfrujacy".getBytes());
         String akcesToken = JWT.create()
                 .withSubject(user.getUsername())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+15*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+5*1000))
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 
         String refreshToken = JWT.create()
                 .withSubject(user.getUsername())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+5*1000))
                 .sign(algorithm);
 
 
         Map<String,String> tokens = new HashMap<>();
         tokens.put("userEmail",user.getUsername());
-        tokens.put("tokenDostępowy", akcesToken);
+        tokens.put("tokenDostempowy", akcesToken);
         tokens.put("tokenOdświerzający", refreshToken);
+        tokens.put("timeNow", LocalDateTime.now().toString());
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),tokens);
 
@@ -69,6 +75,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        System.out.println("unsuccessfulAuthentication");
         Map<String,String> errors = new HashMap<>();
         errors.put("error","niedziała");
         response.setContentType(APPLICATION_JSON_VALUE);

@@ -16,20 +16,20 @@ public class Main {
 	}
 
 
-	@Bean
-	CommandLineRunner commandLineRunner(UserService userService){
-		return args -> {
-			userService.saveRoleToBD(new UserRoleTable(null, "ROLE_ADMIN"));
-			userService.saveRoleToBD(new UserRoleTable(null, "ROLE_USER"));
-			userService.saveRoleToBD(new UserRoleTable(null, "ROLE_GUEST"));
-
-			userService.saveUserToBD(new MyUserTable("admin@wp.pl","1"));
-			userService.saveUserToBD(new MyUserTable("user@wp.pl","1"));
-			userService.saveUserToBD(new MyUserTable("guest@wp.pl","1"));
-
-			userService.setUserRole("admin@wp.pl","ROLE_ADMIN");
-			userService.setUserRole("user@wp.pl","ROLE_USER");
-			userService.setUserRole("guest@wp.pl","ROLE_GUEST");
-		};
-	}
+//	@Bean
+//	CommandLineRunner commandLineRunner(UserService userService){
+//		return args -> {
+//			userService.saveRoleToBD(new UserRoleTable(null, "ROLE_ADMIN"));
+//			userService.saveRoleToBD(new UserRoleTable(null, "ROLE_USER"));
+//			userService.saveRoleToBD(new UserRoleTable(null, "ROLE_GUEST"));
+//
+//			userService.saveUserToBD(new MyUserTable("admin@wp.pl","1"));
+//			userService.saveUserToBD(new MyUserTable("user@wp.pl","1"));
+//			userService.saveUserToBD(new MyUserTable("guest@wp.pl","1"));
+//
+//			userService.setUserRole("admin@wp.pl","ROLE_ADMIN");
+//			userService.setUserRole("user@wp.pl","ROLE_USER");
+//			userService.setUserRole("guest@wp.pl","ROLE_GUEST");
+//		};
+//	}
 }
