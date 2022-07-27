@@ -9,24 +9,42 @@ import CountryCounter from "../countryCounter/CountryCounter";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import userImage from "../../../../../images/user.png"
-import {FaComments} from "react-icons/fa";
+import {FaComments, FaTrashAlt, FaUserPlus} from "react-icons/fa";
 
 const InformationAboutUser = (props) => {
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
-    const [allFriends, setAllFriends] = useState([])
-    const [myId, setMyId] = useState("")
+    const [allFriends, setAllFriends] = useState([]);
+    const [myId, setMyId] = useState("");
+    const [friendsList, setFriendsList] = useState([]);
+    const [boolka, setBoolka] = useState(false);
 
     useEffect(() => {
         searchAllFriends();
     }, [props])
 
+    const addFriend = () => {
+        axios.get(`http://localhost:8080/add_friend/${props.myUser.id}`)
+            .then(() => window.location.reload())
+            .catch(err => {
+                console.log(err)
+            });
+    };
+
+    const removeFriend = () => {
+        axios.get(`http://localhost:8080/remove_friend/${props.myUser.id}`)
+            .then(() => window.location.reload())
+            .catch(err => {
+                console.log(err)
+            });
+    };
 
     const searchAllFriends = () => {
         axios.get(`http://localhost:8080/search_friend/id/${props.myUser.id}`)
             .then(res => {
                 setAllFriends(res.data);
                 setMyId(props.myUser.id.toString());
+                friendOrNot();
             })
             .catch(err => {
                 console.log(err)
@@ -44,6 +62,21 @@ const InformationAboutUser = (props) => {
                 console.log(err)
             });
     }
+
+    const friendOrNot = () => {
+        axios.get(`http://localhost:8080/search_friend/id/${sessionStorage.getItem("userId")}`)
+            .then(res => {
+                let friendsList = res.data;
+                friendsList.map(friend => {
+                    if(friend.id===props.myUser.id){
+                        setBoolka(true);
+                    }
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    };
 
     return (
         <Card
@@ -134,8 +167,16 @@ const InformationAboutUser = (props) => {
                         <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn"
                                 variant={"outline-warning"}>Edit my details</Button>
                         :
-                        <Button className="user-start-chat-btn" variant="warning"
-                                onClick={() => sayHello()}>Say Hello {<FaComments/>}</Button>
+                        <div className="user-start-chat-btn">
+                            {boolka ?
+                                <Button style={{marginRight: "5px"}} variant="outline-warning" onClick={() => removeFriend()}>{<FaTrashAlt/>}</Button>
+                                :
+                                <Button style={{marginRight: "5px"}} variant="outline-warning" onClick={() => addFriend()}>{<FaUserPlus/>}</Button>
+                            }
+                                <Button variant="warning"
+                                     onClick={() => sayHello()}>Say Hello {<FaComments/>}</Button>
+                        </div>
+
                     }
                 </div>
             </Card.Body>
