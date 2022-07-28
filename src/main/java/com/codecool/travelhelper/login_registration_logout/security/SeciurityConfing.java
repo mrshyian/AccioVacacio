@@ -1,9 +1,9 @@
 package com.codecool.travelhelper.login_registration_logout.security;
 
+import com.codecool.travelhelper.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,24 +27,20 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder passwordEncoder;
-
+    private final UserService userService;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println("1 configure");
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        System.out.println("2 configure");
-        ThAuthenticationFilter thAuthenticationFilter = new ThAuthenticationFilter(authenticationManagerBean());
+        ThAuthenticationFilter thAuthenticationFilter = new ThAuthenticationFilter(authenticationManagerBean(), userService);
         thAuthenticationFilter.setFilterProcessesUrl("/app/login");
         http.cors();
         http.csrf().disable(); // po sprawdzeniu postmanem usunąć tą linijkę kodu
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/","/login/**","/refreshToken/**","/app/login/**","/registration/**","/userpage/**").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/auth/users/**").hasAnyRole("USER","ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/admin/user/save/**").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/auth/users/", "/usermainbar", "/get_most_popular_posts", "/posts", "/comments", "/auth/refreshToken").hasAnyAuthority("USER");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(thAuthenticationFilter);
         http.addFilterBefore(new ThAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -53,17 +49,15 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        System.out.println(" 3 authenticationManagerBean");
         return super.authenticationManagerBean();
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
-        System.out.println(" 4 corsConfigurationSource");
         final CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins((List.of("http://localhost:3000")));
         configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(List.of("Authorization","Cache-Control","Content-Type","Access-Control-Allow-Origin","Access-Control-Allow-Credentials"));
+        configuration.setAllowedHeaders(List.of("Authorization","Cache-Control","Content-Type","Access-Control-Allow-Origin","Access-Control-Allow-Credentials", "Access-Control-Request-Headers"));
         configuration.setAllowedMethods(List.of("GET","PUT","POST","DELETE","HEAD","OPTIONS","PATCH"));
         final UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",configuration);

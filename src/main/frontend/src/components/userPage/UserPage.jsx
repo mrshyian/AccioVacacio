@@ -4,16 +4,16 @@ import UserMainBar from "./userMainBar/UserMainBar";
 import MustBeLogIn from "../mustBeLogIn/MustBeLogIn";
 
 const UserPage = () => {
-    if (sessionStorage.getItem("userId") === null){
-        return <MustBeLogIn/>;
-    } else {
+    // if (sessionStorage.getItem("userId") === null){
+    //     return <MustBeLogIn/>;
+    // } else {
         return (
             <div>
                 <UserLeftBar/>
                 <UserMainBar/>
             </div>
         );
-    }
+    // }
 
 };
 

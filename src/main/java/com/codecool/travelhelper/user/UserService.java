@@ -2,6 +2,7 @@ package com.codecool.travelhelper.user;
 
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
+import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,10 +23,9 @@ import java.util.List;
 @Transactional
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
-
-
+    @Autowired
+    private LoginImpl loginImpl;
     private UserRepository userRepository;
-    private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -35,9 +35,8 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("No user found with username: " + email);
         }
         Collection<SimpleGrantedAuthority> roles= new ArrayList<>();
-        user.getRole().forEach(role ->{
-            roles.add(new SimpleGrantedAuthority(role.getName()));
-        });
+        roles.add(new SimpleGrantedAuthority(user.getRole()));
+
 
         return new User(user.getUserEMail(), user.getPassword(), roles);
     }
@@ -45,10 +44,6 @@ public class UserService implements UserDetailsService {
     public MyUserTable saveUserToBD(MyUserTable user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
-    }
-
-    public UserRoleTable saveRoleToBD(UserRoleTable role){
-        return roleRepository.save(role);
     }
 
     public MyUserTable getUser(String email){
@@ -61,8 +56,11 @@ public class UserService implements UserDetailsService {
 
     public void setUserRole(String email, String roleName){
         MyUserTable user= userRepository.findByUserEMail(email);
-        UserRoleTable role = roleRepository.findByName(roleName);
-        user.getRole().add(role);
+        user.setRole(roleName);
+    }
+
+    public LoginImpl getLoginImpl(){
+        return this.loginImpl;
     }
 
 

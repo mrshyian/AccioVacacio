@@ -10,7 +10,7 @@ const UserMainBar = () => {
     const [myUser, setMyUser] = useState([])
 
     const getUserFromDB = () => {
-        axios.get(`http://localhost:8080/usermainbar`)
+        axios.get(`http://localhost:8080/usermainbar`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 console.log(res.data)
                 setMyUser(res.data);

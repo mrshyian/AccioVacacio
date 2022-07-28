@@ -5,11 +5,10 @@ import React, {useState} from "react";
 import ErrorModal from "../errorModals/ErrorModal";
 import ReCAPTCHA from "react-google-recaptcha";
 import GoogleSignIn from "./Google.SignIn";
-import data from "bootstrap/js/src/dom/data";
-
 
 
 const LoginModal = (props) => {
+
     const [disabledBtn, setDisabledBtn] = useState(false)
 
     const [email, setEmail] = useState("")
@@ -30,44 +29,35 @@ const LoginModal = (props) => {
     }
 
 
+    function parseJwt(token) {
+        if (!token) { return; }
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    }
+
 
     const sendDataToServer = () => {
-            const url = "http://localhost:8080/login";
-            axios.post(url,{
-                email: email,
-                password: password,
-            })
-                .then(res=>{
-                    if (res.data ===""){
-                        fetchUserId();
-                    }else {
-                        showErrorModal(res.data);
-                    }
-                })
-        // const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
-        // fetch(url,{method:"GET"})
-        //     .then(res=>res.json())
-        //     .then(data=>{
-        //     sessionStorage.setItem("token", data['tokenDostempowy']);
-        //         console.log(data)
-        // }).catch(console.error)
+        const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
+        fetch(url,{method:"GET"})
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+                if (data.error === "niedziała"){
+                    showErrorModal("Provided data is not valid")
+                } else {
+                    sessionStorage.setItem("userId", parseJwt(data['tokenDostempowy']).sub)
+                    sessionStorage.setItem("token", data['tokenDostempowy'])
+                    setShowLoginModal(false);
+                    window.location.reload();
+                }
 
+            })
+            .catch(console.error)
     }
 
     const setToPropsModalClose = () => {
         props.close(false)
-    }
-
-    const fetchUserId = () => {
-        axios.get("http://localhost:8080/login")
-            .then(res=> {
-                if (res.data !== ""){
-                    localStorage.setItem('userId', res.data)
-                    sessionStorage.setItem("userId", res.data)
-                    window.location.reload();
-                }
-            })
-        .catch(err => {console.log(err)});
     }
 
     return (
@@ -117,7 +107,7 @@ const LoginModal = (props) => {
                     Login
                 </Button>
             </Modal.Footer>
-            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen}/>}
+            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen} close={setErrorModalOpen}/>}
         </Modal>
     );
 };

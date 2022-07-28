@@ -40,7 +40,7 @@ const InformationAboutUser = (props) => {
     };
 
     const searchAllFriends = () => {
-        axios.get(`http://localhost:8080/search_friend/id/${props.myUser.id}`)
+        axios.get(`http://localhost:8080/search_friend/id/${props.myUser.id}`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 setAllFriends(res.data);
                 setMyId(props.myUser.id.toString());
@@ -64,7 +64,7 @@ const InformationAboutUser = (props) => {
     }
 
     const friendOrNot = () => {
-        axios.get(`http://localhost:8080/search_friend/id/${sessionStorage.getItem("userId")}`)
+        axios.get(`http://localhost:8080/search_friend/id/${12}`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 let friendsList = res.data;
                 friendsList.map(friend => {

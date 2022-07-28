@@ -13,20 +13,10 @@ const Header = () => {
     const [loginModalOpen, setLoginModalOpen] = useState(false);
     const [registrationModalOpen, setRegistrationModalOpen] = useState(false);
 
-    const sendLogoutRequest = () => {
-        const url = "http://localhost:8080/logout";
-        axios.post(url,{})
-            .then(res=>{
-                console.log(res);
-        axios.post(url, {})
-            .then(()=> {
-                deletionOfSessions()
-            })
-    })}
 
-    const deletionOfSessions =()=>{
-        localStorage.removeItem("userId")
+    const clearSession =()=>{
         sessionStorage.removeItem("userId")
+        sessionStorage.removeItem("token")
         window.location.reload();
     }
 
@@ -74,7 +64,7 @@ const Header = () => {
                         {sessionStorage.getItem("userId") !== null ? (
                             <span>
                                 <Button onClick={() => {navigate("/userpage/friends/mail_box")}} variant={"warning"}>{<FaEnvelope/>}</Button>
-                                <Link style={{marginLeft: 20}} to="/"><Button onClick={sendLogoutRequest} variant="outline-warning">Logout</Button></Link>
+                                <Link style={{marginLeft: 20}} to="/"><Button onClick={clearSession} variant="outline-warning">Logout</Button></Link>
                             </span>
                         ) : (
                             <span>
