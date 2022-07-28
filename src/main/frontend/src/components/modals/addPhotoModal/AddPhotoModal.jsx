@@ -33,7 +33,8 @@ const AddPhotoModal = (props) => {
             formData,
             {
                 headers: {
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${sessionStorage.getItem("token")}`
                 }
             }).then(() => {
             console.log("file upload successfully");

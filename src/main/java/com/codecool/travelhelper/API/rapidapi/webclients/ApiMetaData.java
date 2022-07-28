@@ -6,7 +6,7 @@ import java.util.Map;
 public enum ApiMetaData {
     WEATHER ("https://community-open-weather-map.p.rapidapi.com/weather", new HashMap<>(){{
         put("X-RapidAPI-Host", "community-open-weather-map.p.rapidapi.com");
-        put("X-RapidAPI-Key", "b186afc8b1msh4bc0a73b4bf87bdp1d1bafjsn15bd5f30345d");
+        put("X-RapidAPI-Key", "3432d75ba4msh8f4994d2b2aee02p1d0590jsn55b1256f97ed");
     }}),
     NEWSWORLD("https://newscatcher.p.rapidapi.com/v1/search_free", new HashMap<>(){{
         put("X-RapidAPI-Host", "newscatcher.p.rapidapi.com");

@@ -3,7 +3,6 @@ import './Header.css';
 import {Button, Container, Nav, Navbar} from 'react-bootstrap';
 import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
-import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
 import {FaEnvelope} from "react-icons/fa";
 
@@ -17,8 +16,8 @@ const Header = () => {
     const clearSession =()=>{
         sessionStorage.removeItem("userId")
         sessionStorage.removeItem("token")
-        window.location.reload();
     }
+
 
 
     return (
@@ -35,6 +34,7 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="navbarScroll"/>
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
+                            {sessionStorage.getItem("userId") !== null ?
                             <Link to="/userpage">
                                 <Button
                                     variant="outline-warning"
@@ -43,6 +43,9 @@ const Header = () => {
                                     My Profile
                                 </Button>
                             </Link>
+                                :
+                                <div/>
+                            }
                             <Link to="/forum">
                                 <Button
                                     variant="outline-warning"

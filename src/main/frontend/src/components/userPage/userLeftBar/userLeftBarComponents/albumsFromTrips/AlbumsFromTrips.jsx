@@ -5,7 +5,6 @@ import "./AlbumsFromTrips.css"
 import AddNewAlbumModal from "../../../../modals/addNewAlbumModal/AddNewAlbumModal";
 import axios from "axios";
 import SingleAlbum from "./singleAlbum/SingleAlbum";
-import MustBeLogIn from "../../../../mustBeLogIn/MustBeLogIn";
 
 const AlbumsFromTrips = () => {
 
@@ -14,7 +13,8 @@ const AlbumsFromTrips = () => {
     const [albums, setAlbums] = useState([]);
 
     const getAlbumsFromDB = () => {
-        axios.get(`http://localhost:8080/albumsfromtrips`)
+        axios.get(`http://localhost:8080/albumsfromtrips`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 setAlbums(res.data);
             })
@@ -29,7 +29,6 @@ const AlbumsFromTrips = () => {
         }
     }, [])
 
-    if (sessionStorage.getItem("userId") !== null) {
         return (
             <div>
                 <UserLeftBar/>
@@ -64,9 +63,6 @@ const AlbumsFromTrips = () => {
                 {modalOpen && <AddNewAlbumModal visible={modalOpen} close={setModalOpen}/>}
             </div>
         );
-    } else {
-        return <MustBeLogIn/>;
-    }
 
 
 };

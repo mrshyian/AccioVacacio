@@ -38,10 +38,26 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
         ThAuthenticationFilter thAuthenticationFilter = new ThAuthenticationFilter(authenticationManagerBean(), userService);
         thAuthenticationFilter.setFilterProcessesUrl("/app/login");
         http.cors();
-        http.csrf().disable(); // po sprawdzeniu postmanem usunąć tą linijkę kodu
+//        http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/auth/users/", "/usermainbar", "/get_most_popular_posts", "/posts", "/comments", "/auth/refreshToken").hasAnyAuthority("USER");
-        http.authorizeRequests().anyRequest().authenticated();
+
+        http.authorizeRequests().antMatchers(
+                "/usermainbar",
+                "/auth/refreshToken",
+                "/get_friend_by_nick/**",
+                "/placewanttogo",
+                "/photos",
+                "/notes",
+                "/search_friend/**",
+                "/search_friend/id/**",
+                "/add_friend/**",
+                "/remove_friend/**",
+                "/mail_to_friend/new_message_in_chat",
+                "/mail_to_friend/all_chats",
+                "/mail_to_friend/**",
+                "/mail_to_friend/messages/**",
+                "/albumsfromtrips").hasAnyAuthority("USER");
+        http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(thAuthenticationFilter);
         http.addFilterBefore(new ThAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

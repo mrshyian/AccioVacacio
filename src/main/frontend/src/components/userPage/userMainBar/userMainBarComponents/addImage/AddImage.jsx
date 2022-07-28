@@ -8,7 +8,8 @@ const UserProfiles = () => {
     const [userProfiles, setUserProfile] = useState([]);
 
     const fetchUserProfiles = () => {
-        axios.get("http://localhost:8080/user-profile")
+        axios.get("http://localhost:8080/user-profile",
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{
             setUserProfile(res.data);
         });
@@ -40,7 +41,8 @@ function Dropzone({userProfileId}) {
             formData,
             {
                 headers: {
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${sessionStorage.getItem("token")}`
                 }
             }).then(() => {
             console.log("file upload successfully");

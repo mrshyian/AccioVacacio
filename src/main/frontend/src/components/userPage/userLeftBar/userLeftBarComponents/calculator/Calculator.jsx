@@ -2,10 +2,9 @@ import React from 'react';
 import {Card} from "react-bootstrap";
 import UserLeftBar from "../../UserLeftBar";
 import "./Calculator.css"
-import MustBeLogIn from "../../../../mustBeLogIn/MustBeLogIn";
 
 const Calculator = () => {
-    if (sessionStorage.getItem("userId") !== null) {
+
         return (
             <div>
                 <UserLeftBar/>
@@ -22,9 +21,6 @@ const Calculator = () => {
                 </Card>
             </div>
         );
-    } else {
-        return <MustBeLogIn/>;
-    }
 
 };
 

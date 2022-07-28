@@ -10,14 +10,16 @@ const UserPageFavouriteComments = () => {
     const [favouriteCommentsPosts, setFavouriteCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
-        axios.get(`http://localhost:8080/favouriteComments`)
+        axios.get(`http://localhost:8080/favouriteComments`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{setFavouriteComments(res.data);
                 console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 
     const fetchMyPosts = () => {
-        axios.get(`http://localhost:8080/favouriteCommentsPosts`)
+        axios.get(`http://localhost:8080/favouriteCommentsPosts`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{setFavouriteCommentsPosts(res.data);
                 console.log(res.data)})
             .catch(err => {console.log(err)});

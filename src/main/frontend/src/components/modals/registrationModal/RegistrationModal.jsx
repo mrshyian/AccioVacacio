@@ -38,7 +38,8 @@ const RegistrationModal = (props) => {
                 birthday: birthday,
                 email: email,
                 password: password,
-            })
+            },
+                {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
                 .then(res=>{
                     if (res.data !== ""){
                         showErrorModal(res.data)

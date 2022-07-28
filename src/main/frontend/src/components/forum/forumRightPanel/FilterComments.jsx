@@ -11,13 +11,15 @@ const FilterComments = () => {
     const [sortedComments, setSortedComments] = useState([]);
 
     const fetchSortedPosts = () => {
-        axios.get(`http://localhost:8080/get_sorted_posts`)
+        axios.get(`http://localhost:8080/get_sorted_posts`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{setSortedPosts(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchSortedComments = () => {
-        axios.get(`http://localhost:8080/get_sorted_comments`)
+        axios.get(`http://localhost:8080/get_sorted_comments`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{setSortedComments(res.data);})
             .catch(err => {console.log(err)});
     };

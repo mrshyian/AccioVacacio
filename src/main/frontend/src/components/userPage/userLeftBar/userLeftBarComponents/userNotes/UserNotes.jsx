@@ -5,8 +5,6 @@ import "./UserNotes.css"
 import axios from "axios";
 import Axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
-import MustBeLogIn from "../../../../mustBeLogIn/MustBeLogIn";
-import userImage from "../../../../../images/user.png"
 
 
 const UserNotes = () => {
@@ -20,7 +18,8 @@ const UserNotes = () => {
 
 
     function fetchNoteText() {
-        axios.get(`http://localhost:8080/notes`)
+        axios.get(`http://localhost:8080/notes`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 setNoteText(res.data)
             })
@@ -67,12 +66,12 @@ const UserNotes = () => {
         e.preventDefault();
         Axios.post(`http://localhost:8080/notes`, {
             noteText: noteText
-        }).then(r => {
+        },
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}}).then(r => {
             console.log(r.data);
         })
     }
 
-    if (sessionStorage.getItem("userId") !== null){
         return (
             <div>
                 <UserLeftBar/>
@@ -118,9 +117,6 @@ const UserNotes = () => {
             </div>
 
         );
-    } else {
-        return <MustBeLogIn/>;
-    }
 };
 
 export default UserNotes;

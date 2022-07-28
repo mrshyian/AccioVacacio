@@ -12,7 +12,6 @@ function AddNewPost(props) {
     const [dataa, setDataa] = useState(new FormData());
 
 
-
     const handleClose = () => {
         setToPropsModalClose();
         setShow(false);
@@ -48,20 +47,23 @@ function AddNewPost(props) {
         {
             !image ?
                 Axios.post(url, {
-                    topic: data.topic,
-                    postText: data.postText
-                }).then(() => refreshPage())
+                        topic: data.topic,
+                        postText: data.postText
+                    },
+                    {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}}).then(() => refreshPage())
                 :
-            axios.post(`http://localhost:8080/image/upload/post/${data.topic}/${data.postText}`,
-                dataa,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
-                    }
-                }).then(() => {refreshPage();
-            }).catch(err => {
-                console.log(err);
-            });
+                axios.post(`http://localhost:8080/image/upload/post/${data.topic}/${data.postText}`,
+                    dataa,
+                    {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+                        }
+                    }).then(() => {
+                    refreshPage();
+                }).catch(err => {
+                    console.log(err);
+                });
         }
     }
 
@@ -145,4 +147,5 @@ function AddNewPost(props) {
         </>
     );
 }
+
 export default AddNewPost;

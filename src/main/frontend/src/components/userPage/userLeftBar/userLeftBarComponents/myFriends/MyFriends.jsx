@@ -18,7 +18,8 @@ const MyFriends = () => {
     const myId = sessionStorage.getItem("userId").toString();
 
     const searchAllFriends = () => {
-        axios.get(`http://localhost:8080/search_friend/id/${myId}`)
+        axios.get(`http://localhost:8080/search_friend/id/${myId}`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 console.log(res.data)
                 setAllFriends(res.data);
@@ -32,7 +33,8 @@ const MyFriends = () => {
         setNameForSearch(name)
         if (name !== "") {
             setNameForSearch(name)
-            axios.get(`http://localhost:8080/search_friend/${name}`)
+            axios.get(`http://localhost:8080/search_friend/${name}`,
+                {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
                 .then(res => {
                     setSearchedFriend(res.data);
                 })

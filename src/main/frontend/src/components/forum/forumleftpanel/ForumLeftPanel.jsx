@@ -46,16 +46,17 @@ const ForumLeftPanel = (props) => {
 
     function submit(e){
         e.preventDefault();
-        Axios.post(url, {
+        Axios.post(url,
+            {
             country: data.country,
             city: data.city,
-            time : date
-        }).then(()=> refreshPage())
+            time : date}
+        ).then(()=> refreshPage())
 
     }
 
     const fetchMostPopularPosts = () => {
-        axios.get(`http://localhost:8080/get_most_popular_posts`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/get_most_popular_posts`)
             .then(res =>{setPopularPosts(res.data);
                 console.log(res.data)})
             .catch(err => {console.log(err)});
@@ -75,16 +76,34 @@ const ForumLeftPanel = (props) => {
                 <ProSidebar className="sidebar" style={{height: "1000px"}}>
                     <Menu iconShape="square">
                         <SubMenu title="Filter" icon={<FaFilter />}>
-                            <MenuItem icon={<FaHourglassHalf />}>Latest / Oldest</MenuItem>
-                            <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
-                            <MenuItem icon={<FaGlobeEurope />}><input type="text" placeholder="City"/></MenuItem>
+                            <Form>
+                                <Form.Select as="select"
+                                             value={data.time}
+                                             id="submit"
+                                             size="sm"
+                                             onChange={(e) => handleSelect(e.target.value)}
+                                             style={{ marginLeft: "15%", width: "72%", height: "30px"}}
+                                             icon={<FaHourglassHalf />}
+                                >
+                                    <option id="latest" value={"Latest"}>Select</option>
+                                    <option id="oldest" value={"Oldest"}>Oldest</option>
+                                    <option id="latest" value={"Latest"}>Latest</option>
+                                </Form.Select >
+
+                                <MenuItem icon={<FaGlobeAmericas />}><input onChange={(e) => handle(e)} id="country" value={data.country} type="text" placeholder="Country"/></MenuItem>
+                                <MenuItem icon={<FaGlobeEurope />}><input onChange={(e) => handle(e)} id="city" value={data.city} type="text" placeholder="City"/></MenuItem>
+                                <MenuItem icon={<BiFileFind />}><button onClick={(e)=> submit(e)} type="submit"><Link to="/sort_by"> Submit </Link></button></MenuItem>
+                            </Form>
                         </SubMenu>
-                        <SubMenu title="Filter" icon={<FaFilter />}>
-                            <MenuItem icon={<FaHourglassHalf />}>Latest / Oldest</MenuItem>
-                            <MenuItem icon={<FaGlobeAmericas />}><input type="text" placeholder="Country"/></MenuItem>
-                            <MenuItem icon={<FaGlobeEurope />}><input type="text" placeholder="City"/></MenuItem>
+                        <SubMenu title="Most Popular" icon={<AiOutlineFire />}>
+                            <div>
+                                {popularPosts.map((post, index) => {
+                                    return (
+                                        <MenuItem key={index}><a href={`#${post.id}`}>{post.topic}</a></MenuItem>
+                                    )
+                                })}
+                            </div>
                         </SubMenu>
-                        {NewModalOpen && <AddNewPost open={NewModalOpen}/>}
                     </Menu>
                 </ProSidebar>
             </header>

@@ -26,7 +26,8 @@ const SinglePost = (props) => {
         axios.post(
             "http://localhost:8080/add_like_to_post", {
                 postId: props.post.id
-            })
+            },
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then((() => reload()
             ));
     }
@@ -35,7 +36,8 @@ const SinglePost = (props) => {
         axios.put(
             "http://localhost:8080/delete_post", {
                 postId: props.post.id
-            })
+            },
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then((() => reload()
             ));
     }
@@ -45,21 +47,25 @@ const SinglePost = (props) => {
         axios.put(url, {
             postText: postText,
             postId: props.post.id
-        }).then(() => reload())
+        },
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}}).then(() => reload())
 
     }
+    const [areCommentsPresent, setAreCommentsPresent] = useState(false)
 
     useEffect(()=>{
-        isSession()
+        postOwner()
     }, [])
 
-    const [session, setSession] = useState(false)
-    const isSession = () => {
+    const [isOwner, setIsOwner] = useState(false)
+
+    const postOwner = () => {
         if(sessionStorage.getItem("userId") == userId ) {
-            setSession(true)
+            setIsOwner(true)
         }else{
-            setSession(false)
+            setIsOwner(false)
         }
+
     }
 
     function reload() {
@@ -119,8 +125,7 @@ const SinglePost = (props) => {
                             <FaHeart/>}</Button>
                         <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
                         >{<BsFillArrowUpSquareFill/>}</Button>
-
-                        <p>Comments:</p>
+                            <h5>Comments:</h5>
                         {props.comments.map((comment, post, index) => {
                             if(comment.post.id === props.post.id){
                                 return (
@@ -153,19 +158,17 @@ const SinglePost = (props) => {
                         <p>{props.post.postDateTime}</p>
                     </Card.Header>
                     <Card.Body>
-
                         <Card.Text>
-
                             <h4>{props.post.postText}</h4>
                             <img className="post-image"
                                  src={`http://localhost:8080/image/download/post/${props.post.id}`}
                                  alt=""/>
                         </Card.Text>
-
                     </Card.Body>
                     <Card.Footer>
-                        <div style={{display: "flex", justifyContent:"right"}} >
-                            {session?
+                        {sessionStorage.getItem("userId")!== null ?
+                        <div><div style={{display: "flex", justifyContent:"right"}} >
+                            {isOwner?
                                 <div>
                                     <Button onClick={DeletePost} style={{marginLeft: "5px"}} variant="outline-warning">{<FaTrash/>}</Button>
 
@@ -189,7 +192,13 @@ const SinglePost = (props) => {
                             }
 
                         </div>
-                        <AddNewComment postId={props.post.id}/>
+                        <AddNewComment postId={props.post.id}/></div>
+                            :
+                            <div style={{display: "flex", justifyContent:"right"}} >
+                            <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                            >{<BsFillArrowUpSquareFill/>}</Button>
+                            </div>
+                        }
                         <h5>Comments:</h5>
                         {props.comments.map((comment, post, index) => {
                             if(comment.post.id === props.post.id){

@@ -12,14 +12,16 @@ const MyComments = () => {
     const [myCommentsPosts, setMyCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
-        axios.get(`http://localhost:8080/myComments`)
+        axios.get(`http://localhost:8080/myComments`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{setMyComments(res.data);})
             .catch(err => {console.log(err)});
     };
 
 
     const fetchMyCommentsPosts = () => {
-        axios.get(`http://localhost:8080/myCommentsPosts`)
+        axios.get(`http://localhost:8080/myCommentsPosts`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{setMyCommentsPosts(res.data);})
             .catch(err => {console.log(err)});
     };

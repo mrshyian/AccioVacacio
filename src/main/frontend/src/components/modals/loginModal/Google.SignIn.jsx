@@ -14,7 +14,8 @@ const GoogleSignIn = () => {
             email: jwt_decode(responce.credential).email,
             fullName: jwt_decode(responce.credential).given_name + " " + jwt_decode(responce.credential).family_name,
             avatar: jwt_decode(responce.credential).picture
-        })
+        },
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res=>{
                 console.log(res.data);
                 sessionStorage.setItem("userId", res.data)

@@ -5,7 +5,6 @@ import UserLeftBar from "../../UserLeftBar";
 import SinglePlace from "./SinglePlace";
 import "./PlaceWantToGo.css"
 import PlaceWantToGoModal from "../../../../modals/placeWantToGoModal/PlaceWantToGoModal";
-import MustBeLogIn from "../../../../mustBeLogIn/MustBeLogIn";
 
 
 const PlaceWantToGo = () => {
@@ -14,7 +13,8 @@ const PlaceWantToGo = () => {
     const [places, setPlaces] = useState([]);
 
     const getPlacesFromDB = () => {
-        axios.get(`http://localhost:8080/placewanttogo`)
+        axios.get(`http://localhost:8080/placewanttogo`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 setPlaces(res.data);
             })
@@ -34,7 +34,6 @@ const PlaceWantToGo = () => {
     }, [])
 
 
-    if (sessionStorage.getItem("userId") !== null) {
         return (
             <div>
                 <UserLeftBar/>
@@ -61,9 +60,6 @@ const PlaceWantToGo = () => {
                 </Card>
             </div>
         );
-    } else {
-        return <MustBeLogIn/>;
-    }
 };
 
 export default PlaceWantToGo;

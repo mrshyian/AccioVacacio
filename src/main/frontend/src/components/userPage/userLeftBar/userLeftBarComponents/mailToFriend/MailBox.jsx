@@ -10,7 +10,8 @@ import "./MailBox.css"
 const MailBox = () => {
 
     const sayHello = (friend) => {
-        axios.get(`http://localhost:8080/mail_to_friend/${friend.id}`)
+        axios.get(`http://localhost:8080/mail_to_friend/${friend.id}`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(() => {window.location.reload()})
             .catch(err => {
                 console.log(err)
@@ -21,7 +22,8 @@ const MailBox = () => {
 
     const searchFriendByName = (nameForSearch) => {
         setSearchedFriend("")
-        axios.get(`http://localhost:8080/search_friend/${nameForSearch}`)
+        axios.get(`http://localhost:8080/search_friend/${nameForSearch}`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 console.log(res.data)
                 setSearchedFriend(res.data);
@@ -56,7 +58,8 @@ const MailBox = () => {
     const [showChat, setShowChat] = useState({});
 
     const getAllPenFriends =  () => {
-         axios.get(`http://localhost:8080/mail_to_friend/all_chats`)
+         axios.get(`http://localhost:8080/mail_to_friend/all_chats`,
+             {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res => {
                 console.log(res.data)
                 setPenFriends(res.data);

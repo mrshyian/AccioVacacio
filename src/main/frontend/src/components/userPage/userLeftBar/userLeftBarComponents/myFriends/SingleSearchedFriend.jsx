@@ -8,7 +8,8 @@ const SingleSearchedFriend = (props) => {
 
 
     const addFriend = () => {
-        axios.get(`http://localhost:8080/add_friend/${props.myUser.id}`)
+        axios.get(`http://localhost:8080/add_friend/${props.myUser.id}`,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(() => window.location.reload())
             .catch(err => {
                 console.log(err)
@@ -28,7 +29,6 @@ const SingleSearchedFriend = (props) => {
                         currentTarget.src=userImage;
                     }}
                 />
-                {/*<img style={{width: 100, height: 100, float: "left"}} src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />*/}
                 <h4 style={{marginTop: "5%"}}>{props.myUser.fullName}</h4>
                 <Button style={{float: "right", margin: "3px"}} variant="outline-warning" onClick={() => addFriend()}>{<FaUserPlus/>}</Button>
             </Card.Body>
