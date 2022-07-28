@@ -30,7 +30,7 @@ public class ThAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        if (request.getServletPath().equals("/app/login") || request.getServletPath().equals("/registration") || request.getServletPath().equals("/refreshToken")){
+        if (request.getServletPath().equals("/app/login")  || request.getServletPath().equals("/refreshToken")){
             filterChain.doFilter(request,response);
         }else {
             String authorizationHeader = request.getHeader(AUTHORIZATION);

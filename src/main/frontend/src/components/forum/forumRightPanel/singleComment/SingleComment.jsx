@@ -25,12 +25,12 @@ const SingleComment = (props) => {
         reload();
     }
 
-    const [session, setSession] = useState(false)
-    const isSession = () => {
+    const [isOwner, setIsOwner] = useState(false)
+    const commentOwner = () => {
         if (sessionStorage.getItem("userId") == userId) {
-            setSession(true)
+            setIsOwner(true)
         } else {
-            setSession(false)
+            setIsOwner(false)
         }
     }
 
@@ -57,7 +57,7 @@ const SingleComment = (props) => {
     }
 
     useEffect(() => {
-        isSession()
+        commentOwner()
     }, [])
 
     function submit(e) {
@@ -161,24 +161,30 @@ const SingleComment = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer style={{backgroundColor: "rgb(45, 45, 45)"}}>
-                        <div style={{display: "flex", justifyContent: "right"}}>
-                            {session ?
-                                <div>
-                                    <Button onClick={DeleteComment} style={{marginLeft: "5px"}}
-                                            variant="outline-warning">{< FaTrash/>}</Button>
-                                    <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{
-                                        <FaHeart/>}</Button>
-                                    <Button style={{marginLeft: "5px"}} variant="outline-warning"
-                                            className="save-note-button"
-                                            onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
-                                </div>
-                                :
-                                <div>
-                                    <Button onClick={AddLike} style={{marginLeft: "5px"}} variant="outline-warning">{
-                                        <FaHeart/>}</Button>
-                                </div>
-                            }
-                        </div>
+                        {sessionStorage.getItem("userId") !== null ?
+                            <div style={{display: "flex", justifyContent: "right"}}>
+                                {isOwner ?
+                                    <div>
+                                        <Button onClick={DeleteComment} style={{marginLeft: "5px"}}
+                                                variant="outline-warning">{< FaTrash/>}</Button>
+                                        <Button onClick={AddLike} style={{marginLeft: "5px"}}
+                                                variant="outline-warning">{
+                                            <FaHeart/>}</Button>
+                                        <Button style={{marginLeft: "5px"}} variant="outline-warning"
+                                                className="save-note-button"
+                                                onClick={(e) => editText(e)}>{<RiFileEditFill/>}</Button>
+                                    </div>
+                                    :
+                                    <div>
+                                        <Button onClick={AddLike} style={{marginLeft: "5px"}}
+                                                variant="outline-warning">{
+                                            <FaHeart/>}</Button>
+                                    </div>
+                                }
+                            </div>
+                            :
+                            <div/>
+                        }
                     </Card.Footer>
                 </Card>}
         </div>

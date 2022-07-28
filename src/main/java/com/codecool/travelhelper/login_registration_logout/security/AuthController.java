@@ -38,10 +38,10 @@ public class AuthController {
 
     }
 
-    @PostMapping("/admin/user/save")
-    public ResponseEntity<MyUserTable> addUser(@RequestBody MyUserTable user){
-        return ResponseEntity.ok().body(userService.saveUserToBD(user));
-    }
+//    @PostMapping("/admin/user/save")
+//    public ResponseEntity<MyUserTable> addUser(@RequestBody MyUserTable user){
+//        return ResponseEntity.ok().body(userService.saveUserToBD(user));
+//    }
 
     @GetMapping("/refreshToken")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {

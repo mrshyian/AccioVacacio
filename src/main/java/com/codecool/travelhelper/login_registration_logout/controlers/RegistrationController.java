@@ -16,7 +16,7 @@ public class RegistrationController {
     private RegistrationImpl registrationImpl;
 
 
-    @PostMapping("/registration")
+    @PostMapping("/new_user_registration")
     public String registration(@RequestBody String data){
         return registrationImpl.saveNewUserToDB(data);
     }

@@ -125,7 +125,7 @@ public class MyUserTable {
         this.facebook = "";
         this.aboutMe = "";
         this.privateAccount = false;
-        this.role = "User";
+        this.role = "USER";
     }
 
     public void addFriend(MyUserTable newFriend){

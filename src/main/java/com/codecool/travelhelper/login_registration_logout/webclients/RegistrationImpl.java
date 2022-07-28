@@ -21,18 +21,12 @@ public class RegistrationImpl {
     private SendMailToUser sendMailToUser;
 
     @Autowired
-    private Util util;
-
-    @Autowired
-    private RegistrationController registrationController;
-
-    @Autowired
     private UserRepository userRepository;
 
-    PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public String saveNewUserToDB(String data) {
-
 
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject) jsonParser.parse(data);

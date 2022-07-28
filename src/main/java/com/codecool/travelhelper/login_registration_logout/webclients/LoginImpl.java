@@ -37,32 +37,6 @@ public class LoginImpl {
     @Autowired
     UserRepository userRepository;
 
-//    public String findUser(String data) {
-//
-//        JsonParser jsonParser = new JsonParser();
-//        JsonObject commentJsonObject = (JsonObject)jsonParser.parse(data);
-//        String email = commentJsonObject.get("email").getAsString();
-//        String password = commentJsonObject.get("password").getAsString();
-//
-//        Optional<MyUserTable> userObject = userRepository.findAllByUserEMail(email);
-//        this.setCurrentUserId(null);
-//
-//        if (userObject.isPresent()){
-//            String passwordFromDB = userObject.get().getPassword();
-//            if(validationPassword(util.hashPassword(password),passwordFromDB)){
-//                session.setAttribute("userId", userObject.get().getId());
-//                this.setCurrentUserId(userObject.get().getId());
-//                return null;
-//            }else {
-//                System.out.println("incorrect log in ");
-//                return "Mail or password is incorrect";
-//            }
-//        } else {
-//            System.out.println("mail or password is incorrect");
-//            return "Mail or password is incorrect";
-//        }
-//    }
-
 
     public boolean validationPassword(String password, String passwordFromDB ){
         if (password.equals(passwordFromDB)){
@@ -77,7 +51,6 @@ public class LoginImpl {
         JsonObject commentJsonObject = (JsonObject) jsonParser.parse(data);
         String email = commentJsonObject.get("email").getAsString();
         String fullName = commentJsonObject.get("fullName").getAsString();
-        String avatar = commentJsonObject.get("avatar").getAsString();
 
         Optional<MyUserTable> userObject = userRepository.findAllByUserEMail(email);
         this.setCurrentUserId(null);
@@ -97,11 +70,9 @@ public class LoginImpl {
                     email,
                     util.hashPassword(generatedString)
             );
-            newUser.setAvatar(avatar);
             userRepository.save(newUser);
             sendMailToUser.sendSimpleEmail(email, fullName, KindOfEmail.AFTER_REGISTRATION, null);
 
-            session.setAttribute("userId", newUser.getId());
             this.setCurrentUserId(newUser.getId());
         }
         return String.valueOf(currentUserId);
