@@ -34,7 +34,7 @@ const SearchCity = () => {
 
 
     const getCoordinates = () => {
-        axios.get(`http://localhost:8080/get_coordinates/${city}`)
+        axios.get(`http://localhost:8080/get_coordinates/${city}/${country}`)
             .then(res => {
                 setLongitude(res.data.lon);
                 setLatitude(res.data.lat);

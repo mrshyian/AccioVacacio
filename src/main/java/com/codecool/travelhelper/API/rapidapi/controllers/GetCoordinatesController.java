@@ -17,8 +17,8 @@ public class GetCoordinatesController{
     @Autowired
     private GetCoordinatesService getCoordinatesService;
 
-    @GetMapping("/get_coordinates/{cityName}")
-    public GetCoordinatesModel getWeather(@PathVariable String cityName){
-        return getCoordinatesService.getCoordinates(cityName);
+    @GetMapping("/get_coordinates/{cityName}/{countryName}")
+    public GetCoordinatesModel getWeather(@PathVariable String cityName, @PathVariable String countryName){
+        return getCoordinatesService.getCoordinates(cityName, countryName);
     }
 }

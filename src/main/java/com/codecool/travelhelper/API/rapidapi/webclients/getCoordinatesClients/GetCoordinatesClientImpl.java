@@ -16,9 +16,10 @@ public class GetCoordinatesClientImpl extends ApiWebClient{
         super(ApiMetaData.WEATHER);
     }
 
-    public GetCoordinatesModel getCityCoordinates(String cityName){
+    public GetCoordinatesModel getCityCoordinates(String cityName, String countryName){
+        String findBy = cityName + " " + countryName;
         Map<String, Object> parameters = new HashMap<>(){{
-            put("q", cityName);
+            put("q", findBy);
         }};
         this.setParameters(parameters);
 
@@ -28,9 +29,8 @@ public class GetCoordinatesClientImpl extends ApiWebClient{
     }
 
     public GetCoordinatesModel getGetCoordinatesDto(JsonObject response) {
-        float longitude = Float.parseFloat(response.getAsJsonObject().get("coord").getAsJsonObject().get("lon").getAsString());
-        float latitude = Float.parseFloat(response.getAsJsonObject().get("coord").getAsJsonObject().get("lat").getAsString());
-
+        float longitude = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("lon", "location", response));
+        float latitude = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("lat", "location", response));
 
         return GetCoordinatesModel.builder()
                 .lat(latitude)
