@@ -150,6 +150,31 @@ public abstract class ApiWebClient {
         return value.getAsString();
     }
 
+    /**
+     * Should be used for case "smth_coord":
+     *      * response = {"base":"stations",
+     *      *              "smth":{
+     *                          "smth_coord":{
+     *                                  "lon":-0.1257,
+     *                                  "lat":51.5085
+     *                              },
+     *                          }
+     *      *
+     *      *             }
+     *      *
+     * @param keyForValue
+     * @param firstNestedKey
+     * @param secondNestedKey
+     * @param jsonObject
+     * @return String with value for "lon", where "lon" is element of the forth level of nesting - json object inside json object.
+     */
+    public String getValueByKeyFromThreeTimesNestedJsonObject (String keyForValue, String firstNestedKey, String secondNestedKey, JsonObject jsonObject){
+        JsonObject firstLevelNestedJsonObject = jsonObject.getAsJsonObject(firstNestedKey); // "smth"
+        JsonObject secondLevelNestedJsonObject = firstLevelNestedJsonObject.getAsJsonObject(secondNestedKey); // "smth_coord"
+        JsonElement value = secondLevelNestedJsonObject.get(keyForValue); // "lon"
+        return value.getAsString();
+    }
+
 
     /**
      * * Should be used for case "weather":

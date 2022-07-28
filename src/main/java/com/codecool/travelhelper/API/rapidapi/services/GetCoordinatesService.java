@@ -13,7 +13,7 @@ public class GetCoordinatesService {
     @Autowired
     private GetCoordinatesClientImpl getCoordinatesClient;
 
-    public GetCoordinatesModel getCoordinates(String cityName){
-        return getCoordinatesClient.getCityCoordinates(cityName);
+    public GetCoordinatesModel getCoordinates(String cityName, String countryName){
+        return getCoordinatesClient.getCityCoordinates(cityName, countryName);
     }
 }

@@ -23,8 +23,9 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
     }
 
     public WeatherApiModel getCityWeather(String cityName, String countryName) {
+        String findBy = cityName + " " + countryName;
         Map<String, Object> parameters = new HashMap<>(){{
-            put("q", cityName);
+            put("q", findBy);
         }};
         this.setParameters(parameters);
 
@@ -34,15 +35,14 @@ public class WeatherClientImpl extends ApiWebClient implements WeatherClient {
     }
 
     private WeatherApiModel getWeatherDto (JsonObject response, String cityName, String countryName){
-        String description = getValueByKeyFromJsonObjectInsideJsonArray("description", "weather", response);
+        String description = getValueByKeyFromThreeTimesNestedJsonObject("text", "current", "condition",  response);
 
-        int temperature = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("temp", "main", response)) - 273.15);
-        int feelsLike = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("feels_like", "main", response)) - 273.15);
-        int pressure = Integer.parseInt(getValueByKeyFromJsonObjectInsideJsonObject("pressure", "main", response));
-        int humidity = Integer.parseInt(getValueByKeyFromJsonObjectInsideJsonObject("humidity", "main", response));
+        int temperature = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("temp_c", "current", response)));
+        int feelsLike = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("feelslike_c","current", response)));
+        int pressure = (int)(Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("pressure_mb", "current", response)));
+        int humidity = Integer.parseInt(getValueByKeyFromJsonObjectInsideJsonObject("humidity", "current", response));
 
-
-        float wingSpeed = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("speed", "wind", response));
+        float wingSpeed = Float.parseFloat(getValueByKeyFromJsonObjectInsideJsonObject("wind_mph", "current", response));
 
         //----------------------------saving weather to database----------------------------
         weatherRepositoryImpl.setWeatherDataByCityAndCountryName(new WeatherTable(cityName,
