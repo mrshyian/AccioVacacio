@@ -57,7 +57,7 @@ public class AuthController {
                 String accessToken = JWT.create()
                         .withSubject(user.getId().toString())
                         .withIssuer("TripHelper")
-                        .withExpiresAt(new Date(System.currentTimeMillis()+15*60*1000))
+                        .withExpiresAt(new Date(System.currentTimeMillis()+60*60*1000))
                         .withClaim("roles",user.getRole())
                         .sign(algorithm);
                 Map<String,String> tokens = new HashMap<>();

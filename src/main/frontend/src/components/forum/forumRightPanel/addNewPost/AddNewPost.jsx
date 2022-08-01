@@ -50,14 +50,17 @@ function AddNewPost(props) {
                         topic: data.topic,
                         postText: data.postText
                     },
-                    {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}}).then(() => refreshPage())
+                    {headers:
+                            {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                                'X-XSRF-TOKEN': props.tokenCsrf}}).then(() => refreshPage())
                 :
                 axios.post(`http://localhost:8080/image/upload/post/${data.topic}/${data.postText}`,
                     dataa,
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
-                            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+                            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                            'X-XSRF-TOKEN': props.tokenCsrf
                         }
                     }).then(() => {
                     refreshPage();

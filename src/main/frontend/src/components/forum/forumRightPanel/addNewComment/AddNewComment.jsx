@@ -22,9 +22,7 @@ function AddNewComment(props) {
     }
 
 
-    function refreshPage() {
-        window.location.reload();
-    }
+
 
     function submit(e) {
         e.preventDefault();
@@ -37,18 +35,20 @@ function AddNewComment(props) {
                         postId: props.postId
 
                     },
-                    {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
-                    .then(() => refreshPage())
+                    {headers:
+                            {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                                'X-XSRF-TOKEN': props.tokenCsrf}})
+                    .then()
                 :
                 axios.post(`http://localhost:8080/image/upload/comment/${name.name}/${props.postId}`,
                     dataa,
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
-                            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
-                        }
-                    }).then(() => {
-                    refreshPage();
+                            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                            'X-XSRF-TOKEN': props.tokenCsrf}})
+                    .then(() => {
+
                 }).catch(err => {
                     console.log(err);
                 });
@@ -117,7 +117,7 @@ function AddNewComment(props) {
                             <div>
                                 <Dropzone/>
                             </div>
-                            <Button onClick={refreshPage} variant="outline-warning" type="submit">Add comment</Button>
+                            <Button  variant="outline-warning" type="submit">Add comment</Button>
                         </div>
                     </Card.Body>
                 </Card>
