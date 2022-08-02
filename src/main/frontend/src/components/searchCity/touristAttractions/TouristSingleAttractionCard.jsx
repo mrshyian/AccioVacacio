@@ -18,8 +18,8 @@ const TouristSingleAttractionCard = (props) => {
                 </div>
                 <div className="minus-margin" style={{width: "49%", flex: "50%"}}>
                     <h2>{locationName}</h2>
-                    <p>Address: <em>{locationAddress}</em></p>
-                    <p>Only in <strong>{distanceToLocation}</strong> meters from center</p>
+                    <br/><div>Address: <em>{locationAddress}</em></div>
+                    <br/><div>Only in <strong>{distanceToLocation}</strong> meters from center</div>
                 </div>
                 <ImageBingSearch key={props.index} attractions={props.attractions} website={{website}}/>
             </div>

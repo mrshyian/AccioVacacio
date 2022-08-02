@@ -13,9 +13,9 @@ const CountryCounter = () => {
             <Card.Header style={{textAlign: "center", color: "orange"}}><h4>Country Counter</h4></Card.Header>
             <Card.Body>
                 <Card.Text>
-                    <a style={{color: "orange"}} href="/userpage"><p>Poland/Poznan</p></a>
-                    <a style={{color: "orange"}} href="/userpage"><p>Rome/Italy</p></a>
-                    <a style={{color: "orange"}} href="/userpage"><p>Barcelona/Spain</p></a>
+                    <a style={{color: "orange"}} href="/userpage"><br/><div>Poland/Poznan</div></a>
+                    <a style={{color: "orange"}} href="/userpage"><br/><div>Rome/Italy</div></a>
+                    <a style={{color: "orange"}} href="/userpage"><br/><div>Barcelona/Spain</div></a>
                 </Card.Text>
             </Card.Body>
         </Card>

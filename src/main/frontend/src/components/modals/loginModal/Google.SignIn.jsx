@@ -4,22 +4,31 @@ import axios from "axios";
 
 
 const GoogleSignIn = () => {
+    function parseJwt(token) {
+        if (!token) { return; }
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    }
+
     const google = window.google
 
     function handleCallbackResponse(responce) {
-        console.log(jwt_decode(responce.credential));
+        // console.log(jwt_decode(responce.credential));
 
         const url = "http://localhost:8080/login_with_google";
         axios.post(url,{
             email: jwt_decode(responce.credential).email,
             fullName: jwt_decode(responce.credential).given_name + " " + jwt_decode(responce.credential).family_name,
             avatar: jwt_decode(responce.credential).picture
-        },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        })
             .then(res=>{
+                // console.log(parseJwt(res['tokenDostempowy']))
+                // sessionStorage.setItem("userId", parseJwt(res['tokenDostempowy']).sub)
+                sessionStorage.setItem("token", res['tokenDostempowy'])
                 console.log(res.data);
-                sessionStorage.setItem("userId", res.data)
-                window.location.reload();
+
+                // window.location.reload();
             })
     }
 

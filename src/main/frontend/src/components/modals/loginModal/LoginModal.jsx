@@ -13,69 +13,78 @@ const LoginModal = (props) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [navigate, setNavigate] = useState(false);
 
     const [showLoginModal, setShowLoginModal] = useState(true);
-    const handleCloseLoginModal = () =>{
+    const handleCloseLoginModal = () => {
         setToPropsModalClose();
         setShowLoginModal(false);
-    } ;
+    };
     const [errorModalOpen, setErrorModalOpen] = useState(false);
-    const [errorText, setErrorText]= useState("");
+    const [errorText, setErrorText] = useState("");
 
 
-    function showErrorModal(data){
+    function showErrorModal(data) {
         setErrorText(data);
         setErrorModalOpen(true);
     }
 
 
     function parseJwt(token) {
-        if (!token) { return; }
+        if (!token) {
+            return;
+        }
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace('-', '+').replace('_', '/');
         return JSON.parse(window.atob(base64));
     }
 
-
-    const sendDataToServer = () => {
-        const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
-        fetch(url,{method:"GET"})
-            .then(res=>res.json())
-            .then(data=>{
-                console.log(data)
-                if (data.error === "niedziała"){
+    const submit = async e => {
+        e.preventDefault();
+        const {data} = await axios.post('http://localhost:8080/app/login', {
+            email, password
+        })
+            .then(res => {
+                console.log(res)
+                if (res.error === "niedziała") {
                     showErrorModal("Provided data is not valid")
                 } else {
-                    sessionStorage.setItem("userId", parseJwt(data['tokenDostempowy']).sub)
-                    sessionStorage.setItem("token", data['tokenDostempowy'])
+                    console.log(res.data['tokenDostempowy'])
+                    sessionStorage.setItem("userId", parseJwt(res.data['tokenDostempowy']).sub)
+                    sessionStorage.setItem("token", res.data['tokenDostempowy'])
                     setShowLoginModal(false);
                     window.location.reload();
                 }
 
-            })
-            .catch(console.error)
+            });
+
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
+
+        setNavigate(true);
     }
+
 
     const setToPropsModalClose = () => {
         props.close(false)
     }
 
     return (
-        <Modal show={showLoginModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
+        <Modal show={showLoginModal} onHide={handleCloseLoginModal}
+               style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
             <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
                 <Modal.Title>Log In</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{background: "rgb(20,20,20)"}}>
                 <div style={{display: "block", textAlign: "center", justifyContent: "center"}}>
-                <GoogleSignIn/>
-                <h5 style={{margin: 10}}>Or type manually:</h5>
+                    <GoogleSignIn/>
+                    <h5 style={{margin: 10}}>Or type manually:</h5>
                 </div>
                 <Form style={{background: "rgb(20,20,20)"}}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label style={{color: "orange"}}>Email address</Form.Label>
                         <Form.Control
                             value={email}
-                            onChange={e=> setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value)}
                             type="email"
                             placeholder="name@example.com"
                             autoFocus
@@ -88,13 +97,13 @@ const LoginModal = (props) => {
                         <Form.Label style={{color: "orange"}}>Password</Form.Label>
                         <Form.Control
                             value={password}
-                            onChange={e=> setPassword(e.target.value)}
+                            onChange={e => setPassword(e.target.value)}
                             type="password"
                             placeholder="*******"/>
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer  style={{background: "rgb(40,40,40)"}} >
+            <Modal.Footer style={{background: "rgb(40,40,40)"}}>
                 {/*<ReCAPTCHA*/}
                 {/*    size="normal"*/}
                 {/*    sitekey={process.env.REACT_APP_RECAPTCHA_API_KEY}*/}
@@ -103,7 +112,7 @@ const LoginModal = (props) => {
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>
-                <Button disabled={disabledBtn} variant="outline-warning" onClick={sendDataToServer}>
+                <Button disabled={disabledBtn} variant="outline-warning" onClick={submit}>
                     Login
                 </Button>
             </Modal.Footer>

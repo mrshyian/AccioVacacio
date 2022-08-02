@@ -20,7 +20,6 @@ const ForumRightPanel = (props) => {
     return (
         <Card
             bg="dark"
-            key={"dark"}
             text={'white'}
             style={{width: '100%', margin: "10px"}}
             className="mb-2 right">
@@ -29,7 +28,7 @@ const ForumRightPanel = (props) => {
                 <Card.Text>
                     {props.posts.map((singlePost, index) => {
                         return (
-                            <SinglePost post={singlePost} comments={props.comments} key={index}/>
+                            <SinglePost post={singlePost} comments={props.comments} key={index} tokenCsrf={props.tokenCsrf}/>
                         )
                     })}
                 </Card.Text>

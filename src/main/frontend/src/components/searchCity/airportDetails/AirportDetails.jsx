@@ -50,8 +50,8 @@ const AirportDetails = (props) => {
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <p>{airportDetail.location} <br/> {airportDetail.state} <br/> {airportDetail.city}
-                                <br/> {airportDetail.street} <br/> {airportDetail.street_number} <br/> {airportDetail.phone}</p>
+                            <br/><div>{airportDetail.location} <br/> {airportDetail.state} <br/> {airportDetail.city}
+                                <br/> {airportDetail.street} <br/> {airportDetail.street_number} <br/> {airportDetail.phone}</div>
                         </Card.Text>
                         <Button variant={"warning"} href={airportDetail.website}>See more</Button>
                     </Card.Body>

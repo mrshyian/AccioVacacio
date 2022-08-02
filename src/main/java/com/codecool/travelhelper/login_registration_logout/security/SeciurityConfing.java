@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -40,8 +41,8 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
         thAuthenticationFilter.setFilterProcessesUrl("/app/login");
         http.cors();
         http.csrf().disable();
+//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         http.authorizeRequests().antMatchers(
                 "/usermainbar",
                 "/auth/refreshToken",
@@ -58,7 +59,7 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
                 "/mail_to_friend/**",
                 "/mail_to_friend/messages/**",
                 "/albumsfromtrips").hasAnyAuthority("USER");
-        http.authorizeRequests().anyRequest().permitAll();
+        http.authorizeRequests().antMatchers( "/comments", "/delete_comment").hasAuthority("USER");
         http.addFilter(thAuthenticationFilter);
         http.addFilterBefore(new ThAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

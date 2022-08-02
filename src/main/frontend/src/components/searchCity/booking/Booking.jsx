@@ -35,7 +35,7 @@ const Booking = (props) => {
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <p>{bookingDetails.rating} / 10 <img style={{width: 20}} src={star}/></p>
+                            <br/><div>{bookingDetails.rating} / 10 <img style={{width: 20}} src={star}/></div>
                             <Button variant="outline-warning" href={bookingDetails.link}>Book</Button>
                         </Card.Text>
                     </Card.Body>

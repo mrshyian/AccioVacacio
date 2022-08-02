@@ -28,7 +28,7 @@ const Header = () => {
                     <Navbar.Brand
                         style={{ cursor: 'pointer' }}
                     >
-                        Travel Helper
+                        Accio Vacacio
                     </Navbar.Brand>
                     </Link>
                     <Navbar.Toggle aria-controls="navbarScroll"/>

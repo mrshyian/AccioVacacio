@@ -81,7 +81,6 @@ const SingleComment = (props) => {
         <div>
             {editable ?
                 <Card
-                    key={"dark"}
                     text={'white'}
                     style={{maxWidth: '90%', margin: "10px", marginLeft: "2.5%"}}
                     className="mb-2 ">
@@ -91,8 +90,8 @@ const SingleComment = (props) => {
                         display: "flex",
                         backgroundColor: "rgb(35, 35, 35)"
                     }}>
-
-                        <p style={{marginBottom: -30}}>
+                        <br/>
+                        <div style={{marginBottom: -30}}>
                             <Image
                                 fluid="true"
                                 className="imgForForum"
@@ -102,8 +101,11 @@ const SingleComment = (props) => {
                                     currentTarget.src = userImage;
                                 }}
                             />
-                            <p>{props.comments.userName}</p></p>
-                        <p>{props.comments.commentDateTime}</p>
+                            <br/>
+                            <div>{props.comments.userName}</div>
+                        </div>
+                        <br/>
+                        <div>{props.comments.commentDateTime}</div>
 
                     </Card.Header>
                     <Card.Body style={{backgroundColor: "rgb(55, 55, 55)"}}>
@@ -120,9 +122,9 @@ const SingleComment = (props) => {
                             <Button variant="warning" className="save-note-button"
                                     onClick={(e) => submit(e)}>Save</Button>
 
-                            <p><Image rounded="true" fluid="true" className="addImage"
+                            <br/><div><Image rounded="true" fluid="true" className="addImage"
                                       src={`http://localhost:8080/image/download/comment/${props.comments.id}`} alt=""/>
-                            </p>
+                            </div>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer style={{backgroundColor: "rgb(45, 45, 45)"}}>
@@ -132,7 +134,6 @@ const SingleComment = (props) => {
                 :
 
                 <Card
-                    key={"dark"}
                     text={'white'}
                     style={{maxWidth: '90%', margin: "10px", marginLeft: "2.5%"}}
                     className="mb-2 ">
@@ -143,21 +144,21 @@ const SingleComment = (props) => {
                         backgroundColor: "rgb(35, 35, 35)"
                     }}>
 
-                        <p style={{marginBottom: -30}}>
+                        <br/><div style={{marginBottom: -30}}>
                             <Image className="imgForForum"
                                    src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`}
                                    alt=""/>
-                            <p>{props.comments.userName}{userId}</p></p>
-                        <p>{props.comments.commentDateTime}</p>
+                            <br/><div>{props.comments.userName}{userId}</div></div>
+                        <br/><div>{props.comments.commentDateTime}</div>
 
                     </Card.Header>
                     <Card.Body style={{backgroundColor: "rgb(55, 55, 55)"}}>
                         <Card.Text style={{color: "white"}}>
                             <h4>{props.comments.commentText}</h4>
 
-                            <p><Image rounded="true" fluid="true" className="addImage"
+                            <br/><div><Image rounded="true" fluid="true" className="addImage"
                                       src={`http://localhost:8080/image/download/comment/${props.comments.id}`} alt=""/>
-                            </p>
+                            </div>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer style={{backgroundColor: "rgb(45, 45, 45)"}}>

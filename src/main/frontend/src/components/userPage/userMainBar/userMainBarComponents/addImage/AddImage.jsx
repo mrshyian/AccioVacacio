@@ -23,7 +23,8 @@ const UserProfiles = () => {
         <div className='post'>
             <Dropzone {...userProfiles}/>
             <h1>{userProfiles.username}</h1>
-            <p>{userProfiles.id}</p>
+            <br/>
+            <div>{userProfiles.id}</div>
         </div>
     )
 
@@ -58,9 +59,7 @@ function Dropzone({userProfileId}) {
             <input {...getInputProps()} />
             {
                 <div>
-                <p>
                     Drag n drop image here
-                </p>
                 </div>
             }
         </div>

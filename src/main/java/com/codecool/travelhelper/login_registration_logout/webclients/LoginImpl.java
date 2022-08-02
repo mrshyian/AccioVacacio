@@ -1,22 +1,28 @@
 package com.codecool.travelhelper.login_registration_logout.webclients;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.login_registration_logout.utils.Util;
 import com.codecool.travelhelper.login_registration_logout.utils.sendMail.KindOfEmail;
 import com.codecool.travelhelper.login_registration_logout.utils.sendMail.SendMailToUser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Component
 @Getter
@@ -38,15 +44,8 @@ public class LoginImpl {
     UserRepository userRepository;
 
 
-    public boolean validationPassword(String password, String passwordFromDB ){
-        if (password.equals(passwordFromDB)){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public String signWithGoogle(String data) {
+    public Map<String,String> signWithGoogle(String data) {
+        Map<String,String> tokens = new HashMap<>();
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject) jsonParser.parse(data);
         String email = commentJsonObject.get("email").getAsString();
@@ -56,8 +55,28 @@ public class LoginImpl {
         this.setCurrentUserId(null);
 
         if (userObject.isPresent()) {
-            session.setAttribute("userId", userObject.get().getId());
             this.setCurrentUserId(userObject.get().getId());
+
+            List<String> userRoles = new ArrayList<>();
+            userRoles.add(userObject.get().getId().toString());
+
+            Algorithm algorithm = Algorithm.HMAC256("naszsupertajnykluczszyfrujacy".getBytes());
+            String accessToken = JWT.create()
+                    .withSubject(userObject.get().getId().toString())
+                    .withIssuer("TripHelper")
+                    .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
+                    .withClaim("roles",userRoles)
+                    .sign(algorithm);
+
+            String refreshToken = JWT.create()
+                    .withSubject(userObject.get().getId().toString())
+                    .withIssuer("TripHelper")
+                    .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))
+                    .sign(algorithm);
+
+
+            tokens.put("tokenDostempowy", accessToken);
+            tokens.put("tokenOdświerzający", refreshToken);
         } else {
             byte[] array = new byte[7]; // length is bounded by 7
             new Random().nextBytes(array);
@@ -75,7 +94,7 @@ public class LoginImpl {
 
             this.setCurrentUserId(newUser.getId());
         }
-        return String.valueOf(currentUserId);
+        return tokens;
     }
 
 }

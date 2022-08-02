@@ -4,6 +4,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.codecool.travelhelper.user.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,6 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -35,9 +38,21 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String userEmail = request.getParameter("userEmail");
-        String password = request.getParameter("password");
+        String userEmail = "";
+        String password = "";
+        try {
+            String jsonResponse = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+            JsonParser jsonParser = new JsonParser();
+            JsonObject commentJsonObject = (JsonObject) jsonParser.parse(jsonResponse);
 
+            userEmail = commentJsonObject.get("email").getAsString();
+            password = commentJsonObject.get("password").getAsString();
+
+            System.out.println(userEmail);
+            System.out.println(password);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userEmail, password);
         return authenticationManager.authenticate(token);
@@ -53,7 +68,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         String accessToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+2*60*60*1000))
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 
@@ -65,10 +80,8 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
 
         Map<String,String> tokens = new HashMap<>();
-        tokens.put("userEmail",user.getUsername());
         tokens.put("tokenDostempowy", accessToken);
         tokens.put("tokenOdświerzający", refreshToken);
-        tokens.put("userID", "12");
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),tokens);
 

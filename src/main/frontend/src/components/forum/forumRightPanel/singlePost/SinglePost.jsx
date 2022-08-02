@@ -83,7 +83,6 @@ const SinglePost = (props) => {
             {editable ?
                 <Card
                     bg="dark"
-                    key={"dark"}
                     text={'white'}
                     style={{width: '80%', margin: "10px", marginLeft: "auto", marginRight: "auto"}}
                     className="mb-2">
@@ -97,16 +96,15 @@ const SinglePost = (props) => {
                                     currentTarget.src=userImage;
                                 }}
                             />
-                            <p> {props.post.userName} </p></p>
+                            <br/><div> {props.post.userName} </div></p>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
-                        <p>{props.post.postDateTime}</p>
+                        <br/><div>{props.post.postDateTime}</div>
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
 
                             <InputGroup style={{marginLeft: "-12.5%", width: "125%"}}>
                                 <FormControl
-                                    id="note-input-id"
                                     className="note-input"
                                     as="textarea"
                                     aria-label="With textarea"
@@ -120,13 +118,13 @@ const SinglePost = (props) => {
 
                     </Card.Body>
                     <Card.Footer><Button onClick={DeletePost} style={{marginLeft: "93%"}} variant="outline-warning">{
-                        <FaTrash/>}</Button><p></p>
+                        <FaTrash/>}</Button>
                         <Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{
                             <FaHeart/>}</Button>
                         <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
                         >{<BsFillArrowUpSquareFill/>}</Button>
-                            <h5>Comments:</h5>
-                        {props.comments.map((comment, post, index) => {
+                            <div>Comments:</div>
+                        {props.comments.map((comment, index) => {
                             if(comment.post.id === props.post.id){
                                 return (
                                     <SingleComment key={index} comments={comment}/>
@@ -139,12 +137,11 @@ const SinglePost = (props) => {
                 :
                 <Card
                     bg="dark"
-                    key={"dark"}
                     text={'white'}
                     style={{width: '80%', margin: "10px", marginLeft: "auto", marginRight: "auto"}}
                     className="mb-2">
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
-                        <p style={{marginBottom: -20}}>
+                        <br/><div style={{marginBottom: -20}}>
                             <img
                                 className="imgForForum"
                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
@@ -153,9 +150,9 @@ const SinglePost = (props) => {
                                     currentTarget.src=userImage;
                                 }}
                             />
-                            <p> {props.post.userName} </p></p>
+                            <br/><div> {props.post.userName} </div></div>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
-                        <p>{props.post.postDateTime}</p>
+                        <br/><div>{props.post.postDateTime}</div>
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
@@ -199,8 +196,8 @@ const SinglePost = (props) => {
                             >{<BsFillArrowUpSquareFill/>}</Button>
                             </div>
                         }
-                        <h5>Comments:</h5>
-                        {props.comments.map((comment, post, index) => {
+                        <div>Comments:</div>
+                        {props.comments.map((comment, index) => {
                             if(comment.post.id === props.post.id){
                                 return (
                                     <SingleComment key={index} comments={comment}/>
