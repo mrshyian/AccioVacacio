@@ -45,6 +45,7 @@ public class AuthController {
 
     @GetMapping("/refreshToken")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("REFRESH IS HERE");
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             try {
@@ -57,7 +58,7 @@ public class AuthController {
                 String accessToken = JWT.create()
                         .withSubject(user.getId().toString())
                         .withIssuer("TripHelper")
-                        .withExpiresAt(new Date(System.currentTimeMillis()+15*60*1000))
+                        .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
                         .withClaim("roles",user.getRole())
                         .sign(algorithm);
                 Map<String,String> tokens = new HashMap<>();
