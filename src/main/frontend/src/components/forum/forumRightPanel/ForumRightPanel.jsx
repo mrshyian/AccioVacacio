@@ -29,7 +29,7 @@ const ForumRightPanel = (props) => {
                 <Card.Text>
                     {props.posts.map((singlePost, index) => {
                         return (
-                            <SinglePost post={singlePost} comments={props.comments} key={index}/>
+                            <SinglePost tokenCsrf={props.tokenCsrf} post={singlePost} comments={props.comments} key={index}/>
                         )
                     })}
                 </Card.Text>

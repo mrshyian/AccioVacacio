@@ -37,8 +37,6 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String userEmail = request.getParameter("userEmail");
         String password = request.getParameter("password");
-
-
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userEmail, password);
         return authenticationManager.authenticate(token);
     }
@@ -53,7 +51,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         String accessToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 

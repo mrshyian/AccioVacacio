@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import ForumLeftPanel from "./forumleftpanel/ForumLeftPanel";
 import ForumRightPanel from "./forumRightPanel/ForumRightPanel";
 import axios from "axios";
-import header from "../header/Header";
 
 
 const Forum = () => {
-    const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+    let csrfToken= null;
+    if(document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1') != null){
+        csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+        // console.log(csrfToken)
+    }
 
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
@@ -14,7 +17,9 @@ const Forum = () => {
     const fetchComment = () => {
         axios.get(`http://localhost:8080/comments`
             ,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+            {headers:
+                    {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                        'X-XSRF-TOKEN': csrfToken}})
             .then(res =>{setComment(res.data);
                 console.log(res.data)})
         .catch(err => {console.log(err)});

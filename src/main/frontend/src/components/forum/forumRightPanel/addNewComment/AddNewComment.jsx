@@ -19,6 +19,7 @@ function AddNewComment(props) {
         const newName = {...name}
         newName[e.target.id] = e.target.value
         setName(newName)
+
     }
 
 
