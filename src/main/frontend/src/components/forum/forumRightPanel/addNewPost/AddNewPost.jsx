@@ -49,15 +49,13 @@ function AddNewPost(props) {
                 Axios.post(url, {
                         topic: data.topic,
                         postText: data.postText
-                    },
-                    {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}}).then(() => refreshPage())
+                    }).then(() => refreshPage())
                 :
                 axios.post(`http://localhost:8080/image/upload/post/${data.topic}/${data.postText}`,
                     dataa,
                     {
                         headers: {
-                            "Content-Type": "multipart/form-data",
-                            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+                            "Content-Type": "multipart/form-data"
                         }
                     }).then(() => {
                     refreshPage();

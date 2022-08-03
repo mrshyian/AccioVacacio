@@ -38,8 +38,7 @@ const SingleComment = (props) => {
         axios.post(
             "http://localhost:8080/add_like_to_comment", {
                 commentId: props.comments.id
-            },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+            })
             .then((() => reload()
 
             ));
@@ -49,8 +48,7 @@ const SingleComment = (props) => {
         axios.put(
             "http://localhost:8080/delete_comment", {
                 commentId: props.comments.id
-            },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+            })
             .then((() => reload()
 
             ));

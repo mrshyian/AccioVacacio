@@ -26,8 +26,7 @@ const UserLeftBar = () => {
     const [answer, setAnswer] = useState("");
 
     const getAllCurrency = () => {
-        axios.get(`https://openexchangerates.org/api/currencies.json`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`https://openexchangerates.org/api/currencies.json`)
             .then(res => {
                 setFrom(res.data);
             })
@@ -43,7 +42,7 @@ const UserLeftBar = () => {
     const getResult = () => {
         if (amount===""){
             setAmount("1");
-            axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/1`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+            axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/1`)
                 .then(res => {
                     console.log(res.data);
                     setAnswer(res.data.howMuchAfterConvert);
@@ -52,7 +51,7 @@ const UserLeftBar = () => {
                     console.log(err);
                 });
         } else {
-            axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/${amount}`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+            axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/${amount}`)
                 .then(res => {
                     console.log(res.data);
                     setAnswer(res.data.howMuchAfterConvert);

@@ -10,8 +10,7 @@ const SingleFriend = (props) => {
     const navigate = useNavigate();
 
     const removeFriend = () => {
-        axios.get(`http://localhost:8080/remove_friend/${props.myUser.id}`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/remove_friend/${props.myUser.id}`)
             .then(() => window.location.reload())
             .catch(err => {
                 console.log(err)
@@ -19,8 +18,7 @@ const SingleFriend = (props) => {
     };
 
     const sayHello = () => {
-        axios.get(`http://localhost:8080/mail_to_friend/${props.myUser.id}`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/mail_to_friend/${props.myUser.id}`)
             .then(() => {
                 navigate("/userpage/friends/mail_box", {
                     state: {
@@ -30,6 +28,7 @@ const SingleFriend = (props) => {
                 console.log(err)
             });
     }
+    console.log(props)
 
 
     return (

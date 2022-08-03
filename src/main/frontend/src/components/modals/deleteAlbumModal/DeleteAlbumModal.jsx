@@ -24,8 +24,7 @@ const DeleteAlbumModal = (props) => {
         const url = "http://localhost:8080/albumsfromtrips";
         axios.put(url, {
                 albumId: props.albumId
-            },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+            })
             .then(() => window.location.reload())
         handleCloseLoginModal()
 

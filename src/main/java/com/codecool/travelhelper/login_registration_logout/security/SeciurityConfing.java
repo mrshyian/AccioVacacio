@@ -43,23 +43,24 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 //        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers(
-                "/usermainbar",
-                "/auth/refreshToken",
-                "/get_friend_by_nick/**",
-                "/placewanttogo",
-                "/photos",
-                "/notes",
-                "/search_friend/**",
-                "/search_friend/id/**",
-                "/add_friend/**",
-                "/remove_friend/**",
-                "/mail_to_friend/new_message_in_chat",
-                "/mail_to_friend/all_chats",
-                "/mail_to_friend/**",
-                "/mail_to_friend/messages/**",
-                "/albumsfromtrips").hasAnyAuthority("USER");
-        http.authorizeRequests().antMatchers( "/comments", "/delete_comment").hasAuthority("USER");
+//        http.authorizeRequests().antMatchers(
+//                "/usermainbar",
+//                "/auth/refreshToken",
+//                "/get_friend_by_nick/**",
+//                "/placewanttogo",
+//                "/photos",
+//                "/notes",
+//                "/search_friend/**",
+//                "/search_friend/id/**",
+//                "/add_friend/**",
+//                "/remove_friend/**",
+//                "/mail_to_friend/new_message_in_chat",
+//                "/mail_to_friend/all_chats",
+//                "/mail_to_friend/**",
+//                "/mail_to_friend/messages/**",
+//                "/albumsfromtrips").hasAnyAuthority("USER");
+//        http.authorizeRequests().antMatchers( "/comments", "/delete_comment").hasAuthority("USER");
+//        http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(thAuthenticationFilter);
         http.addFilterBefore(new ThAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

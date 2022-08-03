@@ -5,7 +5,7 @@ const CountryCounter = () => {
     return (
         <Card
             bg={"dark"}
-            key={"dark"}
+            key={"country-counter-dark"}
             text={'white'}
             className="mb-2"
             style={{width: "50%", marginLeft: "auto", marginRight: "auto", border: "1px solid orange"}}

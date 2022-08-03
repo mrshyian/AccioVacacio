@@ -16,7 +16,8 @@ const InformationAboutUser = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [allFriends, setAllFriends] = useState([]);
     const [myId, setMyId] = useState("");
-    const [friendsList, setFriendsList] = useState([]);
+    // const idFromProps = props.myUser.id;
+    const idFromProps = sessionStorage.getItem("userId");
     const [boolka, setBoolka] = useState(false);
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const InformationAboutUser = (props) => {
     }, [props])
 
     const addFriend = () => {
-        axios.get(`http://localhost:8080/add_friend/${props.myUser.id}`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/add_friend/${idFromProps}`)
             .then(() => window.location.reload())
             .catch(err => {
                 console.log(err)
@@ -32,7 +33,7 @@ const InformationAboutUser = (props) => {
     };
 
     const removeFriend = () => {
-        axios.get(`http://localhost:8080/remove_friend/${props.myUser.id}`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/remove_friend/${idFromProps}`)
             .then(() => window.location.reload())
             .catch(err => {
                 console.log(err)
@@ -40,10 +41,17 @@ const InformationAboutUser = (props) => {
     };
 
     const searchAllFriends = () => {
-        axios.get(`http://localhost:8080/search_friend/id/${props.myUser.id}`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+        let id = sessionStorage.getItem("userId");
+
+        if (sessionStorage.getItem("chosenFriendId") !== null){
+            id = sessionStorage.getItem("chosenFriendId");
+        }
+
+        axios.get(`http://localhost:8080/search_friend/id/${id}`)
             .then(res => {
                 setAllFriends(res.data);
                 setMyId(props.myUser.id.toString());
+                sessionStorage.removeItem("chosenFriendId");
                 friendOrNot();
             })
             .catch(err => {
@@ -52,7 +60,7 @@ const InformationAboutUser = (props) => {
     };
 
     const sayHello = () => {
-        axios.get(`http://localhost:8080/mail_to_friend/${props.myUser.id}`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/mail_to_friend/${idFromProps}`)
             .then(() => {
                 navigate("/userpage/friends/mail_box", {
                     state: {
@@ -65,7 +73,7 @@ const InformationAboutUser = (props) => {
 
     const friendOrNot = () => {
 
-        axios.get(`http://localhost:8080/search_friend/id/${sessionStorage.getItem("userId")}`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/search_friend/id/${idFromProps}`)
             .then(res => {
                 let friendsList = res.data;
                 friendsList.map(friend => {
@@ -82,7 +90,7 @@ const InformationAboutUser = (props) => {
     return (
         <Card
             bg={"dark"}
-            key={"dark"}
+            key={"information-about-user-dark"}
             text={'white'}
             className="mb-2"
         >
@@ -120,11 +128,11 @@ const InformationAboutUser = (props) => {
 
                                         navigate("/userpage/friends");
                                     }}>
-                                        Friends ({allFriends.length}):
+                                        Following ({allFriends.length}):
                                     </h5>
                                     :
                                     <h5 className="friends-of-friend">
-                                        Friends ({allFriends.length}):
+                                        Following ({allFriends.length}):
                                     </h5>
                                 }
                                 &nbsp;

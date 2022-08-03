@@ -14,8 +14,7 @@ const SingleAlbumView = () => {
 
     const [photo, setPhoto] = useState([]);
     const getPhotosFromDB = () => {
-        axios.get(`http://localhost:8080/photos`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/photos`)
             .then(res => {
                 console.log(res.data)
                 setPhoto(res.data);

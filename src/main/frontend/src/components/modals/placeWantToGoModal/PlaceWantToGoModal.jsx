@@ -50,8 +50,7 @@ const PlaceWantToGoModal = (props) => {
         axios.post(url,{
             country: selectedCountry,
             city: selectedCity
-        },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        })
             .then(res=>{
                 console.log(res);
                 window.location.reload();

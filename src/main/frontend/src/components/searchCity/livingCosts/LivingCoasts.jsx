@@ -9,7 +9,7 @@ const LivingCosts = (props) => {
             <div style={{display: "flex"}}>
                 <Card
                     bg={"dark"}
-                    key={"dark"}
+                    key={"living-costs-dark"}
                     text={'white'}
                     style={{width: '100%', margin: "5px", borderColor: "orange" }}
                     className="mb-2"
@@ -30,7 +30,7 @@ const LivingCosts = (props) => {
 
                 <Card
                     bg={"dark"}
-                    key={"dark"}
+                    key={"living-costs-dark-key"}
                     text={'white'}
                     style={{width: '100%', margin: "5px", borderColor: "orange" }}
                     className="mb-2"

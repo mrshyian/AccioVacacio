@@ -11,15 +11,13 @@ const FilterComments = () => {
     const [sortedComments, setSortedComments] = useState([]);
 
     const fetchSortedPosts = () => {
-        axios.get(`http://localhost:8080/get_sorted_posts`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/get_sorted_posts`)
             .then(res =>{setSortedPosts(res.data);})
             .catch(err => {console.log(err)});
     };
 
     const fetchSortedComments = () => {
-        axios.get(`http://localhost:8080/get_sorted_comments`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/get_sorted_comments`)
             .then(res =>{setSortedComments(res.data);})
             .catch(err => {console.log(err)});
     };
@@ -34,7 +32,7 @@ const FilterComments = () => {
             <ForumLeftPanel/>
             <Card
                 bg={"dark"}
-                key={"dark"}
+                key={"filter-comments-dark"}
                 text={'white'}
                 className="mb-2 bg-opacity"
             >

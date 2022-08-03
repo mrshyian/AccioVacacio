@@ -13,7 +13,7 @@ const WeatherBox = (props) => {
     return (
         <Card
             bg={"dark"}
-            key={"dark"}
+            key={"weather-box-dark"}
             text={'white'}
             style={{ width: '35rem', borderColor: "orange" }}
             className="mb-2"

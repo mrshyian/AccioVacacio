@@ -29,7 +29,7 @@ const AirportDetails = (props) => {
             <div style={{display: "flex"}}>
                 <Card
                     bg={"dark"}
-                    key={"dark"}
+                    key={"airport-details-dark"}
                     text={'white'}
                     style={{width: '35rem', borderColor: "orange" }}
                     className="mb-2"

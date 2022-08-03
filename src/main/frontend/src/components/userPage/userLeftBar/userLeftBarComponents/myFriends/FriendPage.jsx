@@ -8,10 +8,10 @@ const FriendPage = () => {
     const [myFriend, setMyFriend] = useState({})
 
         const userNickName = (window.location.href.toString().split("/")[window.location.href.toString().split("/").length-1]);
-        axios.get(`http://localhost:8080/get_friend_by_nick/${userNickName}`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/get_friend_by_nick/${userNickName}`)
             .then(res => {
                 console.log(res.data)
+                sessionStorage.setItem("chosenFriendId", res.data.id);
                 setMyFriend(res.data)
             })
             .catch(err => {
@@ -24,7 +24,7 @@ const FriendPage = () => {
             <UserLeftBar/>
             <Card
                 bg={"dark"}
-                key={"dark"}
+                key={"friend-page-dark"}
                 text={'white'}
                 className="mb-2 bg-opacity"
             >

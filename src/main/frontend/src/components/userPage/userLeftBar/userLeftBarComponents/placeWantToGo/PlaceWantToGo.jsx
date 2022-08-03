@@ -13,8 +13,7 @@ const PlaceWantToGo = () => {
     const [places, setPlaces] = useState([]);
 
     const getPlacesFromDB = () => {
-        axios.get(`http://localhost:8080/placewanttogo`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/placewanttogo`)
             .then(res => {
                 setPlaces(res.data);
             })

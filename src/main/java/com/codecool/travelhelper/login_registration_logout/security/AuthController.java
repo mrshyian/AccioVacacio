@@ -43,10 +43,13 @@ public class AuthController {
 //        return ResponseEntity.ok().body(userService.saveUserToBD(user));
 //    }
 
-    @GetMapping("/refreshToken")
+    @PostMapping("/refreshToken")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("REFRESH IS HERE");
+        System.out.println("authorizationHeader");
+
         String authorizationHeader = request.getHeader(AUTHORIZATION);
+        System.out.println(authorizationHeader);
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             try {
                 String refreshToken = authorizationHeader.replace("Bearer ","");
@@ -59,8 +62,8 @@ public class AuthController {
                         .withSubject(user.getId().toString())
                         .withIssuer("TripHelper")
                         .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
-                        .withClaim("roles",user.getRole())
-                        .sign(algorithm);
+                        .withClaim("roles",user.getRole()).toString();
+
                 Map<String,String> tokens = new HashMap<>();
                 tokens.put("tokenDostempowy", accessToken);
                 tokens.put("tokenOdświeżający", refreshToken);

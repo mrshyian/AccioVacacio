@@ -36,16 +36,14 @@ function AddNewComment(props) {
                         name: name.name,
                         postId: props.postId
 
-                    },
-                    {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+                    })
                     .then(() => refreshPage())
                 :
                 axios.post(`http://localhost:8080/image/upload/comment/${name.name}/${props.postId}`,
                     dataa,
                     {
                         headers: {
-                            "Content-Type": "multipart/form-data",
-                            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+                            "Content-Type": "multipart/form-data"
                         }
                     }).then(() => {
                     refreshPage();
@@ -86,7 +84,7 @@ function AddNewComment(props) {
                         :
                         <div>
                             <Card bg="success"
-                                  key={"dark"}
+                                  key={"add-new-comment-dark"}
                                   text={'warning'}
                                   style={{marginRight: "90%"}}
                             >
@@ -104,7 +102,7 @@ function AddNewComment(props) {
         <div>
             <form onSubmit={(e) => submit(e)}>
                 <Card
-                    key={"dark"}
+                    key={"add-new-comment-dark-key"}
                     text={'white'}
                     className="mb-2 add-comment-card">
                     <Card.Body className="add-comment-card-body">

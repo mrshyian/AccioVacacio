@@ -43,13 +43,13 @@ const LoginModal = (props) => {
         e.preventDefault();
         const {data} = await axios.post('http://localhost:8080/app/login', {
             email, password
-        })
+        }, {withCredentials: true})
             .then(res => {
                 console.log(res)
                 if (res.error === "niedziała") {
                     showErrorModal("Provided data is not valid")
                 } else {
-                    console.log(res.data['tokenDostempowy'])
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data['tokenDostempowy']}`;
                     sessionStorage.setItem("userId", parseJwt(res.data['tokenDostempowy']).sub)
                     sessionStorage.setItem("token", res.data['tokenDostempowy'])
                     setShowLoginModal(false);
@@ -57,8 +57,6 @@ const LoginModal = (props) => {
                 }
 
             });
-
-        axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
 
         setNavigate(true);
     }

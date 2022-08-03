@@ -18,8 +18,7 @@ const UserNotes = () => {
 
 
     function fetchNoteText() {
-        axios.get(`http://localhost:8080/notes`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/notes`)
             .then(res => {
                 setNoteText(res.data)
             })
@@ -66,8 +65,7 @@ const UserNotes = () => {
         e.preventDefault();
         Axios.post(`http://localhost:8080/notes`, {
             noteText: noteText
-        },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}}).then(r => {
+        }).then(r => {
             console.log(r.data);
         })
     }

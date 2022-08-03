@@ -135,7 +135,7 @@ const SearchCity = () => {
         <div className="bubble-box">
         <Card
             bg={"dark"}
-            key={"dark"}
+            key={"search-city-dark"}
             text={'white'}
             className="mb-2"
         >

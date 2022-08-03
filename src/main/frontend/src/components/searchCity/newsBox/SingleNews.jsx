@@ -7,7 +7,7 @@ const SingleNews = (props) => {
     return (
         <Card
             bg={"dark"}
-            key={"dark"}
+            key={"single-news-dark"}
             text={'white'}
             style={{ width: '100%', borderColor: "orange" }}
             className="mb-2"

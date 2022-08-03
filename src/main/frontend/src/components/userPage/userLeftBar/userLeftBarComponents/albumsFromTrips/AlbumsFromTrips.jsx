@@ -13,8 +13,7 @@ const AlbumsFromTrips = () => {
     const [albums, setAlbums] = useState([]);
 
     const getAlbumsFromDB = () => {
-        axios.get(`http://localhost:8080/albumsfromtrips`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/albumsfromtrips`)
             .then(res => {
                 setAlbums(res.data);
             })

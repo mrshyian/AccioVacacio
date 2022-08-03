@@ -15,16 +15,14 @@ const Forum = () => {
     const [post, setPost] = useState([]);
 
     const fetchComment = () => {
-        axios.get(`http://localhost:8080/comments`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/comments`)
             .then(res =>{setComment(res.data);
                 console.log(res.data)})
         .catch(err => {console.log(err)});
     };
 
     const fetchPost = () => {
-        axios.get(`http://localhost:8080/posts`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/posts`)
             .then(res =>{setPost(res.data);
             console.log(res.data)})
         .catch(err => {console.log(err)});

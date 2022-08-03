@@ -48,8 +48,6 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
             userEmail = commentJsonObject.get("email").getAsString();
             password = commentJsonObject.get("password").getAsString();
 
-            System.out.println(userEmail);
-            System.out.println(password);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -68,7 +66,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         String accessToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 

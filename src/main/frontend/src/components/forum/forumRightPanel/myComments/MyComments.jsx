@@ -12,16 +12,14 @@ const MyComments = () => {
     const [myCommentsPosts, setMyCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
-        axios.get(`http://localhost:8080/myComments`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/myComments`)
             .then(res =>{setMyComments(res.data);})
             .catch(err => {console.log(err)});
     };
 
 
     const fetchMyCommentsPosts = () => {
-        axios.get(`http://localhost:8080/myCommentsPosts`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/myCommentsPosts`)
             .then(res =>{setMyCommentsPosts(res.data);})
             .catch(err => {console.log(err)});
     };
@@ -37,7 +35,7 @@ const MyComments = () => {
         <ForumLeftPanel/>
         <Card
             bg={"dark"}
-            key={"dark"}
+            key={"my-comments-dark"}
             text={'white'}
             className="mb-2 bg-opacity"
         >

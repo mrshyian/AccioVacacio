@@ -49,8 +49,7 @@ const EditUserDataModal = (props) => {
             facebook: facebook,
             eMail: eMail,
             birthday: birthday
-        },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        })
             .then(res => {
                 console.log(res);
                 window.location.reload();

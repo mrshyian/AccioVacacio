@@ -8,8 +8,7 @@ const SingleSearchedFriend = (props) => {
 
 
     const addFriend = () => {
-        axios.get(`http://localhost:8080/add_friend/${props.myUser.id}`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/add_friend/${props.myUser.id}`)
             .then(() => window.location.reload())
             .catch(err => {
                 console.log(err)

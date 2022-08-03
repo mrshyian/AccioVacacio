@@ -53,7 +53,7 @@ public class ThAuthorizationFilter extends OncePerRequestFilter {
                     filterChain.doFilter(request,response);
                 } catch (Exception e){
                     response.setHeader("Error",e.getMessage());
-                    response.setStatus(HttpStatus.FORBIDDEN.value());
+                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
                     Map<String,String> error = new HashMap<>();
                     error.put("Mesage",e.getMessage());
                     response.setContentType(APPLICATION_JSON_VALUE);

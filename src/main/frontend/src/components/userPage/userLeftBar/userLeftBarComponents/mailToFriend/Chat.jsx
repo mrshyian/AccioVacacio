@@ -8,8 +8,7 @@ const Chat = (props) => {
     const [messages, setMessages] = useState([]);
 
     const getMessages = () => {
-        axios.get(`http://localhost:8080/mail_to_friend/messages/${props.friend.id}`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/mail_to_friend/messages/${props.friend.id}`)
             .then(res => {
                 setMessages(res.data);
             })
@@ -33,8 +32,7 @@ const Chat = (props) => {
             "http://localhost:8080/mail_to_friend/new_message_in_chat", {
                 messageText: messageText,
                 toUserId: props.friend.id
-            },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+            })
             .then((() => refreshMessage()));
     }
 
@@ -44,8 +42,7 @@ const Chat = (props) => {
             {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+                    "Content-Type": "application/json"
                 }
             })
 

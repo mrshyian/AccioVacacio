@@ -18,7 +18,7 @@ const TouristAttractionsBox = (props) => {
                         return (
                             <Card
                                 bg={"dark"}
-                                key={"dark"}
+                                key={"tourist-attractions-box-dark"}
                                 text={'white'}
                                 style={{width: "49%", flex: "50%", borderColor: "orange"}}
                                 className="mb-2"

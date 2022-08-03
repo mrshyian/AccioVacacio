@@ -7,12 +7,11 @@ import axios from "axios";
 
 const UserMainBar = () => {
 
-    const [myUser, setMyUser] = useState([])
+    const [myUser, setMyUser] = useState({});
 
     const getUserFromDB = () => {
-        axios.get(`http://localhost:8080/usermainbar`, { headers: {"Authorization" : `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/usermainbar/${sessionStorage.getItem('userId')}`)
             .then(res => {
-                console.log(res.data)
                 setMyUser(res.data);
             })
             .catch(err => {
@@ -21,13 +20,14 @@ const UserMainBar = () => {
     };
 
     useEffect(() => {
-            getUserFromDB();
-    }, [])
+        getUserFromDB();
+    }, []);
+
 
     return (
         <Card
             bg={"dark"}
-            key={"dark"}
+            key={"user-main-bar-dark"}
             text={'white'}
             className="mb-2 bg-opacity"
         >
@@ -39,5 +39,7 @@ const UserMainBar = () => {
         </Card>
     );
 };
+
+
 
 export default UserMainBar;

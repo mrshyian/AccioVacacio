@@ -29,11 +29,7 @@ const AddNewAlbumModal = (props) => {
     const sendDataToServer = () => {
         console.log(sessionStorage.getItem('token'))
         const url = "http://localhost:8080/albumsfromtrips";
-        axios.get(url,{
-            headers: {
-                AUTHORIZATION: 'Bearer ' + sessionStorage.getItem('token')
-            }
-        })
+        axios.get(url)
             .then(res=>{
                 console.log(res);
                 window.location.reload();

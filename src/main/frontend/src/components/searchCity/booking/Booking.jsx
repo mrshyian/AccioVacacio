@@ -26,7 +26,7 @@ const Booking = (props) => {
             <div style={{display: "flex", marginLeft: "10%"}}>
                 <Card
                     bg={"dark"}
-                    key={"dark"}
+                    key={"booking-dark"}
                     text={'white'}
                     style={{width: '20rem', borderColor: "orange" }}
                     className="mb-2"

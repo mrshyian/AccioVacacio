@@ -10,16 +10,14 @@ const UserPageFavouriteComments = () => {
     const [favouriteCommentsPosts, setFavouriteCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
-        axios.get(`http://localhost:8080/favouriteComments`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/favouriteComments`)
             .then(res =>{setFavouriteComments(res.data);
                 console.log(res.data)})
             .catch(err => {console.log(err)});
     };
 
     const fetchMyPosts = () => {
-        axios.get(`http://localhost:8080/favouriteCommentsPosts`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/favouriteCommentsPosts`)
             .then(res =>{setFavouriteCommentsPosts(res.data);
                 console.log(res.data)})
             .catch(err => {console.log(err)});
@@ -36,7 +34,7 @@ const UserPageFavouriteComments = () => {
             <UserLeftBar/>
             <Card
                 bg={"dark"}
-                key={"dark"}
+                key={"user-page-favourite-comments-dark"}
                 text={'white'}
                 className="mb-2 bg-opacity"
             >

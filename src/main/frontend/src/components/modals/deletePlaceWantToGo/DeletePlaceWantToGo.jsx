@@ -25,8 +25,7 @@ const DeletePlaceWantToGo = (props) => {
         const url = "http://localhost:8080/placewanttogo";
         axios.put(url,{
             placeId: props.place.placeId,
-        },
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        })
             .then(() => window.location.reload())
         handleCloseLoginModal()
     }
