@@ -3,18 +3,21 @@ import axios from "axios";
 let refresh = false;
 
 axios.interceptors.response.use(resp => resp, async error => {
-    alert("console.log(\"weszło do refresh\")")
+
+    alert("weszło do axios.js")
     if (error.response.status === 401 && !refresh) {
         refresh = true;
-
-        const response = await axios.post('http://localhost:8080/auth/refreshToken', {}, {withCredentials: true,
+        alert("jestem w ifie")
+        alert(sessionStorage.getItem("token"))
+        const response = await axios.post('http://localhost:8080/auth/refreshToken', {}, {
             headers: {
-                "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${sessionStorage.getItem("token")}`}});
-
+        console.log(sessionStorage.getItem("token"))
+        console.log(response)
+        console.log(response.headers)
         if (response.status === 200) {
             axios.defaults.headers.common['Authorization'] = `Bearer ${response.data['token']}`;
-
+            console.log("to jest error")
             return axios(error.config);
         }
     }
