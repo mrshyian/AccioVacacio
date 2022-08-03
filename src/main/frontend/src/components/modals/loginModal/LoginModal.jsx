@@ -37,23 +37,37 @@ const LoginModal = (props) => {
     }
 
 
-    const sendDataToServer = () => {
-        const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
-        fetch(url,{method:"GET"})
-            .then(res=>res.json())
-            .then(data=>{
-                console.log(data)
-                if (data.error === "niedziała"){
-                    showErrorModal("Provided data is not valid")
-                } else {
-                    sessionStorage.setItem("userId", parseJwt(data['tokenDostempowy']).sub)
-                    sessionStorage.setItem("token", data['tokenDostempowy'])
-                    setShowLoginModal(false);
-                    window.location.reload();
-                }
+    // const sendDataToServer = () => {
+    //     const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
+    //     fetch(url,{method:"GET"})
+    //         .then(res=>res.json())
+    //         .then(data=>{
+    //             console.log(data)
+    //             if (data.error === "niedziała"){
+    //                 showErrorModal("Provided data is not valid")
+    //             } else {
+    //                 sessionStorage.setItem("userId", parseJwt(data['tokenDostempowy']).sub)
+    //                 sessionStorage.setItem("token", data['tokenDostempowy'])
+    //                 setShowLoginModal(false);
+    //                 window.location.reload();
+    //             }
+    //
+    //         })
+    //         .catch(console.error)
+    // }
 
-            })
-            .catch(console.error)
+    const [navigate, setNavigate] = useState(false);
+
+    const sendDataToServer = async e => {
+        e.preventDefault();
+
+        const {data} = await axios.post('login', {
+            email, password
+        }, {withCredentials: true});
+
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
+
+        setNavigate(true);
     }
 
     const setToPropsModalClose = () => {
