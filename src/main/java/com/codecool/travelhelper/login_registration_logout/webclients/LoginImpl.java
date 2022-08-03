@@ -75,8 +75,8 @@ public class LoginImpl {
                     .sign(algorithm);
 
 
-            tokens.put("tokenDostempowy", accessToken);
-            tokens.put("tokenOdświerzający", refreshToken);
+            tokens.put("accessToken", accessToken);
+            tokens.put("refreshToken", refreshToken);
         } else {
             byte[] array = new byte[7]; // length is bounded by 7
             new Random().nextBytes(array);

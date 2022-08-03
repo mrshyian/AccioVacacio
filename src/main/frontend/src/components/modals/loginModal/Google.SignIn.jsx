@@ -23,9 +23,9 @@ const GoogleSignIn = () => {
             avatar: jwt_decode(responce.credential).picture
         })
             .then(res=>{
-                // console.log(parseJwt(res['tokenDostempowy']))
-                // sessionStorage.setItem("userId", parseJwt(res['tokenDostempowy']).sub)
-                sessionStorage.setItem("token", res['tokenDostempowy'])
+                // console.log(parseJwt(res['accessToken']))
+                // sessionStorage.setItem("userId", parseJwt(res['accessToken']).sub)
+                sessionStorage.setItem("token", res['accessToken'])
                 console.log(res.data);
 
                 // window.location.reload();

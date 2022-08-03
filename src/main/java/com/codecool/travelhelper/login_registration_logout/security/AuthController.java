@@ -65,8 +65,8 @@ public class AuthController {
                         .withClaim("roles",user.getRole()).toString();
 
                 Map<String,String> tokens = new HashMap<>();
-                tokens.put("tokenDostempowy", accessToken);
-                tokens.put("tokenOdświeżający", refreshToken);
+                tokens.put("accessToken", accessToken);
+                tokens.put("refreshToken", refreshToken);
                 response.setContentType(APPLICATION_JSON_VALUE);
                 new ObjectMapper().writeValue(response.getOutputStream(),tokens);
 
