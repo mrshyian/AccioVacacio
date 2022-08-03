@@ -21,7 +21,7 @@ const Forum = () => {
                     {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
                         'X-XSRF-TOKEN': csrfToken}})
             .then(res =>{setComment(res.data);
-                console.log(res.data)})
+                })
         .catch(err => {console.log(err)});
     };
 
@@ -30,7 +30,7 @@ const Forum = () => {
             ,
             {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{setPost(res.data);
-            console.log(res.data)})
+            })
         .catch(err => {console.log(err)});
     };
 
@@ -43,7 +43,7 @@ const Forum = () => {
     return (
         <div>
             <div style={{display: "flex"}}>
-                <ForumLeftPanel tokenCsrf={csrfToken} posts={post} comments={comment}/>
+                {/*<ForumLeftPanel tokenCsrf={csrfToken} posts={post} comments={comment}/>*/}
                 <ForumRightPanel tokenCsrf={csrfToken} posts={post} comments={comment}/>
 
             </div>

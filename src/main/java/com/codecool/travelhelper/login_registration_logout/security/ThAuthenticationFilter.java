@@ -35,6 +35,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        System.out.println("attemptAuthentication");
         String userEmail = request.getParameter("userEmail");
         String password = request.getParameter("password");
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userEmail, password);
@@ -42,7 +43,9 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+                                            Authentication authentication) throws IOException, ServletException {
+        System.out.println("successfulAuthentication");
         User user =(User) authentication.getPrincipal();
         Long userId = userService.getUser(user.getUsername()).getId();
         userService.getLoginImpl().setCurrentUserId(userId);
@@ -52,7 +55,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
 //                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))//60*60*1000
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))//60*60*1000
+                .withExpiresAt(new Date(System.currentTimeMillis()+5*1000))//60*60*1000
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 
@@ -66,7 +69,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         Map<String,String> tokens = new HashMap<>();
         tokens.put("userEmail",user.getUsername());
         tokens.put("tokenDostempowy", accessToken);
-        tokens.put("tokenOdświerzający", refreshToken);
+        tokens.put("refreshToken", refreshToken);
         tokens.put("userID", "12");
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),tokens);
@@ -75,6 +78,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        System.out.println("unsuccessfulAuthentication");
         Map<String,String> errors = new HashMap<>();
         errors.put("error","niedziała");
         response.setContentType(APPLICATION_JSON_VALUE);

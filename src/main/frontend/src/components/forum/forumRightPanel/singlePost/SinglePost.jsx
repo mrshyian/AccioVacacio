@@ -27,11 +27,7 @@ const SinglePost = (props) => {
         axios.post(
             "http://localhost:8080/add_like_to_post", {
                 postId: props.post.id
-            }
-            ,
-            {headers:
-                    {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-                        'X-XSRF-TOKEN': props.tokenCsrf}})
+            })
             .then((() => reload()
             ));
     }
@@ -40,11 +36,7 @@ const SinglePost = (props) => {
         axios.put(
             "http://localhost:8080/delete_post", {
                 postId: props.post.id
-            }
-            ,
-            {headers:
-                    {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-                        'X-XSRF-TOKEN': props.tokenCsrf}})
+            })
             .then((() => reload()
             ));
     }
@@ -55,10 +47,7 @@ const SinglePost = (props) => {
             postText: postText,
             postId: props.post.id
         }
-            ,
-            {headers:
-                    {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-                        'X-XSRF-TOKEN': props.tokenCsrf}}).then(() => reload())
+        ).then(() => reload())
 
     }
     const [areCommentsPresent, setAreCommentsPresent] = useState(false)

@@ -37,6 +37,7 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        System.out.println("configuration");
         ThAuthenticationFilter thAuthenticationFilter = new ThAuthenticationFilter(authenticationManagerBean(), userService);
         thAuthenticationFilter.setFilterProcessesUrl("/app/login");
         http.cors();

@@ -46,8 +46,12 @@ const LoginModal = (props) => {
                 if (data.error === "niedziała"){
                     showErrorModal("Provided data is not valid")
                 } else {
+                    console.log("setuje tokeny")
                     sessionStorage.setItem("userId", parseJwt(data['tokenDostempowy']).sub)
                     sessionStorage.setItem("token", data['tokenDostempowy'])
+                    sessionStorage.setItem("refreshToken", data['refreshToken'])
+                    console.log(sessionStorage.getItem("token"))
+                    console.log(sessionStorage.getItem("refreshToken"))
                     setShowLoginModal(false);
                     window.location.reload();
                 }

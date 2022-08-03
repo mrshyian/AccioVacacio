@@ -16,6 +16,7 @@ const Header = () => {
     const clearSession =()=>{
         sessionStorage.removeItem("userId")
         sessionStorage.removeItem("token")
+        sessionStorage.removeItem("refreshToken")
     }
 
 
