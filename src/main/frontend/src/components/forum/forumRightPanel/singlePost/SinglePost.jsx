@@ -22,6 +22,7 @@ const SinglePost = (props) => {
         like <= 1 ? sendLike() : console.log("już dodałeś like")
     }
 
+
     const sendLike = () => {
         axios.post(
             "http://localhost:8080/add_like_to_post", {
@@ -197,7 +198,7 @@ const SinglePost = (props) => {
                         {props.comments.map((comment, index) => {
                             if(comment.post.id === props.post.id){
                                 return (
-                                    <SingleComment key={index} comments={comment}/>
+                                    <SingleComment tokenCsrf={props.tokenCsrf} key={index} comments={comment}/>
                                 )
                             }
                         })}

@@ -31,12 +31,33 @@ const LoginModal = (props) => {
 
 
     function parseJwt(token) {
-        if (!token) {
-            return;
-        }
+        if (!token) { return; }
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace('-', '+').replace('_', '/');
         return JSON.parse(window.atob(base64));
+    }
+
+    const sendDataToServer = () => {
+        const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
+        fetch(url,{method:"GET"})
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+                if (data.error === "niedziała"){
+                    showErrorModal("Provided data is not valid")
+                } else {
+                    console.log("setuje tokeny")
+                    sessionStorage.setItem("userId", parseJwt(data['tokenDostempowy']).sub)
+                    sessionStorage.setItem("token", data['tokenDostempowy'])
+                    sessionStorage.setItem("refreshToken", data['refreshToken'])
+                    console.log(sessionStorage.getItem("token"))
+                    console.log(sessionStorage.getItem("refreshToken"))
+                    setShowLoginModal(false);
+                    window.location.reload();
+                }
+
+            })
+            .catch(console.error)
     }
 
     const submit = async e => {
@@ -61,12 +82,6 @@ const LoginModal = (props) => {
 
         setNavigate(true);
     }
-
-
-    const setToPropsModalClose = () => {
-        props.close(false)
-    }
-
     return (
         <Modal show={showLoginModal} onHide={handleCloseLoginModal}
                style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
@@ -111,7 +126,8 @@ const LoginModal = (props) => {
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>
-                <Button disabled={disabledBtn} variant="outline-warning" onClick={submit}>
+                {/*<Button disabled={disabledBtn} variant="outline-warning" onClick={submit}>*/}
+                <Button disabled={disabledBtn} variant="outline-warning" onClick={sendDataToServer}>
                     Login
                 </Button>
             </Modal.Footer>

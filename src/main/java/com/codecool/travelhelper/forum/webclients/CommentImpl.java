@@ -45,7 +45,7 @@ public class CommentImpl {
 
     private List<CommentsTable> comments = new ArrayList<>();
 
-    public void getAndSaveComments(String comments) {
+    public void saveComments(String comments) {
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(comments);
 

@@ -37,11 +37,13 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        System.out.println("configuration");
         ThAuthenticationFilter thAuthenticationFilter = new ThAuthenticationFilter(authenticationManagerBean(), userService);
         thAuthenticationFilter.setFilterProcessesUrl("/app/login");
         http.cors();
-        http.csrf().disable();
+        http.csrf().disable(); //TODO create csrf token
 //        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+//        http.antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico", "/rest").permitAll()
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //        http.authorizeRequests().antMatchers(
 //                "/usermainbar",
@@ -58,8 +60,8 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 //                "/mail_to_friend/all_chats",
 //                "/mail_to_friend/**",
 //                "/mail_to_friend/messages/**",
-//                "/albumsfromtrips").hasAnyAuthority("USER");
-//        http.authorizeRequests().antMatchers( "/comments", "/delete_comment").hasAuthority("USER");
+//                "/albumsfromtrips").hasAuthority("USER");
+//
 //        http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(thAuthenticationFilter);
         http.addFilterBefore(new ThAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -76,7 +78,7 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
         final CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins((List.of("http://localhost:3000")));
         configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(List.of("Authorization","Cache-Control","Content-Type","Access-Control-Allow-Origin","Access-Control-Allow-Credentials", "Access-Control-Request-Headers"));
+        configuration.setAllowedHeaders(List.of("Authorization","Cache-Control","Content-Type","Access-Control-Allow-Origin","Access-Control-Allow-Credentials" , "Access-Control-Request-Headers", "X-XSRF-TOKEN"));
         configuration.setAllowedMethods(List.of("GET","PUT","POST","DELETE","HEAD","OPTIONS","PATCH"));
         final UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",configuration);

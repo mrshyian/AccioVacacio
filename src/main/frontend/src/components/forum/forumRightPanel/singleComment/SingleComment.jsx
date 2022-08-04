@@ -13,7 +13,8 @@ const SingleComment = (props) => {
     let text = props.comments.commentText;
     const userId = props.comments.myUserTable.id
     const [commentText, setCommentText] = useState(text)
-
+    console.log(props.tokenCsrf)
+    const [token, setToken] = useState("");
 
     const [editable, setEditable] = useState(false)
 
@@ -60,6 +61,9 @@ const SingleComment = (props) => {
 
     function submit(e) {
         e.preventDefault();
+        axios.get("http://localhost:8080/token").then(r => setToken(r.data))
+        console.log(token)
+
         axios.put(url, {
             commentText: commentText,
             commentId: props.comments.id

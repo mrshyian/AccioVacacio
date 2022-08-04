@@ -34,8 +34,10 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user found with username: " + email);
         }
+        String ROLE_PREFIX = "ROLE_";
+//        authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + user.getRole()));
         Collection<SimpleGrantedAuthority> roles= new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(user.getRole()));
+        roles.add(new SimpleGrantedAuthority(ROLE_PREFIX + user.getRole()));
 
 
         return new User(user.getUserEMail(), user.getPassword(), roles);
@@ -48,6 +50,10 @@ public class UserService implements UserDetailsService {
 
     public MyUserTable getUser(String email){
         return userRepository.findByUserEMail(email);
+    }
+
+    public MyUserTable getUserById(String id){
+        return userRepository.findMyUserTableById(Long.valueOf(id));
     }
 
     public List<MyUserTable> getUsers(){

@@ -15,16 +15,22 @@ const Forum = () => {
     const [post, setPost] = useState([]);
 
     const fetchComment = () => {
-        axios.get(`http://localhost:8080/comments`)
+        axios.get(`http://localhost:8080/comments`
+            ,
+            {headers:
+                    {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                        'X-XSRF-TOKEN': csrfToken}})
             .then(res =>{setComment(res.data);
-                console.log(res.data)})
+                })
         .catch(err => {console.log(err)});
     };
 
     const fetchPost = () => {
-        axios.get(`http://localhost:8080/posts`)
+        axios.get(`http://localhost:8080/posts`
+            ,
+            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
             .then(res =>{setPost(res.data);
-            console.log(res.data)})
+            })
         .catch(err => {console.log(err)});
     };
 
@@ -38,7 +44,7 @@ const Forum = () => {
         <div>
             <div style={{display: "flex"}}>
                 <ForumLeftPanel posts={post} comments={comment}/>
-                <ForumRightPanel posts={post} comments={comment} tokenCsrf={csrfToken}/>
+                <ForumRightPanel posts={post} comments={comment}/>
 
             </div>
 

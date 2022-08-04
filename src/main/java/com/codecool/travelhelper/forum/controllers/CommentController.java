@@ -6,12 +6,13 @@ import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
 import com.codecool.travelhelper.aws.database.repositories.PostRepository;
 import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.forum.webclients.CommentImpl;
-import com.codecool.travelhelper.forum.webclients.PostImpl;
 import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +38,21 @@ public class CommentController {
 
     // get comment from frontend
     @PostMapping("/comments")
-    public void getNewComments(@RequestBody String commentsTable) {
-        commentImpl.getAndSaveComments(commentsTable);
+    public void addNewComment(@RequestBody String commentsTable) {
+        commentImpl.saveComments(commentsTable);
     }
 
     // send list of comments to frontend
     @GetMapping("/comments")
     public List<CommentsTable> getComments() {
         return commentRepository.findAll();
+    }
+
+    @GetMapping("/token")
+    public String getTokenCsrf(HttpServletRequest request) {
+        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+        System.out.println("weszło po token");
+        return token.getToken();
     }
 
     // send list of user comments to frontend

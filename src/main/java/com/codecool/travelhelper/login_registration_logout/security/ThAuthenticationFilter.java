@@ -41,6 +41,8 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        System.out.println("attemptAuthentication");
+
         String userEmail = "";
         String password = "";
         try {
@@ -60,7 +62,9 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+                                            Authentication authentication) throws IOException, ServletException {
+        System.out.println("successfulAuthentication");
         User user =(User) authentication.getPrincipal();
         Long userId = userService.getUser(user.getUsername()).getId();
         userService.getLoginImpl().setCurrentUserId(userId);
@@ -69,7 +73,8 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         String accessToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
+//                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))//60*60*1000
+                .withExpiresAt(new Date(System.currentTimeMillis()+5*1000))//60*60*1000
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 
@@ -90,6 +95,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        System.out.println("unsuccessfulAuthentication");
         Map<String,String> errors = new HashMap<>();
         errors.put("error","niedziała");
         response.setContentType(APPLICATION_JSON_VALUE);

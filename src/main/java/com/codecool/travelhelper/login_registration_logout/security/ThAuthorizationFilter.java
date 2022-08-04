@@ -25,33 +25,47 @@ import static java.util.Arrays.stream;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@Slf4j
 public class ThAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-        if (request.getServletPath().equals("/app/login")  || request.getServletPath().equals("/refreshToken")){
+        System.out.println("doFilterInternal");
+        if (request.getServletPath().equals("/app/login")  || request.getServletPath().equals("/auth/refreshToken")){
             filterChain.doFilter(request,response);
         }else {
             String authorizationHeader = request.getHeader(AUTHORIZATION);
-
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
                 try {
+                    System.out.println("doFilterInternal try");
                     String token = authorizationHeader.substring("Bearer ".length());
+                    System.out.println(token);
+                    System.out.println("doFilterInternal 1");
                     Algorithm algorithm = Algorithm.HMAC256("naszsupertajnykluczszyfrujacy".getBytes());
+                    System.out.println("doFilterInternal 2");
                     JWTVerifier verifier = JWT.require(algorithm).build();
-                    DecodedJWT decoded = verifier.verify(token);
+                    System.out.println("doFilterInternal 3");
+                    DecodedJWT decoded = verifier.verify(token);//nie działa
+                    System.out.println("doFilterInternal 4");
                     String userEmail = decoded.getSubject();
+                    System.out.println("doFilterInternal 5");
                     String[] roles = decoded.getClaim("roles").asArray(String.class);
+                    System.out.println("doFilterInternal 6");
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+                    System.out.println("doFilterInternal 7");
                     stream(roles).forEach(role -> {
                         authorities.add(new SimpleGrantedAuthority(role));
                     });
+                    System.out.println("doFilterInternal 8");
                     UsernamePasswordAuthenticationToken authenticationToken =
                             new UsernamePasswordAuthenticationToken(userEmail,null,authorities);
+                    System.out.println("doFilterInternal 9");
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                    System.out.println("doFilterInternal 10");
                     filterChain.doFilter(request,response);
+                    System.out.println("doFilterInternal 11");
                 } catch (Exception e){
+                    System.out.println("doFilterInternal else kurła");
                     response.setHeader("Error",e.getMessage());
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
                     Map<String,String> error = new HashMap<>();
