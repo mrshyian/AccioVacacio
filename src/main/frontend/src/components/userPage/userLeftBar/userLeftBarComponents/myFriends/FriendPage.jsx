@@ -10,7 +10,6 @@ const FriendPage = () => {
         const userNickName = (window.location.href.toString().split("/")[window.location.href.toString().split("/").length-1]);
         axios.get(`http://localhost:8080/get_friend_by_nick/${userNickName}`)
             .then(res => {
-                console.log(res.data)
                 sessionStorage.setItem("chosenFriendId", res.data.id);
                 setMyFriend(res.data)
             })

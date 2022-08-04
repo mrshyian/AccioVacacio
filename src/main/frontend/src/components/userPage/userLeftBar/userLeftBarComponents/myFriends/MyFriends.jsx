@@ -12,13 +12,15 @@ const MyFriends = () => {
     const [allFriends, setAllFriends] = useState([])
 
     useEffect(() => {
-        searchAllFriends();
+        (async() => {
+            await searchAllFriends();
+        })();
     }, [])
 
     const myId = sessionStorage.getItem("userId").toString();
 
-    const searchAllFriends = () => {
-        axios.get(`http://localhost:8080/search_friend/id/${myId}`)
+    const searchAllFriends = async () => {
+       await axios.get(`http://localhost:8080/search_friend/id/${myId}`)
             .then(res => {
                 console.log(res.data)
                 setAllFriends(res.data);

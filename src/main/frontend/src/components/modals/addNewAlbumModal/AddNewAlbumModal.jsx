@@ -27,16 +27,20 @@ const AddNewAlbumModal = (props) => {
 
 
     const sendDataToServer = () => {
-        console.log(sessionStorage.getItem('token'))
         const url = "http://localhost:8080/albumsfromtrips";
-        axios.get(url)
+        axios.post(url,{
+            country: country,
+            city: city,
+            tripDate: tripDate,
+            albumName: albumName,
+            tripDescription: tripDescription
+        })
             .then(res=>{
                 console.log(res);
                 window.location.reload();
             })
         handleCloseLoginModal()
     }
-
 
     return (
         <Modal show={showNewAlbumModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>

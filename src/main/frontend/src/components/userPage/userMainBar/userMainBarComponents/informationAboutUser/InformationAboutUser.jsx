@@ -15,13 +15,15 @@ const InformationAboutUser = (props) => {
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
     const [allFriends, setAllFriends] = useState([]);
-    const [myId, setMyId] = useState("");
-    // const idFromProps = props.myUser.id;
     const idFromProps = sessionStorage.getItem("userId");
     const [boolka, setBoolka] = useState(false);
+    const [userId, setUserId] = useState(sessionStorage.getItem("userId"));
+
 
     useEffect(() => {
-        searchAllFriends();
+        (async () => {
+            await searchAllFriends();
+        })();
     }, [props])
 
     const addFriend = () => {
@@ -40,17 +42,14 @@ const InformationAboutUser = (props) => {
             });
     };
 
-    const searchAllFriends = () => {
-        let id = sessionStorage.getItem("userId");
-
+    const searchAllFriends = async () => {
         if (sessionStorage.getItem("chosenFriendId") !== null){
-            id = sessionStorage.getItem("chosenFriendId");
+            setUserId(sessionStorage.getItem("chosenFriendId"));
         }
 
-        axios.get(`http://localhost:8080/search_friend/id/${id}`)
+        await axios.get(`http://localhost:8080/search_friend/id/${userId}`)
             .then(res => {
                 setAllFriends(res.data);
-                setMyId(props.myUser.id.toString());
                 sessionStorage.removeItem("chosenFriendId");
                 friendOrNot();
             })
@@ -99,7 +98,7 @@ const InformationAboutUser = (props) => {
                     <div>
                         <img
                             className="profile-image"
-                            src={`http://localhost:8080/image/download/user/${props.myUser.id}`}
+                            src={`http://localhost:8080/image/download/user/${userId}`}
                             onError={({currentTarget}) => {
                                 currentTarget.onerror = null; // prevents looping
                                 currentTarget.src = userImage;
@@ -123,7 +122,7 @@ const InformationAboutUser = (props) => {
                             <br/>
 
                             <div style={{marginTop: "2%", display: "flex"}}>
-                                {myId === sessionStorage.getItem("userId") ?
+                                {userId === sessionStorage.getItem("userId") ?
                                     <h5 className="friends" onClick={() => {
 
                                         navigate("/userpage/friends");
@@ -172,7 +171,7 @@ const InformationAboutUser = (props) => {
                             </div>
                         </Card.Text>
                     </div>
-                    {myId === sessionStorage.getItem("userId") ?
+                    {userId === sessionStorage.getItem("userId") ?
                         <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn"
                                 variant={"outline-warning"}>Edit my details</Button>
                         :

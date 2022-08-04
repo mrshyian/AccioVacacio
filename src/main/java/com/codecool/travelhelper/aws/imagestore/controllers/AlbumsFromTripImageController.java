@@ -9,7 +9,6 @@ import com.codecool.travelhelper.aws.database.repositories.UserRepository;
 import com.codecool.travelhelper.aws.imagestore.bucket.BucketName;
 import com.codecool.travelhelper.aws.imagestore.filestore.FileStore;
 import com.codecool.travelhelper.aws.imagestore.service.S3Service;
-import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +20,6 @@ import java.util.UUID;
 @CrossOrigin("*")
 public class AlbumsFromTripImageController {
     private final S3Service s3Service;
-
-    @Autowired
-    LoginImpl loginImpl;
 
     @Autowired
     FileStore fileStore;

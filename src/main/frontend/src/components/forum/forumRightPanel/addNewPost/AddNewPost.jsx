@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -7,10 +7,21 @@ import axios from "axios";
 import {useDropzone} from "react-dropzone";
 
 function AddNewPost(props) {
+    const url = "http://localhost:8080/posts"
+
+
     const [show, setShow] = useState(true);
     const [image, setImage] = useState(false);
     const [dataa, setDataa] = useState(new FormData());
+    const [postTopic, setPostTopic] = useState("");
+    const [postText, setPostText] = useState("");
+    const [isDisabled, setIsDisabled] = useState(true);
 
+    useEffect(() => {
+        if( postTopic !== "" && postText !== ""){
+            setIsDisabled(false);
+        }
+    }, [postTopic, postText]);
 
     const handleClose = () => {
         setToPropsModalClose();
@@ -18,16 +29,14 @@ function AddNewPost(props) {
     };
     const handleShow = () => setShow(true);
 
-    const url = "http://localhost:8080/posts"
-    const [data, setData] = useState({
-        topic: "",
-        postText: ""
-    })
-
     function handle(e) {
-        const newData = {...data}
-        newData[e.target.id] = e.target.value
-        setData(newData)
+        if (e.target.id === "topic"){
+            setPostTopic(e.target.value);
+        }
+
+        if (e.target.id === "postText"){
+            setPostText(e.target.value);
+        }
     }
 
     function refreshPage() {
@@ -40,18 +49,17 @@ function AddNewPost(props) {
 
 
     function submit(e) {
-        handleClose();
-        e.preventDefault();
-        console.log(dataa)
 
         {
             !image ?
                 Axios.post(url, {
-                        topic: data.topic,
-                        postText: data.postText
+                    topic: postTopic,
+                    postText: postText
+                // })
                     }).then(() => refreshPage())
                 :
-                axios.post(`http://localhost:8080/image/upload/post/${data.topic}/${data.postText}`,
+
+                axios.post(`http://localhost:8080/image/upload/post/${postTopic}/${postText}`,
                     dataa,
                     {
                         headers: {
@@ -63,6 +71,9 @@ function AddNewPost(props) {
                     console.log(err);
                 });
         }
+
+        e.preventDefault();
+        handleClose();
     }
 
     // -------------------------------------------------------------
@@ -72,8 +83,6 @@ function AddNewPost(props) {
         const onDrop = useCallback(acceptedFiles => {
             const file = acceptedFiles[0];
             setImage(true);
-
-            console.log(acceptedFiles);
 
             const formData = new FormData();
             formData.append("file", file);
@@ -110,7 +119,7 @@ function AddNewPost(props) {
                                 id="topic"
                                 placeholder="Topic"
                                 autoFocus
-                                value={data.topic}
+                                value={postTopic}
                                 onChange={(e) => handle(e)}
                             />
                         </Form.Group>
@@ -124,7 +133,7 @@ function AddNewPost(props) {
                                           id="postText"
                                           placeholder="Post text"
                                           style={{marginLeft: -4}}
-                                          value={data.postText}
+                                          value={postText}
                                           onChange={(e) => handle(e)}
                             />
                         </Form.Group>
@@ -137,7 +146,7 @@ function AddNewPost(props) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="warning" onClick={(e) => submit(e)}>
+                    <Button variant="warning" onClick={(e) => submit(e)} disabled={isDisabled}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

@@ -2,10 +2,12 @@ package com.codecool.travelhelper.login_registration_logout.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.codecool.travelhelper.login_registration_logout.webclients.LoginImpl;
 import com.codecool.travelhelper.user.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,6 +30,7 @@ import java.util.stream.Collectors;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
 
@@ -66,7 +69,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         String accessToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 
