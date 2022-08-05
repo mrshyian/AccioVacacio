@@ -55,6 +55,7 @@ axios.interceptors.response.use(resp => resp, async error => {
             console.log(response.data)
             sessionStorage.setItem("token", response.data['accessToken'])
             sessionStorage.setItem("refreshToken", response.data['refreshToken'])
+            alert("response status 200")
             // axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("token")}`;
             return axios(error.config);
         }
