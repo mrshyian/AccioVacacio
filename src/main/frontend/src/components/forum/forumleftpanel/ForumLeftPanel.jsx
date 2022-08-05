@@ -52,15 +52,13 @@ const ForumLeftPanel = (props) => {
             city: data.city,
             time : date},
             {headers:
-                    {"Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-                        'X-XSRF-TOKEN': props.tokenCsrf}}
+                    {'X-XSRF-TOKEN': props.tokenCsrf}}
         ).then(()=> refreshPage())
 
     }
 
     const fetchMostPopularPosts = () => {
-        axios.get(`http://localhost:8080/get_most_popular_posts`,
-            {headers: {"Authorization": `Bearer ${sessionStorage.getItem("token")}`}})
+        axios.get(`http://localhost:8080/get_most_popular_posts`)
             .then(res =>{setPopularPosts(res.data);
                 // console.log(res.data)
             })

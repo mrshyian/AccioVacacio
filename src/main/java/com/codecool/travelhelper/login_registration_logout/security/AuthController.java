@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -51,11 +49,13 @@ public class AuthController {
                 DecodedJWT decoded = verifier.verify(refreshToken);//tu nie działa
                 String userEmail = decoded.getSubject();
                 MyUserTable user = userService.getUserById(userEmail);
+                ArrayList<String> roles = new ArrayList<>();
+                roles.add(user.getRole());
                 String accessToken = JWT.create()
                         .withSubject(user.getId().toString())
                         .withIssuer("TripHelper")
                         .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
-                        .withClaim("roles",user.getRole())
+                        .withClaim("roles",roles)
                         .sign(algorithm);
 
                 System.out.println("/refreshToken | created new accessToken: " + accessToken);

@@ -17,7 +17,11 @@ const Forum = () => {
     const fetchComment = async () => {
         await axios.get(`http://localhost:8080/comments`,
             {headers:
-                    {'X-XSRF-TOKEN': csrfToken}})
+                    {
+                        'X-XSRF-TOKEN': csrfToken,
+                        "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+                    }
+            })
             .then(res =>{
                 alert("forum /comments GET with token")
                 setComment(res.data);
@@ -26,10 +30,10 @@ const Forum = () => {
     };
 
     const fetchPost = async () => {
-        await axios.get(`http://localhost:8080/posts`)
-            .then(res =>{setPost(res.data);
-            })
-        .catch(err => {console.log(err)});
+        // await axios.get(`http://localhost:8080/posts`)
+        //     .then(res =>{setPost(res.data);
+        //     })
+        // .catch(err => {console.log(err)});
     };
 
     useEffect(

@@ -47,11 +47,10 @@ const LoginModal = (props) => {
                 if (res.error === "niedziała") {
                     showErrorModal("Provided data is not valid")
                 } else {
-                    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data['accessToken']}`;
+                    // axios.defaults.headers.common['Authorization'] = `Bearer ${res.data['accessToken']}`;
                     sessionStorage.setItem("userId", parseJwt(res.data['accessToken']).sub);
                     sessionStorage.setItem("token", res.data['accessToken']);
                     sessionStorage.setItem("refreshToken", res.data['refreshToken']);
-
                     setShowLoginModal(false);
                     window.location.reload();
                 }

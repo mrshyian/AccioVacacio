@@ -52,10 +52,10 @@ axios.interceptors.response.use(resp => resp, async error => {
         alert("axios -> refreshToken POST with refreshToken")
 
         if (response.status === 200) {
-
+            console.log(response.data)
             sessionStorage.setItem("token", response.data['accessToken'])
             sessionStorage.setItem("refreshToken", response.data['refreshToken'])
-
+            // axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("token")}`;
             return axios(error.config);
         }
     }
