@@ -53,6 +53,9 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
             userEmail = commentJsonObject.get("email").getAsString();
             password = commentJsonObject.get("password").getAsString();
 
+            System.out.println(userEmail);
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

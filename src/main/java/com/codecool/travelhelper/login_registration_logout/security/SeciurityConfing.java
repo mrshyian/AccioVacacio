@@ -2,9 +2,10 @@ package com.codecool.travelhelper.login_registration_logout.security;
 
 import com.codecool.travelhelper.user.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,10 +16,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
@@ -26,6 +28,9 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SeciurityConfing extends WebSecurityConfigurerAdapter {
+
+//    @Autowired
+//    private CorsFilter corsFilter;
 
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -42,6 +47,12 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
         thAuthenticationFilter.setFilterProcessesUrl("/app/login");
         http.cors();
         http.csrf().disable(); //TODO create csrf token
+//        http
+//                .csrf()
+//                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                .and()
+//                .addFilterBefore(corsFilter, CsrfFilter.class);
+
 //        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 //        http.antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico", "/rest").permitAll()
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -84,4 +95,5 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",configuration);
         return urlBasedCorsConfigurationSource;
     }
+
 }
