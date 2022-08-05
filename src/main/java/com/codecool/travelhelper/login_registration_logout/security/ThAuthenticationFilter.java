@@ -22,9 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -41,8 +39,6 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        System.out.println("attemptAuthentication");
-
         String userEmail = "";
         String password = "";
         try {
@@ -52,9 +48,6 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
             userEmail = commentJsonObject.get("email").getAsString();
             password = commentJsonObject.get("password").getAsString();
-
-            System.out.println(userEmail);
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -67,7 +60,6 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authentication) throws IOException, ServletException {
-        System.out.println("successfulAuthentication");
         User user =(User) authentication.getPrincipal();
         Long userId = userService.getUser(user.getUsername()).getId();
         userService.getLoginImpl().setCurrentUserId(userId);
@@ -80,15 +72,11 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 
-        System.out.println("Authentication | created accessToken: " + accessToken);
-
         String refreshToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
                 .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))
                 .sign(algorithm);
-
-        System.out.println("Authentication | created refreshToken: " + refreshToken);
 
         Map<String,String> tokens = new HashMap<>();
         tokens.put("accessToken", accessToken);
@@ -100,7 +88,6 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        System.out.println("unsuccessfulAuthentication");
         Map<String,String> errors = new HashMap<>();
         errors.put("error","niedziała");
         response.setContentType(APPLICATION_JSON_VALUE);

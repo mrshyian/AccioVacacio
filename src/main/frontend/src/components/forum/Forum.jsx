@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ForumLeftPanel from "./forumleftpanel/ForumLeftPanel";
 import ForumRightPanel from "./forumRightPanel/ForumRightPanel";
 import axios from "axios";
+import axiosRetry from "axios-retry";
 
 
 const Forum = () => {
@@ -23,38 +24,24 @@ const Forum = () => {
             resp = await axios.get(url,
             {headers:
                     {
-                        'X-XSRF-TOKEN': csrfToken,
-                        "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+                        'X-XSRF-TOKEN': csrfToken
                     }
             })
             i++;
+
         }
         while (i < 2 || resp.status !== 200);
         if (resp!==null){
             setComment(resp.data)
         }
-
-
-        // if (resp.status===200){
-        //     setComment(resp.data);
-        // } else {
-        //     let resp2 = await axios.get(`http://localhost:8080/comments`,
-        //         {headers:
-        //                 {
-        //                     'X-XSRF-TOKEN': csrfToken,
-        //                     "Authorization": `Bearer ${sessionStorage.getItem("token")}`
-        //                 }
-        //         })
-        //     if (resp2.status===200){
-        //         setComment(resp2.data);
-        //     }
-        // }
-        //     .then(res =>{
-        //         alert("forum /comments GET with token")
-        //         setComment(res.data);
-        //         })
-        // .catch(err => {console.log(err)});
     };
+
+    // const fetchComment = async () => {
+    //     await axios.get(`http://localhost:8080/comments`)
+    //         .then(resp =>{setComment(resp.data);
+    //         })
+    //         .catch(err => {console.log(err)});
+    // };
 
     const fetchPost = async () => {
         await axios.get(`http://localhost:8080/posts`)
@@ -77,7 +64,6 @@ const Forum = () => {
             <div style={{display: "flex"}}>
                 <ForumLeftPanel posts={post} comments={comment}/>
                 <ForumRightPanel posts={post} comments={comment}/>
-
             </div>
 
         </div>

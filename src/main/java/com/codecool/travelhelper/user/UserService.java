@@ -34,10 +34,10 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user found with username: " + email);
         }
-        String ROLE_PREFIX = "ROLE_";
-//        authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + user.getRole()));
+//        String ROLE_PREFIX = "ROLE_";
         Collection<SimpleGrantedAuthority> roles= new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(ROLE_PREFIX + user.getRole()));
+//        roles.add(new SimpleGrantedAuthority(ROLE_PREFIX + user.getRole()));
+        roles.add(new SimpleGrantedAuthority(user.getRole()));
 
 
         return new User(user.getUserEMail(), user.getPassword(), roles);

@@ -74,6 +74,8 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 //                "/albumsfromtrips").hasAuthority("USER");
 //
 //        http.authorizeRequests().anyRequest().permitAll();
+
+        http.authorizeRequests().antMatchers("/comments").hasAuthority("USER");
         http.addFilter(thAuthenticationFilter);
         http.addFilterBefore(new ThAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

@@ -31,37 +31,26 @@ public class ThAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         if (request.getServletPath().equals("/app/login")  || request.getServletPath().equals("/auth/refreshToken")){
-            System.out.println(request.getHeader(AUTHORIZATION));
             filterChain.doFilter(request,response);
         }else {
             String authorizationHeader = request.getHeader(AUTHORIZATION);
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
                 try {
                     String token = authorizationHeader.substring("Bearer ".length());
-                    System.out.println("doFilterInternal | token received from request: " + token);
                     Algorithm algorithm = Algorithm.HMAC256("naszsupertajnykluczszyfrujacy".getBytes());
                     JWTVerifier verifier = JWT.require(algorithm).build();
-                    DecodedJWT decoded = verifier.verify(token);//nie działa
-                    System.out.println("doFilterInternal | token received from request not valid\n");
+                    DecodedJWT decoded = verifier.verify(token);
                     String userEmail = decoded.getSubject();
-                    System.out.println("doFilterInternal | userEmail");
                     String[] roles = decoded.getClaim("roles").asArray(String.class);
-                    System.out.println("doFilterInternal | roles");
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                    System.out.println("doFilterInternal | authorities");
                     stream(roles).forEach(role -> {
                         authorities.add(new SimpleGrantedAuthority(role));
                     });
-                    System.out.println("doFilterInternal | authorities filled");
                     UsernamePasswordAuthenticationToken authenticationToken =
                             new UsernamePasswordAuthenticationToken(userEmail,null,authorities);
-                    System.out.println("doFilterInternal | authenticationToken created");
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                    System.out.println("doFilterInternal | authenticationToken set");
                     filterChain.doFilter(request,response);
-                    System.out.println("doFilterInternal | filterChain.doFilter(request,response)");
                 } catch (Exception e){
-                    System.out.println("doFilterInternal else kurła");
                     response.setHeader("Error",e.getMessage());
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
                     Map<String,String> error = new HashMap<>();
