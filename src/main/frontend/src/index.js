@@ -14,7 +14,6 @@ import AlbumsFromTrips from "./components/userPage/userLeftBar/userLeftBarCompon
 import MyComments from "./components/forum/forumRightPanel/myComments/MyComments";
 import FavouriteComments from "./components/forum/forumRightPanel/favouriteComments/FavouriteComments";
 import FilterComments from "./components/forum/forumRightPanel/FilterComments";
-import "./components/forum/RefreshToken";
 import SingleAlbumView
     from "./components/userPage/userLeftBar/userLeftBarComponents/albumsFromTrips/singleAlbum/SingleAlbumView";
 import AddImage from "./components/userPage/userMainBar/userMainBarComponents/addImage/AddImage";

@@ -73,10 +73,11 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         String accessToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
-//                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))//60*60*1000
-                .withExpiresAt(new Date(System.currentTimeMillis()+5*1000))//60*60*1000
+                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))//60*60*1000
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
+
+        System.out.println("Authentication | created accessToken: " + accessToken);
 
         String refreshToken = JWT.create()
                 .withSubject(userId.toString())
@@ -84,6 +85,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
                 .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))
                 .sign(algorithm);
 
+        System.out.println("Authentication | created refreshToken: " + refreshToken);
 
         Map<String,String> tokens = new HashMap<>();
         tokens.put("accessToken", accessToken);

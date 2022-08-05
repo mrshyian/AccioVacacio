@@ -9,15 +9,14 @@ import GoogleSignIn from "./Google.SignIn";
 
 const LoginModal = (props) => {
 
-    const [disabledBtn, setDisabledBtn] = useState(false)
+    const [disabledBtn, setDisabledBtn] = useState(false);
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [navigate, setNavigate] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const [showLoginModal, setShowLoginModal] = useState(true);
     const handleCloseLoginModal = () => {
-        setToPropsModalClose();
+        props.close(false);
         setShowLoginModal(false);
     };
     const [errorModalOpen, setErrorModalOpen] = useState(false);
@@ -37,34 +36,12 @@ const LoginModal = (props) => {
         return JSON.parse(window.atob(base64));
     }
 
-    const sendDataToServer = () => {
-        const url = `http://localhost:8080/app/login?userEmail=${email}&password=${password}`;
-        fetch(url,{method:"GET"})
-            .then(res=>res.json())
-            .then(data=>{
-                console.log(data)
-                if (data.error === "niedziała"){
-                    showErrorModal("Provided data is not valid")
-                } else {
-                    console.log("setuje tokeny")
-                    sessionStorage.setItem("userId", parseJwt(data['tokenDostempowy']).sub)
-                    sessionStorage.setItem("token", data['tokenDostempowy'])
-                    sessionStorage.setItem("refreshToken", data['refreshToken'])
-                    console.log(sessionStorage.getItem("token"))
-                    console.log(sessionStorage.getItem("refreshToken"))
-                    setShowLoginModal(false);
-                    window.location.reload();
-                }
-
-            })
-            .catch(console.error)
-    }
 
     const submit = async e => {
         e.preventDefault();
         const {data} = await axios.post('http://localhost:8080/app/login', {
             email, password
-        }, {withCredentials: true})
+        })
             .then(res => {
                 console.log(res)
                 if (res.error === "niedziała") {
@@ -74,14 +51,14 @@ const LoginModal = (props) => {
                     sessionStorage.setItem("userId", parseJwt(res.data['accessToken']).sub);
                     sessionStorage.setItem("token", res.data['accessToken']);
                     sessionStorage.setItem("refreshToken", res.data['refreshToken']);
+
                     setShowLoginModal(false);
                     window.location.reload();
                 }
 
             });
-
-        setNavigate(true);
     }
+
     return (
         <Modal show={showLoginModal} onHide={handleCloseLoginModal}
                style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
@@ -126,8 +103,8 @@ const LoginModal = (props) => {
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>
-                {/*<Button disabled={disabledBtn} variant="outline-warning" onClick={submit}>*/}
-                <Button disabled={disabledBtn} variant="outline-warning" onClick={sendDataToServer}>
+                <Button disabled={disabledBtn} variant="outline-warning" onClick={submit}>
+                {/*<Button disabled={disabledBtn} variant="outline-warning" onClick={sendDataToServer}>*/}
                     Login
                 </Button>
             </Modal.Footer>

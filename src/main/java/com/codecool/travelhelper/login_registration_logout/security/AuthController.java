@@ -38,11 +38,6 @@ public class AuthController {
 
     }
 
-//    @PostMapping("/admin/user/save")
-//    public ResponseEntity<MyUserTable> addUser(@RequestBody MyUserTable user){
-//        return ResponseEntity.ok().body(userService.saveUserToBD(user));
-//    }
-
     @PostMapping("/refreshToken")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("Wlajzło po tokena refresha");
@@ -50,6 +45,7 @@ public class AuthController {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             try {
                 String refreshToken = authorizationHeader.replace("Bearer ","");
+                System.out.println("/refreshToken | came refreshToken: " + refreshToken);
                 Algorithm algorithm = Algorithm.HMAC256("naszsupertajnykluczszyfrujacy".getBytes());
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decoded = verifier.verify(refreshToken);//tu nie działa
@@ -58,25 +54,29 @@ public class AuthController {
                 String accessToken = JWT.create()
                         .withSubject(user.getId().toString())
                         .withIssuer("TripHelper")
-//                        .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))//60*60*1000
-                        .withExpiresAt(new Date(System.currentTimeMillis()+5*1000))
+                        .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
                         .withClaim("roles",user.getRole())
                         .sign(algorithm);
+
+                System.out.println("/refreshToken | created new accessToken: " + accessToken);
                 Map<String,String> tokens = new HashMap<>();
-                tokens.put("tokenDostempowy", accessToken);
+                tokens.put("accessToken", accessToken);
                 tokens.put("refreshToken", refreshToken);
                 response.setContentType(APPLICATION_JSON_VALUE);
-                System.out.println("11");
+
                 new ObjectMapper().writeValue(response.getOutputStream(),tokens);
 
+                System.out.println("/refreshToken | tokens have been put into response");
             } catch (Exception e){
                 System.out.println("Wlajzło po tokena refresha ale w else");
+                System.out.println("/refreshToken |  token wasn't send in headers ");
                 response.setHeader("Error",e.getMessage());
                 response.setStatus(HttpStatus.FORBIDDEN.value());
                 Map<String,String> error = new HashMap<>();
                 error.put("Message",e.getMessage());
                 response.setContentType(APPLICATION_JSON_VALUE);
                 new ObjectMapper().writeValue(response.getOutputStream(),error);
+                System.out.println("/refreshToken |  added 401 to headers response ");
             }
         }else {
             throw new RuntimeException("No Token!!");
