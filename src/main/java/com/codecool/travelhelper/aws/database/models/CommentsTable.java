@@ -16,7 +16,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @NamedEntityGraph(name = "likedByUser", attributeNodes = {@NamedAttributeNode("myUserTable")})
-public class CommentsTable {
+public class CommentsTable implements Comparable<CommentsTable>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -100,5 +100,15 @@ public class CommentsTable {
                 ", city='" + city + '\'' +
                 ", commentDateTime='" + commentDateTime + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(CommentsTable o) {
+        if (getCommentDateTime() == null || o.getCommentDateTime() == null) {
+            return 0;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+        return LocalDateTime.parse(getCommentDateTime(), formatter).compareTo(LocalDateTime.parse(o.getCommentDateTime(), formatter));
     }
 }

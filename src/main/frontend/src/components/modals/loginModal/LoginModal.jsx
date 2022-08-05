@@ -39,11 +39,12 @@ const LoginModal = (props) => {
 
     const submit = async e => {
         e.preventDefault();
-        const {data} = await axios.post('http://localhost:8080/app/login', {
+        await axios.post('http://localhost:8080/app/login', {
             email, password
         })
             .then(res => {
-                console.log(res)
+                console.log("AccessToken has tis info in:")
+                console.log(parseJwt(res.data['accessToken']))
                 if (res.error === "niedziała") {
                     showErrorModal("Provided data is not valid")
                 } else {

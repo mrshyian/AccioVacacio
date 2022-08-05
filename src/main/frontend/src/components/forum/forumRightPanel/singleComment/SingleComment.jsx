@@ -92,8 +92,7 @@ const SingleComment = (props) => {
                         display: "flex",
                         backgroundColor: "rgb(35, 35, 35)"
                     }}>
-                        <br/>
-                        <div style={{marginBottom: -30}}>
+                        <div>
                             <Image
                                 fluid="true"
                                 className="imgForForum"
@@ -103,10 +102,8 @@ const SingleComment = (props) => {
                                     currentTarget.src = userImage;
                                 }}
                             />
-                            <br/>
                             <div>{props.comments.userName}</div>
                         </div>
-                        <br/>
                         <div>{props.comments.commentDateTime}</div>
 
                     </Card.Header>
@@ -124,7 +121,7 @@ const SingleComment = (props) => {
                             <Button variant="warning" className="save-note-button"
                                     onClick={(e) => submit(e)}>Save</Button>
 
-                            <br/><div><Image rounded="true" fluid="true" className="addImage"
+                            <div><Image rounded="true" fluid="true" className="addImage"
                                       src={`http://localhost:8080/image/download/comment/${props.comments.id}`} alt=""/>
                             </div>
                         </Card.Text>
@@ -146,12 +143,12 @@ const SingleComment = (props) => {
                         backgroundColor: "rgb(35, 35, 35)"
                     }}>
 
-                        <br/><div style={{marginBottom: -30}}>
+                        <div>
                             <Image className="imgForForum"
                                    src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`}
                                    alt=""/>
-                            <br/><div>{props.comments.userName}{userId}</div></div>
-                        <br/><div>{props.comments.commentDateTime}</div>
+                            <div>{props.comments.userName}</div></div>
+                        <div>{props.comments.commentDateTime}</div>
 
                     </Card.Header>
                     <Card.Body style={{backgroundColor: "rgb(55, 55, 55)"}}>

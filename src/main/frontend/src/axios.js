@@ -4,12 +4,16 @@ let refresh = false;
 
 
 axios.interceptors.response.use(resp => resp, async error => {
+    alert("axios.js start")
+
     axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("token")}`;
 
     if (error.response.status === 403) {
+        alert("axios.js 403")
         return ;
     }
     if (error.response.status === 401 && !refresh) {
+        alert("axios.js  401")
         refresh = true;
 
         const response = await axios.post('http://localhost:8080/auth/refreshToken', {},
@@ -20,7 +24,7 @@ axios.interceptors.response.use(resp => resp, async error => {
             });
 
         if (response.status === 200) {
-            alert("alert")
+            alert("axios.js 200")
             sessionStorage.setItem("token", response.data['accessToken']);
             sessionStorage.setItem("refreshToken", response.data['refreshToken']);
             return axios(error.config);

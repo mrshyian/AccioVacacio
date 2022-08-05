@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -45,7 +46,9 @@ public class CommentController {
     // send list of comments to frontend
     @GetMapping("/comments")
     public List<CommentsTable> getComments() {
-        return commentRepository.findAll();
+        List<CommentsTable> allComments = commentRepository.findAll();
+        allComments.sort(Collections.reverseOrder());
+        return allComments;
     }
 
     @GetMapping("/token")

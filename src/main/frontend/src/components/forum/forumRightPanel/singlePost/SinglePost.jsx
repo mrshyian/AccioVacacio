@@ -49,7 +49,6 @@ const SinglePost = (props) => {
         }).then(() => reload())
 
     }
-    const [areCommentsPresent, setAreCommentsPresent] = useState(false)
 
     useEffect(()=>{
         postOwner()
@@ -85,7 +84,7 @@ const SinglePost = (props) => {
                     style={{width: '80%', margin: "10px", marginLeft: "auto", marginRight: "auto"}}
                     className="mb-2">
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
-                        <p style={{marginBottom: -20}}>
+                        <div>
                             <img
                                 className="imgForForum"
                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
@@ -94,9 +93,9 @@ const SinglePost = (props) => {
                                     currentTarget.src=userImage;
                                 }}
                             />
-                            <br/><div> {props.post.userName} </div></p>
+                            <div> {props.post.userName} </div></div>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
-                        <br/><div>{props.post.postDateTime}</div>
+                        <div>{props.post.postDateTime}</div>
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
@@ -139,7 +138,7 @@ const SinglePost = (props) => {
                     style={{width: '80%', margin: "10px", marginLeft: "auto", marginRight: "auto"}}
                     className="mb-2">
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
-                        <br/><div style={{marginBottom: -20}}>
+                        <div>
                             <img
                                 className="imgForForum"
                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
@@ -148,9 +147,9 @@ const SinglePost = (props) => {
                                     currentTarget.src=userImage;
                                 }}
                             />
-                            <br/><div> {props.post.userName} </div></div>
+                            <div> {props.post.userName} </div></div>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
-                        <br/><div>{props.post.postDateTime}</div>
+                        <div>{props.post.postDateTime}</div>
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
