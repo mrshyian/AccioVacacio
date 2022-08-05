@@ -1,12 +1,9 @@
 import axios from "axios";
-import axiosRetry from "axios-retry";
 let refresh = false;
 
 
 
 axios.interceptors.response.use(resp => resp, async error => {
-    alert("try")
-
     axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("token")}`;
 
     if (error.response.status === 403) {
@@ -33,4 +30,15 @@ axios.interceptors.response.use(resp => resp, async error => {
     return error;
 });
 
+export async function getResponseFromAxiosGet(url, repeatTimes){
+    let resp = {};
+    let i = 0;
+
+    do {
+        resp = await axios.get(url);
+        i++;
+    } while (i < repeatTimes || resp.status !== 200)
+
+    return resp;
+}
 

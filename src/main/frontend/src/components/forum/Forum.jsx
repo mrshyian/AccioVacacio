@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ForumLeftPanel from "./forumleftpanel/ForumLeftPanel";
 import ForumRightPanel from "./forumRightPanel/ForumRightPanel";
 import axios from "axios";
-import axiosRetry from "axios-retry";
+import {getResponseFromAxiosGet} from "../../axios";
 
 
 const Forum = () => {
@@ -17,37 +17,13 @@ const Forum = () => {
 
 
     const fetchComment = async () => {
-        const url = `http://localhost:8080/comments`;
-        let i = 0;
-        let resp = {};
-        do {
-            resp = await axios.get(url,
-            {headers:
-                    {
-                        'X-XSRF-TOKEN': csrfToken
-                    }
-            })
-            i++;
-
-        }
-        while (i < 2 || resp.status !== 200);
-        if (resp!==null){
-            setComment(resp.data)
-        }
+        let resp = await getResponseFromAxiosGet(`http://localhost:8080/comments`, 2);
+        setComment(resp.data);
     };
 
-    // const fetchComment = async () => {
-    //     await axios.get(`http://localhost:8080/comments`)
-    //         .then(resp =>{setComment(resp.data);
-    //         })
-    //         .catch(err => {console.log(err)});
-    // };
-
     const fetchPost = async () => {
-        await axios.get(`http://localhost:8080/posts`)
-            .then(res =>{setPost(res.data);
-            })
-        .catch(err => {console.log(err)});
+        let resp = await getResponseFromAxiosGet(`http://localhost:8080/posts`, 2);
+        setPost(resp.data);
     };
 
     useEffect(
