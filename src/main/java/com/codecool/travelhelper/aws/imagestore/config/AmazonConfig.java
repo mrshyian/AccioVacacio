@@ -13,9 +13,14 @@ public class AmazonConfig {
 
     @Bean
     public AmazonS3 s3() {
+//        AWSCredentials awsCredentials = new BasicAWSCredentials(
+//          "AKIA3DOEMU2MIPGZ4TM4",
+//          "EdmKvizcTZPwH9S+6lI/Tye6HE599JaKEWTLW+L/"
+//        );
+
         AWSCredentials awsCredentials = new BasicAWSCredentials(
-          "AKIA3DOEMU2MIPGZ4TM4",
-          "EdmKvizcTZPwH9S+6lI/Tye6HE599JaKEWTLW+L/"
+          "AKIA5U45OMHKNGUHM44K",
+          "qYnCtjSi6+yuGj2REsip/bACln476yQnBtnlZvGG"
         );
         return AmazonS3ClientBuilder
                 .standard()
