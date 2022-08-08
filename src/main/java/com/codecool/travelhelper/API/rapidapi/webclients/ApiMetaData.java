@@ -49,6 +49,11 @@ public enum ApiMetaData {
     GOOGLE_AUTOCOMPLETE_PLUS("https://google-maps-autocomplete-plus.p.rapidapi.com/autocomplete",  new HashMap<>(){{
         put("X-RapidAPI-Host", "google-maps-autocomplete-plus.p.rapidapi.com");
         put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
+    }}),
+
+    AIRPORT_INFO("https://airport-info.p.rapidapi.com/airport",  new HashMap<>(){{
+        put("X-RapidAPI-Host", "airport-info.p.rapidapi.com");
+        put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
     }})
     ;
 
