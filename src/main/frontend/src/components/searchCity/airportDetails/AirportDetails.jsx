@@ -24,9 +24,9 @@ const AirportDetails = (props) => {
     }, [])
 
     return (
-        <div className="newsInline1">
+        <div className="newsInline1" >
             <h1 style={{textAlign: "center", color: "orange"}}>AIRPORTS</h1>
-            <div style={{display: "flex"}}>
+            <div style={{display: "flex", justifyContent: "center"}}>
                 <Card
                     bg={"dark"}
                     key={"airport-details-dark"}

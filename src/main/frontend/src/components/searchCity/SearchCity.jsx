@@ -134,8 +134,8 @@ const SearchCity = () => {
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode} country={country} city={city}/>
             <LivingCoasts livingCosts={livingCosts}/>
-            <div style={{display: "flex"}}>
-                {/*<Booking country={country} city={city}/>*/}
+            <div className="weather-box" style={{display: "flex", justifyContent: "center"}}>
+                <Booking country={country} city={city}/>
                 <MyGoogleMap longitude={longitude} latitude={latitude}/>
             </div>
 
