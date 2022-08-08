@@ -7,8 +7,6 @@ import WeatherBox from "./weather/WeatherBox";
 import EmergencyNumbers from "./emergencyNumbers/EmergencyNumbers";
 import LivingCoasts from "./livingCosts/LivingCoasts";
 import CrimeRating from "./crimaRating/CrimeRating";
-import countries from "i18n-iso-countries";
-import english from "i18n-iso-countries/langs/en.json";
 import TouristAttractionsBox from "./touristAttractions/TouristAttractionsBox";
 import {useLocation} from "react-router-dom";
 import Booking from "./booking/Booking";
@@ -23,7 +21,7 @@ const SearchCity = () => {
     const [emergencyNumber, setEmergencyNumber] = useState("");
     const [livingCosts, setLivingCosts] = useState([]);
     const [crimeRating, setCrimeRating] = useState([]);
-    const [attractions, setAttractions] = useState([]);
+    // const [attractions, setAttractions] = useState([]);
 
     const location = useLocation()
     const country = location.state.country;
@@ -106,18 +104,6 @@ const SearchCity = () => {
             });
     };
 
-    const fetchAttractions = () => {
-        const countryIsoCode = getCountryIsoCode(country);
-        axios.get(`http://localhost:8080/attractions/${city}/${countryIsoCode}`)
-            .then(res => {
-                setAttractions(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
-    };
-
-
     useEffect(() => {
         fetchNewsWorld();
         fetchIATACode();
@@ -125,7 +111,6 @@ const SearchCity = () => {
         fetchLivingCosts();
         fetchEmergencyNumbers();
         fetchCrimeRating();
-        fetchAttractions();
         getCoordinates();
     }, [])
 
@@ -145,12 +130,12 @@ const SearchCity = () => {
                 <CrimeRating crimeRating={crimeRating} city={city}/>
                 <EmergencyNumbers emergencyNumber={emergencyNumber}/>
             </div>
-            <TouristAttractionsBox attractions={attractions}/>
+            <TouristAttractionsBox country={country} city={city}/>
             <NewsBox news={news}/>
             <AirportDetails iata={IATACode} country={country} city={city}/>
             <LivingCoasts livingCosts={livingCosts}/>
             <div style={{display: "flex"}}>
-                <Booking country={country} city={city}/>
+                {/*<Booking country={country} city={city}/>*/}
                 <MyGoogleMap longitude={longitude} latitude={latitude}/>
             </div>
 
@@ -160,8 +145,3 @@ const SearchCity = () => {
 };
 
 export default SearchCity;
-
-function getCountryIsoCode(countryName) {
-    countries.registerLocale(english);
-    return countries.getAlpha2Code(countryName, "en");
-}
