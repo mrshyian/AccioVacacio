@@ -5,7 +5,7 @@ import {FaHeart, FaTrash} from "react-icons/fa";
 
 import {RiFileEditFill} from "react-icons/ri";
 import userImage from "../../../../images/user.png";
-import {getResponseFromAxiosGet, postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../axios";
+import {getResponseFromAxiosGet, postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../Methods";
 
 
 const SingleComment = (props) => {

@@ -150,7 +150,7 @@ const SearchCity = () => {
             <AirportDetails iata={IATACode} country={country} city={city}/>
             <LivingCoasts livingCosts={livingCosts}/>
             <div style={{display: "flex"}}>
-                <Booking country={country} city={city}/>
+                {/*<Booking country={country} city={city}/>*/}
                 <MyGoogleMap longitude={longitude} latitude={latitude}/>
             </div>
 
