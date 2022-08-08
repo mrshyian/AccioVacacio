@@ -4,24 +4,20 @@ import axios from "axios";
 import ForumLeftPanel from "../../forumleftpanel/ForumLeftPanel";
 import SinglePost from "../singlePost/SinglePost";
 import {Card} from "react-bootstrap";
+import {getResponseFromAxiosGet} from "../../../../axios";
 
 const FavouriteComments = () => {
-
     const [favouriteComments, setFavouriteComments] = useState([]);
     const [favouriteCommentsPosts, setFavouriteCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
-        axios.get(`http://localhost:8080/favouriteComments`)
-            .then(res =>{setFavouriteComments(res.data);
-                console.log(res.data)})
-            .catch(err => {console.log(err)});
+        getResponseFromAxiosGet(`http://localhost:8080/favouriteComments`, 2).then(res =>{setFavouriteComments(res.data);
+            console.log(res.data)})
     };
 
     const fetchMyPosts = () => {
-        axios.get(`http://localhost:8080/favouriteCommentsPosts`)
-            .then(res =>{setFavouriteCommentsPosts(res.data);
-                console.log(res.data)})
-            .catch(err => {console.log(err)});
+        getResponseFromAxiosGet(`http://localhost:8080/favouriteCommentsPosts`, 2).then(res =>{setFavouriteCommentsPosts(res.data);
+            console.log(res.data)})
     };
 
     useEffect(() => {
@@ -29,9 +25,7 @@ const FavouriteComments = () => {
         fetchMyPosts();
     }, [])
 
-
     return (
-
         <div>
             <ForumLeftPanel/>
             <Card

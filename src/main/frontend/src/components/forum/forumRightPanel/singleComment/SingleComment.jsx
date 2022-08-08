@@ -5,7 +5,7 @@ import {FaHeart, FaTrash} from "react-icons/fa";
 
 import {RiFileEditFill} from "react-icons/ri";
 import userImage from "../../../../images/user.png";
-import {getResponseFromAxiosGet, postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../Methods";
+import {getResponseFromAxiosGet, postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../axios";
 
 
 const SingleComment = (props) => {
@@ -41,12 +41,12 @@ const SingleComment = (props) => {
     function editText(e) {
         e.preventDefault();
         setEditable(true);
+
     }
 
     const AddLike = () => {
         like++;
         like <= 1 ? sendLikeData() : console.log("już dodałeś like");
-        reload();
     }
 
     const sendLikeData = async () => {

@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 import ForumLeftPanel from "../../forumleftpanel/ForumLeftPanel";
 import SinglePost from "../singlePost/SinglePost";
 import {Card} from "react-bootstrap";
-import InformationAboutUser
-    from "../../../userPage/userMainBar/userMainBarComponents/informationAboutUser/InformationAboutUser";
+import {getResponseFromAxiosGet} from "../../../../axios";
 
 
 const MyComments = () => {
@@ -12,16 +10,16 @@ const MyComments = () => {
     const [myCommentsPosts, setMyCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
-        axios.get(`http://localhost:8080/myComments`)
-            .then(res =>{setMyComments(res.data);})
-            .catch(err => {console.log(err)});
+        getResponseFromAxiosGet(`http://localhost:8080/myComments`, 2).then(res => {
+            setMyComments(res.data);
+        })
     };
 
 
     const fetchMyCommentsPosts = () => {
-        axios.get(`http://localhost:8080/myCommentsPosts`)
-            .then(res =>{setMyCommentsPosts(res.data);})
-            .catch(err => {console.log(err)});
+        getResponseFromAxiosGet(`http://localhost:8080/myCommentsPosts`, 2).then(res => {
+            setMyCommentsPosts(res.data);
+        })
     };
 
     useEffect(() => {

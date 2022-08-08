@@ -1,10 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import Axios from "axios";
-import axios from "axios";
 import "./AddNewComment.css"
 import {Button, Card} from "react-bootstrap";
 import {useDropzone} from "react-dropzone";
-import {getResponseFromAxiosGet, postDataToServerByAxiosPost, postImageToServerByAxiosPost} from "../../../../Methods";
+import {postDataToServerByAxiosPost, postImageToServerByAxiosPost} from "../../../../axios";
 
 function AddNewComment(props) {
 
@@ -40,14 +38,10 @@ function AddNewComment(props) {
         console.log(dataa)
         {
             !image ?
-                await postDataToServerByAxiosPost(url, dataa, 2).then(() => console.log(dataa))
-                // Axios.post(url, {
-                //         data
-                //     })
-                //     .then(() => refreshPage())
+                await postDataToServerByAxiosPost(url, dataa, 0).then(() => console.log(dataa))
                 :
                 await postImageToServerByAxiosPost(`http://localhost:8080/image/upload/comment/${name}/${props.postId}`,
-                    imageToComment, 2).then(() => console.log(dataa));
+                    imageToComment, 0).then(() => console.log(dataa));
         }
         refreshPage();
     }

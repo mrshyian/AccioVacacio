@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ForumLeftPanel from "./forumleftpanel/ForumLeftPanel";
 import ForumRightPanel from "./forumRightPanel/ForumRightPanel";
-import axios from "axios";
-import {getResponseFromAxiosGet} from "../../Methods";
+import {getResponseFromAxiosGet} from "../../axios";
 
 
 const Forum = () => {

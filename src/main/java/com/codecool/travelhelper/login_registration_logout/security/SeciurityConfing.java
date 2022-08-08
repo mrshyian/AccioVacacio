@@ -1,5 +1,6 @@
 package com.codecool.travelhelper.login_registration_logout.security;
 
+import com.amazonaws.services.dynamodbv2.model.Get;
 import com.codecool.travelhelper.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,8 +60,13 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().antMatchers(HttpMethod.GET, "/comments", "/myComments").hasAuthority("USER");
 //        http.authorizeRequests().antMatchers(HttpMethod.POST, "/comments", "/myComments", "/image/upload/comment/**").hasAuthority("USER");
         http.authorizeRequests().antMatchers(
+                "/posts",
                 "/comments",
+                "/delete_post",
+                "/add_like_to_post",
                 "/myComments",
+
+
                 "/usermainbar",
                 "/image/upload/comment/**",
                 "/get_friend_by_nick/**",
