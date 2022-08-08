@@ -1,18 +1,15 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import Axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
 import {useDropzone} from "react-dropzone";
+import {postDataToServerByAxiosPost, postImageToServerByAxiosPost} from "../../../../axios";
 
 function AddNewPost(props) {
     const url = "http://localhost:8080/posts"
-
-
     const [show, setShow] = useState(true);
     const [image, setImage] = useState(false);
-    const [dataa, setDataa] = useState(new FormData());
+    const [imageToPost, setImageToPost] = useState(new FormData());
     const [postTopic, setPostTopic] = useState("");
     const [postText, setPostText] = useState("");
     const [isDisabled, setIsDisabled] = useState(true);
@@ -20,6 +17,8 @@ function AddNewPost(props) {
     useEffect(() => {
         if( postTopic !== "" && postText !== ""){
             setIsDisabled(false);
+        }else{
+            setIsDisabled(true)
         }
     }, [postTopic, postText]);
 
@@ -27,7 +26,6 @@ function AddNewPost(props) {
         setToPropsModalClose();
         setShow(false);
     };
-    const handleShow = () => setShow(true);
 
     function handle(e) {
         if (e.target.id === "topic"){
@@ -48,32 +46,22 @@ function AddNewPost(props) {
     }
 
 
-    function submit(e) {
+    async function submit(e) {
+        e.preventDefault();
+        const data = {
+            topic: postTopic,
+            postText: postText
+        }
 
         {
             !image ?
-                Axios.post(url, {
-                    topic: postTopic,
-                    postText: postText
-                // })
-                    }).then(() => refreshPage())
+                await postDataToServerByAxiosPost(url, data, 0).then(() => refreshPage())
                 :
-
-                axios.post(`http://localhost:8080/image/upload/post/${postTopic}/${postText}`,
-                    dataa,
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data"
-                        }
-                    }).then(() => {
-                    refreshPage();
-                }).catch(err => {
-                    console.log(err);
-                });
+                await postImageToServerByAxiosPost(`http://localhost:8080/image/upload/post/${postTopic}/${postText}`,
+                    imageToPost, 0).then(() => console.log(imageToPost));
         }
-
-        e.preventDefault();
         handleClose();
+        refreshPage();
     }
 
     // -------------------------------------------------------------
@@ -86,7 +74,7 @@ function AddNewPost(props) {
 
             const formData = new FormData();
             formData.append("file", file);
-            setDataa(formData);
+            setImageToPost(formData);
 
         }, []);
         const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})

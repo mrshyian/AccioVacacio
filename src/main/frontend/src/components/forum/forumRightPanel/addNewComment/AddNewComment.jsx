@@ -1,56 +1,49 @@
-import React, {useCallback, useState} from 'react';
-import Axios from "axios";
-import axios from "axios";
+import React, {useCallback, useEffect, useState} from 'react';
 import "./AddNewComment.css"
 import {Button, Card} from "react-bootstrap";
 import {useDropzone} from "react-dropzone";
-
+import {postDataToServerByAxiosPost, postImageToServerByAxiosPost} from "../../../../axios";
 
 function AddNewComment(props) {
 
     const url = "http://localhost:8080/comments"
     const [image, setImage] = useState(false);
-    const [dataa, setDataa] = useState(new FormData());
-    const [name, setName] = useState({
-        name: ""
-    })
+    const [imageToComment, setImageToComment] = useState(new FormData());
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [name, setName] = useState("")
 
     function handle(e) {
-        const newName = {...name}
-        newName[e.target.id] = e.target.value
-        setName(newName)
+        if (e.target.id === "name"){
+            setName(e.target.value);
+        }
     }
+
+    useEffect(() => {
+        name !== "" ? setIsDisabled(false): setIsDisabled(true);
+    }, [name]);
 
 
     function refreshPage() {
         window.location.reload();
     }
 
-    function submit(e) {
+    async function submit(e) {
         e.preventDefault();
-        console.log(dataa)
+        const dataa =
+            {
+                name: name,
+                postId: props.postId
+            }
 
+        console.log(dataa)
         {
             !image ?
-                Axios.post(url, {
-                        name: name.name,
-                        postId: props.postId
-
-                    })
-                    .then(() => refreshPage())
+                await postDataToServerByAxiosPost(url, dataa, 0).then(() => console.log(dataa))
                 :
-                axios.post(`http://localhost:8080/image/upload/comment/${name.name}/${props.postId}`,
-                    dataa,
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data"
-                        }
-                    }).then(() => {
-                    refreshPage();
-                }).catch(err => {
-                    console.log(err);
-                });
+                await postImageToServerByAxiosPost(`http://localhost:8080/image/upload/comment/${name}/${props.postId}`,
+                    imageToComment, 0).then(() => console.log(dataa));
         }
+        refreshPage();
     }
 
     function Dropzone() {
@@ -62,7 +55,7 @@ function AddNewComment(props) {
 
             const formData = new FormData();
             formData.append("file", file);
-            setDataa(formData);
+            setImageToComment(formData);
 
         }, []);
         const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -115,7 +108,7 @@ function AddNewComment(props) {
                             <div>
                                 <Dropzone/>
                             </div>
-                            <Button onClick={refreshPage} variant="outline-warning" type="submit">Add comment</Button>
+                            <Button disabled={isDisabled} variant="outline-warning" type="submit">Add comment</Button>
                         </div>
                     </Card.Body>
                 </Card>

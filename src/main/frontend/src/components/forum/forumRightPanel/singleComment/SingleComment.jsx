@@ -41,12 +41,12 @@ const SingleComment = (props) => {
     function editText(e) {
         e.preventDefault();
         setEditable(true);
+
     }
 
     const AddLike = () => {
         like++;
         like <= 1 ? sendLikeData() : console.log("już dodałeś like");
-        reload();
     }
 
     const sendLikeData = async () => {

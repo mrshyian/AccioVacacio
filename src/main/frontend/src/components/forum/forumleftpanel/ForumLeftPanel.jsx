@@ -17,6 +17,7 @@ import Axios from "axios";
 import {AiOutlineFire} from "react-icons/ai";
 import SinglePost from "../forumRightPanel/singlePost/SinglePost";
 import axios from "axios";
+import {getResponseFromAxiosGet, postDataToServerByAxiosPost} from "../../../axios";
 
 const ForumLeftPanel = (props) => {
 
@@ -46,23 +47,17 @@ const ForumLeftPanel = (props) => {
 
     function submit(e){
         e.preventDefault();
-        Axios.post(url,
-            {
+        const dataa={
             country: data.country,
             city: data.city,
-            time : date},
-            {headers:
-                    {'X-XSRF-TOKEN': props.tokenCsrf}}
-        ).then(()=> refreshPage())
+            time : date}
+        postDataToServerByAxiosPost(url, dataa, 0)
+        .then(()=> refreshPage())
 
     }
 
     const fetchMostPopularPosts = () => {
-        axios.get(`http://localhost:8080/get_most_popular_posts`)
-            .then(res =>{setPopularPosts(res.data);
-                // console.log(res.data)
-            })
-            .catch(err => {console.log(err)});
+        getResponseFromAxiosGet(`http://localhost:8080/get_most_popular_posts`, 2).then(res =>{setPopularPosts(res.data);})
     };
 
     function refreshPage(){

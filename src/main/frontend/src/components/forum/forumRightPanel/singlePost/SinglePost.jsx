@@ -8,6 +8,7 @@ import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 import { BsFillArrowUpSquareFill} from "react-icons/bs";
 import userImage from "../../../../images/user.png";
+import {postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../axios";
 
 const SinglePost = (props) => {
     const userId = props.post.myUserTable.id
@@ -17,37 +18,31 @@ const SinglePost = (props) => {
     const url = "http://localhost:8080/post_edit"
     let like = 0;
     const AddLike = () => {
-
         like = like + 1
         like <= 1 ? sendLike() : console.log("już dodałeś like")
     }
 
-
     const sendLike = () => {
-        axios.post(
-            "http://localhost:8080/add_like_to_post", {
-                postId: props.post.id
-            })
-            .then((() => reload()
-            ));
+        const data={
+            postId: props.post.id
+        }
+        postDataToServerByAxiosPost("http://localhost:8080/add_like_to_post", data, 0).then();
     }
 
     const DeletePost = () => {
-        axios.put(
-            "http://localhost:8080/delete_post", {
+        const data={
                 postId: props.post.id
-            })
-            .then((() => reload()
-            ));
+            }
+        putDataToServerByAxiosPut("http://localhost:8080/delete_post", data, 0).then()
     }
 
     function submit(e) {
         e.preventDefault();
-        axios.put(url, {
+        const data={
             postText: postText,
             postId: props.post.id
-        }).then(() => reload())
-
+        }
+        putDataToServerByAxiosPut(url, data, 0).then(() => reload())
     }
 
     useEffect(()=>{
@@ -73,7 +68,6 @@ const SinglePost = (props) => {
         e.preventDefault();
         setEditable(true);
     }
-
 
     return (
         <div id={props.post.id} style={{marginBottom: "100px"}}>

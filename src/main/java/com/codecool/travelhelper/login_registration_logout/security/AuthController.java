@@ -38,6 +38,7 @@ public class AuthController {
 
     @PostMapping("/refreshToken")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("jest git w ifie");
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
             try {
@@ -62,7 +63,9 @@ public class AuthController {
                 response.setContentType(APPLICATION_JSON_VALUE);
 
                 new ObjectMapper().writeValue(response.getOutputStream(),tokens);
+
             } catch (Exception e){
+                System.out.println("jest lipa w elsie joł");
                 response.setHeader("Error",e.getMessage());
                 response.setStatus(HttpStatus.FORBIDDEN.value());
                 Map<String,String> error = new HashMap<>();
