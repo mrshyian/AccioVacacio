@@ -23,7 +23,7 @@ function AddNewComment(props) {
 
 
     function refreshPage() {
-        // window.location.reload();
+        window.location.reload();
     }
 
     function submit(e) {

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -42,7 +43,6 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        System.out.println("configuration");
         ThAuthenticationFilter thAuthenticationFilter = new ThAuthenticationFilter(authenticationManagerBean(), userService);
         thAuthenticationFilter.setFilterProcessesUrl("/app/login");
         http.cors();
@@ -75,7 +75,26 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 //
 //        http.authorizeRequests().anyRequest().permitAll();
 
-        http.authorizeRequests().antMatchers("/comments").hasAuthority("USER");
+
+        http.authorizeRequests().antMatchers(HttpMethod.GET,
+                "/comments",
+                "/add_like_to_comment",
+                "/image/download/comment/**"
+        ).permitAll();
+
+
+        http.authorizeRequests().antMatchers(HttpMethod.POST,
+                "/comments",
+                "/add_like_to_comment",
+                "/image/upload/comment/**"
+        ).permitAll();
+
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,
+                "/comments",
+                "/comment_edit",
+                "/delete_comment"
+        ).permitAll();
+
         http.addFilter(thAuthenticationFilter);
         http.addFilterBefore(new ThAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
@@ -89,7 +108,7 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins((List.of("http://localhost:3000")));
+        configuration.setAllowedOrigins((List.of("http://localhost:3000", "http://localhost:8080")));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(List.of("Authorization","Cache-Control","Content-Type","Access-Control-Allow-Origin","Access-Control-Allow-Credentials" , "Access-Control-Request-Headers", "X-XSRF-TOKEN"));
         configuration.setAllowedMethods(List.of("GET","PUT","POST","DELETE","HEAD","OPTIONS","PATCH"));

@@ -12,17 +12,20 @@ const Forum = () => {
         // console.log(csrfToken)
     }
 
+    const getCommentsUrl = `http://localhost:8080/comments`;
+    const getPostsUrl = `http://localhost:8080/posts`;
+
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
 
 
     const fetchComment = async () => {
-        let resp = await getResponseFromAxiosGet(`http://localhost:8080/comments`, 2);
+        let resp = await getResponseFromAxiosGet(getCommentsUrl, 2);
         setComment(resp.data);
     };
 
     const fetchPost = async () => {
-        let resp = await getResponseFromAxiosGet(`http://localhost:8080/posts`, 2);
+        let resp = await getResponseFromAxiosGet(getPostsUrl, 2);
         setPost(resp.data);
     };
 

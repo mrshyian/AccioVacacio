@@ -26,9 +26,6 @@ public class CommentController {
     private LoginImpl loginImpl;
 
     @Autowired
-    private PostRepository postRepository;
-
-    @Autowired
     private CommentRepository commentRepository;
 
     @Autowired

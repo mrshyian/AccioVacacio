@@ -3,80 +3,88 @@ import {Button, Card, FormControl, Image, InputGroup} from "react-bootstrap";
 import "./SingleComment.css"
 import {FaHeart, FaTrash} from "react-icons/fa";
 
-import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 import userImage from "../../../../images/user.png";
+import {getResponseFromAxiosGet, postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../axios";
 
 
 const SingleComment = (props) => {
-    const url = "http://localhost:8080/comment_edit"
-    let text = props.comments.commentText;
-    const userId = props.comments.myUserTable.id
-    const [commentText, setCommentText] = useState(text)
-    console.log(props.tokenCsrf)
-    const [token, setToken] = useState("");
+    const editCommentUrl = "http://localhost:8080/comment_edit";
+    // const csrfTokenUrl = "http://localhost:8080/token";
+    const deleteCommentUrl = "http://localhost:8080/delete_comment";
+    const addLikeToCommentUrl = "http://localhost:8080/add_like_to_comment";
 
-    const [editable, setEditable] = useState(false)
+    let text = props.comments.commentText;
+    const userId = props.comments.myUserTable.id;
+    const userInSessionId = sessionStorage.getItem("userId");
+
+    const [commentText, setCommentText] = useState(text);
+    const [token, setToken] = useState("");
+    const [editable, setEditable] = useState(false);
+    const [isOwner, setIsOwner] = useState(false);
 
     let like = 0;
 
-    const AddLike = () => {
-        like = like + 1
-        like <= 1 ? sendLikeData() : console.log("już dodałeś like")
-        reload();
-    }
-
-    const [isOwner, setIsOwner] = useState(false)
     const commentOwner = () => {
-        if (sessionStorage.getItem("userId") == userId) {
-            setIsOwner(true)
+        if (userInSessionId == userId ){
+            setIsOwner(true);
         } else {
-            setIsOwner(false)
+            setIsOwner(false);
         }
-    }
 
-    const sendLikeData = () => {
-        axios.post(
-            "http://localhost:8080/add_like_to_comment", {
-                commentId: props.comments.id
-            })
-            .then((() => reload()
-
-            ));
-    }
-
-    const DeleteComment = () => {
-        axios.put(
-            "http://localhost:8080/delete_comment", {
-                commentId: props.comments.id
-            })
-            .then((() => reload()
-
-            ));
     }
 
     useEffect(() => {
         commentOwner()
     }, [])
 
-    function submit(e) {
+    function editText(e) {
         e.preventDefault();
-        axios.get("http://localhost:8080/token").then(r => setToken(r.data))
-        console.log(token)
+        setEditable(true);
+    }
 
-        axios.put(url, {
+    const AddLike = () => {
+        like++;
+        like <= 1 ? sendLikeData() : console.log("już dodałeś like");
+        reload();
+    }
+
+    const sendLikeData = async () => {
+        const data = {
+            commentId: props.comments.id
+        };
+        alert(props.comments.id)
+
+        await postDataToServerByAxiosPost(addLikeToCommentUrl, data, 2);
+        reload();
+    }
+
+    const DeleteComment = async () => {
+        const data = {
+            commentId: props.comments.id
+        };
+
+        await putDataToServerByAxiosPut(deleteCommentUrl, data, 2);
+        reload();
+    }
+
+    async function submit(e) {
+        e.preventDefault();
+
+        const editCommentData = {
             commentText: commentText,
             commentId: props.comments.id
-        }).then(() => reload())
+        };
+
+        // const resp = getResponseFromAxiosGet(csrfTokenUrl, 2);
+        // setToken(resp.data);
+
+        await putDataToServerByAxiosPut(editCommentUrl, editCommentData, 2);
+        reload();
     }
 
     function reload() {
         window.location.reload()
-    }
-
-    function editText(e) {
-        e.preventDefault();
-        setEditable(true);
     }
 
     return (
