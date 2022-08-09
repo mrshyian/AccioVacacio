@@ -41,9 +41,9 @@ public class MessageTable implements Comparable<MessageTable>{
 
     @Override
     public int compareTo(MessageTable o) {
-        if (getDateTimeOfSending() == null || o.getDateTimeOfSending() == null) {
+        if (getId() == null || o.getId() == null) {
             return 0;
         }
-        return getDateTimeOfSending().compareTo(o.getDateTimeOfSending());
+        return getId().compareTo(o.getId());
     }
 }

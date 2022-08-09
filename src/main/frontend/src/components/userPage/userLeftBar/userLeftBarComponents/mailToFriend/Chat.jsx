@@ -34,7 +34,10 @@ const Chat = (props) => {
 
     const refreshMessage = () => {
         setMessageText("");
-        getResponseFromAxiosGet(chatUrl, 2).then(resp => setMessages(resp.data));
+        getResponseFromAxiosGet(chatUrl, 2).then(resp => {
+            console.log(resp.data)
+            setMessages(resp.data)
+        });
     }
 
 
