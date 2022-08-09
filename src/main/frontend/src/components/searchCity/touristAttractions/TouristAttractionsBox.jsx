@@ -84,7 +84,7 @@ function randomArrayShuffle(array) {
     return array;
 }
 
-function getCountryIsoCode(countryName) {
+export function getCountryIsoCode(countryName) {
     countries.registerLocale(english);
     return countries.getAlpha2Code(countryName, "en");
 }
