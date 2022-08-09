@@ -27,7 +27,7 @@ const FriendPage = () => {
             >
                 <Card.Body>
                     <Card.Text style={{paddingLeft: "5%", paddingRight: "5%"}}>
-                        <InformationAboutUser myUser={myFriend}/>
+                        <InformationAboutUser />
                     </Card.Text>
                 </Card.Body>
             </Card>

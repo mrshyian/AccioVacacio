@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import UserLeftBar from "../../UserLeftBar";
 import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
-import axios from "axios";
 import Chat from "./Chat";
 import {useLocation} from "react-router-dom";
 import {FaComments} from "react-icons/fa";

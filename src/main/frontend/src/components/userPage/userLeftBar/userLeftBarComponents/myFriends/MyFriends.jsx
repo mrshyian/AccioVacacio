@@ -31,9 +31,6 @@ const MyFriends = () => {
         } else {
             setSearchedFriend([])
         }
-
-        //http://localhost:8080/search_friend/
-
     };
 
     return (
