@@ -3,8 +3,10 @@ import axios from "axios";
 import {useDropzone} from "react-dropzone";
 import "./AddPhotoModal.css"
 import {Button, Modal} from "react-bootstrap";
+import {postDataToServerByAxiosPost} from "../../../axios";
 
 const AddPhotoModal = (props) => {
+    const addImageUrl = `http://localhost:8080/${props.albumId}/${props.albumName}/image/upload`;
 
     useEffect(()=>{
         setShowAddPhotoModal(props.visible)
@@ -20,28 +22,18 @@ const AddPhotoModal = (props) => {
         props.close(false)
     }
 
-    const userId = sessionStorage.getItem("userId");
     const onDrop = useCallback(acceptedFiles => {
         const file = acceptedFiles[0];
 
-        console.log(acceptedFiles);
-
         const formData = new FormData();
         formData.append("file", file);
-
-        axios.post(`http://localhost:8080/${props.albumId}/${props.albumName}/image/upload`,
-            formData,
-            {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            }).then(() => {
-            console.log("file upload successfully");
-        }).catch(err => {
-            console.log(err);
-        });
-
+        postDataToServerByAxiosPost(addImageUrl, formData, 0)
+            .then(() => {
+                setToPropsModalClose();
+                window.location.reload();
+            })
     }, [])
+
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     return (

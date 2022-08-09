@@ -4,7 +4,6 @@ let refresh = false;
 
 
 axios.interceptors.response.use(resp => resp, async error => {
-    alert("axios")
     axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("token")}`;
 
     if (error.response.status === 403) {
@@ -14,7 +13,6 @@ axios.interceptors.response.use(resp => resp, async error => {
     if (error.response.status === 401 && !refresh) {
         refresh = true;
 
-        alert(401)
         const response = await axios.post('http://localhost:8080/auth/refreshToken', {},
      {
                 headers: {
@@ -45,7 +43,6 @@ export async function getResponseFromAxiosGet(url, repeatTimes){
 }
 
 export async function postDataToServerByAxiosPost(url, data, repeatTimes){
-    alert("postData")
     let resp = {};
     let i = 0;
 
@@ -53,8 +50,6 @@ export async function postDataToServerByAxiosPost(url, data, repeatTimes){
         resp = await axios.post(url, data);
         i++;
     } while (i < repeatTimes || resp.status !== 200)
-
-    alert("You've been sent data to server");
 }
 
 export async function putDataToServerByAxiosPut(url, data, repeatTimes){
@@ -65,7 +60,5 @@ export async function putDataToServerByAxiosPut(url, data, repeatTimes){
         resp = await axios.put(url, data);
         i++;
     } while (i < repeatTimes || resp.status !== 200)
-
-    alert("You've been sent data to server");
 }
 

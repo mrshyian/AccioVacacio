@@ -3,28 +3,23 @@ import {Button, Card} from "react-bootstrap";
 import UserLeftBar from "../../UserLeftBar";
 import "./AlbumsFromTrips.css"
 import AddNewAlbumModal from "../../../../modals/addNewAlbumModal/AddNewAlbumModal";
-import axios from "axios";
 import SingleAlbum from "./singleAlbum/SingleAlbum";
+import {getResponseFromAxiosGet} from "../../../../../axios";
 
 const AlbumsFromTrips = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
     const [albums, setAlbums] = useState([]);
+    const albumsUrl = `http://localhost:8080/albumsfromtrips`;
 
     const getAlbumsFromDB = () => {
-        axios.get(`http://localhost:8080/albumsfromtrips`)
-            .then(res => {
-                setAlbums(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(albumsUrl, 2).then(resp => setAlbums(resp.data));
     };
 
     useEffect(() => {
         if (sessionStorage.getItem("userId") !== null) {
-            getAlbumsFromDB();
+            getAlbumsFromDB()
         }
     }, [])
 

@@ -4,25 +4,19 @@ import {Button, Card} from "react-bootstrap";
 import {useLocation} from "react-router-dom";
 import "./SingleAlbumView.css"
 import AddPhotoModal from "../../../../../modals/addPhotoModal/AddPhotoModal";
-import axios from "axios";
+import {getResponseFromAxiosGet} from "../../../../../../axios";
 
 const SingleAlbumView = () => {
     const [showAddPhotoModal, setShowAddPhotoModal] = useState(false);
     const location = useLocation()
     const album = location.state.album;
-
-
     const [photo, setPhoto] = useState([]);
+    const getPhotoUrl = `http://localhost:8080/photos`;
+
     const getPhotosFromDB = () => {
-        axios.get(`http://localhost:8080/photos`)
-            .then(res => {
-                console.log(res.data)
-                setPhoto(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(getPhotoUrl, 2).then(resp => setPhoto(resp.data));
     };
+
     useEffect(()=>{
         getPhotosFromDB();
     }, [])
@@ -72,17 +66,6 @@ const SingleAlbumView = () => {
                                                 )
                                             }
                                         })}
-
-                                            {/*<img className="view-image"  src={`http://localhost:8080/image/download/photo/${photoId}`}/>*/}
-
-                                            {/*<img className="view-image"  src="https://i.gifer.com/BgY2.gif"/>*/}
-
-                                            {/*<img className="view-image"  src="https://25.media.tumblr.com/4dcf710acadfbe90ce2c619f9e1559c0/tumblr_mstadgMyLS1st90nio1_400.gif"/>*/}
-
-                                            {/*<img className="view-image"  src="https://i.gifer.com/CJqO.gif"/>*/}
-
-                                            {/*<img className="view-image" src="https://www.wykop.pl/cdn/c3201142/comment_YntKj2x0Wi364cmRAcy6FVppJD9uZT18.gif"/>*/}
-
                                     </div>
                                 </Card.Text>
                             </Card.Body>

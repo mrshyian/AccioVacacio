@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import SocialMedia from "../socialMedia/SocialMedia";
 import "./ProfileImage.css"
 import "./InformationAboutUser.css"
 import EditUserDataModal from "../../../../modals/editUserDataModal/EditUserDataModal";
 import user from "../../../../../images/user.png"
-import CountryCounter from "../countryCounter/CountryCounter";
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
 import userImage from "../../../../../images/user.png"
+import {useNavigate} from "react-router-dom";
 import {FaComments, FaTrashAlt, FaUserPlus} from "react-icons/fa";
+import {getResponseFromAxiosGet} from "../../../../../axios";
+
 
 const InformationAboutUser = (props) => {
     const navigate = useNavigate();
@@ -18,7 +18,11 @@ const InformationAboutUser = (props) => {
     const idFromProps = sessionStorage.getItem("userId");
     const [boolka, setBoolka] = useState(false);
     const [userId, setUserId] = useState(sessionStorage.getItem("userId"));
-
+    const addFriendUrl = `http://localhost:8080/add_friend/${idFromProps}`;
+    const removeFriendUrl = `http://localhost:8080/remove_friend/${idFromProps}`;
+    const searchAllFriendsUrl = `http://localhost:8080/search_friend/id/${userId}`;
+    const sayHelloUrl = `http://localhost:8080/mail_to_friend/${idFromProps}`;
+    const searchFriendByIdFromPropsUrl = `http://localhost:8080/search_friend/id/${idFromProps}`;
 
     useEffect(() => {
         (async () => {
@@ -27,63 +31,46 @@ const InformationAboutUser = (props) => {
     }, [props])
 
     const addFriend = () => {
-        axios.get(`http://localhost:8080/add_friend/${idFromProps}`)
-            .then(() => window.location.reload())
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(addFriendUrl, 2).then(() => window.location.reload());
     };
 
     const removeFriend = () => {
-        axios.get(`http://localhost:8080/remove_friend/${idFromProps}`)
-            .then(() => window.location.reload())
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(removeFriendUrl, 2).then(() => window.location.reload());
     };
 
     const searchAllFriends = async () => {
-        if (sessionStorage.getItem("chosenFriendId") !== null){
+        if (sessionStorage.getItem("chosenFriendId") !== null) {
             setUserId(sessionStorage.getItem("chosenFriendId"));
         }
-
-        await axios.get(`http://localhost:8080/search_friend/id/${userId}`)
+        getResponseFromAxiosGet(searchAllFriendsUrl, 2)
             .then(res => {
                 setAllFriends(res.data);
                 sessionStorage.removeItem("chosenFriendId");
                 friendOrNot();
-            })
-            .catch(err => {
-                console.log(err)
             });
     };
 
     const sayHello = () => {
-        axios.get(`http://localhost:8080/mail_to_friend/${idFromProps}`)
+        getResponseFromAxiosGet(sayHelloUrl, 2)
             .then(() => {
                 navigate("/userpage/friends/mail_box", {
                     state: {
                         friend: props.myUser
-                    }})})
-            .catch(err => {
-                console.log(err)
-            });
+                    }
+                })
+            })
     }
 
     const friendOrNot = () => {
-
-        axios.get(`http://localhost:8080/search_friend/id/${idFromProps}`)
+        getResponseFromAxiosGet(searchFriendByIdFromPropsUrl, 2)
             .then(res => {
                 let friendsList = res.data;
                 friendsList.map(friend => {
-                    if(friend.id===props.myUser.id){
+                    if (friend.id === props.myUser.id) {
                         setBoolka(true);
                     }
                 })
             })
-            .catch(err => {
-                console.log(err)
-            });
     };
 
     return (
@@ -177,18 +164,18 @@ const InformationAboutUser = (props) => {
                         :
                         <div className="user-start-chat-btn">
                             {boolka ?
-                                <Button style={{marginRight: "5px"}} variant="outline-warning" onClick={() => removeFriend()}>{<FaTrashAlt/>}</Button>
+                                <Button style={{marginRight: "5px"}} variant="outline-warning"
+                                        onClick={() => removeFriend()}>{<FaTrashAlt/>}</Button>
                                 :
-                                <Button style={{marginRight: "5px"}} variant="outline-warning" onClick={() => addFriend()}>{<FaUserPlus/>}</Button>
+                                <Button style={{marginRight: "5px"}} variant="outline-warning"
+                                        onClick={() => addFriend()}>{<FaUserPlus/>}</Button>
                             }
-                                <Button variant="warning"
-                                     onClick={() => sayHello()}>Say Hello {<FaComments/>}</Button>
+                            <Button variant="warning"
+                                    onClick={() => sayHello()}>Say Hello {<FaComments/>}</Button>
                         </div>
-
                     }
                 </div>
             </Card.Body>
-            {/*<CountryCounter/>*/}
             {modalOpen && <EditUserDataModal visible={modalOpen} close={setModalOpen} myUser={props.myUser}/>}
         </Card>
     );

@@ -1,20 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import "./Chat.css"
 import {Button, FormControl, InputGroup} from "react-bootstrap";
-import axios from "axios";
+import {getResponseFromAxiosGet, postDataToServerByAxiosPost} from "../../../../../axios";
 
 
 const Chat = (props) => {
     const [messages, setMessages] = useState([]);
+    const chatUrl = `http://localhost:8080/mail_to_friend/messages/${props.friend.id}`;
+    const newMessageUrl = `http://localhost:8080/mail_to_friend/new_message_in_chat`;
+
 
     const getMessages = () => {
-        axios.get(`http://localhost:8080/mail_to_friend/messages/${props.friend.id}`)
-            .then(res => {
-                setMessages(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(chatUrl, 2).then(resp => setMessages(resp.data));
     };
 
     useEffect(() => {
@@ -27,27 +24,17 @@ const Chat = (props) => {
 
     const [messageText, setMessageText] = useState("")
 
-    const sendMessageInChat = () => {
-        axios.post(
-            "http://localhost:8080/mail_to_friend/new_message_in_chat", {
-                messageText: messageText,
-                toUserId: props.friend.id
-            })
-            .then((() => refreshMessage()));
+    const sendMessageInChat =  () => {
+        const data = {
+            messageText: messageText,
+            toUserId: props.friend.id
+        };
+        postDataToServerByAxiosPost(newMessageUrl, data, 0).then(() => refreshMessage());
     }
 
-    const refreshMessage = async () => {
+    const refreshMessage = () => {
         setMessageText("");
-        const result = await fetch(`http://localhost:8080/mail_to_friend/messages/${props.friend.id}`,
-            {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-
-        const newMessage = await result.json();
-        setMessages(newMessage)
+        getResponseFromAxiosGet(chatUrl, 2).then(resp => setMessages(resp.data));
     }
 
 
