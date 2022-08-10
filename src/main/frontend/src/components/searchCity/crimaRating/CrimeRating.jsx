@@ -37,7 +37,7 @@ const CrimeRating = (props) => {
                         <Card.Body>
                             <Card.Text>
                                 <div style={{textAlign: "center"}}>
-                                    <img className="img-for-crime-rating"
+                                    <img style={{width: 200}}
                                          src={img}
                                          alt="random image"/>
                                 </div>
