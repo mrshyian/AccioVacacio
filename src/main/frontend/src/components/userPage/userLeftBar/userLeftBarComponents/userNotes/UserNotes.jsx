@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, FormControl, InputGroup} from "react-bootstrap";
 import {FaAlignCenter, FaAlignLeft, FaAlignRight} from 'react-icons/fa';
-import "./UserNotes.css"
-import Axios from "axios";
+import "./UserNotes.css";
 import UserLeftBar from "../../UserLeftBar";
 import {getResponseFromAxiosGet, postDataToServerByAxiosPost} from "../../../../../axios";
+import InfoModal from "../../../../modals/infoModal/InfoModal";
 
 
 const UserNotes = () => {
-    const [noteText, setNoteText] = useState("")
+    const [noteText, setNoteText] = useState("");
+    const [modalOpen, setModalOpen] = useState(false);
     const notesUrl = `http://localhost:8080/notes`;
+    const info = "Changes have been saved";
 
     useEffect(() => {
         if (sessionStorage.getItem("userId") !== null) {
@@ -60,7 +62,7 @@ const UserNotes = () => {
         const data = {
             noteText: noteText
         }
-        postDataToServerByAxiosPost(notesUrl, data, 0).then()
+        postDataToServerByAxiosPost(notesUrl, data, 0).then(() => {setModalOpen(true)})
     }
 
     return (
@@ -90,7 +92,11 @@ const UserNotes = () => {
                                     <option value="note-text-size-32">32</option>
                                 </Form.Select>
                                 <Button variant="warning" className="save-note-button"
-                                        onClick={() => submit()}>Save</Button>
+                                        onClick={
+                                    () =>{
+                                        setModalOpen(true);
+                                        submit();
+                                    }}>Save</Button>
                             </Card.Header>
                         </Card>
                         <InputGroup>
@@ -104,7 +110,7 @@ const UserNotes = () => {
                         </InputGroup>
                     </Card.Text>
                 </Card.Body>
-            </Card>
+            </Card>{modalOpen && <InfoModal visible={modalOpen} info={info}/>}
         </div>
 
     );
