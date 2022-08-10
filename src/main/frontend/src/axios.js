@@ -51,7 +51,6 @@ export async function postDataToServerByAxiosPost(url, data, repeatTimes){
         i++;
     } while (i < repeatTimes || resp.status !== 200)
 
-
 }
 
 export async function putDataToServerByAxiosPut(url, data, repeatTimes){

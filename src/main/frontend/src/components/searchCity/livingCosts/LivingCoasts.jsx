@@ -20,7 +20,7 @@ const LivingCosts = (props) => {
                                 return (
                                     <div key={index} className="space-between">
                                         <div>{livingCosts.itemName}</div>
-                                        <div>{livingCosts.averagePrice} {livingCosts.cost}</div>
+                                        <div>{livingCosts.averagePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} {livingCosts.cost}</div>
                                     </div>
                                 )
                             })}
@@ -41,7 +41,7 @@ const LivingCosts = (props) => {
                                 return (
                                     <div key={index} className="space-between">
                                         <div>{livingCosts.itemName}</div>
-                                        <div>{livingCosts.averagePrice} {livingCosts.cost}</div>
+                                        <div>{livingCosts.averagePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} {livingCosts.cost}</div>
                                     </div>
                                 )
                             })}
