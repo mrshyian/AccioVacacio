@@ -1,32 +1,29 @@
 import React from 'react';
 import {Button, Card} from "react-bootstrap";
 import {FaComments, FaTrashAlt} from "react-icons/fa";
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import "./Friends.css"
 import userImage from "../../../../../images/user.png";
+import {getResponseFromAxiosGet} from "../../../../../axios";
 
 const SingleFriend = (props) => {
     const navigate = useNavigate();
+    const removeFriendUrl = `http://localhost:8080/remove_friend/${props.myUser.id}`;
+    const messageToFriend = `http://localhost:8080/mail_to_friend/${props.myUser.id}`;
+
+
 
     const removeFriend = () => {
-        axios.get(`http://localhost:8080/remove_friend/${props.myUser.id}`)
-            .then(() => window.location.reload())
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(removeFriendUrl,2).then(() => window.location.reload());
     };
 
     const sayHello = () => {
-        axios.get(`http://localhost:8080/mail_to_friend/${props.myUser.id}`)
+        getResponseFromAxiosGet(messageToFriend,2)
             .then(() => {
                 navigate("/userpage/friends/mail_box", {
                     state: {
                         friend: props.myUser
-                    }})})
-            .catch(err => {
-                console.log(err)
-            });
+                    }})});
     }
 
 

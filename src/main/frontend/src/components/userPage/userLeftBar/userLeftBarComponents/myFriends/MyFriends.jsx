@@ -2,47 +2,35 @@ import React, {useEffect, useState} from 'react';
 import UserLeftBar from "../../UserLeftBar";
 import {Card, FormControl, InputGroup} from "react-bootstrap";
 import SingleFriend from "./SingleFriend";
-import axios from "axios";
 import SingleSearchedFriend from "./SingleSearchedFriend";
+import {getResponseFromAxiosGet} from "../../../../../axios";
 
 const MyFriends = () => {
 
     const [nameForSearch, setNameForSearch] = useState("")
     const [searchedFriend, setSearchedFriend] = useState([])
     const [allFriends, setAllFriends] = useState([])
+    const searchAllFriendsUrl = `http://localhost:8080/search_friend/id/${sessionStorage.getItem("userId")}`;
 
     useEffect(() => {
-        searchAllFriends();
+        (async() => {
+            await searchAllFriends();
+        })();
     }, [])
 
-    const myId = sessionStorage.getItem("userId").toString();
 
-    const searchAllFriends = () => {
-        axios.get(`http://localhost:8080/search_friend/id/${myId}`)
-            .then(res => {
-                console.log(res.data)
-                setAllFriends(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+    const searchAllFriends = async () => {
+        await getResponseFromAxiosGet(searchAllFriendsUrl,2).then(res => setAllFriends(res.data));
     };
 
     const searchFriendByName = (name) => {
-        setNameForSearch(name)
         if (name !== "") {
+            const searchFriendUrl = `http://localhost:8080/search_friend/${name}`;
             setNameForSearch(name)
-            axios.get(`http://localhost:8080/search_friend/${name}`)
-                .then(res => {
-                    setSearchedFriend(res.data);
-                })
-                .catch(err => {
-                    console.log(err)
-                });
+            getResponseFromAxiosGet(searchFriendUrl,2).then(res => setSearchedFriend(res.data))
         } else {
-            setSearchedFriend({})
+            setSearchedFriend([])
         }
-
     };
 
     return (

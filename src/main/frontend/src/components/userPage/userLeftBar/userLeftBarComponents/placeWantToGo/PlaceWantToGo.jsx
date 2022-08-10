@@ -1,26 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
-import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
 import SinglePlace from "./SinglePlace";
 import "./PlaceWantToGo.css"
 import PlaceWantToGoModal from "../../../../modals/placeWantToGoModal/PlaceWantToGoModal";
-import MustBeLogIn from "../../../../mustBeLogIn/MustBeLogIn";
+import {getResponseFromAxiosGet} from "../../../../../axios";
 
 
 const PlaceWantToGo = () => {
-
+    const placeWantToGoUrl = "http://localhost:8080/placewanttogo";
     const [modalOpen, setModalOpen] = useState(false);
     const [places, setPlaces] = useState([]);
 
     const getPlacesFromDB = () => {
-        axios.get(`http://localhost:8080/placewanttogo`)
-            .then(res => {
-                setPlaces(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(placeWantToGoUrl, 2).then(res => setPlaces(res.data));
     };
 
     function randomNumberInRange() {
@@ -34,7 +27,6 @@ const PlaceWantToGo = () => {
     }, [])
 
 
-    if (sessionStorage.getItem("userId") !== null) {
         return (
             <div>
                 <UserLeftBar/>
@@ -61,9 +53,6 @@ const PlaceWantToGo = () => {
                 </Card>
             </div>
         );
-    } else {
-        return <MustBeLogIn/>;
-    }
 };
 
 export default PlaceWantToGo;

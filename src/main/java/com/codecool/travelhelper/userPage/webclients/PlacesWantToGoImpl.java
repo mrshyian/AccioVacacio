@@ -92,8 +92,6 @@ public class PlacesWantToGoImpl {
         JsonObject countryJsonObject = (JsonObject)jsonParser.parse(placeData);
         Long placeId = Long.parseLong(countryJsonObject.get("placeId").getAsString());
 
-        System.out.println("placeId = " + placeId);
-
         placesWantToGoRepository.deleteById(placeId);
     }
 

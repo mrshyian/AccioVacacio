@@ -24,9 +24,8 @@ public class UserPageImpl {
     @Autowired
     private UserRepository userRepository;
 
-    public MyUserTable getUserFromDB(){
-        Long userId = loginImpl.getCurrentUserId();
-        return  userRepository.findMyUserTableById(userId);
+    public MyUserTable getUserFromDB(String userId){
+        return  userRepository.findMyUserTableById(Long.valueOf(userId));
     }
 
     public void updateUser(String userData){

@@ -59,6 +59,7 @@ public class CommentsImageController {
     )
     public void uploadCommentProfileImage(@RequestParam("file") MultipartFile file, @PathVariable String postId,
                                        @PathVariable String commentText) {
+        System.out.println(loginImpl.getCurrentUserId());
         MyUserTable myUserTable = userRepository.findMyUserTableById(loginImpl.getCurrentUserId());
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "Comments");
         String filename = String.format("%s-%s", file.getOriginalFilename(), UUID.randomUUID());

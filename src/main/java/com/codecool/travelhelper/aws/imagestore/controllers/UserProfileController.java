@@ -52,6 +52,11 @@ public class UserProfileController {
 
     @GetMapping("/image/download/user/{userId}")
     public byte[] downloadPostImage(@PathVariable String userId) {
+
+        if (userId.equals("undefined")){
+            return new byte[0];
+        }
+
         MyUserTable myUserTable = userRepository.findMyUserTableById(Long.valueOf(userId));
         String filename = myUserTable.getAvatar();
         String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), "userAlbum", myUserTable.getId());

@@ -1,6 +1,7 @@
 package com.codecool.travelhelper.forum.webclients;
 
 import com.codecool.travelhelper.aws.database.models.CommentsTable;
+import com.codecool.travelhelper.aws.database.models.MessageTable;
 import com.codecool.travelhelper.aws.database.models.MyUserTable;
 import com.codecool.travelhelper.aws.database.models.PostTable;
 import com.codecool.travelhelper.aws.database.repositories.CommentRepository;
@@ -15,10 +16,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 @Setter
@@ -45,7 +43,8 @@ public class CommentImpl {
 
     private List<CommentsTable> comments = new ArrayList<>();
 
-    public void getAndSaveComments(String comments) {
+
+    public void saveComments(String comments) {
         JsonParser jsonParser = new JsonParser();
         JsonObject commentJsonObject = (JsonObject)jsonParser.parse(comments);
 

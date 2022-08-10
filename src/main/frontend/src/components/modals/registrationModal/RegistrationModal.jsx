@@ -31,7 +31,8 @@ const RegistrationModal = (props) => {
 
     const sendDataToServer = () => {
         if (password === repeatPassword){
-            const url = "http://localhost:8080/registration";
+            const url = "http://localhost:8080/new_user_registration";
+
             axios.post(url,{
                 fullName: fullName,
                 nickName: nickName,
@@ -148,7 +149,7 @@ const RegistrationModal = (props) => {
                     Submit
                 </Button>
             </Modal.Footer>
-            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen}/>}
+            {errorModalOpen && <ErrorModal errorText={errorText} visible={errorModalOpen} close={setErrorModalOpen}/>}
         </Modal>
     );
 };

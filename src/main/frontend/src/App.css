@@ -34,7 +34,7 @@
 
 .post {
   text-align: center;
-  width: 45%;
+  cursor: pointer;
   display: block;
   border: 2px solid #9b9b9b;
   margin: 16px;

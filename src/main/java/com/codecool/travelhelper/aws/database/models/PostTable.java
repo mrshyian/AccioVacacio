@@ -18,7 +18,7 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-public class PostTable {
+public class PostTable  implements Comparable<PostTable>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,6 +90,16 @@ public class PostTable {
         this.likedPostByUsers.add(myUserTable);
         return this.getLikedPostByUsers();
 
+    }
+
+    @Override
+    public int compareTo(PostTable o) {
+        if (getPostDateTime() == null || o.getPostDateTime() == null) {
+            return 0;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+        return LocalDateTime.parse(getPostDateTime(), formatter).compareTo(LocalDateTime.parse(o.getPostDateTime(), formatter));
     }
 }
 

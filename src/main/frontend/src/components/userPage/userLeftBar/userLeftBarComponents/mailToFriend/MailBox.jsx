@@ -1,34 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import UserLeftBar from "../../UserLeftBar";
 import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
-import axios from "axios";
 import Chat from "./Chat";
 import {useLocation} from "react-router-dom";
 import {FaComments} from "react-icons/fa";
 import "./MailBox.css"
+import {getResponseFromAxiosGet} from "../../../../../axios";
 
 const MailBox = () => {
+    const newChatUrl = `http://localhost:8080/mail_to_friend/all_chats`;
+    const [searchedFriends, setSearchedFriends] = useState([]);
 
     const sayHello = (friend) => {
-        axios.get(`http://localhost:8080/mail_to_friend/${friend.id}`)
-            .then(() => {window.location.reload()})
-            .catch(err => {
-                console.log(err)
-            });
+        const sayHelloUrl = `http://localhost:8080/mail_to_friend/${friend.id}`
+        getResponseFromAxiosGet(sayHelloUrl, 2).then(() => {window.location.reload()})
     }
 
-    const [searchedFriend, setSearchedFriend] = useState([])
-
     const searchFriendByName = (nameForSearch) => {
-        setSearchedFriend("")
-        axios.get(`http://localhost:8080/search_friend/${nameForSearch}`)
-            .then(res => {
-                console.log(res.data)
-                setSearchedFriend(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        if (nameForSearch !== "") {
+            const searchFriendUrl = `http://localhost:8080/search_friend/${nameForSearch}`;
+            setSearchedFriends([])
+            getResponseFromAxiosGet(searchFriendUrl,2).then(res => setSearchedFriends(res.data))
+        } else {
+            setSearchedFriends([])
+        }
+
     };
 
     const changeCSSButton = (index) => {
@@ -52,18 +48,10 @@ const MailBox = () => {
 
 
     const [penFriends, setPenFriends] = useState([]);
-
     const [showChat, setShowChat] = useState({});
 
     const getAllPenFriends =  () => {
-         axios.get(`http://localhost:8080/mail_to_friend/all_chats`)
-            .then(res => {
-                console.log(res.data)
-                setPenFriends(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(newChatUrl, 2).then(resp => setPenFriends(resp.data));
     };
 
 
@@ -99,8 +87,8 @@ const MailBox = () => {
                             />
                         </InputGroup>
                         <div style={{position: "absolute", zIndex: 999999, background: "black", width: "90%", marginTop: 4}}>
-                            {searchedFriend.length ?
-                                searchedFriend.map((friend, index) => {
+                            {searchedFriends.length ?
+                                searchedFriends.map((friend, index) => {
                                     if (friend.id.toString()!==sessionStorage.getItem("userId")){
                                         return <div key={index}>
                                             <Card

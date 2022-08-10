@@ -9,7 +9,7 @@ const LivingCosts = (props) => {
             <div style={{display: "flex"}}>
                 <Card
                     bg={"dark"}
-                    key={"dark"}
+                    key={"living-costs-dark"}
                     text={'white'}
                     style={{width: '100%', margin: "5px", borderColor: "orange" }}
                     className="mb-2"
@@ -20,7 +20,7 @@ const LivingCosts = (props) => {
                                 return (
                                     <div key={index} className="space-between">
                                         <div>{livingCosts.itemName}</div>
-                                        <div>{livingCosts.averagePrice} {livingCosts.cost}</div>
+                                        <div>{livingCosts.averagePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} {livingCosts.cost}</div>
                                     </div>
                                 )
                             })}
@@ -30,7 +30,7 @@ const LivingCosts = (props) => {
 
                 <Card
                     bg={"dark"}
-                    key={"dark"}
+                    key={"living-costs-dark-key"}
                     text={'white'}
                     style={{width: '100%', margin: "5px", borderColor: "orange" }}
                     className="mb-2"
@@ -41,7 +41,7 @@ const LivingCosts = (props) => {
                                 return (
                                     <div key={index} className="space-between">
                                         <div>{livingCosts.itemName}</div>
-                                        <div>{livingCosts.averagePrice} {livingCosts.cost}</div>
+                                        <div>{livingCosts.averagePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} {livingCosts.cost}</div>
                                     </div>
                                 )
                             })}

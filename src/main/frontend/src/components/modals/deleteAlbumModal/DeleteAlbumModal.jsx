@@ -8,7 +8,7 @@ const DeleteAlbumModal = (props) => {
         props.close(false)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setShowNewAlbumModal(props.visible)
     }, [])
 
@@ -22,9 +22,9 @@ const DeleteAlbumModal = (props) => {
 
     const sendDataToServer = () => {
         const url = "http://localhost:8080/albumsfromtrips";
-        axios.put(url,{
-            albumId: props.albumId
-        })
+        axios.put(url, {
+                albumId: props.albumId
+            })
             .then(() => window.location.reload())
         handleCloseLoginModal()
 
@@ -32,11 +32,12 @@ const DeleteAlbumModal = (props) => {
 
 
     return (
-        <Modal show={showNewAlbumModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
+        <Modal show={showNewAlbumModal} onHide={handleCloseLoginModal}
+               style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>
             <Modal.Header closeButton style={{background: "rgb(40,40,40)"}}>
                 <Modal.Title>You want to delete album?</Modal.Title>
             </Modal.Header>
-            <Modal.Footer  style={{background: "rgb(40,40,40)"}}>
+            <Modal.Footer style={{background: "rgb(40,40,40)"}}>
                 <Button variant="outline-secondary" onClick={handleCloseLoginModal}>
                     Close
                 </Button>

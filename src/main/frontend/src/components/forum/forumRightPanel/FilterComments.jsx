@@ -32,7 +32,7 @@ const FilterComments = () => {
             <ForumLeftPanel/>
             <Card
                 bg={"dark"}
-                key={"dark"}
+                key={"filter-comments-dark"}
                 text={'white'}
                 className="mb-2 bg-opacity"
             >

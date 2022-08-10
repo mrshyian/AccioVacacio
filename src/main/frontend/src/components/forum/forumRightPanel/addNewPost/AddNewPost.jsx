@@ -1,34 +1,40 @@
-import React, {useCallback, useState} from 'react';
-import Axios from "axios";
+import React, {useCallback, useEffect, useState} from 'react';
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
 import {useDropzone} from "react-dropzone";
+import {postDataToServerByAxiosPost, postImageToServerByAxiosPost} from "../../../../axios";
 
 function AddNewPost(props) {
+    const url = "http://localhost:8080/posts"
     const [show, setShow] = useState(true);
     const [image, setImage] = useState(false);
-    const [dataa, setDataa] = useState(new FormData());
+    const [imageToPost, setImageToPost] = useState(new FormData());
+    const [postTopic, setPostTopic] = useState("");
+    const [postText, setPostText] = useState("");
+    const [isDisabled, setIsDisabled] = useState(true);
 
-
+    useEffect(() => {
+        if( postTopic !== "" && postText !== ""){
+            setIsDisabled(false);
+        }else{
+            setIsDisabled(true)
+        }
+    }, [postTopic, postText]);
 
     const handleClose = () => {
         setToPropsModalClose();
         setShow(false);
     };
-    const handleShow = () => setShow(true);
-
-    const url = "http://localhost:8080/posts"
-    const [data, setData] = useState({
-        topic: "",
-        postText: ""
-    })
 
     function handle(e) {
-        const newData = {...data}
-        newData[e.target.id] = e.target.value
-        setData(newData)
+        if (e.target.id === "topic"){
+            setPostTopic(e.target.value);
+        }
+
+        if (e.target.id === "postText"){
+            setPostText(e.target.value);
+        }
     }
 
     function refreshPage() {
@@ -40,29 +46,22 @@ function AddNewPost(props) {
     }
 
 
-    function submit(e) {
-        handleClose();
+    async function submit(e) {
         e.preventDefault();
-        console.log(dataa)
+        const data = {
+            topic: postTopic,
+            postText: postText
+        }
 
         {
             !image ?
-                Axios.post(url, {
-                    topic: data.topic,
-                    postText: data.postText
-                }).then(() => refreshPage())
+                await postDataToServerByAxiosPost(url, data, 0).then(() => refreshPage())
                 :
-            axios.post(`http://localhost:8080/image/upload/post/${data.topic}/${data.postText}`,
-                dataa,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
-                    }
-                }).then(() => {refreshPage();
-            }).catch(err => {
-                console.log(err);
-            });
+                await postImageToServerByAxiosPost(`http://localhost:8080/image/upload/post/${postTopic}/${postText}`,
+                    imageToPost, 0).then(() => console.log(imageToPost));
         }
+        handleClose();
+        refreshPage();
     }
 
     // -------------------------------------------------------------
@@ -73,11 +72,9 @@ function AddNewPost(props) {
             const file = acceptedFiles[0];
             setImage(true);
 
-            console.log(acceptedFiles);
-
             const formData = new FormData();
             formData.append("file", file);
-            setDataa(formData);
+            setImageToPost(formData);
 
         }, []);
         const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
@@ -110,7 +107,7 @@ function AddNewPost(props) {
                                 id="topic"
                                 placeholder="Topic"
                                 autoFocus
-                                value={data.topic}
+                                value={postTopic}
                                 onChange={(e) => handle(e)}
                             />
                         </Form.Group>
@@ -124,7 +121,7 @@ function AddNewPost(props) {
                                           id="postText"
                                           placeholder="Post text"
                                           style={{marginLeft: -4}}
-                                          value={data.postText}
+                                          value={postText}
                                           onChange={(e) => handle(e)}
                             />
                         </Form.Group>
@@ -137,7 +134,7 @@ function AddNewPost(props) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="warning" onClick={(e) => submit(e)}>
+                    <Button variant="warning" onClick={(e) => submit(e)} disabled={isDisabled}>
                         Save Changes
                     </Button>
                 </Modal.Footer>
@@ -145,4 +142,5 @@ function AddNewPost(props) {
         </>
     );
 }
+
 export default AddNewPost;

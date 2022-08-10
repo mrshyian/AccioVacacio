@@ -1,18 +1,14 @@
 import React from 'react';
 import {Button, Card} from "react-bootstrap";
 import {FaUserPlus} from "react-icons/fa";
-import axios from "axios";
 import userImage from "../../../../../images/user.png";
+import {getResponseFromAxiosGet} from "../../../../../axios";
 
 const SingleSearchedFriend = (props) => {
-
+    const addFriendUrl = `http://localhost:8080/add_friend/${props.myUser.id}`;
 
     const addFriend = () => {
-        axios.get(`http://localhost:8080/add_friend/${props.myUser.id}`)
-            .then(() => window.location.reload())
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(addFriendUrl,2).then(() => window.location.reload());
     };
 
     return (
@@ -28,7 +24,6 @@ const SingleSearchedFriend = (props) => {
                         currentTarget.src=userImage;
                     }}
                 />
-                {/*<img style={{width: 100, height: 100, float: "left"}} src={`http://localhost:8080/image/download/user/${props.myUser.id}`} alt="some image" />*/}
                 <h4 style={{marginTop: "5%"}}>{props.myUser.fullName}</h4>
                 <Button style={{float: "right", margin: "3px"}} variant="outline-warning" onClick={() => addFriend()}>{<FaUserPlus/>}</Button>
             </Card.Body>

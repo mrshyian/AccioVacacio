@@ -14,7 +14,7 @@ const ErrorModal = (props) => {
     };
 
     const setToPropsModalClose = () => {
-        props.close(false)
+        props.close(false);
     }
 
     return (

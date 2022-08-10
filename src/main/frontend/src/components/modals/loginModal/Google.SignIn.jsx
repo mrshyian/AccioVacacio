@@ -4,10 +4,17 @@ import axios from "axios";
 
 
 const GoogleSignIn = () => {
+    function parseJwt(token) {
+        if (!token) { return; }
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    }
+
     const google = window.google
 
     function handleCallbackResponse(responce) {
-        console.log(jwt_decode(responce.credential));
+        // console.log(jwt_decode(responce.credential));
 
         const url = "http://localhost:8080/login_with_google";
         axios.post(url,{
@@ -16,9 +23,12 @@ const GoogleSignIn = () => {
             avatar: jwt_decode(responce.credential).picture
         })
             .then(res=>{
+                // console.log(parseJwt(res['accessToken']))
+                // sessionStorage.setItem("userId", parseJwt(res['accessToken']).sub)
+                sessionStorage.setItem("token", res['accessToken'])
                 console.log(res.data);
-                sessionStorage.setItem("userId", res.data)
-                window.location.reload();
+
+                // window.location.reload();
             })
     }
 

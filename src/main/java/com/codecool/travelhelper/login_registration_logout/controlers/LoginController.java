@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin("*")
@@ -17,18 +19,13 @@ public class LoginController {
     private LoginImpl loginImpl;
 
 
-    @PostMapping("/login")
-    public String login(@RequestBody String data){
-        return loginImpl.findUser(data);
-    }
-
     @GetMapping("/login")
     public Long sendingTheUserIDSessionToFront(){
        return loginImpl.getCurrentUserId();
     }
 
     @PostMapping("/login_with_google")
-    public String signWithGoogle(@RequestBody String data) {
+    public Map<String,String> signWithGoogle(@RequestBody String data) {
         return loginImpl.signWithGoogle(data);
     }
 }

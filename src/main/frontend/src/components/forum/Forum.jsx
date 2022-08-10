@@ -1,32 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import ForumLeftPanel from "./forumleftpanel/ForumLeftPanel";
 import ForumRightPanel from "./forumRightPanel/ForumRightPanel";
-import axios from "axios";
+import {getResponseFromAxiosGet} from "../../axios";
 
 
 const Forum = () => {
+    let csrfToken= null;
+    if(document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1') != null){
+        csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+        // console.log(csrfToken)
+    }
+
+    const getCommentsUrl = `http://localhost:8080/comments`;
+    const getPostsUrl = `http://localhost:8080/posts`;
 
     const [comment, setComment] = useState([]);
     const [post, setPost] = useState([]);
 
-    const fetchComment = () => {
-        axios.get(`http://localhost:8080/comments`)
-            .then(res =>{setComment(res.data);
-                console.log(res.data)})
-        .catch(err => {console.log(err)});
+
+    const fetchComment = async () => {
+        let resp = await getResponseFromAxiosGet(getCommentsUrl, 2);
+        setComment(resp.data);
     };
 
-    const fetchPost = () => {
-        axios.get(`http://localhost:8080/posts`)
-            .then(res =>{setPost(res.data);
-            console.log(res.data)})
-        .catch(err => {console.log(err)});
+    const fetchPost = async () => {
+        let resp = await getResponseFromAxiosGet(getPostsUrl, 2);
+        setPost(resp.data);
     };
 
-    useEffect(() => {
-            fetchComment();
-            fetchPost();
-        }, [])
+    useEffect(
+        () => {
+            (async () => {
+                await fetchPost();
+                await fetchComment();
+            })();
+        }, []);
 
 
     return (
@@ -34,7 +42,6 @@ const Forum = () => {
             <div style={{display: "flex"}}>
                 <ForumLeftPanel posts={post} comments={comment}/>
                 <ForumRightPanel posts={post} comments={comment}/>
-
             </div>
 
         </div>

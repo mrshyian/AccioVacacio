@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum ApiMetaData {
-    WEATHER ("https://community-open-weather-map.p.rapidapi.com/weather", new HashMap<>(){{
-        put("X-RapidAPI-Host", "community-open-weather-map.p.rapidapi.com");
-        put("X-RapidAPI-Key", "b186afc8b1msh4bc0a73b4bf87bdp1d1bafjsn15bd5f30345d");
+//    WEATHER ("https://community-open-weather-map.p.rapidapi.com/weather", new HashMap<>(){{
+//        put("X-RapidAPI-Host", "community-open-weather-map.p.rapidapi.com");
+//        put("X-RapidAPI-Key", "3432d75ba4msh8f4994d2b2aee02p1d0590jsn55b1256f97ed");
+//    }}),
+    WEATHER ("https://weatherapi-com.p.rapidapi.com/current.json", new HashMap<>(){{
+        put("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com");
+        put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
     }}),
     NEWSWORLD("https://newscatcher.p.rapidapi.com/v1/search_free", new HashMap<>(){{
         put("X-RapidAPI-Host", "newscatcher.p.rapidapi.com");
@@ -44,6 +48,11 @@ public enum ApiMetaData {
     //todo: use it very carefully! Price is 200/month for free + US$0.001 each other
     GOOGLE_AUTOCOMPLETE_PLUS("https://google-maps-autocomplete-plus.p.rapidapi.com/autocomplete",  new HashMap<>(){{
         put("X-RapidAPI-Host", "google-maps-autocomplete-plus.p.rapidapi.com");
+        put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
+    }}),
+
+    AIRPORT_INFO("https://airport-info.p.rapidapi.com/airport",  new HashMap<>(){{
+        put("X-RapidAPI-Host", "airport-info.p.rapidapi.com");
         put("X-RapidAPI-Key", "af26e6ba1cmshe3e8f978bdede11p150bcajsna014b084fe98");
     }})
     ;

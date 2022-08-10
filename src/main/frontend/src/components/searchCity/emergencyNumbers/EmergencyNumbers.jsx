@@ -11,7 +11,7 @@ const EmergencyNumbers = (props) => {
         return (
             <Card
                 bg={"dark"}
-                key={"dark"}
+                key={"emergency-numbers-dark"}
                 text={'white'}
                 style={{ width: '35rem', borderColor: "orange" }}
                 className="mb-2"
@@ -39,7 +39,7 @@ const EmergencyNumbers = (props) => {
         return (
             <Card
                 bg={"dark"}
-                key={"dark"}
+                key={"emergency-numbers-dark-key"}
                 text={'white'}
                 style={{ width: '35rem', borderColor: "orange" }}
                 className="mb-2"

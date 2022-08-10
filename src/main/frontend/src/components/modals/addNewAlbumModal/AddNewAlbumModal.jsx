@@ -40,9 +40,7 @@ const AddNewAlbumModal = (props) => {
                 window.location.reload();
             })
         handleCloseLoginModal()
-
     }
-
 
     return (
         <Modal show={showNewAlbumModal} onHide={handleCloseLoginModal} style={{background: "rgba(0, 0, 0, 0.6)", color: "orange"}}>

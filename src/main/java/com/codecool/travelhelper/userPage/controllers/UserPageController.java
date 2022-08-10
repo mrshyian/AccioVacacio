@@ -14,9 +14,9 @@ public class UserPageController {
     @Autowired
     private UserPageImpl userPageImpl;
 
-    @GetMapping("/usermainbar")
-    public MyUserTable getUser() {
-        return userPageImpl.getUserFromDB();
+    @GetMapping("/usermainbar/{userId}")
+    public MyUserTable getUser(@PathVariable String userId) {
+        return userPageImpl.getUserFromDB(userId);
     }
 
     @PostMapping("/usermainbar")

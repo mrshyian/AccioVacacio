@@ -28,7 +28,7 @@ const CrimeRating = (props) => {
                 <div style={{margin: "5px"}}>
                     <Card
                         bg={"dark"}
-                        key={"dark"}
+                        key={"crime-rating-dark"}
                         text={'white'}
                         style={{ width: '20rem', borderColor: "orange" }}
                         className="mb-2"
@@ -37,7 +37,7 @@ const CrimeRating = (props) => {
                         <Card.Body>
                             <Card.Text>
                                 <div style={{textAlign: "center"}}>
-                                    <img className="img-for-crime-rating"
+                                    <img style={{width: 200}}
                                          src={img}
                                          alt="random image"/>
                                 </div>
@@ -57,7 +57,7 @@ const CrimeRating = (props) => {
             <div style={{margin: "5px"}}>
                 <Card
                     bg={"dark"}
-                    key={"dark"}
+                    key={"crime-rating-dark-key"}
                     text={'white'}
                     style={{ width: '20rem', borderColor: "orange" }}
                     className="mb-2"

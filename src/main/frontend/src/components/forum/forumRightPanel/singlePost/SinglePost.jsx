@@ -8,6 +8,7 @@ import axios from "axios";
 import {RiFileEditFill} from "react-icons/ri";
 import { BsFillArrowUpSquareFill} from "react-icons/bs";
 import userImage from "../../../../images/user.png";
+import {postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../axios";
 
 const SinglePost = (props) => {
     const userId = props.post.myUserTable.id
@@ -17,49 +18,46 @@ const SinglePost = (props) => {
     const url = "http://localhost:8080/post_edit"
     let like = 0;
     const AddLike = () => {
-
         like = like + 1
-        like <= 1 ? sendLike() : console.log("już dodałeś like")
+        like <= 1 ? sendLike() : console.log()
     }
 
     const sendLike = () => {
-        axios.post(
-            "http://localhost:8080/add_like_to_post", {
-                postId: props.post.id
-            })
-            .then((() => reload()
-            ));
+        const data={
+            postId: props.post.id
+        }
+        postDataToServerByAxiosPost("http://localhost:8080/add_like_to_post", data, 0).then();
     }
 
     const DeletePost = () => {
-        axios.put(
-            "http://localhost:8080/delete_post", {
+        const data={
                 postId: props.post.id
-            })
-            .then((() => reload()
-            ));
+            }
+        putDataToServerByAxiosPut("http://localhost:8080/delete_post", data, 2).then(() => reload())
     }
 
     function submit(e) {
         e.preventDefault();
-        axios.put(url, {
+        const data={
             postText: postText,
             postId: props.post.id
-        }).then(() => reload())
-
+        }
+        putDataToServerByAxiosPut(url, data, 0).then(() => reload())
     }
 
     useEffect(()=>{
-        isSession()
+        postOwner()
     }, [])
 
-    const [session, setSession] = useState(false)
-    const isSession = () => {
+    const [isOwner, setIsOwner] = useState(false)
+
+    const postOwner = () => {
         if(sessionStorage.getItem("userId") == userId ) {
-            setSession(true)
+            setIsOwner(true)
         }else{
-            setSession(false)
+            setIsOwner(false)
         }
+
     }
 
     function reload() {
@@ -69,20 +67,19 @@ const SinglePost = (props) => {
     function editText(e) {
         e.preventDefault();
         setEditable(true);
+        reload();
     }
-
 
     return (
         <div id={props.post.id} style={{marginBottom: "100px"}}>
             {editable ?
                 <Card
                     bg="dark"
-                    key={"dark"}
                     text={'white'}
                     style={{width: '80%', margin: "10px", marginLeft: "auto", marginRight: "auto"}}
                     className="mb-2">
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
-                        <p style={{marginBottom: -20}}>
+                        <div>
                             <img
                                 className="imgForForum"
                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
@@ -91,16 +88,15 @@ const SinglePost = (props) => {
                                     currentTarget.src=userImage;
                                 }}
                             />
-                            <p> {props.post.userName} </p></p>
+                            <div> {props.post.userName} </div></div>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
-                        <p>{props.post.postDateTime}</p>
+                        <div>{props.post.postDateTime}</div>
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
 
                             <InputGroup style={{marginLeft: "-12.5%", width: "125%"}}>
                                 <FormControl
-                                    id="note-input-id"
                                     className="note-input"
                                     as="textarea"
                                     aria-label="With textarea"
@@ -114,14 +110,13 @@ const SinglePost = (props) => {
 
                     </Card.Body>
                     <Card.Footer><Button onClick={DeletePost} style={{marginLeft: "93%"}} variant="outline-warning">{
-                        <FaTrash/>}</Button><p></p>
+                        <FaTrash/>}</Button>
                         <Button onClick={AddLike} style={{marginLeft: "93%"}} variant="outline-warning">{
                             <FaHeart/>}</Button>
                         <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
                         >{<BsFillArrowUpSquareFill/>}</Button>
-
-                        <p>Comments:</p>
-                        {props.comments.map((comment, post, index) => {
+                            <div>Comments:</div>
+                        {props.comments.map((comment, index) => {
                             if(comment.post.id === props.post.id){
                                 return (
                                     <SingleComment key={index} comments={comment}/>
@@ -134,12 +129,11 @@ const SinglePost = (props) => {
                 :
                 <Card
                     bg="dark"
-                    key={"dark"}
                     text={'white'}
                     style={{width: '80%', margin: "10px", marginLeft: "auto", marginRight: "auto"}}
                     className="mb-2">
                     <Card.Header style={{justifyContent: "space-between", color: "orange", display: "flex"}}>
-                        <p style={{marginBottom: -20}}>
+                        <div>
                             <img
                                 className="imgForForum"
                                 src={`http://localhost:8080/image/download/post/profile/${props.post.id}`}
@@ -148,24 +142,22 @@ const SinglePost = (props) => {
                                     currentTarget.src=userImage;
                                 }}
                             />
-                            <p> {props.post.userName} </p></p>
+                            <div> {props.post.userName} </div></div>
                         <h2 style={{marginTop: "auto", marginBottom: "auto"}}>{props.post.topic}</h2>
-                        <p>{props.post.postDateTime}</p>
+                        <div>{props.post.postDateTime}</div>
                     </Card.Header>
                     <Card.Body>
-
                         <Card.Text>
-
                             <h4>{props.post.postText}</h4>
                             <img className="post-image"
                                  src={`http://localhost:8080/image/download/post/${props.post.id}`}
                                  alt=""/>
                         </Card.Text>
-
                     </Card.Body>
                     <Card.Footer>
-                        <div style={{display: "flex", justifyContent:"right"}} >
-                            {session?
+                        {sessionStorage.getItem("userId")!== null ?
+                        <div><div style={{display: "flex", justifyContent:"right"}} >
+                            {isOwner?
                                 <div>
                                     <Button onClick={DeletePost} style={{marginLeft: "5px"}} variant="outline-warning">{<FaTrash/>}</Button>
 
@@ -189,12 +181,18 @@ const SinglePost = (props) => {
                             }
 
                         </div>
-                        <AddNewComment postId={props.post.id}/>
-                        <h5>Comments:</h5>
-                        {props.comments.map((comment, post, index) => {
+                        <AddNewComment postId={props.post.id}/></div>
+                            :
+                            <div style={{display: "flex", justifyContent:"right"}} >
+                            <Button href="#top" style={{marginLeft: "5px"}} variant="outline-warning" className="save-note-button"
+                            >{<BsFillArrowUpSquareFill/>}</Button>
+                            </div>
+                        }
+                        <div>Comments:</div>
+                        {props.comments.map((comment, index) => {
                             if(comment.post.id === props.post.id){
                                 return (
-                                    <SingleComment key={index} comments={comment}/>
+                                    <SingleComment tokenCsrf={props.tokenCsrf} key={index} comments={comment}/>
                                 )
                             }
                         })}
