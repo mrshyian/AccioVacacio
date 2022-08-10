@@ -55,11 +55,11 @@ const AllCarousel = () => {
                 </Carousel.Item>
             </Carousel>
 
-            <div style={{padding: "4%"}}>
+            <div className={"button-wrap"} style={{padding: "4%"}}>
                 <Link to="/SearchBox">
                     <Button
                         variant="warning"
-                        className={"button button2"}
+                        className={"search-city-button"}
                     >
                         Search City
                     </Button>
