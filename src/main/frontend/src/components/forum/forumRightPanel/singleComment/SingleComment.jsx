@@ -53,7 +53,6 @@ const SingleComment = (props) => {
         };
 
         await postDataToServerByAxiosPost(addLikeToCommentUrl, data, 2);
-        reload();
     }
 
     const DeleteComment = async () => {
@@ -72,9 +71,6 @@ const SingleComment = (props) => {
             commentText: commentText,
             commentId: props.comments.id
         };
-
-        // const resp = getResponseFromAxiosGet(csrfTokenUrl, 2);
-        // setToken(resp.data);
 
         await putDataToServerByAxiosPut(editCommentUrl, editCommentData, 2);
         reload();
