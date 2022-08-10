@@ -6,12 +6,15 @@ let refresh = false;
 axios.interceptors.response.use(resp => resp, async error => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("token")}`;
 
+    alert("axios")
     if (error.response.status === 403) {
+        alert(403)
         return ;
     }
 
     if (error.response.status === 401 && !refresh) {
         refresh = true;
+        alert(401)
 
         const response = await axios.post('http://localhost:8080/auth/refreshToken', {},
      {
