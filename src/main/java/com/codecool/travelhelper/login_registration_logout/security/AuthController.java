@@ -65,7 +65,7 @@ public class AuthController {
 
             } catch (Exception e){
                 response.setHeader("Error",e.getMessage());
-                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                response.setStatus(HttpStatus.NOT_FOUND.value());
                 Map<String,String> error = new HashMap<>();
                 error.put("Message",e.getMessage());
                 response.setContentType(APPLICATION_JSON_VALUE);

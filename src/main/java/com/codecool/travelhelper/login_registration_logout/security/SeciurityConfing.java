@@ -47,22 +47,21 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
         http.cors();
         http.csrf().disable(); //TODO create csrf token
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.authorizeRequests().antMatchers(
-//                "/usermainbar",
-//                "/auth/refreshToken",
-//                "/get_friend_by_nick/**",
-//                "/placewanttogo",
-//                "/photos",
-//                "/notes",
-//                "/search_friend/**",
-//                "/search_friend/id/**",
-//                "/add_friend/**",
-//                "/remove_friend/**",
-//                "/mail_to_friend/new_message_in_chat",
-//                "/mail_to_friend/all_chats",
-//                "/mail_to_friend/**",
-//                "/mail_to_friend/messages/**",
-//                "/albumsfromtrips").hasAuthority("USER");
+        http.authorizeRequests().antMatchers(
+                "/usermainbar",
+                "/get_friend_by_nick/**",
+                "/placewanttogo",
+                "/photos",
+                "/notes",
+                "/search_friend/**",
+                "/search_friend/id/**",
+                "/add_friend/**",
+                "/remove_friend/**",
+                "/mail_to_friend/new_message_in_chat",
+                "/mail_to_friend/all_chats",
+                "/mail_to_friend/**",
+                "/mail_to_friend/messages/**",
+                "/albumsfromtrips").hasAuthority("USER");
 //
         http.authorizeRequests().anyRequest().permitAll();
 
