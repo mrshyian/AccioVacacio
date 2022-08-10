@@ -121,8 +121,8 @@ public class MyUserTable {
         this.userEMail = userEMail;
         this.password = password;
         this.avatar = "";
-        this.instagram = "";
-        this.facebook = "";
+        this.instagram = "https://www.instagram.com";
+        this.facebook = "https://www.facebook.com/";
         this.aboutMe = "";
         this.privateAccount = false;
         this.role = "USER";
