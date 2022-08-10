@@ -52,7 +52,7 @@ public class AuthController {
                 String accessToken = JWT.create()
                         .withSubject(user.getId().toString())
                         .withIssuer("TripHelper")
-                        .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))
+                        .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))
                         .withClaim("roles",roles)
                         .sign(algorithm);
 

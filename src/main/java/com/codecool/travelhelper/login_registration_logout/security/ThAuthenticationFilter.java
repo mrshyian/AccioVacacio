@@ -68,14 +68,14 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         String accessToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*1000))//60*60*1000
+                .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))//60*60*1000
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
 
         String refreshToken = JWT.create()
                 .withSubject(userId.toString())
                 .withIssuer("TripHelper")
-                .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+30*24*60*60*1000))
                 .sign(algorithm);
 
         Map<String,String> tokens = new HashMap<>();

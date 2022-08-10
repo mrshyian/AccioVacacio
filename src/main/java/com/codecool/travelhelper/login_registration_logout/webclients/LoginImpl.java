@@ -64,14 +64,14 @@ public class LoginImpl {
             String accessToken = JWT.create()
                     .withSubject(userObject.get().getId().toString())
                     .withIssuer("TripHelper")
-                    .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
+                    .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))
                     .withClaim("roles",userRoles)
                     .sign(algorithm);
 
             String refreshToken = JWT.create()
                     .withSubject(userObject.get().getId().toString())
                     .withIssuer("TripHelper")
-                    .withExpiresAt(new Date(System.currentTimeMillis()+24*60*60*1000))
+                    .withExpiresAt(new Date(System.currentTimeMillis()+30*24*60*60*1000))
                     .sign(algorithm);
 
 
