@@ -21,7 +21,6 @@ const SearchCity = () => {
     const [emergencyNumber, setEmergencyNumber] = useState("");
     const [livingCosts, setLivingCosts] = useState([]);
     const [crimeRating, setCrimeRating] = useState([]);
-    // const [attractions, setAttractions] = useState([]);
 
     const location = useLocation()
     const country = location.state.country;
