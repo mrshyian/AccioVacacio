@@ -1,89 +1,89 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import SocialMedia from "../socialMedia/SocialMedia";
 import "./ProfileImage.css"
 import "./InformationAboutUser.css"
 import EditUserDataModal from "../../../../modals/editUserDataModal/EditUserDataModal";
 import user from "../../../../../images/user.png"
-import CountryCounter from "../countryCounter/CountryCounter";
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
 import userImage from "../../../../../images/user.png"
+import {useNavigate} from "react-router-dom";
 import {FaComments, FaTrashAlt, FaUserPlus} from "react-icons/fa";
+import {getResponseFromAxiosGet} from "../../../../../axios";
 
-const InformationAboutUser = (props) => {
+
+const InformationAboutUser = () => {
+
+    const [myFriend, setMyFriend] = useState({})
+    const witchUrl = () => {
+        if (window.location.href.toString().startsWith("http://localhost:3000/userpage/friend")) {
+            const userNickName = (window.location.href.toString().split("/")[window.location.href.toString().split("/").length - 1]);
+            const friendByNickUrl = `http://localhost:8080/get_friend_by_nick/${userNickName}`;
+            getResponseFromAxiosGet(friendByNickUrl, 0)
+                .then(res => {
+                    setMyFriend(res.data);
+                    alert("if")
+                });
+        } else {
+            const friendByNickUrl = `http://localhost:8080/usermainbar/${sessionStorage.getItem('userId')}`;
+            getResponseFromAxiosGet(friendByNickUrl, 0)
+                .then(res => {
+                    setMyFriend(res.data);
+                    alert("else")
+                });
+        }
+    }
+
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
     const [allFriends, setAllFriends] = useState([]);
-    const idFromProps = sessionStorage.getItem("userId");
+    const idFromProps = myFriend.id;
     const [boolka, setBoolka] = useState(false);
-    const [userId, setUserId] = useState(sessionStorage.getItem("userId"));
-
+    const addFriendUrl = `http://localhost:8080/add_friend/${idFromProps}`;
+    const removeFriendUrl = `http://localhost:8080/remove_friend/${idFromProps}`;
+    const searchAllFriendsUrl = `http://localhost:8080/search_friend/id/${idFromProps}`;
+    const sayHelloUrl = `http://localhost:8080/mail_to_friend/${idFromProps}`;
 
     useEffect(() => {
-        (async () => {
-            await searchAllFriends();
-        })();
-    }, [props])
+        witchUrl();
+    }, [])
+
+    useEffect(() => {
+        searchAllFriends();
+        friendOrNot();
+    }, [myFriend])
 
     const addFriend = () => {
-        axios.get(`http://localhost:8080/add_friend/${idFromProps}`)
-            .then(() => window.location.reload())
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(addFriendUrl, 2).then(() => window.location.reload());
     };
 
     const removeFriend = () => {
-        axios.get(`http://localhost:8080/remove_friend/${idFromProps}`)
-            .then(() => window.location.reload())
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(removeFriendUrl, 2).then(() => window.location.reload());
     };
 
-    const searchAllFriends = async () => {
-        if (sessionStorage.getItem("chosenFriendId") !== null){
-            setUserId(sessionStorage.getItem("chosenFriendId"));
-        }
-
-        await axios.get(`http://localhost:8080/search_friend/id/${userId}`)
+    const searchAllFriends = () => {
+        getResponseFromAxiosGet(searchAllFriendsUrl, 0)
             .then(res => {
                 setAllFriends(res.data);
-                sessionStorage.removeItem("chosenFriendId");
-                friendOrNot();
-            })
-            .catch(err => {
-                console.log(err)
             });
     };
 
     const sayHello = () => {
-        axios.get(`http://localhost:8080/mail_to_friend/${idFromProps}`)
+        getResponseFromAxiosGet(sayHelloUrl, 2)
             .then(() => {
                 navigate("/userpage/friends/mail_box", {
                     state: {
-                        friend: props.myUser
-                    }})})
-            .catch(err => {
-                console.log(err)
-            });
-    }
-
-    const friendOrNot = () => {
-
-        axios.get(`http://localhost:8080/search_friend/id/${idFromProps}`)
-            .then(res => {
-                let friendsList = res.data;
-                friendsList.map(friend => {
-                    if(friend.id===props.myUser.id){
-                        setBoolka(true);
+                        friend: myFriend
                     }
                 })
             })
-            .catch(err => {
-                console.log(err)
-            });
+    }
+
+    const friendOrNot = () => {
+        allFriends.map(friend => {
+            if (friend.id === myFriend.id) {
+                setBoolka(true);
+            }
+        })
     };
 
     return (
@@ -98,31 +98,31 @@ const InformationAboutUser = (props) => {
                     <div>
                         <img
                             className="profile-image"
-                            src={`http://localhost:8080/image/download/user/${userId}`}
+                            src={`http://localhost:8080/image/download/user/${myFriend.id}`}
                             onError={({currentTarget}) => {
                                 currentTarget.onerror = null; // prevents looping
                                 currentTarget.src = userImage;
                             }}
                         />
-                        <SocialMedia myUser={props.myUser}/>
-                        <div className="birthday">Birthday: {props.myUser.birthday}</div>
+                        <SocialMedia myUser={myFriend}/>
+                        <div className="birthday">Birthday: {myFriend.birthday}</div>
                     </div>
                     <div className="user-info-second-div">
-                        <h3>{props.myUser.fullName}</h3>
+                        <h3>{myFriend.fullName}</h3>
                         <div className="user-info-second-div-nickname">
                             (<img className="user-info-nickname-img" src={user}/>
-                            <h4 className="user-info-nickname">{props.myUser.nickName}</h4>)
+                            <h4 className="user-info-nickname">{myFriend.nickName}</h4>)
                         </div>
                         <Card.Text className="user-info-aboutme-text">
                             <br/>
                             <h5 style={{color: "orange"}}>About me:</h5>
                             <div className="user-info-aboutme-text-div">
-                                {props.myUser.aboutMe}
+                                {myFriend.aboutMe}
                             </div>
                             <br/>
 
                             <div style={{marginTop: "2%", display: "flex"}}>
-                                {userId === sessionStorage.getItem("userId") ?
+                                {myFriend.id === sessionStorage.getItem("userId") ?
                                     <h5 className="friends" onClick={() => {
 
                                         navigate("/userpage/friends");
@@ -171,25 +171,25 @@ const InformationAboutUser = (props) => {
                             </div>
                         </Card.Text>
                     </div>
-                    {userId === sessionStorage.getItem("userId") ?
+                    {myFriend.id === sessionStorage.getItem("userId") ?
                         <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn"
                                 variant={"outline-warning"}>Edit my details</Button>
                         :
                         <div className="user-start-chat-btn">
                             {boolka ?
-                                <Button style={{marginRight: "5px"}} variant="outline-warning" onClick={() => removeFriend()}>{<FaTrashAlt/>}</Button>
+                                <Button style={{marginRight: "5px"}} variant="outline-warning"
+                                        onClick={() => removeFriend()}>{<FaTrashAlt/>}</Button>
                                 :
-                                <Button style={{marginRight: "5px"}} variant="outline-warning" onClick={() => addFriend()}>{<FaUserPlus/>}</Button>
+                                <Button style={{marginRight: "5px"}} variant="outline-warning"
+                                        onClick={() => addFriend()}>{<FaUserPlus/>}</Button>
                             }
-                                <Button variant="warning"
-                                     onClick={() => sayHello()}>Say Hello {<FaComments/>}</Button>
+                            <Button variant="warning"
+                                    onClick={() => sayHello()}>Say Hello {<FaComments/>}</Button>
                         </div>
-
                     }
                 </div>
             </Card.Body>
-            {/*<CountryCounter/>*/}
-            {modalOpen && <EditUserDataModal visible={modalOpen} close={setModalOpen} myUser={props.myUser}/>}
+            {modalOpen && <EditUserDataModal visible={modalOpen} close={setModalOpen} myUser={myFriend}/>}
         </Card>
     );
 };

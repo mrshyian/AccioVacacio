@@ -1,25 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
-import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
 import SinglePlace from "./SinglePlace";
 import "./PlaceWantToGo.css"
 import PlaceWantToGoModal from "../../../../modals/placeWantToGoModal/PlaceWantToGoModal";
+import {getResponseFromAxiosGet} from "../../../../../axios";
 
 
 const PlaceWantToGo = () => {
-
+    const placeWantToGoUrl = "http://localhost:8080/placewanttogo";
     const [modalOpen, setModalOpen] = useState(false);
     const [places, setPlaces] = useState([]);
 
     const getPlacesFromDB = () => {
-        axios.get(`http://localhost:8080/placewanttogo`)
-            .then(res => {
-                setPlaces(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(placeWantToGoUrl, 2).then(res => setPlaces(res.data));
     };
 
     function randomNumberInRange() {

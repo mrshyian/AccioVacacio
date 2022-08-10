@@ -10,6 +10,7 @@ const Booking = (props) => {
     const fetchBookingDetails = () => {
         axios.get(`http://localhost:8080/booking/${props.city}/${props.country}`)
             .then(res => {
+                console.log(res.data)
                 setBookingDetails(res.data);
             })
             .catch(err => {

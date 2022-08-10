@@ -1,17 +1,17 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import axios from "axios";
 import {useDropzone} from "react-dropzone";
+import {getResponseFromAxiosGet, postDataToServerByAxiosPost} from "../../../../../axios";
 
+const uploadImageUrl = `http://localhost:8080/image/upload`;
 
 const UserProfiles = () => {
 
     const [userProfiles, setUserProfile] = useState([]);
+    const userProfileUrl = "http://localhost:8080/user-profile";
+
 
     const fetchUserProfiles = () => {
-        axios.get("http://localhost:8080/user-profile")
-            .then(res =>{
-            setUserProfile(res.data);
-        });
+        getResponseFromAxiosGet(userProfileUrl, 2).then(res => setUserProfile(res.data));
     };
 
     useEffect(() => {
@@ -20,10 +20,9 @@ const UserProfiles = () => {
 
     return (
         <div className='post'>
-            <Dropzone {...userProfiles}/>
-            <h1>{userProfiles.username}</h1>
             <br/>
-            <div>{userProfiles.id}</div>
+            <Dropzone {...userProfiles}/>
+            <br/>
         </div>
     )
 
@@ -36,18 +35,7 @@ function Dropzone({userProfileId}) {
         const formData = new FormData();
         formData.append("file", file);
 
-
-        axios.post(`http://localhost:8080/image/upload`,
-            formData,
-            {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                }
-            }).then(() => {
-            console.log("file upload successfully");
-        }).catch(err => {
-            console.log(err);
-        });
+        postDataToServerByAxiosPost(uploadImageUrl, formData, 0).then(() => console.log("file upload successfully"))
 
     }, [])
     const {getRootProps, getInputProps} = useDropzone({onDrop})

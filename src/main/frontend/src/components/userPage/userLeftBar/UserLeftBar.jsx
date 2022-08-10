@@ -10,12 +10,13 @@ import {
     FaMapMarked,
     FaMoneyBillAlt,
     FaPencilAlt,
-    FaPhotoVideo, FaUserFriends, FaUsers
+    FaPhotoVideo,
+    FaUsers
 } from 'react-icons/fa';
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {Button, Form} from "react-bootstrap";
-
+import {getResponseFromAxiosGet} from "../../../axios";
 
 const UserLeftBar = () => {
     const [from, setFrom] = useState({});
@@ -24,6 +25,8 @@ const UserLeftBar = () => {
     const [afterSelect, setAfterSelect] = useState("");
     const [amount, setAmount] = useState("");
     const [answer, setAnswer] = useState("");
+    const exchangeUrl = `http://localhost:8080/exchange/${fromSelect}/${afterSelect}/${amount}`;
+
 
     const getAllCurrency = () => {
         axios.get(`https://openexchangerates.org/api/currencies.json`)
@@ -39,36 +42,15 @@ const UserLeftBar = () => {
         getAllCurrency();
     }, [])
 
-    const getResult = () => {
-        if (amount===""){
+    const getExchangeResult = () => {
+        if (amount === "") {
             setAmount("1");
-            axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/1`)
-                .then(res => {
-                    console.log(res.data);
-                    setAnswer(res.data.howMuchAfterConvert);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        } else {
-            axios.get(`http://localhost:8080/exchange/${fromSelect}/${afterSelect}/${amount}`)
-                .then(res => {
-                    console.log(res.data);
-                    setAnswer(res.data.howMuchAfterConvert);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
         }
-
+        getResponseFromAxiosGet(exchangeUrl, 2).then(resp => setAnswer(resp.data.howMuchAfterConvert));
     };
 
     const validateAmount = (number) => {
-        if (number<1){
-            setAmount("1");
-        } else {
-            setAmount(number);
-        }
+        { number < 1 ? setAmount("1") : setAmount(number) }
     }
 
 
@@ -136,7 +118,8 @@ const UserLeftBar = () => {
                                     placeholder="0.0"
                                     readonly
                                 />
-                                <Button style={{marginLeft: "60%"}} onClick={() => getResult()} variant="outline-warning">Convert</Button>
+                                <Button style={{marginLeft: "60%"}} onClick={() => getExchangeResult()}
+                                        variant="outline-warning">Convert</Button>
                             </Form>
                         </SubMenu>
                     </Menu>

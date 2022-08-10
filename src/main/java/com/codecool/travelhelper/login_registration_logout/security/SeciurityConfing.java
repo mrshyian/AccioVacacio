@@ -48,63 +48,25 @@ public class SeciurityConfing extends WebSecurityConfigurerAdapter {
         thAuthenticationFilter.setFilterProcessesUrl("/app/login");
         http.cors();
         http.csrf().disable(); //TODO create csrf token
-//        http
-//                .csrf()
-//                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                .and()
-//                .addFilterBefore(corsFilter, CsrfFilter.class);
-
-//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-//        http.antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico", "/rest").permitAll()
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/comments", "/myComments").hasAuthority("USER");
-//        http.authorizeRequests().antMatchers(HttpMethod.POST, "/comments", "/myComments", "/image/upload/comment/**").hasAuthority("USER");
-        http.authorizeRequests().antMatchers(
-                "/posts",
-                "/comments",
-                "/delete_post",
-                "/add_like_to_post",
-                "/myComments",
-
-
-                "/usermainbar",
-                "/image/upload/comment/**",
-                "/get_friend_by_nick/**",
-                "/placewanttogo",
-                "/photos",
-                "/notes",
-                "/search_friend/**",
-                "/search_friend/id/**",
-                "/add_friend/**",
-                "/remove_friend/**",
-                "/mail_to_friend/new_message_in_chat",
-                "/mail_to_friend/all_chats",
-                "/mail_to_friend/**",
-                "/mail_to_friend/messages/**",
-                "/albumsfromtrips").hasAuthority("USER");
-
-//        http.authorizeRequests().anyRequest().permitAll();
-
+//        http.authorizeRequests().antMatchers(
+//                "/usermainbar",
+//                "/auth/refreshToken",
+//                "/get_friend_by_nick/**",
+//                "/placewanttogo",
+//                "/photos",
+//                "/notes",
+//                "/search_friend/**",
+//                "/search_friend/id/**",
+//                "/add_friend/**",
+//                "/remove_friend/**",
+//                "/mail_to_friend/new_message_in_chat",
+//                "/mail_to_friend/all_chats",
+//                "/mail_to_friend/**",
+//                "/mail_to_friend/messages/**",
+//                "/albumsfromtrips").hasAuthority("USER");
 //
-//        http.authorizeRequests().antMatchers(HttpMethod.GET,
-//                "/comments",
-//                "/add_like_to_comment",
-//                "/image/download/comment/**"
-//        ).permitAll();
-//
-//
-//        http.authorizeRequests().antMatchers(HttpMethod.POST,
-//                "/comments",
-//                "/add_like_to_comment",
-//                "/image/upload/comment/**"
-//        ).permitAll();
-//
-//
-//        http.authorizeRequests().antMatchers(HttpMethod.PUT,
-//                "/comments",
-//                "/comment_edit",
-//                "/delete_comment"
-//        ).permitAll();
+        http.authorizeRequests().anyRequest().permitAll();
 
 
         http.addFilter(thAuthenticationFilter);

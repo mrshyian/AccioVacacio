@@ -1,26 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import {Card} from "react-bootstrap";
 import SinglePost from "../../../../forum/forumRightPanel/singlePost/SinglePost";
-import axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
+import {getResponseFromAxiosGet} from "../../../../../axios";
+
 
 const UserPageFavouriteComments = () => {
-
+    const favouriteCommentsUrl = `http://localhost:8080/favouriteComments`;
+    const favouriteCommentsPostsUrl = `http://localhost:8080/favouriteCommentsPosts`;
     const [favouriteComments, setFavouriteComments] = useState([]);
     const [favouriteCommentsPosts, setFavouriteCommentsPosts] = useState([]);
 
     const fetchMyComments = () => {
-        axios.get(`http://localhost:8080/favouriteComments`)
-            .then(res =>{setFavouriteComments(res.data);
-                console.log(res.data)})
-            .catch(err => {console.log(err)});
+        getResponseFromAxiosGet(favouriteCommentsUrl, 2).then(resp => setFavouriteComments(resp.data));
     };
 
     const fetchMyPosts = () => {
-        axios.get(`http://localhost:8080/favouriteCommentsPosts`)
-            .then(res =>{setFavouriteCommentsPosts(res.data);
-                console.log(res.data)})
-            .catch(err => {console.log(err)});
+        getResponseFromAxiosGet(favouriteCommentsPostsUrl, 2).then(resp => setFavouriteCommentsPosts(resp.data));
     };
 
     useEffect(() => {
@@ -43,7 +39,6 @@ const UserPageFavouriteComments = () => {
                     <Card.Text style={{paddingLeft: "60px", paddingRight: "60px"}}>
                         <div>
                             {favouriteCommentsPosts.map((singlePost, index) => {
-
                                 return (
                                     <SinglePost post={singlePost} comments={favouriteComments} key={index}/>
                                 )

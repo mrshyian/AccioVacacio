@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, FormControl, InputGroup} from "react-bootstrap";
 import {FaAlignCenter, FaAlignLeft, FaAlignRight} from 'react-icons/fa';
 import "./UserNotes.css"
-import axios from "axios";
 import Axios from "axios";
 import UserLeftBar from "../../UserLeftBar";
+import {getResponseFromAxiosGet, postDataToServerByAxiosPost} from "../../../../../axios";
 
 
 const UserNotes = () => {
     const [noteText, setNoteText] = useState([])
+    const notesUrl = `http://localhost:8080/notes`;
 
     useEffect(() => {
         if (sessionStorage.getItem("userId") !== null){
@@ -18,13 +19,7 @@ const UserNotes = () => {
 
 
     function fetchNoteText() {
-        axios.get(`http://localhost:8080/notes`)
-            .then(res => {
-                setNoteText(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(notesUrl, 2).then(res => setNoteText(res.data));
     }
 
     function textInCenter() {
@@ -61,13 +56,8 @@ const UserNotes = () => {
     };
 
 
-    function submit(e) {
-        e.preventDefault();
-        Axios.post(`http://localhost:8080/notes`, {
-            noteText: noteText
-        }).then(r => {
-            console.log(r.data);
-        })
+    function submit() {
+        postDataToServerByAxiosPost(notesUrl, noteText, 0).then()
     }
 
         return (
@@ -97,7 +87,7 @@ const UserNotes = () => {
                                         <option value="note-text-size-32">32</option>
                                     </Form.Select>
                                     <Button variant="warning" className="save-note-button"
-                                            onClick={(e) => submit(e)}>Save</Button>
+                                            onClick={() => submit()}>Save</Button>
                                 </Card.Header>
                             </Card>
                             <InputGroup>

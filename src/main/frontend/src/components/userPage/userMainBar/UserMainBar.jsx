@@ -1,22 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import InformationAboutUser from "./userMainBarComponents/informationAboutUser/InformationAboutUser";
-import CountryCounter from "./userMainBarComponents/countryCounter/CountryCounter";
 import {Card} from "react-bootstrap";
 import "./UserMainBar.css"
-import axios from "axios";
+import {getResponseFromAxiosGet} from "../../../axios";
 
 const UserMainBar = () => {
-
+    const userMainBarUrl = `http://localhost:8080/usermainbar/${sessionStorage.getItem('userId')}`;
     const [myUser, setMyUser] = useState({});
 
     const getUserFromDB = () => {
-        axios.get(`http://localhost:8080/usermainbar/${sessionStorage.getItem('userId')}`)
-            .then(res => {
-                setMyUser(res.data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        getResponseFromAxiosGet(userMainBarUrl, 2).then(resp => setMyUser(resp.data));
     };
 
     useEffect(() => {
@@ -33,7 +26,7 @@ const UserMainBar = () => {
         >
             <Card.Body>
                 <Card.Text style={{paddingLeft: "5%", paddingRight: "5%"}}>
-                    <InformationAboutUser myUser={myUser}/>
+                    <InformationAboutUser/>
                 </Card.Text>
             </Card.Body>
         </Card>
