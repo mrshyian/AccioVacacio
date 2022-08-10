@@ -23,6 +23,7 @@ axios.interceptors.response.use(resp => resp, async error => {
         if (response.status === 200) {
             sessionStorage.setItem("token", response.data['accessToken']);
             sessionStorage.setItem("refreshToken", response.data['refreshToken']);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("token")}`;
             return axios(error.config);
         }
     }
@@ -76,7 +77,6 @@ export async function postImageToServerByAxiosPost(url, image, repeatTimes){
                 }
             })
         i++;
-        alert(resp.status)
     } while (i < repeatTimes || resp.status !== 200)
 
 }

@@ -63,8 +63,8 @@ const UserLeftBar = () => {
                         <MenuItem icon={<FaPencilAlt/>}><Link to="/userpage/note"> Notes</Link></MenuItem>
                         <MenuItem icon={<FaMapMarked/>}><Link to="/userpage/place_want_to_go"> Places i want to
                             go </Link></MenuItem>
-                        <MenuItem icon={<FaBuromobelexperte/>}><Link
-                            to="/userpage/calculator"> Calculator </Link></MenuItem>
+                        {/*<MenuItem icon={<FaBuromobelexperte/>}><Link*/}
+                        {/*    to="/userpage/calculator"> Calculator </Link></MenuItem>*/}
                         <MenuItem icon={<FaPhotoVideo/>}><Link to="/userpage/albums_from_trips"> Albums from
                             trips </Link></MenuItem>
                         <MenuItem icon={<FaHeart/>}><Link to="/userpage/favourite_comments">Favourite

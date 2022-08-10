@@ -51,7 +51,6 @@ public class CommentController {
     @GetMapping("/token")
     public String getTokenCsrf(HttpServletRequest request) {
         CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-        System.out.println("weszło po token");
         return token.getToken();
     }
 

@@ -41,7 +41,6 @@ const RegistrationModal = (props) => {
                 password: password,
             })
                 .then(res=>{
-                    console.log(res)
                     if (res.data !== ""){
                         showErrorModal(res.data)
                     }else {

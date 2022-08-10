@@ -53,8 +53,6 @@ public class CommentImpl {
 
         String comment = commentJsonObject.get("name").getAsString();
         String postId = commentJsonObject.get("postId").getAsString();
-        System.out.println(comment);
-        System.out.println(postId);
 
         Optional<PostTable> postTable = postRepository.findById(Long.parseLong(postId));
         String country = "Poland";

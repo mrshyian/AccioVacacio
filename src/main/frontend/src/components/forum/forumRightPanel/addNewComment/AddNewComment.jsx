@@ -35,7 +35,6 @@ function AddNewComment(props) {
                 postId: props.postId
             }
 
-        console.log(dataa)
         {
             !image ?
                 await postDataToServerByAxiosPost(url, dataa, 0).then(() => console.log(dataa))

@@ -19,7 +19,7 @@ const SinglePost = (props) => {
     let like = 0;
     const AddLike = () => {
         like = like + 1
-        like <= 1 ? sendLike() : console.log("już dodałeś like")
+        like <= 1 ? sendLike() : console.log()
     }
 
     const sendLike = () => {
@@ -33,7 +33,7 @@ const SinglePost = (props) => {
         const data={
                 postId: props.post.id
             }
-        putDataToServerByAxiosPut("http://localhost:8080/delete_post", data, 0).then()
+        putDataToServerByAxiosPut("http://localhost:8080/delete_post", data, 2).then(() => reload())
     }
 
     function submit(e) {
@@ -67,6 +67,7 @@ const SinglePost = (props) => {
     function editText(e) {
         e.preventDefault();
         setEditable(true);
+        reload();
     }
 
     return (

@@ -31,12 +31,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SeciurityConfing extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private CorsFilter corsFilter;
-
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserService userService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);

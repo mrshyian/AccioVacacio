@@ -51,9 +51,6 @@ public class LoginImpl {
         String email = commentJsonObject.get("email").getAsString();
         String fullName = commentJsonObject.get("fullName").getAsString();
 
-        System.out.println(email);
-        System.out.println(fullName);
-
         Optional<MyUserTable> userObject = userRepository.findAllByUserEMail(email);
         this.setCurrentUserId(null);
 

@@ -5,28 +5,26 @@ import {FaHeart, FaTrash} from "react-icons/fa";
 
 import {RiFileEditFill} from "react-icons/ri";
 import userImage from "../../../../images/user.png";
-import {getResponseFromAxiosGet, postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../axios";
+import {postDataToServerByAxiosPost, putDataToServerByAxiosPut} from "../../../../axios";
 
 
 const SingleComment = (props) => {
     const editCommentUrl = "http://localhost:8080/comment_edit";
-    // const csrfTokenUrl = "http://localhost:8080/token";
     const deleteCommentUrl = "http://localhost:8080/delete_comment";
     const addLikeToCommentUrl = "http://localhost:8080/add_like_to_comment";
 
     let text = props.comments.commentText;
-    const userId = props.comments.myUserTable.id;
+    const userId = props.comments.myUserTable.id.toString();
     const userInSessionId = sessionStorage.getItem("userId");
 
     const [commentText, setCommentText] = useState(text);
-    const [token, setToken] = useState("");
     const [editable, setEditable] = useState(false);
     const [isOwner, setIsOwner] = useState(false);
 
     let like = 0;
 
     const commentOwner = () => {
-        if (userInSessionId == userId ){
+        if (userInSessionId === userId ){
             setIsOwner(true);
         } else {
             setIsOwner(false);
@@ -46,14 +44,13 @@ const SingleComment = (props) => {
 
     const AddLike = () => {
         like++;
-        like <= 1 ? sendLikeData() : console.log("już dodałeś like");
+        like <= 1 ? sendLikeData() : console.log();
     }
 
     const sendLikeData = async () => {
         const data = {
             commentId: props.comments.id
         };
-        alert(props.comments.id)
 
         await postDataToServerByAxiosPost(addLikeToCommentUrl, data, 2);
         reload();
@@ -152,9 +149,15 @@ const SingleComment = (props) => {
                     }}>
 
                         <div>
-                            <Image className="imgForForum"
-                                   src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`}
-                                   alt=""/>
+                            <Image
+                                fluid="true"
+                                className="imgForForum"
+                                src={`http://localhost:8080/image/download/comment/profile/${props.comments.id}`}
+                                onError={({currentTarget}) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src = userImage;
+                                }}
+                            />
                             <div>{props.comments.userName}</div></div>
                         <div>{props.comments.commentDateTime}</div>
 

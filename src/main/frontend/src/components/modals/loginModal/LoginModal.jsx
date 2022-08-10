@@ -43,9 +43,7 @@ const LoginModal = (props) => {
             email, password
         })
             .then(res => {
-                console.log("AccessToken has tis info in:")
-                console.log(parseJwt(res.data['accessToken']))
-                if (res.error === "niedziała") {
+                if (res.error === "Unsuccessful Authentication") {
                     showErrorModal("Provided data is not valid")
                 } else {
                     sessionStorage.setItem("userId", parseJwt(res.data['accessToken']).sub);

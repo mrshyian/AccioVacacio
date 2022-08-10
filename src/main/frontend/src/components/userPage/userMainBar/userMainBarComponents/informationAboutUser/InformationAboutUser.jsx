@@ -14,43 +14,40 @@ import {getResponseFromAxiosGet} from "../../../../../axios";
 const InformationAboutUser = () => {
 
     const [myFriend, setMyFriend] = useState({})
-    const witchUrl = () => {
+    const witchUrl = async () => {
         if (window.location.href.toString().startsWith("http://localhost:3000/userpage/friend")) {
             const userNickName = (window.location.href.toString().split("/")[window.location.href.toString().split("/").length - 1]);
             const friendByNickUrl = `http://localhost:8080/get_friend_by_nick/${userNickName}`;
-            getResponseFromAxiosGet(friendByNickUrl, 0)
-                .then(res => {
-                    setMyFriend(res.data);
-                    alert("if")
-                });
+            let res = await getResponseFromAxiosGet(friendByNickUrl, 2);
+            setMyFriend(res.data);
+            setUserId(res.data.id.toString());
+            await searchAllFriends(res.data.id.toString())
         } else {
             const friendByNickUrl = `http://localhost:8080/usermainbar/${sessionStorage.getItem('userId')}`;
-            getResponseFromAxiosGet(friendByNickUrl, 0)
-                .then(res => {
-                    setMyFriend(res.data);
-                    alert("else")
-                });
+            let res = await getResponseFromAxiosGet(friendByNickUrl, 2);
+            setMyFriend(res.data);
+            setUserId(res.data.id.toString());
+            await searchAllFriends(res.data.id.toString())
         }
     }
 
+    const [userId, setUserId] = useState("")
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
     const [allFriends, setAllFriends] = useState([]);
-    const idFromProps = myFriend.id;
     const [boolka, setBoolka] = useState(false);
-    const addFriendUrl = `http://localhost:8080/add_friend/${idFromProps}`;
-    const removeFriendUrl = `http://localhost:8080/remove_friend/${idFromProps}`;
-    const searchAllFriendsUrl = `http://localhost:8080/search_friend/id/${idFromProps}`;
-    const sayHelloUrl = `http://localhost:8080/mail_to_friend/${idFromProps}`;
+    const addFriendUrl = `http://localhost:8080/add_friend/${userId}`;
+    const removeFriendUrl = `http://localhost:8080/remove_friend/${userId}`;
+    const searchAllFriendsUrl = `http://localhost:8080/search_friend/id/${userId}`;
+    const searchAllMyFriendsUrl = `http://localhost:8080/search_friend/id/${sessionStorage.getItem("userId")}`;
+    const sayHelloUrl = `http://localhost:8080/mail_to_friend/${userId}`;
 
     useEffect(() => {
-        witchUrl();
+        (async () => {
+            await witchUrl();
+        })();
     }, [])
 
-    useEffect(() => {
-        searchAllFriends();
-        friendOrNot();
-    }, [myFriend])
 
     const addFriend = () => {
         getResponseFromAxiosGet(addFriendUrl, 2).then(() => window.location.reload());
@@ -60,11 +57,12 @@ const InformationAboutUser = () => {
         getResponseFromAxiosGet(removeFriendUrl, 2).then(() => window.location.reload());
     };
 
-    const searchAllFriends = () => {
-        getResponseFromAxiosGet(searchAllFriendsUrl, 0)
-            .then(res => {
-                setAllFriends(res.data);
-            });
+    const searchAllFriends = async (someId) => {
+        let res = await getResponseFromAxiosGet(`http://localhost:8080/search_friend/id/${someId}`, 2);
+        // .then(res => {
+        setAllFriends(res.data);
+        friendOrNot(someId);
+        // });
     };
 
     const sayHello = () => {
@@ -78,12 +76,15 @@ const InformationAboutUser = () => {
             })
     }
 
-    const friendOrNot = () => {
-        allFriends.map(friend => {
-            if (friend.id === myFriend.id) {
-                setBoolka(true);
-            }
-        })
+    const friendOrNot = (friendId) => {
+        getResponseFromAxiosGet(searchAllMyFriendsUrl, 2)
+            .then(res => {
+                res.data.map(friend => {
+                    if (friend.id.toString() === friendId) {
+                        setBoolka(true);
+                    }
+                })
+            });
     };
 
     return (
@@ -122,7 +123,7 @@ const InformationAboutUser = () => {
                             <br/>
 
                             <div style={{marginTop: "2%", display: "flex"}}>
-                                {myFriend.id === sessionStorage.getItem("userId") ?
+                                {userId === sessionStorage.getItem("userId") ?
                                     <h5 className="friends" onClick={() => {
 
                                         navigate("/userpage/friends");
@@ -171,7 +172,7 @@ const InformationAboutUser = () => {
                             </div>
                         </Card.Text>
                     </div>
-                    {myFriend.id === sessionStorage.getItem("userId") ?
+                    {userId === sessionStorage.getItem("userId") ?
                         <Button onClick={() => setModalOpen(true)} className="user-info-edit-btn"
                                 variant={"outline-warning"}>Edit my details</Button>
                         :

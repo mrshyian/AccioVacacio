@@ -44,7 +44,6 @@ const SearchCity = () => {
         axios.get(`http://localhost:8080/living-costs/${city}/${country}`)
             .then(res => {
                 setLivingCosts(res.data);
-                console.log(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -55,7 +54,6 @@ const SearchCity = () => {
         axios.get(`http://localhost:8080/news/${city}/${country}`)
             .then(res => {
                 setNews(res.data);
-                console.log(res.data)
             })
             .catch(err => {
                 console.log(err)

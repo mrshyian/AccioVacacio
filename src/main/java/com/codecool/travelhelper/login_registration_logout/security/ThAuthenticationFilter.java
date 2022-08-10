@@ -89,7 +89,7 @@ public class ThAuthenticationFilter extends UsernamePasswordAuthenticationFilter
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         Map<String,String> errors = new HashMap<>();
-        errors.put("error","niedziała");
+        errors.put("error","Unsuccessful Authentication");
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),errors);
     }
