@@ -16,7 +16,6 @@ import {Card} from "react-bootstrap";
 
 const SearchCity = () => {
     const [news, setNews] = useState([]);
-    const [IATACode, setIATACode] = useState("WMI");
     const [weather, setWeather] = useState("");
     const [emergencyNumber, setEmergencyNumber] = useState("");
     const [livingCosts, setLivingCosts] = useState([]);
@@ -63,16 +62,6 @@ const SearchCity = () => {
             });
     };
 
-    const fetchIATACode = () => {
-        axios.get(`http://localhost:8080/airport/${city}/${country}`)
-            .then(res => {
-                setIATACode(res.data.airportCode);
-            })
-            .catch(err => {
-                console.log(err)
-            });
-    };
-
     const fetchWeather = () => {
         axios.get(`http://localhost:8080/weather/${city}/${country}`)
             .then(res => {
@@ -105,7 +94,6 @@ const SearchCity = () => {
 
     useEffect(() => {
         fetchNewsWorld();
-        fetchIATACode();
         fetchWeather();
         fetchLivingCosts();
         fetchEmergencyNumbers();
@@ -131,7 +119,7 @@ const SearchCity = () => {
             </div>
             <TouristAttractionsBox country={country} city={city}/>
             <NewsBox news={news}/>
-            <AirportDetails iata={IATACode} country={country} city={city}/>
+            <AirportDetails country={country} city={city}/>
             <LivingCoasts livingCosts={livingCosts}/>
             <div className="weather-box" style={{display: "flex", justifyContent: "center"}}>
                 <Booking country={country} city={city}/>
