@@ -66,7 +66,6 @@ function AddNewPost(props) {
 
     // -------------------------------------------------------------
 
-
     function Dropzone() {
         const onDrop = useCallback(acceptedFiles => {
             const file = acceptedFiles[0];
