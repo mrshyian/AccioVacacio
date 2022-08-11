@@ -5,7 +5,7 @@ import LoginModal from '../modals/loginModal/LoginModal';
 import RegistrationModal from '../modals/registrationModal/RegistrationModal';
 import {Link, useNavigate} from "react-router-dom";
 import {FaEnvelope} from "react-icons/fa";
-
+import bird from "../../images/favicon.ico"
 
 const Header = () => {
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Header = () => {
                     <Navbar.Brand
                         style={{ cursor: 'pointer' }}
                     >
-                        Accio Vacacio
+                        <img src={bird} style={{height: "40px"}}/> Accio Vacacio
                     </Navbar.Brand>
                     </Link>
                     <Navbar.Toggle aria-controls="navbarScroll"/>
