@@ -42,7 +42,7 @@ public class SendMailToUser {
 
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setFrom("accio.vacacio@gmail.com");
+        message.setFrom("kodzikul@gmail.com");
         message.setTo(toEmail);
         message.setText(mailText);
         message.setSubject(mailTitle);
